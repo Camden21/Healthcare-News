@@ -20,6 +20,7 @@ that no email address or credential is ever committed to this public repo:
 
 import json
 import os
+import re
 import smtplib
 import ssl
 import sys
@@ -136,6 +137,168 @@ def esc(text):
     )
 
 
+# ----------------------------------------------------------------------
+# Executive summary rollup
+# ----------------------------------------------------------------------
+
+def extract_dollars(text):
+    """Largest dollar figure mentioned, in dollars, or None."""
+    t = re.sub(r"[-/]", " ", (text or "").lower())
+    best = None
+    pattern = r"\$\s?([\d,]+(?:\.\d+)?)\s*(trillion|billion|million|thousand|[tbmk])?\b"
+    for m in re.finditer(pattern, t):
+        raw, unit = m.group(1), (m.group(2) or "")
+        try:
+            val = float(raw.replace(",", ""))
+        except ValueError:
+            continue
+        val *= {
+            "trillion": 1e12, "t": 1e12, "billion": 1e9, "b": 1e9,
+            "million": 1e6, "m": 1e6, "thousand": 1e3, "k": 1e3,
+        }.get(unit, 1)
+        if best is None or val > best:
+            best = val
+    return best
+
+
+def humanize_dollars(amount):
+    if amount is None:
+        return None
+    if amount >= 1e12:
+        return f"${amount/1e12:.1f}T".replace(".0T", "T")
+    if amount >= 1e9:
+        return f"${amount/1e9:.1f}B".replace(".0B", "B")
+    if amount >= 1e6:
+        return f"${amount/1e6:.1f}M".replace(".0M", "M")
+    if amount >= 1e3:
+        return f"${amount/1e3:.0f}K"
+    return f"${amount:,.0f}"
+
+
+def split_sectors(raw):
+    parts = re.split(r"[;,]", raw or "")
+    out = []
+    for p in parts:
+        p = p.strip()
+        if p and p.lower() not in ("pending review", "u.s.", ""):
+            out.append(p)
+    return out
+
+
+def build_summary(events):
+    """Deterministic rollup of what this batch actually means."""
+    total = len(events)
+
+    by_direction = {}
+    by_category = {}
+    sectors = {}
+    states = {}
+    dollars = []
+
+    for e in events:
+        d = e.get("creditDirection") or "Unspecified"
+        by_direction[d] = by_direction.get(d, 0) + 1
+
+        c = CAT_LABELS.get(e.get("broadCategory"), e.get("category") or "Other")
+        by_category[c] = by_category.get(c, 0) + 1
+
+        for s in split_sectors(e.get("sector")):
+            sectors[s] = sectors.get(s, 0) + 1
+
+        st = (e.get("state") or "").strip()
+        if st and st.lower() not in ("u.s.", "us", ""):
+            for piece in re.split(r"[;,]", st):
+                piece = piece.strip()
+                if piece and piece.lower() not in ("u.s.", "us"):
+                    states[piece] = states.get(piece, 0) + 1
+
+        amt = extract_dollars(f"{e.get('headline','')} {e.get('detail','')}")
+        if amt:
+            dollars.append(amt)
+
+    critical = sum(1 for e in events if (e.get("riskScore") or 0) >= 10)
+    top_event = max(events, key=lambda e: e.get("riskScore") or 0)
+
+    def top_n(counter, n=4):
+        return [k for k, _ in sorted(counter.items(), key=lambda kv: -kv[1])[:n]]
+
+    return {
+        "total": total,
+        "critical": critical,
+        "by_direction": by_direction,
+        "by_category": by_category,
+        "top_sectors": top_n(sectors),
+        "states": top_n(states, 6),
+        "dollar_total": sum(dollars) if dollars else None,
+        "dollar_count": len(dollars),
+        "top_event": top_event,
+    }
+
+
+def summary_sentences(s):
+    """Plain-language lines describing the batch."""
+    lines = []
+
+    plural = "event" if s["total"] == 1 else "events"
+    lead = f"{s['total']} new {plural} above the reporting threshold"
+    if s["critical"]:
+        lead += f", {s['critical']} at critical severity"
+    lines.append(lead + ".")
+
+    dirs = s["by_direction"]
+    neg, pos, mixed = dirs.get("Negative", 0), dirs.get("Positive", 0), dirs.get("Mixed", 0)
+    parts = []
+    if neg:
+        parts.append(f"{neg} negative")
+    if mixed:
+        parts.append(f"{mixed} mixed")
+    if pos:
+        parts.append(f"{pos} positive")
+    if parts:
+        skew = "negative" if neg > pos else ("positive" if pos > neg else "balanced")
+        lines.append(f"Credit direction: {', '.join(parts)} — net {skew}.")
+
+    if s["dollar_total"]:
+        n = s["dollar_count"]
+        lines.append(
+            f"Aggregate disclosed exposure across {n} "
+            f"{'event' if n == 1 else 'events'}: {humanize_dollars(s['dollar_total'])}."
+        )
+
+    if s["top_sectors"]:
+        lines.append("Sectors touched: " + ", ".join(s["top_sectors"]) + ".")
+
+    if s["states"]:
+        lines.append("Jurisdictions: " + ", ".join(s["states"]) + ".")
+
+    te = s["top_event"]
+    lines.append(
+        f"Highest-scoring item ({te.get('riskScore')}): {te.get('headline','')}"
+    )
+
+    return lines
+
+
+def render_summary_html(s):
+    rows = "".join(
+        f'<li style="margin-bottom:5px;">{esc(line)}</li>'
+        for line in summary_sentences(s)
+    )
+    return f"""
+<tr><td style="padding:16px 0 4px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+         style="background:#F2F0E9;border-left:3px solid #A81C1C;">
+    <tr><td style="padding:15px 18px;">
+      <div style="font:700 11px Arial,sans-serif;letter-spacing:0.14em;
+                  text-transform:uppercase;color:#A81C1C;margin-bottom:9px;">
+        Impact Summary</div>
+      <ul style="margin:0;padding-left:18px;font:400 13.5px Georgia,serif;
+                 color:#26302A;line-height:1.55;">{rows}</ul>
+    </td></tr>
+  </table>
+</td></tr>"""
+
+
 def tier_of(score):
     if score >= 10:
         return "Critical"
@@ -234,6 +397,8 @@ def render_html(events, site_url):
           Daily digest &middot; {today} &middot; {count} high-impact {plural}</div>
       </td></tr>
       <tr><td style="border-top:3px solid #121212;padding-top:2px;"></td></tr>
+      {render_summary_html(build_summary(events))}
+      <tr><td style="padding-top:10px;"></td></tr>
       {''.join(rows)}
       <tr><td>{site_link}
         <div style="font:400 11px Arial,sans-serif;color:#8A8A84;
@@ -253,10 +418,14 @@ def render_text(events):
     lines = [
         "CIB HEALTHCARE NEWS TRACKER",
         f"Daily digest - {datetime.utcnow().strftime('%B %d, %Y')}",
-        f"{len(events)} high-impact events",
         "=" * 60,
         "",
+        "IMPACT SUMMARY",
+        "",
     ]
+    for line in summary_sentences(build_summary(events)):
+        lines.append(f"  - {line}")
+    lines += ["", "=" * 60, ""]
     for e in events:
         lines.append(f"[{e.get('riskScore')}] {e.get('creditDirection','')} - "
                      f"{CAT_LABELS.get(e.get('broadCategory'), '')}")
