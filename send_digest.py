@@ -346,20 +346,28 @@ def tier_of(score):
 
 
 def render_html(events, site_url, overflow=None):
+    """Email-safe HTML.
+
+    Built with tables and inline styles because Outlook renders HTML with
+    Word's engine: it clips borders on fixed-height divs, ignores line-height
+    centering, and drops many modern CSS properties. Filled background chips
+    survive where bordered boxes do not.
+    """
+    overflow = overflow or []
     today = datetime.utcnow().strftime("%B %d, %Y")
 
-    rows = []
+    # Tinted chip colours keyed to credit direction
+    palette = {
+        "Negative": ("#A81C1C", "#F7EAEA"),
+        "Positive": ("#2B5C3F", "#E9F0EB"),
+        "Mixed":    ("#8A6014", "#F6EFDF"),
+    }
+
+    cards = []
     for e in events:
         score = e.get("riskScore") or 0
-        color = DIRECTION_COLOR.get(e.get("creditDirection"), "#5A5A56")
-        cat = CAT_LABELS.get(e.get("broadCategory"), e.get("category", ""))
-
-        flag = ""
-        if e.get("sourceVerification") and e["sourceVerification"] != "Primary":
-            flag = (
-                '<div style="font:600 11px Arial,sans-serif;color:#8A6014;'
-                'margin-top:6px;">&#9873; Auto-drafted &mdash; pending review</div>'
-            )
+        fg, bg = palette.get(e.get("creditDirection"), ("#4A4A46", "#EFEEE9"))
+        cat = CAT_LABELS.get(e.get("broadCategory"), e.get("category") or "")
 
         jurisdiction = esc(e.get("jurisdiction", ""))
         state = esc(e.get("state", ""))
@@ -367,98 +375,183 @@ def render_html(events, site_url, overflow=None):
         if state and state != jurisdiction:
             locale = f"{jurisdiction} &middot; {state}"
 
-        rows.append(f"""
-<tr>
-  <td style="padding:18px 0;border-bottom:1px solid #D6D3C9;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="46" valign="top">
-          <div style="width:38px;height:38px;border:1.5px solid {color};
-                      color:{color};font:700 15px 'Courier New',monospace;
-                      text-align:center;line-height:38px;">{score}</div>
-        </td>
-        <td valign="top" style="padding-left:14px;">
-          <div style="font:700 10px Arial,sans-serif;letter-spacing:0.06em;
-                      text-transform:uppercase;color:{color};margin-bottom:6px;">
-            {esc(cat)} &nbsp;|&nbsp; {esc(e.get('creditDirection',''))}
-            &nbsp;|&nbsp; {tier_of(score)} Impact
-          </div>
-          <div style="font:700 17px Georgia,serif;color:#121212;
-                      line-height:1.3;margin-bottom:7px;">
-            <a href="{esc(e.get('sourceURL','#'))}"
-               style="color:#121212;text-decoration:none;">{esc(e.get('headline',''))}</a>
-          </div>
-          <div style="font:400 14px Georgia,serif;color:#333330;
-                      line-height:1.55;margin-bottom:9px;">
-            {esc(e.get('detail',''))}
-          </div>
-          <div style="font:400 11px Arial,sans-serif;color:#5A5A56;
-                      text-transform:uppercase;letter-spacing:0.03em;">
-            <strong style="color:#121212;">{esc(e.get('sourceAgency',''))}</strong>
-            &nbsp;&middot;&nbsp; {locale}
-            &nbsp;&middot;&nbsp; {esc(e.get('date',''))}
-            &nbsp;&middot;&nbsp;
-            <a href="{esc(e.get('sourceURL','#'))}"
-               style="color:#A81C1C;font-weight:600;text-decoration:none;">Read source &rarr;</a>
-          </div>
-          {flag}
-        </td>
-      </tr>
-    </table>
-  </td>
-</tr>""")
+        flag = ""
+        if e.get("sourceVerification") and e["sourceVerification"] != "Primary":
+            flag = (
+                '<div style="font:400 11px Arial,sans-serif;color:#8A6014;'
+                'padding-top:8px;">Auto-drafted &mdash; pending review</div>'
+            )
 
-    overflow = overflow or []
+        cards.append(f"""
+<tr><td style="padding:0 0 12px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+         bgcolor="#FFFFFF" style="background:#FFFFFF;border:1px solid #E2E0D8;">
+    <tr>
+      <td valign="top" style="padding:18px 0 18px 18px;" width="62">
+        <!-- score chip: filled cell, no border, fixed line-height for Outlook -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+          <tr><td align="center" valign="middle" width="44" height="44"
+                  bgcolor="{bg}"
+                  style="width:44px;height:44px;background:{bg};color:{fg};
+                         font-family:Arial,Helvetica,sans-serif;font-size:18px;
+                         font-weight:bold;text-align:center;
+                         mso-line-height-rule:exactly;line-height:44px;">
+            {score}
+          </td></tr>
+          <tr><td align="center"
+                  style="font:400 9px Arial,sans-serif;color:#8A8A84;
+                         padding-top:5px;letter-spacing:0.06em;
+                         text-transform:uppercase;">Risk</td></tr>
+        </table>
+      </td>
+      <td valign="top" style="padding:18px 20px 18px 14px;">
+
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:10px;
+                    font-weight:bold;letter-spacing:0.07em;
+                    text-transform:uppercase;color:{fg};padding-bottom:7px;">
+          {esc(cat)} &nbsp;&bull;&nbsp; {esc(e.get('creditDirection',''))}
+          &nbsp;&bull;&nbsp; {tier_of(score)}
+        </div>
+
+        <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;
+                    font-weight:bold;color:#1A1A18;line-height:1.32;
+                    padding-bottom:8px;">
+          <a href="{esc(e.get('sourceURL','#'))}"
+             style="color:#1A1A18;text-decoration:none;">{esc(e.get('headline',''))}</a>
+        </div>
+
+        <div style="font-family:Georgia,'Times New Roman',serif;font-size:13.5px;
+                    color:#4A4A46;line-height:1.6;padding-bottom:11px;">
+          {esc(e.get('detail',''))}
+        </div>
+
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:10.5px;
+                    color:#7A7A74;letter-spacing:0.03em;">
+          <span style="color:#1A1A18;font-weight:bold;">{esc(e.get('sourceAgency',''))}</span>
+          &nbsp;&bull;&nbsp; {locale}
+          &nbsp;&bull;&nbsp; {esc(e.get('date',''))}
+        </div>
+
+        <div style="padding-top:10px;">
+          <a href="{esc(e.get('sourceURL','#'))}"
+             style="font-family:Arial,Helvetica,sans-serif;font-size:11px;
+                    font-weight:bold;color:{fg};text-decoration:none;
+                    letter-spacing:0.04em;">READ SOURCE &rsaquo;</a>
+        </div>
+        {flag}
+      </td>
+    </tr>
+  </table>
+</td></tr>""")
+
+    # ---- summary ----
+    s = build_summary(events)
+    summary_rows = "".join(
+        f'<tr><td valign="top" style="font-family:Georgia,serif;font-size:13px;'
+        f'color:#2A2A28;line-height:1.5;padding:0 0 6px 0;">'
+        f'<span style="color:#A81C1C;font-weight:bold;">&bull;</span>&nbsp;&nbsp;{esc(line)}'
+        f'</td></tr>'
+        for line in summary_sentences(s)
+    )
+
+    summary_block = f"""
+<tr><td style="padding:0 0 18px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+         bgcolor="#F2F0E8" style="background:#F2F0E8;">
+    <tr><td style="padding:16px 20px;border-left:3px solid #A81C1C;">
+      <div style="font-family:Arial,Helvetica,sans-serif;font-size:10px;
+                  font-weight:bold;letter-spacing:0.15em;text-transform:uppercase;
+                  color:#A81C1C;padding-bottom:11px;">Impact Summary</div>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        {summary_rows}
+      </table>
+    </td></tr>
+  </table>
+</td></tr>"""
+
+    # ---- overflow ----
     overflow_note = ""
     if overflow:
         n = len(overflow)
-        overflow_note = (
-            f'<tr><td style="padding:14px 0 0;">'
-            f'<div style="font:400 12.5px Arial,sans-serif;color:#5A5A56;'
-            f'border-top:1px solid #D6D3C9;padding-top:12px;">'
-            f'{n} additional lower-priority {"event" if n == 1 else "events"} '
-            f'not shown here &mdash; view them on the tracker.</div></td></tr>'
-        )
+        overflow_note = f"""
+<tr><td style="padding:4px 0 0;">
+  <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;
+              color:#7A7A74;border-top:1px solid #E2E0D8;padding-top:13px;">
+    {n} additional lower-priority {"event" if n == 1 else "events"} not shown &mdash;
+    available on the tracker.</div>
+</td></tr>"""
 
     site_link = ""
     if site_url:
-        site_link = (
-            f'<div style="margin-top:26px;text-align:center;">'
-            f'<a href="{esc(site_url)}" style="font:600 13px Arial,sans-serif;'
-            f'color:#A81C1C;text-decoration:none;">View the full tracker &rarr;</a></div>'
-        )
+        site_link = f"""
+<tr><td align="center" style="padding:24px 0 0;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+    <tr><td bgcolor="#1A1A18" style="background:#1A1A18;">
+      <a href="{esc(site_url)}"
+         style="display:inline-block;padding:11px 26px;
+                font-family:Arial,Helvetica,sans-serif;font-size:12px;
+                font-weight:bold;color:#FFFFFF;text-decoration:none;
+                letter-spacing:0.06em;">VIEW FULL TRACKER</a>
+    </td></tr>
+  </table>
+</td></tr>"""
 
     count = len(events)
     plural = "event" if count == 1 else "events"
 
     return f"""<!DOCTYPE html>
-<html><body style="margin:0;padding:0;background:#FCFBF8;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0"
-       style="background:#FCFBF8;padding:26px 12px;">
-  <tr><td align="center">
-    <table role="presentation" width="640" cellpadding="0" cellspacing="0"
-           style="max-width:640px;background:#FCFBF8;">
-      <tr><td style="padding-bottom:6px;">
-        <div style="font:600 11px Arial,sans-serif;letter-spacing:0.2em;
-                    text-transform:uppercase;color:#A81C1C;">Sector Desk</div>
-        <div style="font:900 30px Georgia,serif;color:#121212;margin:5px 0 4px;">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<!--[if mso]><xml><o:OfficeDocumentSettings>
+<o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
+<title>CIB Healthcare News Tracker</title>
+</head>
+<body style="margin:0;padding:0;background:#F7F6F2;" bgcolor="#F7F6F2">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+       bgcolor="#F7F6F2" style="background:#F7F6F2;">
+  <tr><td align="center" style="padding:22px 16px;">
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+           style="width:100%;max-width:1000px;">
+
+      <!-- masthead -->
+      <tr><td style="padding-bottom:12px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:10px;
+                    font-weight:bold;letter-spacing:0.2em;text-transform:uppercase;
+                    color:#A81C1C;">Sector Desk</div>
+        <div style="font-family:Georgia,'Times New Roman',serif;font-size:29px;
+                    font-weight:bold;color:#1A1A18;padding:7px 0 5px;">
           CIB Healthcare News Tracker</div>
-        <div style="font:400 13px Arial,sans-serif;color:#5A5A56;">
-          Daily digest &middot; {today} &middot; {count} high-impact {plural}</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;
+                    color:#7A7A74;">
+          Daily digest &nbsp;&bull;&nbsp; {today} &nbsp;&bull;&nbsp;
+          {count} high-impact {plural}</div>
       </td></tr>
-      <tr><td style="border-top:3px solid #121212;padding-top:2px;"></td></tr>
-      {render_summary_html(build_summary(events))}
-      <tr><td style="padding-top:10px;"></td></tr>
-      {''.join(rows)}
+
+      <tr><td style="padding-bottom:18px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr><td height="3" bgcolor="#1A1A18"
+                  style="height:3px;background:#1A1A18;font-size:0;line-height:0;">&nbsp;</td></tr>
+        </table>
+      </td></tr>
+
+      {summary_block}
+      {''.join(cards)}
       {overflow_note}
-      <tr><td>{site_link}
-        <div style="font:400 11px Arial,sans-serif;color:#8A8A84;
-                    margin-top:22px;line-height:1.5;text-align:center;">
-          Risk scores and credit direction reflect this tracker's internal
-          weighting methodology, not the source agency's assessment.<br>
-          Items flagged as auto-drafted have not yet been analyst-reviewed.
+      {site_link}
+
+      <tr><td align="center" style="padding:26px 10px 0;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:10.5px;
+                    color:#9A9A94;line-height:1.6;">
+          Risk scores and credit direction reflect this tracker's internal weighting
+          methodology, not the source agency's assessment.<br>
+          Items marked auto-drafted have not yet been analyst-reviewed.
         </div>
       </td></tr>
+
     </table>
   </td></tr>
 </table>
