@@ -426,6 +426,23 @@ def fetch_fema(since_iso):
             f"Declared {decl_date}. Facility-level operational impact requires review."
         )
 
+        decl_type = (rec.get("declarationType") or "").upper()
+        # DR = Major Disaster, EM = Emergency, FM = Fire Management Assistance.
+        # FM grants are routine, local, and rarely material to a credit
+        # portfolio, so they must not score like a statewide major disaster.
+        if decl_type == "DR":
+            severity, score = "High", 9
+        elif decl_type == "EM":
+            severity, score = "High", 8
+        else:
+            severity, score = "Medium", 5
+
+        # Widescale events affecting many counties matter more.
+        designated = rec.get("designatedArea") or ""
+        if decl_type == "DR" and "statewide" in designated.lower():
+            score = 10
+            severity = "Critical"
+
         results.append({
             "date": dt.strftime("%b %-d, %Y"),
             "dateSort": dt.strftime("%Y-%m-%dT00:00:00"),
@@ -437,8 +454,8 @@ def fetch_fema(since_iso):
             "headline": headline[:200],
             "detail": detail[:700],
             "creditDirection": "Negative",
-            "severity": "High",
-            "riskScore": 9,
+            "severity": severity,
+            "riskScore": score,
             "sourceAgency": "FEMA",
             "sourceVerification": "Auto-drafted — pending review",
             "sourceURL": f"https://www.fema.gov/disaster/{num}",
