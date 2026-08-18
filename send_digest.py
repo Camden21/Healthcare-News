@@ -31,6 +31,8 @@ from email.utils import formataddr
 EVENTS_FILE = "events.json"
 STATE_FILE = "digest_state.json"
 DEFAULT_MIN_SCORE = 9
+DEFAULT_MAX_ITEMS = 5
+DEFAULT_MAX_PER_CATEGORY = 2
 
 
 # ----------------------------------------------------------------------
@@ -57,6 +59,11 @@ def load_config():
     except ValueError:
         min_score = DEFAULT_MIN_SCORE
 
+    try:
+        max_items = int(env("DIGEST_MAX_ITEMS", str(DEFAULT_MAX_ITEMS)))
+    except ValueError:
+        max_items = DEFAULT_MAX_ITEMS
+
     return {
         "host": env("SMTP_HOST", required=True),
         "port": int(env("SMTP_PORT", "587")),
@@ -65,6 +72,7 @@ def load_config():
         "sender": env("DIGEST_FROM") or env("SMTP_USER"),
         "recipients": recipients,
         "min_score": min_score,
+        "max_items": max_items,
         "site_url": env("DIGEST_SITE_URL", ""),
     }
 
@@ -94,18 +102,48 @@ def save_state(sent_ids):
         )
 
 
-def select_events(events, already_sent, min_score):
-    picked = []
+def select_events(events, already_sent, min_score, max_items=5, max_per_category=2):
+    """Pick what to email.
+
+    Two guards keep the digest readable:
+      - max_per_category stops one noisy source (usually FEMA disaster
+        declarations) from crowding out everything else.
+      - max_items caps the total length.
+
+    Anything not emailed is still on the site, and is marked as sent so it
+    does not resurface tomorrow as stale news.
+    """
+    candidates = []
     for e in events:
         eid = e.get("id")
         if not eid or eid in already_sent:
             continue
         if (e.get("riskScore") or 0) < min_score:
             continue
-        picked.append(e)
+        candidates.append(e)
 
-    picked.sort(key=lambda e: (e.get("riskScore") or 0), reverse=True)
-    return picked
+    # Highest impact first, then most recent
+    candidates.sort(
+        key=lambda e: ((e.get("riskScore") or 0), e.get("dateSort") or ""),
+        reverse=True,
+    )
+
+    picked = []
+    per_category = {}
+    overflow = []
+
+    for e in candidates:
+        cat = e.get("broadCategory") or "other"
+        if per_category.get(cat, 0) >= max_per_category:
+            overflow.append(e)
+            continue
+        if len(picked) >= max_items:
+            overflow.append(e)
+            continue
+        picked.append(e)
+        per_category[cat] = per_category.get(cat, 0) + 1
+
+    return picked, overflow
 
 
 # ----------------------------------------------------------------------
@@ -307,7 +345,7 @@ def tier_of(score):
     return "Elevated"
 
 
-def render_html(events, site_url):
+def render_html(events, site_url, overflow=None):
     today = datetime.utcnow().strftime("%B %d, %Y")
 
     rows = []
@@ -370,6 +408,18 @@ def render_html(events, site_url):
   </td>
 </tr>""")
 
+    overflow = overflow or []
+    overflow_note = ""
+    if overflow:
+        n = len(overflow)
+        overflow_note = (
+            f'<tr><td style="padding:14px 0 0;">'
+            f'<div style="font:400 12.5px Arial,sans-serif;color:#5A5A56;'
+            f'border-top:1px solid #D6D3C9;padding-top:12px;">'
+            f'{n} additional lower-priority {"event" if n == 1 else "events"} '
+            f'not shown here &mdash; view them on the tracker.</div></td></tr>'
+        )
+
     site_link = ""
     if site_url:
         site_link = (
@@ -400,6 +450,7 @@ def render_html(events, site_url):
       {render_summary_html(build_summary(events))}
       <tr><td style="padding-top:10px;"></td></tr>
       {''.join(rows)}
+      {overflow_note}
       <tr><td>{site_link}
         <div style="font:400 11px Arial,sans-serif;color:#8A8A84;
                     margin-top:22px;line-height:1.5;text-align:center;">
@@ -414,7 +465,7 @@ def render_html(events, site_url):
 </body></html>"""
 
 
-def render_text(events):
+def render_text(events, overflow=None):
     lines = [
         "CIB HEALTHCARE NEWS TRACKER",
         f"Daily digest - {datetime.utcnow().strftime('%B %d, %Y')}",
@@ -437,6 +488,10 @@ def render_text(events):
         lines.append(e.get("sourceURL", ""))
         lines.append("-" * 60)
         lines.append("")
+    if overflow:
+        n = len(overflow)
+        lines.append(f"{n} additional lower-priority {'event' if n == 1 else 'events'} not shown - view on the tracker.")
+        lines.append("")
     return "\n".join(lines)
 
 
@@ -444,7 +499,7 @@ def render_text(events):
 # Send
 # ----------------------------------------------------------------------
 
-def send(cfg, events):
+def send(cfg, events, overflow=None):
     count = len(events)
     top = max((e.get("riskScore") or 0) for e in events)
     subject = f"Healthcare Tracker — {count} high-impact event{'s' if count != 1 else ''} (top score {top})"
@@ -456,8 +511,9 @@ def send(cfg, events):
     msg["To"] = cfg["sender"]
     msg["Bcc"] = ", ".join(cfg["recipients"])
 
-    msg.set_content(render_text(events))
-    msg.add_alternative(render_html(events, cfg["site_url"]), subtype="html")
+    overflow = overflow or []
+    msg.set_content(render_text(events, overflow))
+    msg.add_alternative(render_html(events, cfg["site_url"], overflow), subtype="html")
 
     context = ssl.create_default_context()
     with smtplib.SMTP(cfg["host"], cfg["port"], timeout=30) as server:
@@ -480,12 +536,18 @@ def main():
     first_run = not already_sent
 
     cfg = load_config()
-    picked = select_events(events, already_sent, cfg["min_score"])
+    picked, overflow = select_events(
+        events, already_sent, cfg["min_score"],
+        max_items=cfg["max_items"],
+        max_per_category=DEFAULT_MAX_PER_CATEGORY,
+    )
 
     print(f"Events in file:   {len(events)}")
     print(f"Previously sent:  {len(already_sent)}")
     print(f"Min score:        {cfg['min_score']}")
-    print(f"Qualifying now:   {len(picked)}")
+    print(f"Max per email:    {cfg['max_items']}")
+    print(f"Emailing:         {len(picked)}")
+    print(f"Held back:        {len(overflow)} (on site, marked as seen)")
 
     if first_run:
         # Don't blast the entire back catalogue on first run. Mark everything
@@ -502,8 +564,9 @@ def main():
     for e in picked:
         print(f"  [{e.get('riskScore')}] {e.get('headline','')[:66]}")
 
-    send(cfg, picked)
-    save_state(already_sent | {e.get("id") for e in picked if e.get("id")})
+    send(cfg, picked, overflow)
+    newly = {e.get("id") for e in picked + overflow if e.get("id")}
+    save_state(already_sent | newly)
     return 0
 
 
