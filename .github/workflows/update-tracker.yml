@@ -44,11 +44,16 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          if git diff --quiet events.json index.html digest_state.json 2>/dev/null; then
+          for f in events.json index.html digest_state.json; do
+            if [ -f "$f" ]; then
+              git add "$f"
+            fi
+          done
+
+          if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
 
-          git add events.json index.html digest_state.json
           git commit -m "Auto-update tracker — $(date -u '+%Y-%m-%d')"
           git push
