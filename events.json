@@ -1,5 +1,24 @@
 [
   {
+    "date": "Aug 18, 2026",
+    "dateSort": "2026-08-18T00:00:00",
+    "jurisdiction": "Disaster",
+    "state": "AK",
+    "category": "Natural Disaster",
+    "broadCategory": "disaster",
+    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
+    "headline": "FEMA declares fire disaster in AK: Mukluk Fire",
+    "detail": "FEMA declaration FM-5672-AK for AK. Incident type: Fire. Incident period began 2026-08-17. Declared 2026-08-18. Facility-level operational impact requires review.",
+    "creditDirection": "Negative",
+    "severity": "Medium",
+    "riskScore": 5,
+    "sourceAgency": "FEMA",
+    "sourceVerification": "Auto-drafted \u2014 pending review",
+    "sourceURL": "https://www.fema.gov/disaster/5672",
+    "effectiveDate": "Declared 2026-08-18",
+    "id": "DIS-041"
+  },
+  {
     "date": "Aug 15, 2026",
     "dateSort": "2026-08-15T00:00:00",
     "jurisdiction": "Disaster",
