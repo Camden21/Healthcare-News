@@ -258,6 +258,8 @@ def classify_severity(text):
 
 
 CATEGORY_LABELS = {
+    "borrower": "Borrower News",
+    "industry": "Industry / Trade",
     "fraud": "Fraud / Investigation",
     "medicaid": "Federal Medicaid Action",
     "cms": "CMS / Medicare",
@@ -267,9 +269,218 @@ CATEGORY_LABELS = {
 }
 
 
+
+# ----------------------------------------------------------------------
+# BORROWER WATCHLIST
+# ----------------------------------------------------------------------
+# Two tiers of matching to control false positives:
+#
+#   strong  - distinctive enough to match on their own
+#   weak    - generic phrases that only count when the article ALSO mentions
+#             healthcare context (SNF, DME, home health, Medicare, etc.)
+#
+# Add or edit entries here as the portfolio changes.
+
+BORROWERS = [
+    {
+        "name": "Drumm Merger / Cuarzo",
+        "strong": ["cuarzo", "drumm merger", "drumm corp"],
+        "weak": ["drumm"],
+    },
+    {
+        "name": "PACS Holdings",
+        "strong": ["pacs holdings", "pacs group"],
+        "weak": ["pacs"],
+    },
+    {
+        "name": "New Day Healthcare",
+        "strong": ["new day healthcare", "new day health care"],
+        "weak": [],
+    },
+    {
+        "name": "Purpose Healing",
+        "strong": ["purpose healing"],
+        "weak": [],
+    },
+    {
+        "name": "Pathnostics",
+        "strong": ["pathnostics"],
+        "weak": [],
+    },
+    {
+        "name": "CCGEN Jefferson / Autumn Lake",
+        "strong": ["autumn lake", "ccgen"],
+        "weak": ["jefferson healthcare"],
+    },
+    {
+        "name": "Complete Care at Glendale",
+        "strong": ["complete care at glendale"],
+        "weak": ["complete care"],
+    },
+    {
+        "name": "HCS-Girling",
+        "strong": ["hcs-girling", "hcs girling", "girling health", "girling home"],
+        "weak": ["girling"],
+    },
+    {
+        "name": "Quipt Home Medical",
+        "strong": ["quipt"],
+        "weak": [],
+    },
+    {
+        "name": "Diversified Healthcare Trust",
+        "strong": ["diversified healthcare trust", "diversified healthcare"],
+        "weak": [],
+    },
+    {
+        "name": "Oxford Finance",
+        "strong": ["oxford finance"],
+        "weak": [],
+    },
+]
+
+# Context terms that make a weak (generic) borrower match credible.
+SECTOR_CONTEXT = [
+    "healthcare", "health care", "snf", "skilled nursing", "nursing home",
+    "nursing facility", "dme", "dmepos", "durable medical", "home health",
+    "home care", "hospice", "medicare", "medicaid", "senior living",
+    "assisted living", "long term care", "long-term care", "behavioral health",
+    "patient", "provider", "clinic", "pharmacy", "hospital", "therapy",
+    "rehabilitation", "caregiver", "physician",
+]
+
+
+def has_sector_context(text):
+    t = _normalize(text)
+    return any(term in t for term in SECTOR_CONTEXT)
+
+
+def match_borrowers(text):
+    """Return the list of borrower names plausibly referenced in this text."""
+    t = _normalize(text)
+    context = has_sector_context(text)
+    hits = []
+
+    for b in BORROWERS:
+        matched = False
+
+        for term in b.get("strong", []):
+            if _matches(t, _normalize(term)):
+                matched = True
+                break
+
+        if not matched and context:
+            for term in b.get("weak", []):
+                if _matches(t, _normalize(term)):
+                    matched = True
+                    break
+
+        if matched:
+            hits.append(b["name"])
+
+    return hits
+
+
 # ----------------------------------------------------------------------
 # FETCHING
 # ----------------------------------------------------------------------
+# Trade press. These are secondary sources, not primary government records,
+# so items are labelled accordingly and held to a higher relevance bar:
+# they are only kept if they name a portfolio borrower or contain
+# credit-relevant signal. Otherwise routine industry coverage floods the feed.
+TRADE_SOURCES = [
+    {"name": "Skilled Nursing News", "url": "https://skillednursingnews.com/feed/"},
+    {"name": "Home Health Care News", "url": "https://homehealthcarenews.com/feed/"},
+    {"name": "Hospice News", "url": "https://hospicenews.com/feed/"},
+    {"name": "Behavioral Health Business", "url": "https://bhbusiness.com/feed/"},
+    {"name": "Senior Housing News", "url": "https://seniorhousingnews.com/feed/"},
+    {"name": "McKnight's Long-Term Care News", "url": "https://www.mcknights.com/feed/"},
+]
+
+# Credit-relevant signal for trade press. Broad industry coverage is skipped;
+# these are the things that actually move a credit view.
+CREDIT_SIGNAL_TERMS = [
+    "bankruptcy", "chapter 11", "chapter 7", "default", "defaults",
+    "covenant", "forbearance", "restructuring", "restructure", "receivership",
+    "downgrade", "downgraded", "distress", "distressed", "insolvency",
+    "closure", "closures", "closing", "shut down", "shutter", "layoff",
+    "layoffs", "acquisition", "acquires", "acquired", "merger", "sells",
+    "divest", "ipo", "sec investigation", "subpoena", "lawsuit", "settlement",
+    "fraud", "indictment", "false claims", "occupancy", "census",
+    "reimbursement", "rate cut", "margin", "earnings", "guidance",
+    "credit facility", "refinanc", "debt", "liquidity", "going concern",
+]
+
+
+def fetch_trade_source(source):
+    """Trade press: keep only borrower mentions or credit-relevant items."""
+    print(f"  Fetching {source['name']}...")
+    try:
+        raw = http_get(source["url"])
+    except Exception as exc:
+        print(f"    ! FAILED ({exc})")
+        return [], False
+
+    items = parse_rss(raw)
+    print(f"    {len(items)} items returned")
+
+    results = []
+    borrower_count = 0
+
+    for item in items:
+        text = f"{item['title']} {item['summary']}"
+        blob = _normalize(text)
+
+        borrowers = match_borrowers(text)
+        has_signal = any(_matches(blob, t) for t in CREDIT_SIGNAL_TERMS)
+
+        # Skip routine industry coverage
+        if not borrowers and not has_signal:
+            continue
+
+        dt = parse_date(item["published"])
+        if dt is None:
+            continue
+
+        cat = classify_category(blob)
+        if cat == "other":
+            cat = "borrower" if borrowers else "industry"
+
+        direction = classify_direction(blob)
+        severity, score = classify_severity(blob)
+
+        if borrowers:
+            score = max(score, 11)
+            severity = "Critical"
+            borrower_count += 1
+        else:
+            # Trade coverage without a borrower is context, not an alert.
+            score = min(score, 8)
+
+        results.append({
+            "date": dt.strftime("%b %-d, %Y"),
+            "dateSort": dt.strftime("%Y-%m-%dT00:00:00"),
+            "jurisdiction": "Trade Press",
+            "state": "U.S.",
+            "category": "Borrower News" if borrowers else "Industry / Trade",
+            "broadCategory": cat,
+            "sector": "Pending review",
+            "headline": item["title"][:200],
+            "detail": (item["summary"] or item["title"])[:700],
+            "creditDirection": direction,
+            "severity": severity,
+            "riskScore": score,
+            "sourceAgency": source["name"],
+            "sourceVerification": "Trade press — not a primary source",
+            "sourceURL": item["link"],
+            "effectiveDate": "Pending review",
+            "borrowers": borrowers,
+        })
+
+    print(f"    {len(results)} kept ({borrower_count} borrower mentions)")
+    return results, True
+
+
 
 def http_get(url):
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
@@ -340,8 +551,8 @@ def fetch_rss_source(source):
     try:
         raw = http_get(source["url"])
     except Exception as exc:
-        print(f"    ! Skipped ({exc})")
-        return []
+        print(f"    ! FAILED ({exc})")
+        return [], False
 
     items = parse_rss(raw)
     print(f"    {len(items)} items returned")
@@ -363,6 +574,12 @@ def fetch_rss_source(source):
         direction = classify_direction(blob)
         severity, score = classify_severity(blob)
 
+        borrowers = match_borrowers(f"{item['title']} {item['summary']}")
+        if borrowers:
+            # Anything naming a borrower is portfolio-relevant by definition.
+            score = max(score, 11)
+            severity = "Critical"
+
         results.append({
             "date": dt.strftime("%b %-d, %Y"),
             "dateSort": dt.strftime("%Y-%m-%dT00:00:00"),
@@ -380,10 +597,11 @@ def fetch_rss_source(source):
             "sourceVerification": "Auto-drafted — pending review",
             "sourceURL": item["link"],
             "effectiveDate": "Pending review",
+            "borrowers": borrowers,
         })
 
     print(f"    {len(results)} healthcare-relevant items kept")
-    return results
+    return results, True
 
 
 def fetch_fema(since_iso):
@@ -393,8 +611,8 @@ def fetch_fema(since_iso):
         raw = http_get(url)
         payload = json.loads(raw)
     except Exception as exc:
-        print(f"    ! Skipped ({exc})")
-        return []
+        print(f"    ! FAILED ({exc})")
+        return [], False
 
     records = payload.get("DisasterDeclarationsSummaries", [])
     print(f"    {len(records)} declarations returned")
@@ -460,10 +678,11 @@ def fetch_fema(since_iso):
             "sourceVerification": "Auto-drafted — pending review",
             "sourceURL": f"https://www.fema.gov/disaster/{num}",
             "effectiveDate": f"Declared {decl_date}",
+            "borrowers": [],
         })
 
     print(f"    {len(results)} unique declarations kept")
-    return results
+    return results, True
 
 
 # ----------------------------------------------------------------------
@@ -486,6 +705,8 @@ def next_id(existing, prefix):
 
 
 PREFIX_BY_CATEGORY = {
+    "borrower": "BOR",
+    "industry": "IND",
     "fraud": "FRD",
     "disaster": "DIS",
     "medicaid": "FED",
@@ -514,11 +735,34 @@ def main():
     print(f"Looking back to {since_iso}\n")
 
     candidates = []
-    for source in RSS_SOURCES:
-        candidates.extend(fetch_rss_source(source))
-    candidates.extend(fetch_fema(since_iso))
+    ok_count = 0
+    total_sources = len(RSS_SOURCES) + len(TRADE_SOURCES) + 1
 
-    print(f"\nTotal candidates: {len(candidates)}")
+    for source in RSS_SOURCES:
+        items, ok = fetch_rss_source(source)
+        candidates.extend(items)
+        if ok:
+            ok_count += 1
+
+    for source in TRADE_SOURCES:
+        items, ok = fetch_trade_source(source)
+        candidates.extend(items)
+        if ok:
+            ok_count += 1
+
+    fema_items, fema_ok = fetch_fema(since_iso)
+    candidates.extend(fema_items)
+    if fema_ok:
+        ok_count += 1
+
+    print(f"\nSources reachable: {ok_count} of {total_sources}")
+    print(f"Total candidates:  {len(candidates)}")
+
+    if ok_count == 0:
+        print("\nERROR: every source failed. The tracker cannot update.")
+        print("This is usually a changed feed URL or a blocked request.")
+        print("Failing the run so this does not pass silently.")
+        return 1
 
     # Deduplicate against existing events AND within this batch
     added = []
@@ -541,8 +785,12 @@ def main():
         existing_headlines.add(head_key)
 
     print(f"New events to add: {len(added)}")
+    borrower_hits = [e for e in added if e.get("borrowers")]
     for e in added:
-        print(f"  [{e['id']}] {e['date']} — {e['headline'][:70]}")
+        tag = f"  <<< BORROWER: {', '.join(e['borrowers'])}" if e.get("borrowers") else ""
+        print(f"  [{e['id']}] {e['date']} — {e['headline'][:60]}{tag}")
+    if borrower_hits:
+        print(f"\n*** {len(borrower_hits)} event(s) reference portfolio borrowers ***")
 
     if not added:
         print("\nNo new events. events.json unchanged.")
