@@ -59,6 +59,8 @@ TEMPLATE = r"""<!DOCTYPE html>
     animation: scroll-left 80s linear infinite;
   }
   .ticker-track span{ margin-right: 44px; }
+  .ticker-track a{ color: inherit; text-decoration: none; }
+  .ticker-track a:hover{ text-decoration: underline; }
   .ticker-track .dir-neg{ color: #E8A0A0; font-weight: 700; margin-right: 6px; }
   .ticker-track .dir-pos{ color: #A7CBAF; font-weight: 700; margin-right: 6px; }
   .ticker-track .dir-mix{ color: #E3C97A; font-weight: 700; margin-right: 6px; }
@@ -204,7 +206,33 @@ TEMPLATE = r"""<!DOCTYPE html>
   .article-meta a:hover{ text-decoration: underline; }
   .article-meta .unverified{ color: var(--gold); font-weight: 700; }
 
-  .empty-state{ padding: 50px 0; text-align: center; color: var(--ink-dim); font-family: var(--font-sans); font-size: 13px; }
+  .borrower-badge{
+    display:inline-block; background: var(--ink); color: var(--paper);
+    font-family: var(--font-sans); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px;
+    margin-bottom: 8px;
+  }
+  .trade-tag{
+    font-family: var(--font-sans); font-size: 10px; color: var(--gold);
+    font-weight: 600; letter-spacing: 0.04em;
+  }
+  .borrower-row{
+    display:flex; justify-content: space-between; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px dotted var(--rule-light);
+    font-family: var(--font-body); font-size: 12.5px;
+  }
+  .borrower-row:last-child{ border-bottom: none; }
+  .borrower-row.has-hits{ font-weight: 700; }
+  .borrower-row .count{ font-family: var(--font-mono); font-size: 11.5px; }
+  .borrower-row .count.zero{ color: var(--rule-light); }
+  .borrower-row .count.hit{ color: var(--red); }
+
+  .empty-state{
+    padding: 46px 26px; text-align: center; color: var(--ink-dim);
+    font-family: var(--font-sans); font-size: 13px; line-height: 1.65;
+    max-width: 520px; margin: 20px auto; border: 1px dashed var(--rule-light);
+  }
+  .empty-state strong{ color: var(--ink); font-size: 14px; }
 
   /* ===== SIDEBAR ===== */
   .sidebar{ padding-left: 30px; }
@@ -250,7 +278,8 @@ TEMPLATE = r"""<!DOCTYPE html>
   <div class="stat-strip">
     <div class="stat"><span class="num" id="statTotal">0</span><span class="label">Events Tracked</span></div>
     <div class="stat"><span class="num neg" id="statHigh">0</span><span class="label">High Severity</span></div>
-    <div class="stat"><span class="num" id="statSources">0</span><span class="label">Source Agencies</span></div>
+    <div class="stat"><span class="num neg" id="statBorrower">0</span><span class="label">Borrower Mentions</span></div>
+    <div class="stat"><span class="num" id="statSources">0</span><span class="label">Sources</span></div>
   </div>
 
   <div class="controls-wrap">
@@ -262,6 +291,8 @@ TEMPLATE = r"""<!DOCTYPE html>
       <button class="filter-chip" data-filter="cms">CMS / Medicare</button>
       <button class="filter-chip" data-filter="disaster">Disaster</button>
       <button class="filter-chip" data-filter="regulation">Regulation</button>
+      <button class="filter-chip" data-filter="borrower">Borrower News</button>
+      <button class="filter-chip" data-filter="industry">Industry / Trade</button>
     </div>
     <div class="controls-row2">
       <span class="row2-label">Credit Direction</span>
@@ -279,6 +310,10 @@ TEMPLATE = r"""<!DOCTYPE html>
     <div class="feed" id="feed"></div>
     <div class="sidebar">
       <div class="panel">
+        <div class="panel-title">Borrower Watch</div>
+        <div id="borrowerList"></div>
+      </div>
+      <div class="panel">
         <div class="panel-title">Source Agencies</div>
         <div id="sourceList"></div>
       </div>
@@ -294,7 +329,12 @@ TEMPLATE = r"""<!DOCTYPE html>
 <script>
   const EVENTS = __EVENTS_JSON__;
 
-  const CAT_LABELS = { fraud:"Fraud / Enforcement", medicaid:"Medicaid Policy", cms:"CMS / Medicare", disaster:"Disaster", regulation:"Regulation", other:"Other" };
+  const BORROWERS = ["Drumm Merger / Cuarzo","PACS Holdings","New Day Healthcare",
+    "Purpose Healing","Pathnostics","CCGEN Jefferson / Autumn Lake",
+    "Complete Care at Glendale","HCS-Girling","Quipt Home Medical",
+    "Diversified Healthcare Trust","Oxford Finance"];
+
+  const CAT_LABELS = { borrower:"Borrower News", industry:"Industry / Trade", fraud:"Fraud / Enforcement", medicaid:"Medicaid Policy", cms:"CMS / Medicare", disaster:"Disaster", regulation:"Regulation", other:"Other" };
 
   function riskClass(score){
     if(score >= 7) return "risk-high";
@@ -302,26 +342,44 @@ TEMPLATE = r"""<!DOCTYPE html>
     return "risk-low";
   }
 
+  // Null-safe DOM helpers: a missing element must never abort the whole script.
+  function setText(id, value){
+    const el = document.getElementById(id);
+    if(el) el.textContent = value;
+  }
+  function setHTML(id, value){
+    const el = document.getElementById(id);
+    if(el) el.innerHTML = value;
+  }
+
   const SOURCES = [...new Set(EVENTS.map(e => e.sourceAgency).filter(Boolean))].sort();
 
-  const tickerTrack = document.getElementById('tickerTrack');
-  tickerTrack.innerHTML = EVENTS.slice(0, 10).map(e => {
+  setHTML('tickerTrack', EVENTS.slice(0, 10).map(e => {
     const dirClass = e.creditDirection === 'Negative' ? 'dir-neg' : e.creditDirection === 'Positive' ? 'dir-pos' : 'dir-mix';
     const arrow = e.creditDirection === 'Negative' ? '▲ RISK' : e.creditDirection === 'Positive' ? '▽ EASED' : '◆ MIXED';
-    return `<span><span class="${dirClass}">${arrow}</span>${e.headline} — ${e.sourceAgency}</span>`;
-  }).join('');
+    return `<span><span class="${dirClass}">${arrow}</span><a href="${e.sourceURL || '#'}" target="_blank" rel="noopener" style="text-decoration:none;">${e.headline}</a> — ${e.sourceAgency}</span>`;
+  }).join(''));
 
-  const sourceList = document.getElementById('sourceList');
-  sourceList.innerHTML = SOURCES.map(s => {
+  setHTML('borrowerList', BORROWERS.map(b => {
+    const n = EVENTS.filter(e => (e.borrowers || []).includes(b)).length;
+    return `<div class="borrower-row ${n ? 'has-hits' : ''}">
+      <span>${b}</span>
+      <span class="count ${n ? 'hit' : 'zero'}">${n || '—'}</span></div>`;
+  }).join(''));
+
+  setHTML('sourceList', SOURCES.map(s => {
     const count = EVENTS.filter(e => e.sourceAgency === s).length;
     return `<div class="source-row"><span>${s}</span><span class="count">${count}</span></div>`;
-  }).join('');
+  }).join(''));
 
-  document.getElementById('statTotal').textContent = EVENTS.length;
-  document.getElementById('statHigh').textContent = EVENTS.filter(e => e.severity === 'High').length;
-  document.getElementById('statSources').textContent = SOURCES.length;
+  setText('statTotal', EVENTS.length);
+  setText('statHigh', EVENTS.filter(e => e.severity === 'High').length);
+  setText('statSources', SOURCES.length);
+  setText('statBorrower', EVENTS.filter(e => (e.borrowers || []).length).length);
+  document.getElementById('statBorrower').textContent =
+    EVENTS.filter(e => (e.borrowers || []).length).length;
 
-  const feed = document.getElementById('feed');
+  const feed = document.getElementById('feed') || document.createElement('div');
   let activeFilter = 'all';
   let activeDir = 'all';
   let searchTerm = '';
@@ -348,7 +406,24 @@ TEMPLATE = r"""<!DOCTYPE html>
     }
 
     if(filtered.length === 0){
-      feed.innerHTML = `<div class="empty-state">No events match this filter. Try clearing your search or selecting "All."</div>`;
+      let msg;
+      if(activeFilter === 'borrower'){
+        msg = `<strong>No borrower mentions yet.</strong><br><br>
+          The tracker is monitoring ${BORROWERS.length} portfolio borrowers across
+          government and trade-press sources. Items will appear here automatically
+          when a borrower is named in the news.<br><br>
+          Existing events predate borrower tracking, so this section starts empty.`;
+      } else if(activeFilter === 'industry'){
+        msg = `<strong>No trade-press items yet.</strong><br><br>
+          Industry coverage from Skilled Nursing News, Home Health Care News,
+          Hospice News and others will appear here once the next scheduled
+          fetch runs.`;
+      } else if(searchTerm){
+        msg = `No events match &ldquo;${searchTerm}&rdquo;. Try a broader term or clear the search.`;
+      } else {
+        msg = `No events match this filter. Try selecting &ldquo;All.&rdquo;`;
+      }
+      feed.innerHTML = `<div class="empty-state">${msg}</div>`;
       return;
     }
 
@@ -364,6 +439,7 @@ TEMPLATE = r"""<!DOCTYPE html>
       html += `
         <div class="article">
           <div>
+            ${(e.borrowers && e.borrowers.length) ? `<div class="borrower-badge">Portfolio Borrower &bull; ${e.borrowers.join(', ')}</div>` : ''}
             <div class="article-tag-row">
               ${rankBadge}
               <span class="article-tag">${CAT_LABELS[e.broadCategory] || e.category}</span>
@@ -376,6 +452,7 @@ TEMPLATE = r"""<!DOCTYPE html>
               <span>${e.jurisdiction}${e.state && e.state !== e.jurisdiction ? ' · ' + e.state : ''}</span>
               ${sortMode === 'date' ? '' : `<span>${e.date}</span>`}
               ${(e.sourceVerification && e.sourceVerification !== 'Primary') ? `<span class="unverified">⚑ Secondary source — pending primary verification</span>` : ''}
+              ${(e.sourceVerification || '').indexOf('Trade press') === 0 ? '<span class="trade-tag">Trade press</span>' : ''}
               <a href="${e.sourceURL || '#'}" target="_blank" rel="noopener">Read source →</a>
             </div>
           </div>
@@ -403,7 +480,8 @@ TEMPLATE = r"""<!DOCTYPE html>
     });
   });
 
-  document.getElementById('searchInput').addEventListener('input', (e) => {
+  const searchEl = document.getElementById('searchInput');
+  if(searchEl) searchEl.addEventListener('input', (e) => {
     searchTerm = e.target.value;
     renderFeed();
   });
