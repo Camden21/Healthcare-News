@@ -11,9 +11,9 @@
     "detail": "FEMA declaration EM-3651-IN for IN. Incident type: Flood. Incident period began 2026-08-11. Declared 2026-08-15. Facility-level operational impact requires review.",
     "creditDirection": "Negative",
     "severity": "High",
-    "riskScore": 9,
+    "riskScore": 6,
     "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
+    "sourceVerification": "Approved",
     "sourceURL": "https://www.fema.gov/disaster/3651",
     "effectiveDate": "Declared 2026-08-15",
     "id": "DIS-011"
