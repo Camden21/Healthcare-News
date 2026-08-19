@@ -33,6 +33,7 @@ STATE_FILE = "digest_state.json"
 DEFAULT_MIN_SCORE = 9
 DEFAULT_MAX_ITEMS = 5
 DEFAULT_MAX_PER_CATEGORY = 2
+DEFAULT_EXCLUDE = "disaster"
 
 
 # ----------------------------------------------------------------------
@@ -64,6 +65,9 @@ def load_config():
     except ValueError:
         max_items = DEFAULT_MAX_ITEMS
 
+    exclude_raw = env("DIGEST_EXCLUDE_CATEGORIES", DEFAULT_EXCLUDE) or ""
+    exclude = [c.strip().lower() for c in exclude_raw.split(",") if c.strip()]
+
     return {
         "host": env("SMTP_HOST", required=True),
         "port": int(env("SMTP_PORT", "587")),
@@ -73,6 +77,7 @@ def load_config():
         "recipients": recipients,
         "min_score": min_score,
         "max_items": max_items,
+        "exclude": exclude,
         "site_url": env("DIGEST_SITE_URL", ""),
     }
 
@@ -102,21 +107,37 @@ def save_state(sent_ids):
         )
 
 
-def select_events(events, already_sent, min_score, max_items=5, max_per_category=2):
+def select_events(events, already_sent, min_score, max_items=5,
+                  max_per_category=2, exclude_categories=None):
     """Pick what to email.
 
-    Two guards keep the digest readable:
-      - max_per_category stops one noisy source (usually FEMA disaster
-        declarations) from crowding out everything else.
-      - max_items caps the total length.
+    Returns (picked, overflow, excluded).
 
-    Anything not emailed is still on the site, and is marked as sent so it
-    does not resurface tomorrow as stale news.
+    - exclude_categories are never emailed, but are still marked as seen so
+      they don't accumulate and flood the digest if the filter is later
+      removed. They remain visible on the site.
+    - max_per_category stops one noisy source from crowding out everything else.
+    - max_items caps total length.
     """
+    exclude_categories = set(exclude_categories or [])
+
     candidates = []
+    excluded = []
+    borrower_hits = []
+
     for e in events:
         eid = e.get("id")
         if not eid or eid in already_sent:
+            continue
+
+        # Borrower mentions always go out: they bypass the category filter,
+        # the score threshold, and the per-category cap.
+        if e.get("borrowers"):
+            borrower_hits.append(e)
+            continue
+
+        if (e.get("broadCategory") or "") in exclude_categories:
+            excluded.append(e)
             continue
         if (e.get("riskScore") or 0) < min_score:
             continue
@@ -143,7 +164,11 @@ def select_events(events, already_sent, min_score, max_items=5, max_per_category
         picked.append(e)
         per_category[cat] = per_category.get(cat, 0) + 1
 
-    return picked, overflow
+    borrower_hits.sort(
+        key=lambda e: ((e.get("riskScore") or 0), e.get("dateSort") or ""),
+        reverse=True,
+    )
+    return borrower_hits + picked, overflow, excluded
 
 
 # ----------------------------------------------------------------------
@@ -254,6 +279,12 @@ def build_summary(events):
         if amt:
             dollars.append(amt)
 
+    borrower_names = []
+    for e in events:
+        for b in (e.get("borrowers") or []):
+            if b not in borrower_names:
+                borrower_names.append(b)
+
     critical = sum(1 for e in events if (e.get("riskScore") or 0) >= 10)
     top_event = max(events, key=lambda e: e.get("riskScore") or 0)
 
@@ -270,6 +301,7 @@ def build_summary(events):
         "dollar_total": sum(dollars) if dollars else None,
         "dollar_count": len(dollars),
         "top_event": top_event,
+        "borrower_names": borrower_names,
     }
 
 
@@ -308,6 +340,10 @@ def summary_sentences(s):
 
     if s["states"]:
         lines.append("Jurisdictions: " + ", ".join(s["states"]) + ".")
+
+    if s.get("borrower_names"):
+        lines.insert(0, "PORTFOLIO BORROWERS referenced: "
+                        + ", ".join(s["borrower_names"]) + ".")
 
     te = s["top_event"]
     lines.append(
@@ -375,6 +411,19 @@ def render_html(events, site_url, overflow=None):
         if state and state != jurisdiction:
             locale = f"{jurisdiction} &middot; {state}"
 
+        borrower_badge = ""
+        if e.get("borrowers"):
+            names = ", ".join(e["borrowers"])
+            borrower_badge = (
+                f'<table role="presentation" cellpadding="0" cellspacing="0" border="0" '
+                f'style="margin-bottom:9px;"><tr>'
+                f'<td bgcolor="#1A1A18" style="background:#1A1A18;padding:4px 10px;'
+                f'font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;'
+                f'color:#FFFFFF;letter-spacing:0.08em;">'
+                f'PORTFOLIO BORROWER &nbsp;&bull;&nbsp; {esc(names)}</td>'
+                f'</tr></table>'
+            )
+
         flag = ""
         if e.get("sourceVerification") and e["sourceVerification"] != "Primary":
             flag = (
@@ -405,7 +454,7 @@ def render_html(events, site_url, overflow=None):
         </table>
       </td>
       <td valign="top" style="padding:18px 20px 18px 14px;">
-
+        {borrower_badge}
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:10px;
                     font-weight:bold;letter-spacing:0.07em;
                     text-transform:uppercase;color:{fg};padding-bottom:7px;">
@@ -571,6 +620,8 @@ def render_text(events, overflow=None):
         lines.append(f"  - {line}")
     lines += ["", "=" * 60, ""]
     for e in events:
+        if e.get("borrowers"):
+            lines.append("*** PORTFOLIO BORROWER: " + ", ".join(e["borrowers"]) + " ***")
         lines.append(f"[{e.get('riskScore')}] {e.get('creditDirection','')} - "
                      f"{CAT_LABELS.get(e.get('broadCategory'), '')}")
         lines.append(e.get("headline", ""))
@@ -595,7 +646,13 @@ def render_text(events, overflow=None):
 def send(cfg, events, overflow=None):
     count = len(events)
     top = max((e.get("riskScore") or 0) for e in events)
-    subject = f"Healthcare Tracker — {count} high-impact event{'s' if count != 1 else ''} (top score {top})"
+    n_borrower = sum(1 for e in events if e.get("borrowers"))
+    if n_borrower:
+        subject = (f"Healthcare Tracker — BORROWER ALERT: {n_borrower} item"
+                   f"{'s' if n_borrower != 1 else ''} + {count - n_borrower} sector")
+    else:
+        subject = (f"Healthcare Tracker — {count} high-impact event"
+                   f"{'s' if count != 1 else ''} (top score {top})")
 
     msg = EmailMessage()
     msg["Subject"] = subject
@@ -629,10 +686,11 @@ def main():
     first_run = not already_sent
 
     cfg = load_config()
-    picked, overflow = select_events(
+    picked, overflow, excluded = select_events(
         events, already_sent, cfg["min_score"],
         max_items=cfg["max_items"],
         max_per_category=DEFAULT_MAX_PER_CATEGORY,
+        exclude_categories=cfg["exclude"],
     )
 
     print(f"Events in file:   {len(events)}")
@@ -641,6 +699,8 @@ def main():
     print(f"Max per email:    {cfg['max_items']}")
     print(f"Emailing:         {len(picked)}")
     print(f"Held back:        {len(overflow)} (on site, marked as seen)")
+    print(f"Excluded categs:  {', '.join(cfg['exclude']) or 'none'} "
+          f"({len(excluded)} filtered out)")
 
     if first_run:
         # Don't blast the entire back catalogue on first run. Mark everything
@@ -652,13 +712,17 @@ def main():
 
     if not picked:
         print("\nNothing new above threshold. No email sent.")
+        seen = {e.get("id") for e in overflow + excluded if e.get("id")}
+        if seen:
+            save_state(already_sent | seen)
+            print(f"Marked {len(seen)} filtered/held item(s) as seen.")
         return 0
 
     for e in picked:
         print(f"  [{e.get('riskScore')}] {e.get('headline','')[:66]}")
 
     send(cfg, picked, overflow)
-    newly = {e.get("id") for e in picked + overflow if e.get("id")}
+    newly = {e.get("id") for e in picked + overflow + excluded if e.get("id")}
     save_state(already_sent | newly)
     return 0
 
