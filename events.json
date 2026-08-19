@@ -1,212 +1,25 @@
 [
   {
-    "date": "Aug 18, 2026",
-    "dateSort": "2026-08-18T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "AK",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in AK: Mukluk Fire",
-    "detail": "FEMA declaration FM-5672-AK for AK. Incident type: Fire. Incident period began 2026-08-17. Declared 2026-08-18. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "Medium",
-    "riskScore": 5,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5672",
-    "effectiveDate": "Declared 2026-08-18",
-    "id": "DIS-041"
-  },
-  {
-    "date": "Aug 15, 2026",
-    "dateSort": "2026-08-15T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "IN",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares flood disaster in IN: Severe Storms, Straight-Line Winds, Tornadoes, And Flooding",
-    "detail": "FEMA declaration EM-3651-IN for IN. Incident type: Flood. Incident period began 2026-08-11. Declared 2026-08-15. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 6,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Approved",
-    "sourceURL": "https://www.fema.gov/disaster/3651",
-    "effectiveDate": "Declared 2026-08-15",
-    "id": "DIS-011"
-  },
-  {
-    "date": "Aug 14, 2026",
-    "dateSort": "2026-08-14T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "OR",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in OR: Fielder Mountain Fire",
-    "detail": "FEMA declaration FM-5670-OR for OR. Incident type: Fire. Incident period began 2026-08-13. Declared 2026-08-14. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5670",
-    "effectiveDate": "Declared 2026-08-14",
-    "id": "DIS-012"
-  },
-  {
-    "date": "Aug 13, 2026",
-    "dateSort": "2026-08-13T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "OK",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in OK: Train Trestle Fire",
-    "detail": "FEMA declaration FM-5669-OK for OK. Incident type: Fire. Incident period began 2026-08-13. Declared 2026-08-13. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5669",
-    "effectiveDate": "Declared 2026-08-13",
-    "id": "DIS-013"
-  },
-  {
-    "date": "Aug 11, 2026",
-    "dateSort": "2026-08-11T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "NV",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in NV: Fred Mountain Fire",
-    "detail": "FEMA declaration FM-5667-NV for NV. Incident type: Fire. Incident period began 2026-08-09. Declared 2026-08-11. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5667",
-    "effectiveDate": "Declared 2026-08-11",
-    "id": "DIS-014"
-  },
-  {
-    "date": "Aug 11, 2026",
-    "dateSort": "2026-08-11T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "NV",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in NV: Stallion Fire",
-    "detail": "FEMA declaration FM-5668-NV for NV. Incident type: Fire. Incident period began 2026-08-10. Declared 2026-08-11. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5668",
-    "effectiveDate": "Declared 2026-08-11",
-    "id": "DIS-015"
-  },
-  {
-    "date": "Aug 9, 2026",
-    "dateSort": "2026-08-09T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "OR",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in OR: Hagen Fire",
-    "detail": "FEMA declaration FM-5664-OR for OR. Incident type: Fire. Incident period began 2026-07-16. Declared 2026-08-09. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5664",
-    "effectiveDate": "Declared 2026-08-09",
-    "id": "DIS-016"
-  },
-  {
-    "date": "Aug 9, 2026",
-    "dateSort": "2026-08-09T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "UT",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in UT: Rocky Canyon Fire",
-    "detail": "FEMA declaration FM-5665-UT for UT. Incident type: Fire. Incident period began 2026-08-09. Declared 2026-08-09. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5665",
-    "effectiveDate": "Declared 2026-08-09",
-    "id": "DIS-017"
-  },
-  {
-    "date": "Aug 9, 2026",
-    "dateSort": "2026-08-09T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "OR",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in OR: Wrights Spring Fire",
-    "detail": "FEMA declaration FM-5666-OR for OR. Incident type: Fire. Incident period began 2026-08-05. Declared 2026-08-09. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5666",
-    "effectiveDate": "Declared 2026-08-09",
-    "id": "DIS-018"
-  },
-  {
-    "date": "Aug 8, 2026",
-    "dateSort": "2026-08-08T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "NV",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in NV: Bug Fire",
-    "detail": "FEMA declaration FM-5663-NV for NV. Incident type: Fire. Incident period began 2026-08-08. Declared 2026-08-08. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5663",
-    "effectiveDate": "Declared 2026-08-08",
-    "id": "DIS-019"
-  },
-  {
+    "id": "BOR-005",
     "date": "Aug 4, 2026",
     "dateSort": "2026-08-04T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "CA",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in CA: Gann Fire",
-    "detail": "FEMA declaration FM-5662-CA for CA. Incident type: Fire. Incident period began 2026-08-04. Declared 2026-08-04. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5662",
-    "effectiveDate": "Declared 2026-08-04",
-    "id": "DIS-020"
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Borrower News",
+    "broadCategory": "borrower",
+    "sector": "Skilled Nursing",
+    "headline": "PACS Group reports Q2 2026 results; DOJ and SEC investigations remain unresolved",
+    "detail": "PACS reported second quarter 2026 results on August 4, 2026. The company operates 324 post-acute facilities across 17 states serving more than 31,900 patients daily. Full-year 2026 revenue guidance is $5.65 billion to $5.75 billion. DOJ and SEC investigations and shareholder litigation remain outstanding, and analysts continue to cite them as the principal unresolved risk despite improved operating performance.",
+    "creditDirection": "Mixed",
+    "severity": "Critical",
+    "riskScore": 11,
+    "sourceAgency": "PACS Group / market reporting",
+    "sourceVerification": "Secondary \u2014 verify against company 10-Q",
+    "sourceURL": "https://www.stocktitan.net/sec-filings/PACS/10-q-pacs-group-inc-quarterly-earnings-report-0cd83bbc7b99.html",
+    "effectiveDate": "Quarter ended June 30, 2026",
+    "borrowers": [
+      "PACS Holdings"
+    ]
   },
   {
     "id": "DIS-010",
@@ -225,7 +38,8 @@
     "sourceAgency": "FEMA",
     "sourceVerification": "Primary",
     "sourceURL": "https://www.fema.gov/press-release/20260804/fema-public-assistance-and-incident-period-extension-added-major-disaster",
-    "effectiveDate": "Announced August 4, 2026"
+    "effectiveDate": "Announced August 4, 2026",
+    "borrowers": []
   },
   {
     "id": "FRD-019",
@@ -244,121 +58,30 @@
     "sourceAgency": "U.S. Department of Justice (via Miller & Chevalier)",
     "sourceVerification": "Secondary \u2014 verify against DOJ primary release",
     "sourceURL": "https://www.millerchevalier.com/publication/doj-expands-healthcare-fraud-enforcement-footprint-new-strike-force-eastern-district",
-    "effectiveDate": "Announced August 4, 2026; prosecutions ongoing"
+    "effectiveDate": "Announced August 4, 2026; prosecutions ongoing",
+    "borrowers": []
   },
   {
+    "id": "BOR-010",
     "date": "Aug 3, 2026",
     "dateSort": "2026-08-03T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "MO",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares severe storm disaster in MO: Severe Storms, Straight-Line Winds, Tornadoes, And Flooding",
-    "detail": "FEMA declaration DR-4929-MO for MO. Incident type: Severe Storm. Incident period began 2026-06-04. Declared 2026-08-03. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
+    "jurisdiction": "Federal",
+    "state": "Massachusetts; U.S.",
+    "category": "Borrower News",
+    "broadCategory": "borrower",
+    "sector": "Senior Housing; Medical Office; Life Science",
+    "headline": "Diversified Healthcare Trust Q2 2026: leverage improves to 7.1x, normalized FFO up 109%",
+    "detail": "DHC reported Q2 2026 revenue of $365.4 million, down from $382.7 million a year earlier due to asset sales, with a narrowed net loss of $37.4 million versus $91.6 million. Normalized FFO rose 109.4% to $38.9 million and Adjusted EBITDAre reached $82.1 million. Same-property SHOP NOI grew 37.2% to $52.0 million with margins of 17.3%; SHOP occupancy reached 82.5% at an average monthly rate of $5,693. Medical office and life science same-property occupancy rose to 95.8%. Net debt to annualized Adjusted EBITDAre improved to 7.1x from 7.8x last quarter and 8.7x a year ago. Total debt principal outstanding was $2.44 billion with no maturities before 2028.",
+    "creditDirection": "Positive",
     "severity": "High",
     "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/4929",
-    "effectiveDate": "Declared 2026-08-03",
-    "id": "DIS-021"
-  },
-  {
-    "date": "Aug 3, 2026",
-    "dateSort": "2026-08-03T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "NE",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares severe storm disaster in NE: Severe Storms, Straight-Line Winds, Tornadoes, And Flooding",
-    "detail": "FEMA declaration DR-4928-NE for NE. Incident type: Severe Storm. Incident period began 2026-05-15. Declared 2026-08-03. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/4928",
-    "effectiveDate": "Declared 2026-08-03",
-    "id": "DIS-022"
-  },
-  {
-    "date": "Aug 3, 2026",
-    "dateSort": "2026-08-03T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "MS",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares tropical storm disaster in MS: Tropical Storm Arthur",
-    "detail": "FEMA declaration DR-4930-MS for MS. Incident type: Tropical Storm. Incident period began 2026-06-18. Declared 2026-08-03. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/4930",
-    "effectiveDate": "Declared 2026-08-03",
-    "id": "DIS-023"
-  },
-  {
-    "date": "Aug 3, 2026",
-    "dateSort": "2026-08-03T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "WV",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares flood disaster in WV: Severe Storm, Straight-Line Winds, Tornadoes, Flooding, Landslides, And Mudslides",
-    "detail": "FEMA declaration DR-4932-WV for WV. Incident type: Flood. Incident period began 2026-07-21. Declared 2026-08-03. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/4932",
-    "effectiveDate": "Declared 2026-08-03",
-    "id": "DIS-024"
-  },
-  {
-    "date": "Aug 3, 2026",
-    "dateSort": "2026-08-03T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "MP",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares typhoon disaster in MP: Super Typhoon Bavi",
-    "detail": "FEMA declaration DR-4931-MP for MP. Incident type: Typhoon. Incident period began 2026-07-04. Declared 2026-08-03. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/4931",
-    "effectiveDate": "Declared 2026-08-03",
-    "id": "DIS-025"
-  },
-  {
-    "date": "Aug 3, 2026",
-    "dateSort": "2026-08-03T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "WA",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in WA: Wildfires",
-    "detail": "FEMA declaration EM-3650-WA for WA. Incident type: Fire. Incident period began 2026-08-01. Declared 2026-08-03. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/3650",
-    "effectiveDate": "Declared 2026-08-03",
-    "id": "DIS-026"
+    "sourceAgency": "Diversified Healthcare Trust SEC Form 8-K",
+    "sourceVerification": "Primary \u2014 company SEC filing",
+    "sourceURL": "https://www.sec.gov/Archives/edgar/data/0001075415/000107541526000029/dhc_063026x8-kxexhibitx9.htm",
+    "effectiveDate": "Quarter ended June 30, 2026",
+    "borrowers": [
+      "Diversified Healthcare Trust"
+    ]
   },
   {
     "id": "DIS-007",
@@ -377,7 +100,8 @@
     "sourceAgency": "FEMA / SBA",
     "sourceVerification": "Primary",
     "sourceURL": "https://www.federalregister.gov/documents/2026/08/07/2026-16151/presidential-declaration-of-a-major-disaster-for-the-state-of-west-virginia",
-    "effectiveDate": "Declared August 3, 2026"
+    "effectiveDate": "Declared August 3, 2026",
+    "borrowers": []
   },
   {
     "id": "DIS-008",
@@ -396,7 +120,8 @@
     "sourceAgency": "FEMA / SBA",
     "sourceVerification": "Primary",
     "sourceURL": "https://www.federalregister.gov/documents/2026/08/07/2026-16145/presidential-declaration-of-a-major-disaster-for-public-assistance-only-for-the-state-of-missouri",
-    "effectiveDate": "Declared August 3, 2026"
+    "effectiveDate": "Declared August 3, 2026",
+    "borrowers": []
   },
   {
     "id": "DIS-009",
@@ -415,178 +140,8 @@
     "sourceAgency": "FEMA / SBA",
     "sourceVerification": "Primary",
     "sourceURL": "https://www.federalregister.gov/documents/2026/08/07/2026-16140/presidential-declaration-of-a-major-disaster-for-the-state-of-mississippi",
-    "effectiveDate": "Declared August 3, 2026"
-  },
-  {
-    "date": "Aug 2, 2026",
-    "dateSort": "2026-08-02T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "WA",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in WA: Autumn Lane Fire",
-    "detail": "FEMA declaration FM-5659-WA for WA. Incident type: Fire. Incident period began 2026-08-01. Declared 2026-08-02. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5659",
-    "effectiveDate": "Declared 2026-08-02",
-    "id": "DIS-027"
-  },
-  {
-    "date": "Aug 2, 2026",
-    "dateSort": "2026-08-02T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "ID",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in ID: Tartar Fire",
-    "detail": "FEMA declaration FM-5660-ID for ID. Incident type: Fire. Incident period began 2026-08-02. Declared 2026-08-02. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5660",
-    "effectiveDate": "Declared 2026-08-02",
-    "id": "DIS-028"
-  },
-  {
-    "date": "Aug 2, 2026",
-    "dateSort": "2026-08-02T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "WA",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in WA: Fairview Fire",
-    "detail": "FEMA declaration FM-5658-WA for WA. Incident type: Fire. Incident period began 2026-08-01. Declared 2026-08-02. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5658",
-    "effectiveDate": "Declared 2026-08-02",
-    "id": "DIS-029"
-  },
-  {
-    "date": "Aug 2, 2026",
-    "dateSort": "2026-08-02T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "UT",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in UT: Widemouth 2 Fire",
-    "detail": "FEMA declaration FM-5661-UT for UT. Incident type: Fire. Incident period began 2026-08-02. Declared 2026-08-02. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5661",
-    "effectiveDate": "Declared 2026-08-02",
-    "id": "DIS-030"
-  },
-  {
-    "date": "Aug 1, 2026",
-    "dateSort": "2026-08-01T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "WA",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in WA: Sinlahekin Fire",
-    "detail": "FEMA declaration FM-5657-WA for WA. Incident type: Fire. Incident period began 2026-08-01. Declared 2026-08-01. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5657",
-    "effectiveDate": "Declared 2026-08-01",
-    "id": "DIS-031"
-  },
-  {
-    "date": "Aug 1, 2026",
-    "dateSort": "2026-08-01T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "WA",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in WA: Old Trails Fire",
-    "detail": "FEMA declaration FM-5656-WA for WA. Incident type: Fire. Incident period began 2026-08-01. Declared 2026-08-01. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5656",
-    "effectiveDate": "Declared 2026-08-01",
-    "id": "DIS-032"
-  },
-  {
-    "date": "Jul 31, 2026",
-    "dateSort": "2026-07-31T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "OR",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in OR: Rowe Creek Fire Complex",
-    "detail": "FEMA declaration FM-5655-OR for OR. Incident type: Fire. Incident period began 2026-07-31. Declared 2026-07-31. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5655",
-    "effectiveDate": "Declared 2026-07-31",
-    "id": "DIS-033"
-  },
-  {
-    "date": "Jul 31, 2026",
-    "dateSort": "2026-07-31T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "OR",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in OR: Fox Fire",
-    "detail": "FEMA declaration FM-5654-OR for OR. Incident type: Fire. Incident period began 2026-07-31. Declared 2026-07-31. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5654",
-    "effectiveDate": "Declared 2026-07-31",
-    "id": "DIS-034"
-  },
-  {
-    "date": "Jul 30, 2026",
-    "dateSort": "2026-07-30T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "WA",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in WA: Modrite Fire",
-    "detail": "FEMA declaration FM-5653-WA for WA. Incident type: Fire. Incident period began 2026-07-30. Declared 2026-07-30. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5653",
-    "effectiveDate": "Declared 2026-07-30",
-    "id": "DIS-035"
+    "effectiveDate": "Declared August 3, 2026",
+    "borrowers": []
   },
   {
     "id": "FED-026",
@@ -605,7 +160,8 @@
     "sourceAgency": "CMS",
     "sourceVerification": "Primary",
     "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/fiscal-year-2027-hospice-wage-index-payment-rate-update-hospice-quality-reporting-program",
-    "effectiveDate": "FY 2027, beginning October 1, 2026"
+    "effectiveDate": "FY 2027, beginning October 1, 2026",
+    "borrowers": []
   },
   {
     "id": "ST-018",
@@ -624,7 +180,8 @@
     "sourceAgency": "NY State Dept. of Health (via Ropes & Gray)",
     "sourceVerification": "Secondary \u2014 verify against NY DOH primary notice",
     "sourceURL": "https://www.ropesgray.com/en/insights/alerts/2026/07/new-york-state-department-of-health-imposes-six-month-medicaid-provider-enrollment-moratorium",
-    "effectiveDate": "Immediate, minimum six months from July 30, 2026"
+    "effectiveDate": "Immediate, minimum six months from July 30, 2026",
+    "borrowers": []
   },
   {
     "id": "ST-019",
@@ -643,7 +200,8 @@
     "sourceAgency": "HHS (via McDermott Will & Emery)",
     "sourceVerification": "Secondary \u2014 verify against HHS primary release",
     "sourceURL": "https://www.mcdermottlaw.com/insights/new-york-hits-pause-medicaid-moratorium-may-reach-far-beyond-new-enrollments/",
-    "effectiveDate": "Suspension period not specified in reporting"
+    "effectiveDate": "Suspension period not specified in reporting",
+    "borrowers": []
   },
   {
     "id": "FED-025",
@@ -662,7 +220,8 @@
     "sourceAgency": "CMS",
     "sourceVerification": "Primary",
     "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/fiscal-year-2027-skilled-nursing-facility-prospective-payment-system-final-rule-cms-1843-f",
-    "effectiveDate": "Effective October 1, 2026"
+    "effectiveDate": "Effective October 1, 2026",
+    "borrowers": []
   },
   {
     "id": "FRD-018",
@@ -681,102 +240,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/adult-day-care-owner-pleads-guilty-500000-medicare-fraud-scheme",
     "effectiveDate": "Sentencing scheduled November 18, 2026",
-    "sourceVerification": "Primary"
-  },
-  {
-    "date": "Jul 26, 2026",
-    "dateSort": "2026-07-26T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "WA",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in WA: Signal Peak Fire",
-    "detail": "FEMA declaration FM-5649-WA for WA. Incident type: Fire. Incident period began 2026-07-25. Declared 2026-07-26. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5649",
-    "effectiveDate": "Declared 2026-07-26",
-    "id": "DIS-036"
-  },
-  {
-    "date": "Jul 26, 2026",
-    "dateSort": "2026-07-26T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "WA",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in WA: Ransier Fire",
-    "detail": "FEMA declaration FM-5651-WA for WA. Incident type: Fire. Incident period began 2026-07-26. Declared 2026-07-26. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5651",
-    "effectiveDate": "Declared 2026-07-26",
-    "id": "DIS-037"
-  },
-  {
-    "date": "Jul 26, 2026",
-    "dateSort": "2026-07-26T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "CA",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in CA: Dove Fire",
-    "detail": "FEMA declaration FM-5652-CA for CA. Incident type: Fire. Incident period began 2026-07-26. Declared 2026-07-26. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5652",
-    "effectiveDate": "Declared 2026-07-26",
-    "id": "DIS-038"
-  },
-  {
-    "date": "Jul 26, 2026",
-    "dateSort": "2026-07-26T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "HI",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in HI: Kawaihae Road Fire",
-    "detail": "FEMA declaration FM-5650-HI for HI. Incident type: Fire. Incident period began 2026-07-26. Declared 2026-07-26. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5650",
-    "effectiveDate": "Declared 2026-07-26",
-    "id": "DIS-039"
-  },
-  {
-    "date": "Jul 25, 2026",
-    "dateSort": "2026-07-25T00:00:00",
-    "jurisdiction": "Disaster",
-    "state": "OR",
-    "category": "Natural Disaster",
-    "broadCategory": "disaster",
-    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
-    "headline": "FEMA declares fire disaster in OR: Grasshopper Fire",
-    "detail": "FEMA declaration FM-5648-OR for OR. Incident type: Fire. Incident period began 2026-07-23. Declared 2026-07-25. Facility-level operational impact requires review.",
-    "creditDirection": "Negative",
-    "severity": "High",
-    "riskScore": 9,
-    "sourceAgency": "FEMA",
-    "sourceVerification": "Auto-drafted \u2014 pending review",
-    "sourceURL": "https://www.fema.gov/disaster/5648",
-    "effectiveDate": "Declared 2026-07-25",
-    "id": "DIS-040"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "DIS-004",
@@ -795,7 +260,8 @@
     "sourceAgency": "Central Oregon Fire Information",
     "sourceURL": "https://centraloregonfire.org/2026/07/25/brewer-crosswhite-west-green-mountain-fires-update-july-25-2026/",
     "effectiveDate": "Active event",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-017",
@@ -814,7 +280,8 @@
     "sourceAgency": "Missouri Medicaid Audit & Compliance",
     "sourceURL": "https://mmac.mo.gov/dme-cds-temporary-new-enrollment-moratoria/",
     "effectiveDate": "Effective August 1, 2026 for six months; extensions permitted in six-month increments up to one year",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-016",
@@ -833,7 +300,8 @@
     "sourceAgency": "Minnesota Department of Human Services",
     "sourceURL": "https://mn.gov/dhs/partners-and-providers/news-initiatives-reports-workgroups/minnesota-health-care-programs/provider-news/",
     "effectiveDate": "Effective August 1, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-014",
@@ -852,7 +320,8 @@
     "sourceAgency": "Arizona Health Care Cost Containment System",
     "sourceURL": "https://www.azahcccs.gov/AHCCCS/Downloads/PublicNotices/rates/PreliminaryRatesNoticeofPublicInformation-FFY27.pdf",
     "effectiveDate": "Comments due August 24, 2026; proposed effective date October 1, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-015",
@@ -871,7 +340,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/four-men-plead-guilty-2m-minnesota-medicaid-fraud",
     "effectiveDate": "Sentencing dates not yet set",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-014",
@@ -890,7 +360,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/three-individuals-sentenced-prison-fraudulently-billing-medicare-and-medicaid-through-opioid",
     "effectiveDate": "Sentencing announcement July 24, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-024",
@@ -909,7 +380,8 @@
     "sourceAgency": "HHS Office for Civil Rights",
     "sourceURL": "https://www.federalregister.gov/documents/2026/07/24/2026-15000/rescinding-portions-of-the-us-department-of-health-and-human-services-title-vi-regulations-to-align",
     "effectiveDate": "Effective July 24, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-013",
@@ -928,7 +400,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/dallas-laboratory-owners-and-investors-pay-24m-resolve-covid-19-testing-fraud-allegations",
     "effectiveDate": "Settlement announced July 23, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "DIS-006",
@@ -947,7 +420,8 @@
     "sourceAgency": "FEMA",
     "sourceURL": "https://www.fema.gov/disaster/5647",
     "effectiveDate": "Active event",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-027",
@@ -966,7 +440,8 @@
     "sourceAgency": "CMS (via Holland & Knight)",
     "sourceVerification": "Secondary \u2014 verify against Federal Register primary text",
     "sourceURL": "https://www.hklaw.com/en/insights/publications/2026/07/cms-issues-medicaid-provider-taxes-proposed-rule",
-    "effectiveDate": "Comments due September 21, 2026"
+    "effectiveDate": "Comments due September 21, 2026",
+    "borrowers": []
   },
   {
     "id": "FRD-016",
@@ -985,7 +460,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/medical-supply-company-owner-convicted-30m-medicare-fraud-scheme",
     "effectiveDate": "Conviction announced July 22, 2026; sentencing date not stated in release",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-009",
@@ -1004,7 +480,8 @@
     "sourceAgency": "HHS / CMS",
     "sourceURL": "https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html",
     "effectiveDate": "Documentation review underway",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-008",
@@ -1023,7 +500,8 @@
     "sourceAgency": "California Department of Health Care Services",
     "sourceURL": "https://www.dhcs.ca.gov/news/statement-on-latest-federal-deferral-of-ihss-funds/",
     "effectiveDate": "Federal documentation review ongoing; no fixed determination date announced",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-004",
@@ -1042,7 +520,8 @@
     "sourceAgency": "Michigan Governor",
     "sourceURL": "https://www.michigan.gov/whitmer/news/press-releases/2026/07/21/whitmer-signs-budget-to-build-legacy-of-lowering-costs-creating-jobs-protecting-access-to-healthcare",
     "effectiveDate": "FY 2027 / work requirements by January 1, 2027",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-017",
@@ -1061,7 +540,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/notorious-fugitive-arrested-connection-547-million-medicare-fraud-scheme",
     "effectiveDate": "Criminal case ongoing; no trial date stated in release",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-013",
@@ -1080,7 +560,8 @@
     "sourceAgency": "HHS / CMS",
     "sourceURL": "https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html",
     "effectiveDate": "Documentation review underway; no final disallowance announced",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-009",
@@ -1099,7 +580,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/florida-laboratory-agrees-pay-98m-resolve-false-claims-act-liability-relating-self",
     "effectiveDate": "Settlement announced July 20, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "DIS-001",
@@ -1118,7 +600,8 @@
     "sourceAgency": "FEMA",
     "sourceURL": "https://www.fema.gov/disaster/3649",
     "effectiveDate": "Active event",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-012",
@@ -1137,7 +620,8 @@
     "sourceAgency": "HHS Office of Inspector General",
     "sourceURL": "https://oig.hhs.gov/reports/all/2026/colorado-could-improve-its-electronic-visit-verification-system-and-claimed-federal-medicaid-reimbursement-for-millions-of-dollars-in-personal-care-services-that-did-not-comply-with-federal-and-state-requirements/",
     "effectiveDate": "OIG recommendation updates expected January 16, 2027",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "DIS-002",
@@ -1156,7 +640,8 @@
     "sourceAgency": "FEMA",
     "sourceURL": "https://www.fema.gov/disaster/5646",
     "effectiveDate": "Active event",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-023",
@@ -1175,7 +660,8 @@
     "sourceAgency": "HHS Office of Inspector General",
     "sourceURL": "https://oig.hhs.gov/reports/all/2026/states-have-missed-some-opportunities-to-improve-medicaid-managed-care-organizations-provider-fraud-referrals/",
     "effectiveDate": "OIG recommendation updates expected January 15, 2027",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-018",
@@ -1194,7 +680,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/press-releases/cms-modernizes-nursing-home-oversight-new-risk-based-survey-approach-designed-highlight-high",
     "effectiveDate": "National implementation begins September 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-011",
@@ -1213,7 +700,8 @@
     "sourceAgency": "HHS Office of Inspector General",
     "sourceURL": "https://oig.hhs.gov/reports/all/2026/novitas-solutions-inc-improperly-paid-approximately-195-million-for-selected-medicare-part-b-services-provided-to-patients-residing-in-nursing-homes/",
     "effectiveDate": "OIG updates expected January 14, 2027",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-008",
@@ -1232,7 +720,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/labcorp-agrees-pay-145m-resolve-false-claims-act-allegations",
     "effectiveDate": "Settlement announced July 15, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-007",
@@ -1251,7 +740,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-medicare-physician-fee-schedule-proposed-rule",
     "effectiveDate": "Reporting deadline July 31, 2026; cuts begin CY 2027",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-006",
@@ -1270,7 +760,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-medicare-physician-fee-schedule-proposed-rule",
     "effectiveDate": "CY 2027 / final rule pending",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-005",
@@ -1289,7 +780,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-medicare-physician-fee-schedule-proposed-rule",
     "effectiveDate": "CY 2027 / final rule pending",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-015",
@@ -1308,7 +800,8 @@
     "sourceAgency": "Minnesota Department of Human Services",
     "sourceURL": "https://mn.gov/dhs/partners-and-providers/news-initiatives-reports-workgroups/minnesota-health-care-programs/provider-news/",
     "effectiveDate": "Effective July 27, 2026 through January 27, 2027; EIDBI through October 31, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "DIS-003",
@@ -1327,7 +820,8 @@
     "sourceAgency": "HHS / CMS",
     "sourceURL": "https://www.cms.gov/newsroom/news-alert/cms-announces-resources-flexibilities-assist-public-health-emergency-guam-commonwealth-northern-0",
     "effectiveDate": "PHE active; flexibilities retroactive to July 2",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-005",
@@ -1346,7 +840,8 @@
     "sourceAgency": "North Carolina Governor",
     "sourceURL": "https://governor.nc.gov/news/press-releases/2026/07/07/governor-stein-signs-state-budget-enacting-historic-pay-raises-teachers-and-law-enforcement",
     "effectiveDate": "Current state fiscal year",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-013",
@@ -1365,7 +860,8 @@
     "sourceAgency": "Virginia General Assembly / DMAS",
     "sourceURL": "https://budget.lis.virginia.gov/amendment/2026/2/HB30/Enrolled/CR/291/8c/",
     "effectiveDate": "Effective July 1, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-019",
@@ -1384,7 +880,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-home-health-prospective-payment-system-proposed-rule-fact-sheet-cms-1844-p",
     "effectiveDate": "CY 2027 final rule pending",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-008",
@@ -1403,7 +900,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-home-health-prospective-payment-system-proposed-rule-fact-sheet-cms-1844-p",
     "effectiveDate": "CY 2027 / final rule pending",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-002",
@@ -1422,7 +920,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-home-health-prospective-payment-system-proposed-rule-fact-sheet-cms-1844-p",
     "effectiveDate": "CY 2027 / final rule pending",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-011",
@@ -1441,7 +940,8 @@
     "sourceAgency": "Washington Health Care Authority / DSHS",
     "sourceURL": "https://lawfilesext.leg.wa.gov/law/wsr/2026/14/26-14-087.htm",
     "effectiveDate": "Effective July 1, 2026; comments due July 31, 2026; CMS approval pending",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-010",
@@ -1460,7 +960,8 @@
     "sourceAgency": "Washington Health Care Authority / DSHS",
     "sourceURL": "https://lawfilesext.leg.wa.gov/law/wsr/2026/14/26-14-088.htm",
     "effectiveDate": "Effective July 1, 2026; public comment period through July 31, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-003",
@@ -1479,7 +980,8 @@
     "sourceAgency": "Florida Executive Office of the Governor",
     "sourceURL": "https://flgov.com/eog/sites/default/files/shared/2026/06/2026-27%20Budget%20Highlights%20-%20Budget%20Signing%20Master%20with%20Edits%20-%20As%20of%206.28.CAedits%20LK-AL%20FINAL-FINAL_0.pdf",
     "effectiveDate": "FY 2026-27",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-002",
@@ -1498,7 +1000,8 @@
     "sourceAgency": "Florida Executive Office of the Governor",
     "sourceURL": "https://flgov.com/eog/sites/default/files/shared/2026/06/2026-27%20Budget%20Highlights%20-%20Budget%20Signing%20Master%20with%20Edits%20-%20As%20of%206.28.CAedits%20LK-AL%20FINAL-FINAL_0.pdf",
     "effectiveDate": "FY 2026-27",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-007",
@@ -1517,7 +1020,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/national-health-care-fraud-takedown-results-455-defendants-charged-connection-over-65",
     "effectiveDate": "Ongoing case",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-006",
@@ -1536,7 +1040,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/national-health-care-fraud-takedown-results-455-defendants-charged-connection-over-65",
     "effectiveDate": "Ongoing cases and payment controls",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-005",
@@ -1555,7 +1060,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/national-health-care-fraud-takedown-results-455-defendants-charged-connection-over-65",
     "effectiveDate": "Ongoing cases",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-004",
@@ -1574,7 +1080,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/national-health-care-fraud-takedown-results-455-defendants-charged-connection-over-65",
     "effectiveDate": "Ongoing case",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-003",
@@ -1593,7 +1100,8 @@
     "sourceAgency": "U.S. Department of Justice",
     "sourceURL": "https://www.justice.gov/opa/pr/national-health-care-fraud-takedown-results-455-defendants-charged-connection-over-65",
     "effectiveDate": "Ongoing investigations and prosecutions",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-021",
@@ -1612,7 +1120,8 @@
     "sourceAgency": "HHS Office of Inspector General",
     "sourceURL": "https://oig.hhs.gov/reports/all/2026/medicare-could-have-saved-2551-million-related-to-hospice-services-for-certain-new-hospice-enrollees/",
     "effectiveDate": "OIG update expected December 17, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-022",
@@ -1631,7 +1140,8 @@
     "sourceAgency": "HHS Office of Inspector General",
     "sourceURL": "https://oig.hhs.gov/reports/all/2026/cmss-processes-were-not-effective-in-ensuring-the-accuracy-of-staffing-information-reported-in-the-payroll-based-journal/",
     "effectiveDate": "OIG recommendation updates expected December 16, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-010",
@@ -1650,7 +1160,8 @@
     "sourceAgency": "HHS Office of Inspector General",
     "sourceURL": "https://oig.hhs.gov/reports/all/2026/california-made-at-least-139-million-more-in-medicaid-reimbursements-for-clinical-diagnostic-laboratory-services-than-was-allowed-by-federal-and-state-requirements/",
     "effectiveDate": "OIG recommendation updates expected December 7, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-020",
@@ -1669,7 +1180,8 @@
     "sourceAgency": "HHS Office of Inspector General",
     "sourceURL": "https://oig.hhs.gov/reports/all/2026/medicare-advantage-organizations-overturned-nearly-all-appealed-prior-authorization-denials-for-skilled-nursing-facility-admission-raising-concerns-about-initial-denials/",
     "effectiveDate": "CMS recommendations remain open",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "DIS-005",
@@ -1688,7 +1200,8 @@
     "sourceAgency": "HHS / CMS",
     "sourceURL": "https://www.cms.gov/about-cms/what-we-do/emergency-response/current-emergencies",
     "effectiveDate": "PHE remains active subject to renewal or termination",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-009",
@@ -1707,7 +1220,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/medicaid-community-engagement-requirement-certain-individuals-interim-final-rule-comment-period-cms",
     "effectiveDate": "January 1, 2027 unless state implements earlier",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-001",
@@ -1726,7 +1240,8 @@
     "sourceAgency": "New York Governor",
     "sourceURL": "https://www.governor.ny.gov/news/governor-hochul-secures-historic-investments-bolster-new-yorks-healthcare-system-and-protect",
     "effectiveDate": "FY 2027 implementation",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-007",
@@ -1745,7 +1260,8 @@
     "sourceAgency": "Ohio Governor",
     "sourceURL": "https://governor.ohio.gov/media/news-and-media/governor-dewine-signs-executive-order-approving-emergency-rules-on-medicaid-provider-revalidation",
     "effectiveDate": "Immediate / emergency-rule period",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FRD-001",
@@ -1764,7 +1280,52 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/medicare/enrollment-renewal/providers-suppliers/chain-ownership-system-pecos/provider-enrollment-moratoria",
     "effectiveDate": "Initial six-month period from May 13, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
+  },
+  {
+    "id": "BOR-004",
+    "date": "May 11, 2026",
+    "dateSort": "2026-05-11T00:00:00",
+    "jurisdiction": "Federal",
+    "state": "U.S.",
+    "category": "Borrower News",
+    "broadCategory": "borrower",
+    "sector": "Skilled Nursing",
+    "headline": "PACS Group Q1 2026: revenue $1.42B, net income $80.7M, investigations unresolved",
+    "detail": "Q1 2026 revenue rose 11% year over year to $1.42 billion with net income of $80.7 million and diluted EPS of $0.50. Operating cash flow was $236.3 million. Adjusted EBITDA rose 75% to $170.4 million. The company reported 323 facilities and 35,516 beds, occupancy of 90.9%, roughly $800 million of available liquidity and net leverage of 0.1x. The filing discloses multiple ongoing DOJ investigations, an SEC enforcement investigation, securities class and derivative actions, self-insurance liabilities of $346.9 million, and material weaknesses in internal controls. The board authorized a $250 million share repurchase effective May 7, 2026.",
+    "creditDirection": "Mixed",
+    "severity": "Critical",
+    "riskScore": 11,
+    "sourceAgency": "PACS Group SEC Form 10-Q",
+    "sourceVerification": "Primary \u2014 company SEC filing",
+    "sourceURL": "https://www.stocktitan.net/sec-filings/PACS/10-q-pacs-group-inc-quarterly-earnings-report-98bea34de536.html",
+    "effectiveDate": "Quarter ended March 31, 2026",
+    "borrowers": [
+      "PACS Holdings"
+    ]
+  },
+  {
+    "id": "BOR-009",
+    "date": "May 4, 2026",
+    "dateSort": "2026-05-04T00:00:00",
+    "jurisdiction": "Federal",
+    "state": "Massachusetts; U.S.",
+    "category": "Borrower News",
+    "broadCategory": "borrower",
+    "sector": "Senior Housing; Medical Office; Life Science",
+    "headline": "Diversified Healthcare Trust Q1 2026: leverage improves to 7.8x, FFO guidance raised",
+    "detail": "DHC reported Q1 2026 revenue of $366.5 million and a net loss of $43.3 million ($0.18 per share), narrowed year over year. Same-property SHOP NOI rose 13.5% to $44.3 million with margins of 14.9%; medical office and life science same-property cash NOI grew 3.0% with occupancy of 95.3%. Normalized FFO more than doubled to $33.1 million. Net debt to annualized Adjusted EBITDAre improved to 7.8x from 8.1x, with EBITDAre to interest expense at 2.0x. Liquidity was $271 million including $121 million cash and an undrawn $150 million secured revolver.",
+    "creditDirection": "Positive",
+    "severity": "High",
+    "riskScore": 9,
+    "sourceAgency": "Diversified Healthcare Trust SEC Form 8-K",
+    "sourceVerification": "Primary \u2014 company SEC filing",
+    "sourceURL": "https://www.stocktitan.net/sec-filings/DHC/8-k-diversified-healthcare-trust-reports-material-event-ae936a0dca28.html",
+    "effectiveDate": "Quarter ended March 31, 2026",
+    "borrowers": [
+      "Diversified Healthcare Trust"
+    ]
   },
   {
     "id": "FED-015",
@@ -1783,7 +1344,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/press-releases/cms-issues-guidance-implement-new-limits-federal-medicaid-chip-funding-certain-noncitizens",
     "effectiveDate": "October 1, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-004",
@@ -1802,7 +1364,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/fiscal-year-fy-2027-hospice-wage-index-payment-rate-update-hospice-quality-reporting-program",
     "effectiveDate": "FY 2027 / final rule pending",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-003",
@@ -1821,7 +1384,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/fiscal-year-fy-2027-hospice-wage-index-payment-rate-update-hospice-quality-reporting-program",
     "effectiveDate": "FY 2027 / final rule pending",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-001",
@@ -1840,7 +1404,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/fiscal-year-fy-2027-skilled-nursing-facility-prospective-payment-system-proposed-rule-cms-1843-p",
     "effectiveDate": "FY 2027 / final rule pending",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "ST-006",
@@ -1859,7 +1424,30 @@
     "sourceAgency": "Washington Governor",
     "sourceURL": "https://governor.wa.gov/news/2026/governor-ferguson-signs-supplemental-budgets",
     "effectiveDate": "Supplemental budget implementation",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
+  },
+  {
+    "id": "BOR-007",
+    "date": "Mar 16, 2026",
+    "dateSort": "2026-03-16T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "Ohio; U.S.",
+    "category": "Borrower News",
+    "broadCategory": "borrower",
+    "sector": "HME / DME",
+    "headline": "Quipt Home Medical completes take-private; delisted from NASDAQ and TSX",
+    "detail": "Quipt completed the plan of arrangement on March 16, 2026 following a final order from the Supreme Court of British Columbia. Affiliates of Kingswood and Forager acquired all outstanding shares at US$3.65 per share; options and RSUs were cashed out and cancelled. Shares were delisted from NASDAQ and the TSX at close of business March 17, 2026, and the company intends to cease public reporting in both Canada and the United States. Trade coverage described the transaction as ending a contentious nine-month process.",
+    "creditDirection": "Mixed",
+    "severity": "Critical",
+    "riskScore": 11,
+    "sourceAgency": "HME News",
+    "sourceVerification": "Trade press \u2014 corroborated by company release",
+    "sourceURL": "https://www.hmenews.com/article/quipt-home-medical-enters-new-phase",
+    "effectiveDate": "Closed March 16, 2026; delisted March 17, 2026",
+    "borrowers": [
+      "Quipt Home Medical"
+    ]
   },
   {
     "id": "FRD-002",
@@ -1878,7 +1466,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/medicare/enrollment-renewal/providers-suppliers/chain-ownership-system-pecos/provider-enrollment-moratoria",
     "effectiveDate": "Initial six-month period from February 27, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-011",
@@ -1897,7 +1486,8 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/hospice-news-announcements",
     "effectiveDate": "Modifiers/codes required January 1, 2027",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-010",
@@ -1916,7 +1506,30 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/newsroom/press-releases/cms-shuts-down-massive-medicaid-tax-loophole-saving-billions-federal-taxpayers-restoring-federal",
     "effectiveDate": "Transition deadlines vary through state FY 2028",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
+  },
+  {
+    "id": "BOR-008",
+    "date": "Jan 2, 2026",
+    "dateSort": "2026-01-02T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "Massachusetts; U.S.",
+    "category": "Borrower News",
+    "broadCategory": "borrower",
+    "sector": "Senior Housing; Medical Office; Life Science",
+    "headline": "Diversified Healthcare Trust repays 2026 notes, completes $605M of asset sales",
+    "detail": "DHC repaid in full its zero coupon senior secured notes due 2026 on December 29, 2025 using cash on hand and asset sale proceeds, releasing 45 collateral properties representing roughly $850 million of gross book value. DHC completed the sale of 69 non-core properties for approximately $605 million during 2025, including 37 properties for $250 million in Q4. The company reported no debt maturities until 2028 and full availability under its revolving credit facility. All 116 SHOP communities managed by AlerisLife were transitioned to new operators as of December 31, 2025.",
+    "creditDirection": "Positive",
+    "severity": "Critical",
+    "riskScore": 11,
+    "sourceAgency": "Diversified Healthcare Trust (BusinessWire)",
+    "sourceVerification": "Primary \u2014 company release",
+    "sourceURL": "https://www.businesswire.com/news/home/20260102424934/en/Diversified-Healthcare-Trust-Provides-Business-Update",
+    "effectiveDate": "Repayment completed December 29, 2025",
+    "borrowers": [
+      "Diversified Healthcare Trust"
+    ]
   },
   {
     "id": "ST-012",
@@ -1935,7 +1548,30 @@
     "sourceAgency": "Minnesota Department of Human Services",
     "sourceURL": "https://mn.gov/dhs/partners-and-providers/news-initiatives-reports-workgroups/long-term-services-and-supports/ltss-rates/",
     "effectiveDate": "Effective January 1, 2026",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
+  },
+  {
+    "id": "BOR-006",
+    "date": "Dec 15, 2025",
+    "dateSort": "2025-12-15T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "Ohio; U.S.",
+    "category": "Borrower News",
+    "broadCategory": "borrower",
+    "sector": "HME / DME",
+    "headline": "Quipt Home Medical agrees to be acquired by Kingswood and Forager at $3.65 per share",
+    "detail": "Quipt entered an arrangement agreement dated December 14, 2025 with affiliates of Kingswood Capital Management and Forager Capital Management to acquire all outstanding shares for US$3.65 per share in cash, a 162% premium to the unaffected May 19, 2025 price. Quipt reported Q4 2025 revenue of $68.3 million, up 11% year over year, and fiscal 2025 revenue of $254.5 million, a slight decline.",
+    "creditDirection": "Mixed",
+    "severity": "Critical",
+    "riskScore": 11,
+    "sourceAgency": "Quipt Home Medical (GlobeNewswire)",
+    "sourceVerification": "Primary \u2014 company release",
+    "sourceURL": "https://quipthomemedical.com/category/press-releases/",
+    "effectiveDate": "Announced December 15, 2025",
+    "borrowers": [
+      "Quipt Home Medical"
+    ]
   },
   {
     "id": "FED-017",
@@ -1954,7 +1590,8 @@
     "sourceAgency": "CMS / Medicaid.gov",
     "sourceURL": "https://www.medicaid.gov/medicaid/downloads/wftc-legsltn-overview-slide.pdf",
     "effectiveDate": "Grandfathering transitions toward rating periods beginning on or after January 1, 2028",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-016",
@@ -1973,7 +1610,8 @@
     "sourceAgency": "CMS / Medicaid.gov",
     "sourceURL": "https://www.medicaid.gov/medicaid/downloads/wftc-legsltn-overview-slide.pdf",
     "effectiveDate": "January 1, 2027",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   },
   {
     "id": "FED-014",
@@ -1992,7 +1630,74 @@
     "sourceAgency": "CMS / Medicaid.gov",
     "sourceURL": "https://www.medicaid.gov/medicaid/downloads/wftc-legsltn-overview-slide.pdf",
     "effectiveDate": "January 1, 2027",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
+  },
+  {
+    "id": "BOR-003",
+    "date": "Feb 26, 2025",
+    "dateSort": "2025-02-26T00:00:00",
+    "jurisdiction": "Federal",
+    "state": "U.S.",
+    "category": "Fraud / Investigation",
+    "broadCategory": "borrower",
+    "sector": "Skilled Nursing",
+    "headline": "PACS Group receives DOJ subpoena over Medicare billing and 1135 waiver practices",
+    "detail": "Per company SEC filings, PACS received a DOJ HIPAA subpoena relating to an investigation into possible false statements to the government. Requests cover 1135 COVID waiver practices, Medicare Part B billing for respiratory and sensory integration therapy, change of insurance enrollment, cost waivers for co-pays and deductibles, and Medicare bad debt reimbursement. Separately, the SEC Division of Enforcement is investigating the company's accounting, financial reporting, disclosure, and internal controls.",
+    "creditDirection": "Negative",
+    "severity": "Critical",
+    "riskScore": 12,
+    "sourceAgency": "PACS Group SEC Form 10-Q",
+    "sourceVerification": "Primary \u2014 company SEC filing",
+    "sourceURL": "https://www.stocktitan.net/sec-filings/PACS/10-q-pacs-group-inc-quarterly-earnings-report-0cd83bbc7b99.html",
+    "effectiveDate": "Investigations ongoing",
+    "borrowers": [
+      "PACS Holdings"
+    ]
+  },
+  {
+    "id": "BOR-002",
+    "date": "Jan 6, 2025",
+    "dateSort": "2025-01-06T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Borrower News",
+    "broadCategory": "borrower",
+    "sector": "Skilled Nursing",
+    "headline": "PACS Group loses 70% of market capitalization amid billing allegations and delayed filings",
+    "detail": "Following the short-seller report, PACS faced allegations of deceptive Medicare billing, a federal regulatory investigation, delayed financial reporting, and a securities class action (Manchin v. PACS Group, S.D.N.Y.). The class period runs April 11, 2024 through November 5, 2024. Complaint alleges the reported turnaround was driven by improper acquisition of Medicare benefits and falsified patient records.",
+    "creditDirection": "Negative",
+    "severity": "Critical",
+    "riskScore": 12,
+    "sourceAgency": "Hagens Berman (PRNewswire)",
+    "sourceVerification": "Secondary \u2014 plaintiff firm release; verify against court docket",
+    "sourceURL": "https://www.prnewswire.com/news-releases/medicare-fraud-allegations-cast-shadow-over-pacs-group-pacs--hagens-berman-pacs-investors-with-losses-encouraged-to-contact-the-firm-before-jan-13-2025-deadline-302343273.html",
+    "effectiveDate": "Lead plaintiff deadline January 13, 2025",
+    "borrowers": [
+      "PACS Holdings"
+    ]
+  },
+  {
+    "id": "BOR-001",
+    "date": "Nov 4, 2024",
+    "dateSort": "2024-11-04T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "Utah; U.S.",
+    "category": "Borrower News",
+    "broadCategory": "borrower",
+    "sector": "Skilled Nursing",
+    "headline": "Hindenburg Research alleges fraudulent Medicare billing at PACS Group",
+    "detail": "A short-seller report based on a five-month investigation and interviews with former employees alleged fraudulent charting and billing practices, including a company-wide scheme tied to COVID-era 1135 waiver use. The report noted PACS generated 47.6% of 2022 revenue from Medicare versus 28.6% at The Ensign Group. Shares fell roughly 40% on publication. The report cited no active government investigations at the time.",
+    "creditDirection": "Negative",
+    "severity": "Critical",
+    "riskScore": 12,
+    "sourceAgency": "McKnight's Long-Term Care News",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://www.mcknights.com/news/fraud-allegations-hit-pacs-group-incite-major-trading-volatility/",
+    "effectiveDate": "Report published November 4, 2024",
+    "borrowers": [
+      "PACS Holdings"
+    ]
   },
   {
     "id": "FED-012",
@@ -2011,6 +1716,7 @@
     "sourceAgency": "CMS",
     "sourceURL": "https://www.cms.gov/initiatives/burden-reduction/overview/interoperability/policies-regulations/cms-interoperability-prior-authorization-final-rule-cms-0057-f",
     "effectiveDate": "Major API requirements primarily January 1, 2027",
-    "sourceVerification": "Primary"
+    "sourceVerification": "Primary",
+    "borrowers": []
   }
 ]
