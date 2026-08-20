@@ -1,5 +1,25 @@
 [
   {
+    "date": "Aug 19, 2026",
+    "dateSort": "2026-08-19T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Industry / Trade",
+    "broadCategory": "industry",
+    "sector": "Pending review",
+    "headline": "Rethinking Nursing Home Closures: True Market Exits Versus Org Restructuring",
+    "detail": "Decades-long data on nursing home closures reveals that ownership changes have become an increasingly important pathway for facilities to remain open, while homes that don\u2019t undergo a change in ownership may be more likely to close. While nearly half of nursing homes from 1985 to 2025 followed a simple entry-to-exit pathway, one-fifth remained open via [&#8230;] The post Rethinking Nursing Home Closures: True Market Exits Versus Org Restructuring appeared first on Skilled Nursing News .",
+    "creditDirection": "Mixed",
+    "severity": "Medium",
+    "riskScore": 6,
+    "sourceAgency": "Skilled Nursing News",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://skillednursingnews.com/2026/08/rethinking-nursing-home-closures-true-market-exits-versus-org-restructuring/",
+    "effectiveDate": "Pending review",
+    "borrowers": [],
+    "id": "IND-007"
+  },
+  {
     "date": "Aug 18, 2026",
     "dateSort": "2026-08-18T00:00:00",
     "jurisdiction": "Trade Press",
