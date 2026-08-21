@@ -248,6 +248,143 @@ TEMPLATE = r"""<!DOCTYPE html>
   .borrower-row .count.zero{ color: var(--rule-light); }
   .borrower-row .count.hit{ color: var(--red); }
 
+  .view-tabs{
+    max-width: 1240px; margin: 0 auto; padding: 14px 32px 0;
+    display:flex; gap: 0; border-bottom: 1px solid var(--rule-light);
+  }
+  .view-tab{
+    font-family: var(--font-sans); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.09em; text-transform: uppercase;
+    background: none; border: none; border-bottom: 3px solid transparent;
+    color: var(--ink-dim); padding: 10px 18px; cursor: pointer;
+  }
+  .view-tab:hover{ color: var(--ink); }
+  .view-tab.active{ color: var(--ink); border-bottom-color: var(--red); }
+
+  .info-wrap{ max-width: 1240px; margin: 0 auto 70px; padding: 24px 32px 0; }
+  .info-grid{ display:grid; grid-template-columns: 380px 1fr; gap: 44px; }
+  .info-title{
+    font-family: var(--font-sans); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
+    border-top: 3px solid var(--rule); padding-top: 12px; margin-bottom: 14px;
+  }
+  .rate-card{
+    border-bottom: 1px solid var(--rule-light); padding: 12px 0;
+  }
+  .rate-card .rc-head{ display:flex; justify-content:space-between; align-items:baseline; }
+  .rate-card .rc-name{ font-family: var(--font-display); font-size: 15px; font-weight:700; }
+  .rate-card .rc-val{ font-family: var(--font-mono); font-size: 15px; font-weight:600; }
+  .rate-card .rc-val.pos{ color: var(--green); }
+  .rate-card .rc-val.neg{ color: var(--red); }
+  .rate-card .rc-note{
+    font-family: var(--font-sans); font-size: 11.5px; color: var(--ink-dim);
+    line-height:1.5; margin-top:4px;
+  }
+  .rate-card .rc-src{
+    font-family: var(--font-mono); font-size: 10px; color: #9A9A94; margin-top:5px;
+  }
+  .rate-card .rc-src a{ color: var(--red); text-decoration:none; }
+  .rate-card .rc-src a:hover{ text-decoration:underline; }
+
+  .map-hint{ font-family: var(--font-sans); font-size: 12px; color: var(--ink-dim); margin-bottom: 12px; }
+  .state-geo{
+    fill: #E8E6DE; stroke: #FCFBF8; stroke-width: 0.9; cursor: pointer;
+    transition: fill 0.12s ease;
+  }
+  .state-geo:hover{ fill: #4A7FB5; }
+  .state-geo.has-events{ fill: #C9D6E4; }
+  .state-geo.has-events:hover{ fill: #4A7FB5; }
+  .state-geo.selected{ fill: #1F4E79; }
+  .state-geo-label{
+    font-family: var(--font-sans); font-size: 9.5px; font-weight: 700;
+    fill: #4A4A46; pointer-events: none; text-anchor: middle;
+  }
+  .state-tile{
+    fill: #E8E6DE; stroke: var(--paper); stroke-width: 2; cursor: pointer;
+    transition: fill 0.12s ease;
+  }
+  .state-tile:hover{ fill: #4A7FB5; }
+  .state-tile.has-events{ fill: #C9D6E4; }
+  .state-tile.has-events:hover{ fill: #4A7FB5; }
+  .state-tile.selected{ fill: #1F4E79; }
+  .state-abbr{
+    font-family: var(--font-sans); font-size: 10px; font-weight: 700;
+    fill: var(--ink); pointer-events: none; text-anchor: middle;
+  }
+  .state-tile.selected + .state-abbr, .state-tile:hover + .state-abbr{ fill: #fff; }
+  .state-count{
+    font-family: var(--font-mono); font-size: 8px; fill: var(--red);
+    pointer-events:none; text-anchor: middle;
+  }
+  .state-tile.selected + .state-abbr + .state-count{ fill:#fff; }
+
+  .state-panel{ margin-top: 22px; }
+  .sp-back{
+    float:right; background:none; border:1px solid var(--rule-light);
+    font-family: var(--font-sans); font-size:10px; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-dim);
+    padding:4px 10px; cursor:pointer;
+  }
+  .sp-back:hover{ border-color: var(--red); color: var(--red); }
+  .sp-score-box{ display:flex; align-items:center; gap:16px; margin-bottom:14px; }
+  .sp-score-num{ font-family: var(--font-display); font-size:44px; font-weight:900; line-height:1; }
+  .sp-score-band{ font-family: var(--font-sans); font-size:14px; font-weight:700;
+    letter-spacing:0.06em; text-transform:uppercase; }
+  .sp-score-cap{ font-family: var(--font-sans); font-size:11px; color:var(--ink-dim); }
+  .sp-reasons{ margin-bottom:18px; }
+  .sp-reason{ font-family: var(--font-sans); font-size:12.5px; color:var(--ink);
+    padding:5px 0; border-bottom:1px dotted var(--rule-light); }
+  .sp-delta{ display:inline-block; width:34px; font-family:var(--font-mono);
+    font-size:11px; font-weight:700; }
+  .sp-delta.up{ color: var(--green); }
+  .sp-delta.down{ color: var(--red); }
+  .sp-sub{ font-family: var(--font-sans); font-size:10.5px; font-weight:700;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--ink);
+    border-top:1px solid var(--rule); padding-top:10px; margin:20px 0 10px; }
+  .sp-table{ width:100%; border-collapse:collapse; font-family:var(--font-body); font-size:13px; }
+  .sp-table th{ font-family:var(--font-sans); font-size:10px; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--ink-dim); text-align:right; padding:4px 6px; }
+  .sp-table td{ padding:6px; border-bottom:1px solid var(--rule-light); text-align:right; }
+  .sp-table td:first-child{ text-align:left; }
+  .sp-budget-tag{ display:inline-block; color:#fff; font-family:var(--font-sans);
+    font-size:10px; font-weight:700; letter-spacing:0.07em; padding:3px 9px; }
+  .sp-budget-note{ font-family:var(--font-body); font-size:13px; line-height:1.5;
+    color:var(--ink); margin-top:8px; }
+  .rank-row{ display:flex; gap:12px; align-items:flex-start; padding:9px 0;
+    border-bottom:1px solid var(--rule-light); }
+  .rank-score{ font-family:var(--font-mono); font-size:13px; font-weight:700;
+    color:#fff; padding:3px 8px; min-width:34px; text-align:center; }
+  .rank-name{ font-family:var(--font-display); font-size:15px; font-weight:700; }
+  .rank-why{ font-family:var(--font-sans); font-size:11.5px; color:var(--ink-dim);
+    line-height:1.45; margin-top:2px; }
+  .sp-head{
+    font-family: var(--font-display); font-size: 22px; font-weight: 700;
+    border-bottom: 2px solid var(--rule); padding-bottom: 8px; margin-bottom: 14px;
+  }
+  .sp-empty{ font-family: var(--font-sans); font-size: 12.5px; color: var(--ink-dim); }
+  .sp-event{
+    border-bottom: 1px solid var(--rule-light); padding: 11px 0;
+    font-family: var(--font-body); font-size: 13.5px; line-height:1.45;
+  }
+  .sp-event a{ color: var(--ink); text-decoration:none; font-weight:600; }
+  .sp-event a:hover{ color: var(--red); text-decoration:underline; }
+  .sp-meta{ font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-dim); margin-top:4px; }
+  .sp-score{
+    display:inline-block; font-family: var(--font-mono); font-size:11px; font-weight:700;
+    padding:1px 6px; margin-right:8px; border:1px solid var(--rule-light);
+  }
+
+  mark{ background: #FBEFA8; color: inherit; padding: 0 1px; }
+  .result-bar{
+    font-family: var(--font-sans); font-size: 12px; color: var(--ink);
+    background: #F1F0EA; border-left: 3px solid var(--ink);
+    padding: 9px 14px; margin: 16px 0 4px;
+  }
+  .result-bar button{
+    background:none; border:none; color: var(--red); cursor:pointer;
+    font-family: var(--font-sans); font-size: 11px; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.05em; margin-left:10px;
+  }
   .empty-state{
     padding: 46px 26px; text-align: center; color: var(--ink-dim);
     font-family: var(--font-sans); font-size: 13px; line-height: 1.65;
@@ -285,6 +422,8 @@ TEMPLATE = r"""<!DOCTYPE html>
     .risk-score{ justify-self: start; }
   }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
 </head>
 <body>
 
@@ -303,9 +442,14 @@ TEMPLATE = r"""<!DOCTYPE html>
     <div class="stat"><span class="num" id="statSources">0</span><span class="label">Sources</span></div>
   </div>
 
-  <div class="controls-wrap">
+  <div class="view-tabs">
+    <button class="view-tab active" data-view="feed">News Feed</button>
+    <button class="view-tab" data-view="info">Information &amp; Reference</button>
+  </div>
+
+  <div class="controls-wrap" id="feedControls">
     <div class="controls">
-      <div class="search-box"><input type="text" id="searchInput" placeholder="Search headlines, states, agencies..."></div>
+      <div class="search-box"><input type="text" id="searchInput" placeholder="Search all fields \u2014 try: medicaid moratorium, PACS, hospice"></div>
       <button class="filter-chip chip-primary active" data-filter="gov">Regulatory &amp; Enforcement</button>
       <button class="filter-chip chip-primary" data-filter="borrower">Borrower News</button>
       <button class="filter-chip chip-primary" data-filter="industry">Industry &amp; Trade</button>
@@ -328,7 +472,24 @@ TEMPLATE = r"""<!DOCTYPE html>
     </div>
   </div>
 
-  <div class="layout">
+  <div class="info-wrap" id="infoView" style="display:none;">
+    <div class="info-grid">
+      <div>
+        <div class="info-title">National Reference &mdash; Reimbursement</div>
+        <div id="rateCards"></div>
+        <div class="info-title" style="margin-top:30px;">Sector Benchmarks</div>
+        <div id="benchCards"></div>
+      </div>
+      <div>
+        <div class="info-title">State Detail</div>
+        <div class="map-hint">Click a state to see tracked events and reference data.</div>
+        <div id="usMap"></div>
+        <div id="statePanel" class="state-panel"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout" id="feedView">
     <div class="feed" id="feed"></div>
     <div class="sidebar">
       <div class="panel">
@@ -359,6 +520,53 @@ TEMPLATE = r"""<!DOCTYPE html>
   const GOV_CATEGORIES = ["fraud","medicaid","cms","regulation","disaster","other"];
 
   const CAT_LABELS = { borrower:"Borrower News", industry:"Industry / Trade", fraud:"Fraud / Enforcement", medicaid:"Medicaid Policy", cms:"CMS / Medicare", disaster:"Disaster", regulation:"Regulation", other:"Other" };
+
+  // ---- Search ----------------------------------------------------------
+  // Every field is searchable, not just the headline. Multi-word queries are
+  // treated as AND across all fields, so "medicaid moratorium" matches an
+  // event whose headline says moratorium and whose body says Medicaid.
+  // Wrap in "quotes" for an exact phrase.
+  function haystackFor(e){
+    if(e._hay) return e._hay;
+    e._hay = [
+      e.headline, e.detail, e.sourceAgency, e.state, e.jurisdiction,
+      e.category, e.sector, e.severity, e.creditDirection, e.effectiveDate,
+      e.id, e.date, e.sourceVerification, e.sourceURL,
+      (e.borrowers || []).join(' '),
+      CAT_LABELS[e.broadCategory] || ''
+    ].filter(Boolean).join(' ').toLowerCase();
+    return e._hay;
+  }
+
+  function parseQuery(q){
+    const phrases = [];
+    const rest = (q || '').toLowerCase().replace(/"([^"]+)"/g, (m, g) => {
+      phrases.push(g.trim());
+      return ' ';
+    });
+    const words = rest.split(/\s+/).filter(Boolean);
+    return { phrases, words };
+  }
+
+  function matchesQuery(e, q){
+    if(!q || !q.trim()) return true;
+    const hay = haystackFor(e);
+    const { phrases, words } = parseQuery(q);
+    for(const ph of phrases){ if(hay.indexOf(ph) === -1) return false; }
+    for(const w of words){ if(hay.indexOf(w) === -1) return false; }
+    return true;
+  }
+
+  function escRe(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  function highlight(text, q){
+    if(!q || !q.trim() || !text) return text;
+    const { phrases, words } = parseQuery(q);
+    const terms = phrases.concat(words).filter(t => t.length > 1);
+    if(!terms.length) return text;
+    const re = new RegExp('(' + terms.map(escRe).join('|') + ')', 'gi');
+    return text.replace(re, '<mark>$1</mark>');
+  }
 
   function riskClass(score){
     if(score >= 7) return "risk-high";
@@ -436,19 +644,27 @@ TEMPLATE = r"""<!DOCTYPE html>
       if(activeBorrower){
         if(!(e.borrowers || []).includes(activeBorrower)) return false;
       }
+      const searching = !!(searchTerm && searchTerm.trim());
       const matchesFilter =
         activeBorrower ? true :
+        searching ? true :
         activeFilter === 'gov' ? GOV_CATEGORIES.indexOf(e.broadCategory) !== -1 :
         e.broadCategory === activeFilter;
       const matchesDir = activeDir === 'all' || e.creditDirection === activeDir;
-      const haystack = [e.headline, e.detail, e.sourceAgency, e.state, e.jurisdiction, e.category].join(' ').toLowerCase();
-      const matchesSearch = haystack.includes(searchTerm.toLowerCase());
+      const matchesSearch = matchesQuery(e, searchTerm);
       return matchesFilter && matchesDir && matchesSearch;
     });
 
     if(sortMode === 'impact'){
       filtered = filtered.slice().sort((a,b) => (b.riskScore ?? 0) - (a.riskScore ?? 0));
     }
+
+    const resultBar = (searchTerm && searchTerm.trim())
+      ? `<div class="result-bar">${filtered.length} result${filtered.length === 1 ? '' : 's'}
+         for <strong>${searchTerm}</strong>
+         <span style="color:#7A7A74;">&nbsp;&middot;&nbsp;searching all categories</span>
+         <button id="clearSearch">Clear</button></div>`
+      : '';
 
     const borrowerBar = activeBorrower
       ? `<div class="active-borrower-bar">Showing all coverage for <strong>${activeBorrower}</strong>
@@ -477,8 +693,9 @@ TEMPLATE = r"""<!DOCTYPE html>
       } else {
         msg = `No events match this filter. Try selecting &ldquo;Regulatory &amp; Enforcement.&rdquo;`;
       }
-      feed.innerHTML = borrowerBar + `<div class="empty-state">${msg}</div>`;
+      feed.innerHTML = resultBar + borrowerBar + `<div class="empty-state">${msg}</div>`;
       wireClearBorrower();
+      wireClearSearch();
       return;
     }
 
@@ -500,8 +717,8 @@ TEMPLATE = r"""<!DOCTYPE html>
               <span class="article-tag">${CAT_LABELS[e.broadCategory] || e.category}</span>
               <span class="dir-tag ${e.creditDirection}">${e.creditDirection}</span>
             </div>
-            <h3><a href="${e.sourceURL || '#'}" target="_blank" rel="noopener">${e.headline}</a></h3>
-            <p>${e.detail}</p>
+            <h3><a href="${e.sourceURL || '#'}" target="_blank" rel="noopener">${highlight(e.headline, searchTerm)}</a></h3>
+            <p>${highlight(e.detail, searchTerm)}</p>
             <div class="article-meta">
               <span class="source">${e.sourceAgency}</span>
               <span>${e.jurisdiction}${e.state && e.state !== e.jurisdiction ? ' · ' + e.state : ''}</span>
@@ -514,8 +731,19 @@ TEMPLATE = r"""<!DOCTYPE html>
           <div class="risk-score ${riskClass(e.riskScore)}">${e.riskScore ?? '–'}</div>
         </div>`;
     });
-    feed.innerHTML = borrowerBar + html;
+    feed.innerHTML = resultBar + borrowerBar + html;
     wireClearBorrower();
+    wireClearSearch();
+  }
+
+  function wireClearSearch(){
+    const btn = document.getElementById('clearSearch');
+    if(btn) btn.addEventListener('click', () => {
+      searchTerm = '';
+      const input = document.getElementById('searchInput');
+      if(input) input.value = '';
+      renderFeed();
+    });
   }
 
   function wireClearBorrower(){
@@ -559,6 +787,480 @@ TEMPLATE = r"""<!DOCTYPE html>
       btn.classList.add('active');
       sortMode = btn.dataset.sort;
       renderFeed();
+    });
+  });
+
+
+  // ====================================================================
+  // INFORMATION & REFERENCE
+  // ====================================================================
+  // Federal reimbursement figures below are drawn from CMS fact sheets and
+  // rules already tracked in this feed. Sector benchmarks come from named
+  // industry data providers. State-level cap rates are NOT included: that
+  // data is proprietary (CBRE, JLL, NIC MAP, Levin Associates) and is not
+  // reproduced here. Populate STATE_REFERENCE below from your own
+  // subscription if you want state pricing on this page.
+
+  const RATE_CARDS = [
+    { name:"SNF PPS (FY 2027)", value:"+2.4%", dir:"pos",
+      note:"Finalized July 2026. 3.3% market basket less 0.9% productivity; roughly $882.7M aggregate increase. SNF VBP withholds an estimated $203.6M.",
+      src:"CMS FY2027 SNF final rule", url:"https://www.cms.gov/newsroom/fact-sheets/fiscal-year-2027-skilled-nursing-facility-prospective-payment-system-final-rule-cms-1843-f" },
+    { name:"Hospice (FY 2027)", value:"+2.3%", dir:"pos",
+      note:"Aggregate cap $36,174.75. Introduces the hospice service and spending variation index, a nine-metric claims-based screen.",
+      src:"CMS FY2027 hospice final rule", url:"https://www.cms.gov/newsroom/fact-sheets/fiscal-year-2027-hospice-wage-index-payment-rate-update-hospice-quality-reporting-program" },
+    { name:"Home Health (CY 2027)", value:"+2.4%", dir:"pos",
+      note:"Proposed. Approximately $420M aggregate, comprising a 2.1% payment update against a -3.0% permanent behavioral adjustment.",
+      src:"CMS CY2027 HH proposed rule", url:"https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-home-health-prospective-payment-system-proposed-rule-fact-sheet-cms-1844-p" },
+    { name:"Physician Fee Schedule (CY 2027)", value:"-1.19% / -1.68%", dir:"neg",
+      note:"Proposed conversion factors of $33.17 for qualifying APM participants and $32.84 for non-qualifying, as the one-year 2.5% CY2026 increase expires.",
+      src:"CMS CY2027 PFS proposed rule", url:"https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-medicare-physician-fee-schedule-proposed-rule" },
+    { name:"Clinical Lab Fee Schedule", value:"up to -15%/yr", dir:"neg",
+      note:"Statutory reductions may phase up to 15% annually beginning CY 2027 through CY 2029. Data reporting ran May 1 to July 31, 2026.",
+      src:"CMS CY2027 PFS fact sheet", url:"https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-medicare-physician-fee-schedule-proposed-rule" },
+    { name:"Medicaid Provider Tax Rule", value:"-$246B / 10yr", dir:"neg",
+      note:"Proposed rule implementing reconciliation Section 71115. CMS actuaries estimate the federal spending reduction. Comments due September 21, 2026.",
+      src:"Holland & Knight analysis (secondary)", url:"https://www.hklaw.com/en/insights/publications/2026/07/cms-issues-medicaid-provider-taxes-proposed-rule" },
+    { name:"Federal Staffing Mandate", value:"Withdrawn", dir:"pos",
+      note:"Interim final rule effective February 2, 2026 withdrew the 2024 minimum staffing standards. Implementation is separately barred through 2034.",
+      src:"Duane Morris alert (secondary)", url:"https://www.duanemorris.com/alerts/federal_agencies_rescind_previous_administrations_nursing_home_staffing_rule_1225.html" },
+  ];
+
+  const BENCH_CARDS = [
+    { name:"Senior Housing Occupancy", value:"89.9%", dir:"pos",
+      note:"Q2 2026, twentieth consecutive quarterly increase. 15 of 31 primary markets at or above 90%. Boston 93.3%, San Francisco 92.7%, Baltimore 91.8%; Miami 86.2%, Atlanta 86.5%.",
+      src:"NIC MAP, Q2 2026", url:"https://www.nicmap.com/news/occupancy-in-senior-housing-climbs-as-half-of-primary-markets-top-90/" },
+    { name:"SNF Occupancy", value:"~80-81%", dir:"pos",
+      note:"Projected 2026 national range, recovering from a 2021 low near 67% against a 2015 cyclical high of 82%.",
+      src:"Lument 2026 outlook (secondary)", url:"https://www.lument.com/steady-growth-accelerates-2026-seniors-housing-and-healthcare-market-outlook/" },
+    { name:"Senior Housing Cap Rate", value:"~6.2%", dir:"",
+      note:"National average through year-end 2025, roughly 210bps over the 10-year Treasury. Assisted living: core-market Class A near 6.5%, non-core near 7.4%.",
+      src:"CBRE H2 2025 Investor Survey (secondary)", url:"https://ctacquisitions.com/guides/senior-care-business-valuation/" },
+    { name:"SNF Price Per Bed", value:"$83,800", dir:"neg",
+      note:"2024 national average, down from $97,700 in 2023. Disperses widely by payor mix, occupancy and survey history.",
+      src:"Levin Associates via SNN (secondary)", url:"https://ctacquisitions.com/guides/senior-care-business-valuation/" },
+    { name:"Senior Housing Construction", value:"<16,000 units", dir:"pos",
+      note:"Units under construction as of Q2 2026, with year-over-year inventory growth of 0.4%. Constrained new supply supports existing asset occupancy.",
+      src:"NIC MAP, Q2 2026" },
+  ];
+
+
+  // ====================================================================
+  // STATE REFERENCE DATA
+  // ====================================================================
+  // WHAT IS REAL HERE:
+  //   expansion  - Medicaid expansion status (public record)
+  //   budget     - only where a sourced figure exists; every entry carries
+  //                its source URL. States without a published figure are
+  //                left null rather than estimated.
+  //
+  // WHAT IS DELIBERATELY EMPTY:
+  //   capMetro / capRural - state-level cap rates are proprietary to CBRE,
+  //   NIC MAP, JLL and Levin Associates. They are NOT reproduced or
+  //   estimated here. Fill them in from your own subscription; the panel
+  //   renders them the moment they are present.
+  //
+  // The favorability score is computed from real inputs only (see
+  // scoreState). States lacking inputs return null, not a guess.
+
+  const NON_EXPANSION = ["AL","FL","GA","KS","MS","SC","TN","TX","WI","WY"];
+
+  const BUDGET_SRC = {
+    pew:  "https://www.pew.org/en/research-and-analysis/articles/2026/01/13/new-federal-medicaid-policies-compound-state-budget-pressures",
+    pew2: "https://www.pew.org/en/research-and-analysis/issue-briefs/2024/09/long-term-assessments-highlight-state-budget-worries",
+    cbpp: "https://www.cbpp.org/research/state-budget-and-tax/roundup-state-budgets-increasingly-strained-as-house-senate",
+    kff:  "https://www.kff.org/medicaid/medicaid-and-upcoming-state-budget-debates/",
+    gov:  "https://www.governing.com/finance/states-brace-for-budget-shock-amid-federal-changes"
+  };
+
+  // position: "deficit" | "surplus" | "mixed"
+  const STATE_DATA = {
+    AK: { budget:{ position:"deficit", note:"Projected deficits for FY2025 through FY2027; primary budget reserve could be exhausted in FY2027 absent policy change.", src:BUDGET_SRC.pew2 } },
+    AZ: { budget:{ position:"deficit", note:"Multi-year projected deficits. JLBC projects H.R.1 work rules yield $363M total savings from FY2027 but only $15M in state general fund savings.", src:BUDGET_SRC.pew } },
+    CA: { budget:{ position:"deficit", note:"Multi-year structural deficits; LAO previously projected $155B cumulative through FY2028.", src:BUDGET_SRC.pew2 } },
+    CO: { budget:{ position:"deficit", amount:"-$1.2B", note:"FY2026 deficit driven by revenue losses from federal tax code conformity. Reversed a 1.6% across-the-board provider rate increase to address the shortfall.", src:BUDGET_SRC.gov } },
+    FL: { budget:{ position:"deficit", amount:"-$7B by FY2028", note:"Three-year forecast shows a FY2027 deficit growing to nearly $7B in FY2028 absent corrective action.", src:BUDGET_SRC.pew2 } },
+    ID: { budget:{ position:"deficit", note:"Adopted 4% across-the-board Medicaid provider rate reductions for all provider types in FY2026. Legislature has signaled it may consider repealing Medicaid expansion.", src:BUDGET_SRC.kff } },
+    LA: { budget:{ position:"deficit", amount:"-$667M by 2028", note:"Gap driven by expiration of temporary sales and business utility taxes.", src:BUDGET_SRC.cbpp } },
+    MD: { budget:{ position:"deficit", note:"Projected deficits FY2025 through FY2027.", src:BUDGET_SRC.pew2 } },
+    ME: { budget:{ position:"deficit", amount:"-$637M", note:"Structural general fund deficit projected for the biennium, reversing a prior structural surplus.", src:BUDGET_SRC.cbpp } },
+    MN: { budget:{ position:"mixed", amount:"-$6B outyears", note:"$456M surplus for the FY2026-27 biennium, but economists project a shortfall approaching $6B in later years.", src:BUDGET_SRC.cbpp } },
+    NM: { budget:{ position:"deficit", amount:"-$620M FY2027", note:"Estimated new recurring costs from federal Medicaid and SNAP changes, rising above $1B by FY2029.", src:BUDGET_SRC.gov } },
+    PA: { budget:{ position:"deficit", note:"Projected deficits FY2025 through FY2027. Independent Fiscal Office warns reduced federal funds carry multiplier effects.", src:BUDGET_SRC.pew2 } },
+    WI: { budget:{ position:"mixed", amount:"-$50M/yr", note:"Legislative Fiscal Bureau estimates roughly $50M per year in added costs from federal program changes.", src:BUDGET_SRC.gov } },
+    WV: { budget:{ position:"deficit", amount:"-$397M FY2027", note:"Structural gap of roughly $397M in FY2027 rising to $493M by 2033, following the largest year-over-year revenue decline in 25 years.", src:BUDGET_SRC.cbpp } },
+    NY: { budget:{ position:"deficit", note:"Ongoing deficits with Medicaid a central pressure point, particularly rising in-home long-term care spending.", src:BUDGET_SRC.pew2 } }
+  };
+
+  // Cap rates: intentionally empty. See note above.
+  const STATE_CAP_RATES = {};
+
+  function stateSignals(abbr){
+    const evs = eventsForState(abbr);
+    let neg = 0, pos = 0, moratorium = false, rateCut = false, rateUp = false;
+    evs.forEach(e => {
+      const t = ((e.headline||'') + ' ' + (e.detail||'')).toLowerCase();
+      if(e.creditDirection === 'Negative') neg++;
+      if(e.creditDirection === 'Positive') pos++;
+      if(t.indexOf('moratorium') !== -1) moratorium = true;
+      if(t.indexOf('rate cut') !== -1 || t.indexOf('reduction') !== -1 ||
+         t.indexOf('defer') !== -1 || t.indexOf('cuts') !== -1) rateCut = true;
+      if(t.indexOf('rate increase') !== -1 || t.indexOf('increases') !== -1 ||
+         t.indexOf('fully funds') !== -1 || t.indexOf('funding') !== -1) rateUp = true;
+    });
+    const d = STATE_DATA[abbr] || {};
+    return {
+      events: evs.length, neg, pos, moratorium, rateCut, rateUp,
+      expansion: NON_EXPANSION.indexOf(abbr) === -1,
+      budget: d.budget || null
+    };
+  }
+
+  // Transparent additive score. Only inputs we actually have move the number.
+  function scoreState(abbr){
+    const s = stateSignals(abbr);
+    if(!s.events && !s.budget) return { score:null, signals:s, reasons:[] };
+
+    let score = 50;
+    const reasons = [];
+
+    if(s.expansion){ score += 6; reasons.push(["+6","Medicaid expansion state — broader covered population"]); }
+    else { score -= 6; reasons.push(["-6","Non-expansion state — narrower Medicaid base"]); }
+
+    if(s.budget){
+      if(s.budget.position === 'deficit'){ score -= 14; reasons.push(["-14","Projected budget deficit — elevated risk of provider rate action"]); }
+      else if(s.budget.position === 'mixed'){ score -= 6; reasons.push(["-6","Near-term balance but outyear structural gap"]); }
+      else { score += 8; reasons.push(["+8","Budget surplus position"]); }
+    }
+
+    if(s.moratorium){ score -= 18; reasons.push(["-18","Provider enrollment moratorium in effect — blocks new enrollment and CHOW"]); }
+    if(s.rateCut){ score -= 8; reasons.push(["-8","Rate reductions, deferrals or funding cuts in tracked events"]); }
+    if(s.rateUp){ score += 8; reasons.push(["+8","Rate increases or new funding in tracked events"]); }
+
+    if(s.neg > s.pos && s.events >= 2){ score -= 5; reasons.push(["-5","Tracked events skew negative"]); }
+    if(s.pos > s.neg && s.events >= 2){ score += 5; reasons.push(["+5","Tracked events skew positive"]); }
+
+    score = Math.max(0, Math.min(100, score));
+    return { score, signals:s, reasons };
+  }
+
+  function scoreBand(v){
+    if(v === null) return { label:"Insufficient data", color:"#9A9A94" };
+    if(v >= 62) return { label:"Favorable", color:"#2B5C3F" };
+    if(v >= 45) return { label:"Neutral", color:"#8A6014" };
+    return { label:"Challenging", color:"#A81C1C" };
+  }
+
+
+  const STATE_NAMES = {
+    AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",
+    CT:"Connecticut",DE:"Delaware",DC:"District of Columbia",FL:"Florida",GA:"Georgia",
+    HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",
+    LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",
+    MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",
+    NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",
+    OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",
+    SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",
+    VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming"
+  };
+
+  // Tile-grid layout: each state is an equal square in approximate
+  // geographic position. Chosen over true geographic paths so the map is
+  // self-contained and every state stays clickable regardless of land area.
+  const TILE_GRID = [
+    ["AK","","","","","","","","","","ME"],
+    ["","","","","","","","","VT","NH",""],
+    ["WA","ID","MT","ND","MN","IL","WI","MI","NY","RI","MA"],
+    ["OR","NV","WY","SD","IA","IN","OH","PA","NJ","CT",""],
+    ["CA","UT","CO","NE","MO","KY","WV","VA","MD","DE",""],
+    ["","AZ","NM","KS","AR","TN","NC","SC","DC","",""],
+    ["","","","OK","LA","MS","AL","GA","","",""],
+    ["HI","","","TX","","","","","FL","",""]
+  ];
+
+  function eventsForState(abbr){
+    const full = STATE_NAMES[abbr];
+    return EVENTS.filter(e => {
+      const s = (e.state || '');
+      if(!s || s === 'U.S.') return false;
+      return s.split(/[;,]/).some(part => {
+        const t = part.trim();
+        return t === abbr || t === full;
+      });
+    }).sort((a,b) => (b.riskScore||0) - (a.riskScore||0));
+  }
+
+  let selectedState = null;
+
+  // Real geographic map, drawn from the US Atlas TopoJSON via CDN.
+  // Falls back to the tile grid if the CDN is unreachable so the page
+  // still works offline or behind a restrictive network.
+  function renderGeoMap(){
+    const el = document.getElementById('usMap');
+    if(!el) return false;
+    if(typeof d3 === 'undefined' || typeof topojson === 'undefined') return false;
+
+    d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json").then(us => {
+      const states = topojson.feature(us, us.objects.states);
+      const width = 900, height = 560;
+      const projection = d3.geoAlbersUsa().fitSize([width, height], states);
+      const path = d3.geoPath(projection);
+
+      const svg = d3.select(el).html('')
+        .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('width', '100%');
+
+      svg.append('g').selectAll('path')
+        .data(states.features)
+        .join('path')
+        .attr('d', path)
+        .attr('class', d => {
+          const ab = FIPS_TO_ABBR[d.id];
+          const n = ab ? eventsForState(ab).length : 0;
+          return 'state-geo' + (n ? ' has-events' : '') +
+                 (selectedState === ab ? ' selected' : '');
+        })
+        .attr('data-state', d => FIPS_TO_ABBR[d.id] || '')
+        .on('click', function(ev, d){
+          const ab = FIPS_TO_ABBR[d.id];
+          if(!ab) return;
+          selectedState = (selectedState === ab) ? null : ab;
+          renderMap();
+          renderStatePanel();
+        })
+        .append('title')
+        .text(d => {
+          const ab = FIPS_TO_ABBR[d.id];
+          if(!ab) return '';
+          const n = eventsForState(ab).length;
+          const sc = scoreState(ab).score;
+          return `${STATE_NAMES[ab]} — ${n} event${n===1?'':'s'}` +
+                 (sc === null ? '' : ` · score ${sc}`);
+        });
+
+      svg.append('g').selectAll('text')
+        .data(states.features)
+        .join('text')
+        .attr('class','state-geo-label')
+        .attr('transform', d => {
+          const c = path.centroid(d);
+          return (c && !isNaN(c[0])) ? `translate(${c[0]},${c[1]})` : 'translate(-99,-99)';
+        })
+        .attr('dy','0.33em')
+        .text(d => FIPS_TO_ABBR[d.id] || '');
+    }).catch(() => { renderTileMap(); });
+
+    return true;
+  }
+
+  const FIPS_TO_ABBR = {
+    "01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT","10":"DE",
+    "11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL","18":"IN","19":"IA",
+    "20":"KS","21":"KY","22":"LA","23":"ME","24":"MD","25":"MA","26":"MI","27":"MN",
+    "28":"MS","29":"MO","30":"MT","31":"NE","32":"NV","33":"NH","34":"NJ","35":"NM",
+    "36":"NY","37":"NC","38":"ND","39":"OH","40":"OK","41":"OR","42":"PA","44":"RI",
+    "45":"SC","46":"SD","47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA",
+    "54":"WV","55":"WI","56":"WY"
+  };
+
+  function renderMap(){
+    if(renderGeoMap()) return;
+    renderTileMap();
+  }
+
+  function renderTileMap(){
+    const CELL = 52, GAP = 4;
+    const cols = 11, rows = TILE_GRID.length;
+    const w = cols * (CELL + GAP), h = rows * (CELL + GAP);
+    let svg = `<svg viewBox="0 0 ${w} ${h}" width="100%" style="max-width:${w}px;">`;
+    TILE_GRID.forEach((row, r) => {
+      row.forEach((abbr, c) => {
+        if(!abbr) return;
+        const x = c * (CELL + GAP), y = r * (CELL + GAP);
+        const n = eventsForState(abbr).length;
+        const cls = 'state-tile' + (n ? ' has-events' : '') +
+                    (selectedState === abbr ? ' selected' : '');
+        svg += `<rect class="${cls}" data-state="${abbr}" x="${x}" y="${y}"
+                  width="${CELL}" height="${CELL}" rx="3"></rect>`;
+        svg += `<text class="state-abbr" x="${x + CELL/2}" y="${y + CELL/2 + 1}">${abbr}</text>`;
+        if(n) svg += `<text class="state-count" x="${x + CELL/2}" y="${y + CELL - 8}">${n}</text>`;
+      });
+    });
+    svg += '</svg>';
+    setHTML('usMap', svg);
+
+    const map = document.getElementById('usMap');
+    if(!map) return;
+    Array.prototype.forEach.call(map.querySelectorAll('.state-tile'), tile => {
+      tile.addEventListener('click', () => {
+        const abbr = tile.getAttribute('data-state');
+        selectedState = (selectedState === abbr) ? null : abbr;
+        renderTileMap();
+        renderStatePanel();
+      });
+    });
+  }
+
+  function renderStatePanel(){
+    if(!selectedState){
+      setHTML('statePanel', renderRankings());
+      return;
+    }
+    const abbr = selectedState;
+    const evs = eventsForState(abbr);
+    const res = scoreState(abbr);
+    const band = scoreBand(res.score);
+    const caps = STATE_CAP_RATES[abbr];
+    const d = STATE_DATA[abbr] || {};
+
+    let html = `<div class="sp-head">${STATE_NAMES[abbr]}
+      <button class="sp-back" id="spBack">All states</button></div>`;
+
+    // --- score ---
+    html += `<div class="sp-score-box">
+      <div class="sp-score-num" style="color:${band.color};">
+        ${res.score === null ? '&mdash;' : res.score}</div>
+      <div>
+        <div class="sp-score-band" style="color:${band.color};">${band.label}</div>
+        <div class="sp-score-cap">Healthcare lending favorability &middot; 0&ndash;100</div>
+      </div>
+    </div>`;
+
+    if(res.reasons.length){
+      html += `<div class="sp-reasons">` + res.reasons.map(r =>
+        `<div class="sp-reason"><span class="sp-delta ${r[0][0]==='+'?'up':'down'}">${r[0]}</span>${r[1]}</div>`
+      ).join('') + `</div>`;
+    } else {
+      html += `<div class="sp-empty">No tracked events or published budget figure for this state, so no score is computed. A blank score means missing inputs, not a neutral assessment.</div>`;
+    }
+
+    // --- cap rates ---
+    html += `<div class="sp-sub">Valuation Benchmarks</div>`;
+    if(caps){
+      html += `<table class="sp-table"><tr><th></th><th>Metro</th><th>Rural</th></tr>` +
+        Object.keys(caps).map(k =>
+          `<tr><td>${k}</td><td>${caps[k].metro || '&mdash;'}</td><td>${caps[k].rural || '&mdash;'}</td></tr>`
+        ).join('') + `</table>`;
+    } else {
+      html += `<div class="sp-empty">
+        Not loaded. State-level cap rates for SNF, assisted living and independent
+        living &mdash; metro and rural &mdash; are proprietary to
+        <a href="https://www.cbre.com/insights" target="_blank" rel="noopener">CBRE</a>,
+        <a href="https://www.nicmap.com/" target="_blank" rel="noopener">NIC MAP</a> and
+        Levin Associates. They are not reproduced or estimated here.
+        Add them to <code>STATE_CAP_RATES</code> in build_page.py and this table
+        populates automatically.</div>`;
+    }
+
+    // --- budget ---
+    html += `<div class="sp-sub">State Budget Position</div>`;
+    if(d.budget){
+      const bcol = d.budget.position === 'deficit' ? '#A81C1C'
+                 : d.budget.position === 'surplus' ? '#2B5C3F' : '#8A6014';
+      html += `<div class="sp-budget">
+        <span class="sp-budget-tag" style="background:${bcol};">
+          ${d.budget.position.toUpperCase()}${d.budget.amount ? ' &middot; ' + d.budget.amount : ''}</span>
+        <div class="sp-budget-note">${d.budget.note}</div>
+        <div class="rc-src"><a href="${d.budget.src}" target="_blank" rel="noopener">Source &rsaquo;</a></div>
+      </div>`;
+    } else {
+      html += `<div class="sp-empty">No published budget projection loaded for this state.
+        Sourced figures currently cover 15 states; the rest are left blank rather
+        than estimated. NASBO and state budget offices publish the primary data.</div>`;
+    }
+
+    // --- events ---
+    html += `<div class="sp-sub">Tracked Events (${evs.length})</div>`;
+    if(!evs.length){
+      html += `<div class="sp-empty">No tracked events reference this state.</div>`;
+    } else {
+      html += evs.map(e => `
+        <div class="sp-event">
+          <span class="sp-score">${e.riskScore ?? '-'}</span>
+          <a href="${e.sourceURL || '#'}" target="_blank" rel="noopener">${e.headline}</a>
+          <div class="sp-meta">${e.sourceAgency} &middot; ${e.date} &middot; ${e.creditDirection}</div>
+        </div>`).join('');
+    }
+
+    setHTML('statePanel', html);
+    const back = document.getElementById('spBack');
+    if(back) back.addEventListener('click', () => {
+      selectedState = null; renderMap(); renderStatePanel();
+    });
+  }
+
+  function renderRankings(){
+    const scored = Object.keys(STATE_NAMES)
+      .map(a => ({ abbr:a, ...scoreState(a) }))
+      .filter(x => x.score !== null);
+
+    if(!scored.length){
+      return `<div class="sp-empty">No states have enough data to score yet.</div>`;
+    }
+
+    scored.sort((a,b) => b.score - a.score);
+    const top = scored.slice(0, 5);
+    const bottom = scored.slice(-5).reverse();
+
+    const row = x => {
+      const band = scoreBand(x.score);
+      const why = x.reasons.slice(0, 2).map(r => r[1]).join('; ');
+      return `<div class="rank-row">
+        <span class="rank-score" style="background:${band.color};">${x.score}</span>
+        <div>
+          <div class="rank-name">${STATE_NAMES[x.abbr]}</div>
+          <div class="rank-why">${why || 'Limited inputs'}</div>
+        </div>
+      </div>`;
+    };
+
+    return `
+      <div class="sp-head">State Favorability</div>
+      <div class="sp-empty" style="margin-bottom:16px;">
+        Computed from Medicaid expansion status, published budget position, and
+        the enrollment moratoria and rate actions tracked in this feed. Only
+        states with at least one of those inputs are scored &mdash;
+        ${scored.length} of 51 currently qualify. Cap rate and per-bed inputs are
+        not included because that data is not loaded.
+      </div>
+      <div class="sp-sub">Most Favorable</div>
+      ${top.map(row).join('')}
+      <div class="sp-sub">Least Favorable</div>
+      ${bottom.map(row).join('')}
+      <div class="sp-empty" style="margin-top:16px;">
+        Click any state on the map for its full detail.
+      </div>`;
+  }
+
+  function renderInfo(){
+    const card = c => `
+      <div class="rate-card">
+        <div class="rc-head">
+          <span class="rc-name">${c.name}</span>
+          <span class="rc-val ${c.dir}">${c.value}</span>
+        </div>
+        <div class="rc-note">${c.note}</div>
+        <div class="rc-src">${c.url ? `<a href="${c.url}" target="_blank" rel="noopener">${c.src} &rsaquo;</a>` : c.src}</div>
+      </div>`;
+    setHTML('rateCards', RATE_CARDS.map(card).join(''));
+    setHTML('benchCards', BENCH_CARDS.map(card).join(''));
+    renderMap();
+    renderStatePanel();
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.view-tab'), tab => {
+    tab.addEventListener('click', () => {
+      Array.prototype.forEach.call(document.querySelectorAll('.view-tab'),
+        t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const isInfo = tab.getAttribute('data-view') === 'info';
+      const fv = document.getElementById('feedView');
+      const iv = document.getElementById('infoView');
+      const fc = document.getElementById('feedControls');
+      if(fv) fv.style.display = isInfo ? 'none' : '';
+      if(fc) fc.style.display = isInfo ? 'none' : '';
+      if(iv) iv.style.display = isInfo ? '' : 'none';
+      if(isInfo) renderInfo();
     });
   });
 
