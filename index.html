@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIB Healthcare News Tracker</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper: #FCFBF8;
+    --ink: #121212;
+    --ink-dim: #5A5A56;
+    --rule: #121212;
+    --rule-light: #D6D3C9;
+    --red: #A81C1C;
+    --red-tint: #F6E8E8;
+    --green: #2B5C3F;
+    --green-tint: #E7EFE9;
+    --gold: #8A6014;
+    --gold-tint: #F2ECDA;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'PT Serif', Georgia, serif;
+    --font-sans: 'Source Sans 3', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ box-sizing: border-box; }
+  html, body{ margin:0; padding:0; }
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: inherit; }
+
+  /* ===== TOP BAR / TICKER ===== */
+  .topbar{
+    border-bottom: 1px solid var(--rule);
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 7px 0;
+  }
+  .ticker-track{
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-left 80s linear infinite;
+  }
+  .ticker-track span{ margin-right: 44px; }
+  .ticker-track a{ color: inherit; text-decoration: none; }
+  .ticker-track a:hover{ text-decoration: underline; }
+  .ticker-track .dir-neg{ color: #E8A0A0; font-weight: 700; margin-right: 6px; }
+  .ticker-track .dir-pos{ color: #A7CBAF; font-weight: 700; margin-right: 6px; }
+  .ticker-track .dir-mix{ color: #E3C97A; font-weight: 700; margin-right: 6px; }
+  @keyframes scroll-left{ 0%{transform:translateX(0);} 100%{transform:translateX(-100%);} }
+
+  /* ===== MASTHEAD ===== */
+  header{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 30px 32px 0;
+    text-align: center;
+  }
+  .eyebrow{
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 600;
+  }
+  h1{
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 52px;
+    margin: 6px 0 8px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .subhead{
+    font-family: var(--font-sans);
+    color: var(--ink-dim);
+    font-size: 13.5px;
+    max-width: 560px;
+    margin: 0 auto 18px;
+    line-height: 1.5;
+  }
+  .rule-thick{ border: none; border-top: 3px solid var(--rule); margin: 0; }
+  .rule-thin{ border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  .stat-strip{
+    display:flex; justify-content:center; gap: 46px;
+    padding: 14px 0; font-family: var(--font-sans);
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .stat{ text-align:center; }
+  .stat .num{ font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--ink); display:block; line-height:1; }
+  .stat .num.neg{ color: var(--red); }
+  .stat .label{ font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); }
+
+  /* ===== CONTROLS ===== */
+  .controls-wrap{
+    max-width: 1240px; margin: 0 auto; padding: 16px 32px 0;
+    font-family: var(--font-sans);
+  }
+  .controls{ display:flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+  .search-box{ flex: 1; min-width: 200px; position: relative; }
+  .search-box input{
+    width: 100%; background: var(--paper); border: 1px solid var(--rule);
+    color: var(--ink); font-family: var(--font-sans); font-size: 13px;
+    padding: 8px 12px 8px 30px; outline: none;
+  }
+  .search-box input::placeholder{ color: var(--ink-dim); }
+  .search-box::before{
+    content:""; position:absolute; left:11px; top:50%; width:11px; height:11px;
+    transform:translateY(-50%); border:1.5px solid var(--ink-dim); border-radius:50%;
+  }
+  .search-box::after{
+    content:""; position:absolute; left:20px; top:63%; width:5px; height:1.5px;
+    background: var(--ink-dim); transform: rotate(45deg);
+  }
+  .filter-chip{
+    font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; padding: 7px 12px;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    cursor: pointer; letter-spacing: 0.02em; text-transform: uppercase;
+  }
+  .filter-chip:hover{ background: #EFEDE4; }
+  .filter-chip.active{ background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .filter-chip.chip-primary{ border-color: var(--red); color: var(--red); font-weight: 700; }
+  .filter-chip.chip-primary:hover{ background: #F7EDEC; }
+  .filter-chip.chip-primary.active{ background: var(--red); border-color: var(--red); color: #fff; }
+  .chip-divider{
+    display:inline-block; width:1px; align-self:stretch;
+    background: var(--rule-light); margin: 0 4px;
+  }
+  .borrower-row{ cursor: pointer; }
+  .borrower-row:hover span:first-child{ text-decoration: underline; }
+  .borrower-row.selected{ background: #F7EDEC; }
+  .borrower-row.selected span:first-child{ color: var(--red); font-weight: 700; }
+  .active-borrower-bar{
+    font-family: var(--font-sans); font-size: 12px; color: var(--ink);
+    background: #F7EDEC; border-left: 3px solid var(--red);
+    padding: 9px 14px; margin: 16px 0 4px;
+  }
+  .active-borrower-bar button{
+    background:none; border:none; color: var(--red); cursor:pointer;
+    font-family: var(--font-sans); font-size: 11px; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.05em; margin-left:10px;
+  }
+  .controls-row2{ display:flex; gap: 8px; flex-wrap: wrap; align-items: center; padding-bottom: 14px; }
+  .controls-row2 .filter-chip.dir-negative.active{ background: var(--red); border-color: var(--red); }
+  .controls-row2 .filter-chip.dir-positive.active{ background: var(--green); border-color: var(--green); }
+  .controls-row2 .filter-chip.dir-mixed.active{ background: var(--gold); border-color: var(--gold); }
+  .row2-label{ font-family: var(--font-sans); font-size: 10.5px; color: var(--ink-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-right: 2px; }
+
+  /* ===== LAYOUT ===== */
+  .layout{
+    max-width: 1240px; margin: 0 auto 70px; padding: 0 32px;
+    display: grid; grid-template-columns: 1fr 280px; gap: 0;
+    border-top: 3px solid var(--rule);
+  }
+  .feed{ border-right: 1px solid var(--rule-light); padding-right: 34px; }
+  .day-marker{
+    font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.14em;
+    color: var(--paper); background: var(--ink); text-transform: uppercase;
+    padding: 5px 10px; display: inline-block; margin: 22px 0 4px;
+  }
+  .feed > .day-marker:first-child{ margin-top: 18px; }
+
+  .article{
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule-light);
+    display: grid;
+    grid-template-columns: 1fr 46px;
+    gap: 16px;
+    align-items: start;
+  }
+  .risk-score{
+    font-family: var(--font-mono); font-size: 15px; font-weight: 700;
+    width: 40px; height: 40px; border: 1.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center; color: var(--ink);
+    justify-self: end;
+  }
+  .risk-high{ border-color: var(--red); color: var(--red); }
+  .risk-med{ border-color: var(--gold); color: var(--gold); }
+  .risk-low{ border-color: var(--green); color: var(--green); }
+
+  .article-tag-row{ display:flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; align-items: center; font-family: var(--font-sans); }
+  .article-tag{
+    font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--red);
+  }
+  .rank-badge{ font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-dim); }
+
+  .dir-tag{ font-family: var(--font-sans); font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 1px 7px; border: 1px solid; }
+  .dir-tag.Negative{ color: var(--red); border-color: var(--red); }
+  .dir-tag.Positive{ color: var(--green); border-color: var(--green); }
+  .dir-tag.Mixed{ color: var(--gold); border-color: var(--gold); }
+
+  .article h3{
+    font-family: var(--font-display); font-weight: 700; font-size: 22px;
+    margin: 0 0 8px; line-height: 1.25; color: var(--ink);
+  }
+  .article h3 a{ text-decoration: none; }
+  .article h3 a:hover{ text-decoration: underline; text-decoration-thickness: 1.5px; }
+  .article p{
+    font-family: var(--font-body); font-size: 14.5px; color: #333330;
+    line-height: 1.62; margin: 0 0 10px; max-width: 66ch;
+  }
+  .article-meta{
+    font-family: var(--font-sans); font-size: 11px; color: var(--ink-dim);
+    display:flex; gap: 14px; flex-wrap: wrap; text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .article-meta .source{ color: var(--ink); font-weight: 700; }
+  .article-meta a{ color: var(--red); text-decoration: none; font-weight: 600; }
+  .article-meta a:hover{ text-decoration: underline; }
+  .article-meta .unverified{ color: var(--gold); font-weight: 700; }
+
+  .borrower-badge{
+    display:inline-block; background: var(--ink); color: var(--paper);
+    font-family: var(--font-sans); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px;
+    margin-bottom: 8px;
+  }
+  .trade-tag{
+    font-family: var(--font-sans); font-size: 10px; color: var(--gold);
+    font-weight: 600; letter-spacing: 0.04em;
+  }
+  .borrower-row{
+    display:flex; justify-content: space-between; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px dotted var(--rule-light);
+    font-family: var(--font-body); font-size: 12.5px;
+  }
+  .borrower-row:last-child{ border-bottom: none; }
+  .borrower-row.has-hits{ font-weight: 700; }
+  .borrower-row .count{ font-family: var(--font-mono); font-size: 11.5px; }
+  .borrower-row .count.zero{ color: var(--rule-light); }
+  .borrower-row .count.hit{ color: var(--red); }
+
+  .view-tabs{
+    max-width: 1240px; margin: 0 auto; padding: 14px 32px 0;
+    display:flex; gap: 0; border-bottom: 1px solid var(--rule-light);
+  }
+  .view-tab{
+    font-family: var(--font-sans); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.09em; text-transform: uppercase;
+    background: none; border: none; border-bottom: 3px solid transparent;
+    color: var(--ink-dim); padding: 10px 18px; cursor: pointer;
+  }
+  .view-tab:hover{ color: var(--ink); }
+  .view-tab.active{ color: var(--ink); border-bottom-color: var(--red); }
+
+  .info-wrap{ max-width: 1240px; margin: 0 auto 70px; padding: 24px 32px 0; }
+  .info-grid{ display:grid; grid-template-columns: 380px 1fr; gap: 44px; }
+  .info-title{
+    font-family: var(--font-sans); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
+    border-top: 3px solid var(--rule); padding-top: 12px; margin-bottom: 14px;
+  }
+  .rate-card{
+    border-bottom: 1px solid var(--rule-light); padding: 12px 0;
+  }
+  .rate-card .rc-head{ display:flex; justify-content:space-between; align-items:baseline; }
+  .rate-card .rc-name{ font-family: var(--font-display); font-size: 15px; font-weight:700; }
+  .rate-card .rc-val{ font-family: var(--font-mono); font-size: 15px; font-weight:600; }
+  .rate-card .rc-val.pos{ color: var(--green); }
+  .rate-card .rc-val.neg{ color: var(--red); }
+  .rate-card .rc-note{
+    font-family: var(--font-sans); font-size: 11.5px; color: var(--ink-dim);
+    line-height:1.5; margin-top:4px;
+  }
+  .rate-card .rc-src{
+    font-family: var(--font-mono); font-size: 10px; color: #9A9A94; margin-top:5px;
+  }
+  .rate-card .rc-src a{ color: var(--red); text-decoration:none; }
+  .rate-card .rc-src a:hover{ text-decoration:underline; }
+
+  .map-hint{ font-family: var(--font-sans); font-size: 12px; color: var(--ink-dim); margin-bottom: 12px; }
+  .state-geo{
+    fill: #E8E6DE; stroke: #FCFBF8; stroke-width: 0.9; cursor: pointer;
+    transition: fill 0.12s ease;
+  }
+  .state-geo:hover{ fill: #4A7FB5; }
+  .state-geo.has-events{ fill: #C9D6E4; }
+  .state-geo.has-events:hover{ fill: #4A7FB5; }
+  .state-geo.selected{ fill: #1F4E79; }
+  .state-geo-label{
+    font-family: var(--font-sans); font-size: 9.5px; font-weight: 700;
+    fill: #4A4A46; pointer-events: none; text-anchor: middle;
+  }
+  .state-tile{
+    fill: #E8E6DE; stroke: var(--paper); stroke-width: 2; cursor: pointer;
+    transition: fill 0.12s ease;
+  }
+  .state-tile:hover{ fill: #4A7FB5; }
+  .state-tile.has-events{ fill: #C9D6E4; }
+  .state-tile.has-events:hover{ fill: #4A7FB5; }
+  .state-tile.selected{ fill: #1F4E79; }
+  .state-abbr{
+    font-family: var(--font-sans); font-size: 10px; font-weight: 700;
+    fill: var(--ink); pointer-events: none; text-anchor: middle;
+  }
+  .state-tile.selected + .state-abbr, .state-tile:hover + .state-abbr{ fill: #fff; }
+  .state-count{
+    font-family: var(--font-mono); font-size: 8px; fill: var(--red);
+    pointer-events:none; text-anchor: middle;
+  }
+  .state-tile.selected + .state-abbr + .state-count{ fill:#fff; }
+
+  .state-panel{ margin-top: 22px; }
+  .sp-back{
+    float:right; background:none; border:1px solid var(--rule-light);
+    font-family: var(--font-sans); font-size:10px; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-dim);
+    padding:4px 10px; cursor:pointer;
+  }
+  .sp-back:hover{ border-color: var(--red); color: var(--red); }
+  .sp-score-box{ display:flex; align-items:center; gap:16px; margin-bottom:14px; }
+  .sp-score-num{ font-family: var(--font-display); font-size:44px; font-weight:900; line-height:1; }
+  .sp-score-band{ font-family: var(--font-sans); font-size:14px; font-weight:700;
+    letter-spacing:0.06em; text-transform:uppercase; }
+  .sp-score-cap{ font-family: var(--font-sans); font-size:11px; color:var(--ink-dim); }
+  .sp-reasons{ margin-bottom:18px; }
+  .sp-reason{ font-family: var(--font-sans); font-size:12.5px; color:var(--ink);
+    padding:5px 0; border-bottom:1px dotted var(--rule-light); }
+  .sp-delta{ display:inline-block; width:34px; font-family:var(--font-mono);
+    font-size:11px; font-weight:700; }
+  .sp-delta.up{ color: var(--green); }
+  .sp-delta.down{ color: var(--red); }
+  .sp-sub{ font-family: var(--font-sans); font-size:10.5px; font-weight:700;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--ink);
+    border-top:1px solid var(--rule); padding-top:10px; margin:20px 0 10px; }
+  .sp-table{ width:100%; border-collapse:collapse; font-family:var(--font-body); font-size:13px; }
+  .sp-table th{ font-family:var(--font-sans); font-size:10px; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--ink-dim); text-align:right; padding:4px 6px; }
+  .sp-table td{ padding:6px; border-bottom:1px solid var(--rule-light); text-align:right; }
+  .sp-table td:first-child{ text-align:left; }
+  .sp-budget-tag{ display:inline-block; color:#fff; font-family:var(--font-sans);
+    font-size:10px; font-weight:700; letter-spacing:0.07em; padding:3px 9px; }
+  .sp-budget-note{ font-family:var(--font-body); font-size:13px; line-height:1.5;
+    color:var(--ink); margin-top:8px; }
+  .rank-row{ display:flex; gap:12px; align-items:flex-start; padding:9px 0;
+    border-bottom:1px solid var(--rule-light); }
+  .rank-score{ font-family:var(--font-mono); font-size:13px; font-weight:700;
+    color:#fff; padding:3px 8px; min-width:34px; text-align:center; }
+  .rank-name{ font-family:var(--font-display); font-size:15px; font-weight:700; }
+  .rank-why{ font-family:var(--font-sans); font-size:11.5px; color:var(--ink-dim);
+    line-height:1.45; margin-top:2px; }
+  .sp-head{
+    font-family: var(--font-display); font-size: 22px; font-weight: 700;
+    border-bottom: 2px solid var(--rule); padding-bottom: 8px; margin-bottom: 14px;
+  }
+  .sp-empty{ font-family: var(--font-sans); font-size: 12.5px; color: var(--ink-dim); }
+  .sp-event{
+    border-bottom: 1px solid var(--rule-light); padding: 11px 0;
+    font-family: var(--font-body); font-size: 13.5px; line-height:1.45;
+  }
+  .sp-event a{ color: var(--ink); text-decoration:none; font-weight:600; }
+  .sp-event a:hover{ color: var(--red); text-decoration:underline; }
+  .sp-meta{ font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-dim); margin-top:4px; }
+  .sp-score{
+    display:inline-block; font-family: var(--font-mono); font-size:11px; font-weight:700;
+    padding:1px 6px; margin-right:8px; border:1px solid var(--rule-light);
+  }
+
+  mark{ background: #FBEFA8; color: inherit; padding: 0 1px; }
+  .result-bar{
+    font-family: var(--font-sans); font-size: 12px; color: var(--ink);
+    background: #F1F0EA; border-left: 3px solid var(--ink);
+    padding: 9px 14px; margin: 16px 0 4px;
+  }
+  .result-bar button{
+    background:none; border:none; color: var(--red); cursor:pointer;
+    font-family: var(--font-sans); font-size: 11px; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.05em; margin-left:10px;
+  }
+  .empty-state{
+    padding: 46px 26px; text-align: center; color: var(--ink-dim);
+    font-family: var(--font-sans); font-size: 13px; line-height: 1.65;
+    max-width: 520px; margin: 20px auto; border: 1px dashed var(--rule-light);
+  }
+  .empty-state strong{ color: var(--ink); font-size: 14px; }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar{ padding-left: 30px; }
+  .panel{ padding-bottom: 26px; margin-bottom: 26px; border-bottom: 1px solid var(--rule-light); }
+  .panel:last-child{ border-bottom: none; }
+  .panel-title{
+    font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink); font-weight: 700; margin: 0 0 14px; padding-top: 18px;
+    border-top: 3px solid var(--rule);
+  }
+  .panel:first-child .panel-title{ margin-top: 0; }
+  .source-row{
+    display:flex; justify-content: space-between; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px dotted var(--rule-light);
+    font-family: var(--font-body); font-size: 13px;
+  }
+  .source-row:last-child{ border-bottom: none; }
+  .source-row .count{ font-family: var(--font-mono); color: var(--ink-dim); font-size: 11.5px; }
+  .feed-note{ font-family: var(--font-sans); font-size: 12px; color: var(--ink-dim); line-height: 1.6; }
+  .feed-note code{ font-family: var(--font-mono); background: #EFEDE4; padding: 1px 5px; font-size: 11px; color: var(--gold); }
+
+  @media (max-width: 900px){
+    .layout{ grid-template-columns: 1fr; }
+    .feed{ border-right: none; padding-right: 0; }
+    .sidebar{ padding-left: 0; margin-top: 20px; }
+    h1{ font-size: 34px; }
+    .stat-strip{ gap: 24px; }
+    .article{ grid-template-columns: 1fr; }
+    .risk-score{ justify-self: start; }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+</head>
+<body>
+
+  <div class="topbar"><div class="ticker-track" id="tickerTrack"></div></div>
+
+  <header>
+    <div class="eyebrow">Sector Desk · Daily Edition</div>
+    <h1>CIB Healthcare News Tracker</h1>
+    <div class="subhead">Source-audited enforcement, Medicaid policy, and CMS actions with credit read-through — newest first.</div>
+  </header>
+  <hr class="rule-thick">
+  <div class="stat-strip">
+    <div class="stat"><span class="num" id="statTotal">0</span><span class="label">Events Tracked</span></div>
+    <div class="stat"><span class="num neg" id="statHigh">0</span><span class="label">High Severity</span></div>
+    <div class="stat"><span class="num neg" id="statBorrower">0</span><span class="label">Borrower Mentions</span></div>
+    <div class="stat"><span class="num" id="statSources">0</span><span class="label">Sources</span></div>
+  </div>
+
+  <div class="view-tabs">
+    <button class="view-tab active" data-view="feed">News Feed</button>
+    <button class="view-tab" data-view="info">Information &amp; Reference</button>
+  </div>
+
+  <div class="controls-wrap" id="feedControls">
+    <div class="controls">
+      <div class="search-box"><input type="text" id="searchInput" placeholder="Search all fields \u2014 try: medicaid moratorium, PACS, hospice"></div>
+      <button class="filter-chip chip-primary active" data-filter="gov">Regulatory &amp; Enforcement</button>
+      <button class="filter-chip chip-primary" data-filter="borrower">Borrower News</button>
+      <button class="filter-chip chip-primary" data-filter="industry">Industry &amp; Trade</button>
+      <span class="chip-divider"></span>
+      <button class="filter-chip" data-filter="fraud">Fraud / Enforcement</button>
+      <button class="filter-chip" data-filter="medicaid">Medicaid Policy</button>
+      <button class="filter-chip" data-filter="cms">CMS / Medicare</button>
+      <button class="filter-chip" data-filter="disaster">Disaster</button>
+      <button class="filter-chip" data-filter="regulation">Regulation</button>
+    </div>
+    <div class="controls-row2">
+      <span class="row2-label">Credit Direction</span>
+      <button class="filter-chip dir-negative active" data-dir="all">All</button>
+      <button class="filter-chip dir-negative" data-dir="Negative">Negative</button>
+      <button class="filter-chip dir-mixed" data-dir="Mixed">Mixed</button>
+      <button class="filter-chip dir-positive" data-dir="Positive">Positive</button>
+      <span class="row2-label" style="margin-left:14px;">Sort</span>
+      <button class="filter-chip sort-chip active" data-sort="date">Newest First</button>
+      <button class="filter-chip sort-chip" data-sort="impact">Most Impactful</button>
+    </div>
+  </div>
+
+  <div class="info-wrap" id="infoView" style="display:none;">
+    <div class="info-grid">
+      <div>
+        <div class="info-title">National Reference &mdash; Reimbursement</div>
+        <div id="rateCards"></div>
+        <div class="info-title" style="margin-top:30px;">Sector Benchmarks</div>
+        <div id="benchCards"></div>
+      </div>
+      <div>
+        <div class="info-title">State Detail</div>
+        <div class="map-hint">Click a state to see tracked events and reference data.</div>
+        <div id="usMap"></div>
+        <div id="statePanel" class="state-panel"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout" id="feedView">
+    <div class="feed" id="feed"></div>
+    <div class="sidebar">
+      <div class="panel">
+        <div class="panel-title">Borrower Watch</div>
+        <div id="borrowerList"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Source Agencies</div>
+        <div id="sourceList"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">About This Feed</div>
+        <div class="feed-note">
+          Built from a source-audited event log — every headline links to the original government or agency source. Risk scores (0–10) and credit direction reflect this tracker's internal weighting methodology, not the source itself.
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const EVENTS = [{"id": "BOR-005", "date": "Aug 4, 2026", "dateSort": "2026-08-04T00:00:00", "jurisdiction": "Trade Press", "state": "U.S.", "category": "Borrower News", "broadCategory": "borrower", "sector": "Skilled Nursing", "headline": "PACS Group reports Q2 2026 results; DOJ and SEC investigations remain unresolved", "detail": "PACS reported second quarter 2026 results on August 4, 2026. The company operates 324 post-acute facilities across 17 states serving more than 31,900 patients daily. Full-year 2026 revenue guidance is $5.65 billion to $5.75 billion. DOJ and SEC investigations and shareholder litigation remain outstanding, and analysts continue to cite them as the principal unresolved risk despite improved operating performance.", "creditDirection": "Mixed", "severity": "Critical", "riskScore": 11, "sourceAgency": "PACS Group / market reporting", "sourceVerification": "Secondary \u2014 verify against company 10-Q", "sourceURL": "https://www.stocktitan.net/sec-filings/PACS/10-q-pacs-group-inc-quarterly-earnings-report-0cd83bbc7b99.html", "effectiveDate": "Quarter ended June 30, 2026", "borrowers": ["PACS Holdings"]}, {"id": "DIS-010", "date": "Aug 4, 2026", "dateSort": "2026-08-04T00:00:00", "jurisdiction": "Disaster", "state": "Louisiana", "category": "Natural Disaster", "broadCategory": "disaster", "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME", "headline": "FEMA expands Louisiana Tropical Storm Arthur declaration and extends incident period", "detail": "FEMA added Public Assistance to the Louisiana major disaster declaration for Tropical Storm Arthur covering Avoyelles, Pointe Coupee, St. Charles, St. Landry and Winn parishes, and extended the incident period so damage between June 17 and June 24 is eligible for potential federal assistance. This is in addition to Individual Assistance previously approved for six parishes.", "creditDirection": "Mixed", "severity": "Medium", "riskScore": 6, "sourceAgency": "FEMA", "sourceVerification": "Primary", "sourceURL": "https://www.fema.gov/press-release/20260804/fema-public-assistance-and-incident-period-extension-added-major-disaster", "effectiveDate": "Announced August 4, 2026", "borrowers": []}, {"id": "FRD-019", "date": "Aug 4, 2026", "dateSort": "2026-08-04T00:00:00", "jurisdiction": "Federal", "state": "Pennsylvania", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "Home Care; Personal Care; HCBS", "headline": "DOJ launches Philadelphia strike force and charges 19 in Medicaid home health aide schemes", "detail": "DOJ announced a District Anti-Fraud Initiative embedding Northeast Health Care Fraud Strike Force agents in the Eastern District of Pennsylvania, alongside charges against 19 defendants for alleged Medicaid home health aide fraud schemes. DOJ linked the announcement to its corporate enforcement and voluntary self-disclosure policy, signaling continued expansion of the strike force model and emphasis on corporate actors.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "U.S. Department of Justice (via Miller & Chevalier)", "sourceVerification": "Secondary \u2014 verify against DOJ primary release", "sourceURL": "https://www.millerchevalier.com/publication/doj-expands-healthcare-fraud-enforcement-footprint-new-strike-force-eastern-district", "effectiveDate": "Announced August 4, 2026; prosecutions ongoing", "borrowers": []}, {"id": "BOR-010", "date": "Aug 3, 2026", "dateSort": "2026-08-03T00:00:00", "jurisdiction": "Federal", "state": "Massachusetts; U.S.", "category": "Borrower News", "broadCategory": "borrower", "sector": "Senior Housing; Medical Office; Life Science", "headline": "Diversified Healthcare Trust Q2 2026: leverage improves to 7.1x, normalized FFO up 109%", "detail": "DHC reported Q2 2026 revenue of $365.4 million, down from $382.7 million a year earlier due to asset sales, with a narrowed net loss of $37.4 million versus $91.6 million. Normalized FFO rose 109.4% to $38.9 million and Adjusted EBITDAre reached $82.1 million. Same-property SHOP NOI grew 37.2% to $52.0 million with margins of 17.3%; SHOP occupancy reached 82.5% at an average monthly rate of $5,693. Medical office and life science same-property occupancy rose to 95.8%. Net debt to annualized Adjusted EBITDAre improved to 7.1x from 7.8x last quarter and 8.7x a year ago. Total debt principal outstanding was $2.44 billion with no maturities before 2028.", "creditDirection": "Positive", "severity": "High", "riskScore": 9, "sourceAgency": "Diversified Healthcare Trust SEC Form 8-K", "sourceVerification": "Primary \u2014 company SEC filing", "sourceURL": "https://www.sec.gov/Archives/edgar/data/0001075415/000107541526000029/dhc_063026x8-kxexhibitx9.htm", "effectiveDate": "Quarter ended June 30, 2026", "borrowers": ["Diversified Healthcare Trust"]}, {"id": "DIS-007", "date": "Aug 3, 2026", "dateSort": "2026-08-03T00:00:00", "jurisdiction": "Disaster", "state": "West Virginia", "category": "Natural Disaster", "broadCategory": "disaster", "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME", "headline": "Presidential major disaster declaration issued for West Virginia storms and flooding", "detail": "A major disaster was declared for West Virginia (FEMA-493-DR) covering severe storms, straight-line winds, tornadoes, flooding, landslides and mudslides during the July 21-22, 2026 incident period. Physical loan applications are due October 3, 2026 and economic injury loan applications are due May 3, 2027.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "FEMA / SBA", "sourceVerification": "Primary", "sourceURL": "https://www.federalregister.gov/documents/2026/08/07/2026-16151/presidential-declaration-of-a-major-disaster-for-the-state-of-west-virginia", "effectiveDate": "Declared August 3, 2026", "borrowers": []}, {"id": "DIS-008", "date": "Aug 3, 2026", "dateSort": "2026-08-03T00:00:00", "jurisdiction": "Disaster", "state": "Missouri", "category": "Natural Disaster", "broadCategory": "disaster", "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME", "headline": "Missouri receives major disaster declaration for Public Assistance", "detail": "A Public Assistance-only major disaster was declared for Missouri (FEMA-4929-DR) covering severe storms, straight-line winds, tornadoes and flooding across a June 4 through June 18, 2026 incident period spanning 34 designated areas.", "creditDirection": "Negative", "severity": "Medium", "riskScore": 6, "sourceAgency": "FEMA / SBA", "sourceVerification": "Primary", "sourceURL": "https://www.federalregister.gov/documents/2026/08/07/2026-16145/presidential-declaration-of-a-major-disaster-for-public-assistance-only-for-the-state-of-missouri", "effectiveDate": "Declared August 3, 2026", "borrowers": []}, {"id": "DIS-009", "date": "Aug 3, 2026", "dateSort": "2026-08-03T00:00:00", "jurisdiction": "Disaster", "state": "Mississippi", "category": "Natural Disaster", "broadCategory": "disaster", "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME", "headline": "Mississippi declared a major disaster area for Tropical Storm Arthur", "detail": "A major disaster was declared for Mississippi (FEMA-4930-DR) for Tropical Storm Arthur, covering a June 18 through June 20, 2026 incident period, with physical loan applications due October 3, 2026.", "creditDirection": "Negative", "severity": "Medium", "riskScore": 6, "sourceAgency": "FEMA / SBA", "sourceVerification": "Primary", "sourceURL": "https://www.federalregister.gov/documents/2026/08/07/2026-16140/presidential-declaration-of-a-major-disaster-for-the-state-of-mississippi", "effectiveDate": "Declared August 3, 2026", "borrowers": []}, {"id": "FED-026", "date": "Jul 30, 2026", "dateSort": "2026-07-30T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicare", "broadCategory": "cms", "sector": "Hospice", "headline": "CMS finalizes FY 2027 hospice payment update and spending-variation index", "detail": "CMS issued the FY 2027 hospice final rule with a 2.3% payment update and an aggregate cap of $36,174.75. The rule highlights Medicare non-hospice spending under a hospice election using the hospice service and spending variation index, a nine-measure claims-based scoring system, which CMS ties to concerns over fraud, waste and abuse in hospice care.", "creditDirection": "Mixed", "severity": "High", "riskScore": 9, "sourceAgency": "CMS", "sourceVerification": "Primary", "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/fiscal-year-2027-hospice-wage-index-payment-rate-update-hospice-quality-reporting-program", "effectiveDate": "FY 2027, beginning October 1, 2026", "borrowers": []}, {"id": "ST-018", "date": "Jul 30, 2026", "dateSort": "2026-07-30T00:00:00", "jurisdiction": "State", "state": "New York", "category": "State Medicaid Program Integrity", "broadCategory": "fraud", "sector": "HME/DME; Home Care; Pharmacy; Specialty Diagnostic Testing; Behavioral Health; Managed Long-Term Care", "headline": "New York imposes six-month Medicaid provider enrollment moratorium on high-risk categories", "detail": "New York's Medicaid Director announced an immediate moratorium of at least six months on new Medicaid provider enrollments, including affected change-of-ownership applications, for pharmacies, laboratories, DMEPOS suppliers, applied behavior analysis providers, licensed home care service agencies and managed long-term care plans. Reporting indicates all pending applications are discontinued regardless of review stage. The action responds to an April 23, 2026 CMS directive requiring states to revalidate every enrolled Medicaid provider within 24 months.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "NY State Dept. of Health (via Ropes & Gray)", "sourceVerification": "Secondary \u2014 verify against NY DOH primary notice", "sourceURL": "https://www.ropesgray.com/en/insights/alerts/2026/07/new-york-state-department-of-health-imposes-six-month-medicaid-provider-enrollment-moratorium", "effectiveDate": "Immediate, minimum six months from July 30, 2026", "borrowers": []}, {"id": "ST-019", "date": "Jul 30, 2026", "dateSort": "2026-07-30T00:00:00", "jurisdiction": "State", "state": "New York", "category": "State Medicaid Program Integrity", "broadCategory": "fraud", "sector": "All New York Medicaid Providers", "headline": "HHS temporarily suspends federal funding for New York's Medicaid Fraud Control Unit", "detail": "Reporting indicates HHS announced in July 2026 a temporary suspension of federal funding for New York's Medicaid Fraud Control Unit, citing concerns regarding enforcement performance and program integrity. The action coincides with New York's provider enrollment moratorium and broader federal scrutiny of state Medicaid program integrity.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "HHS (via McDermott Will & Emery)", "sourceVerification": "Secondary \u2014 verify against HHS primary release", "sourceURL": "https://www.mcdermottlaw.com/insights/new-york-hits-pause-medicaid-moratorium-may-reach-far-beyond-new-enrollments/", "effectiveDate": "Suspension period not specified in reporting", "borrowers": []}, {"id": "FED-025", "date": "Jul 29, 2026", "dateSort": "2026-07-29T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicare", "broadCategory": "cms", "sector": "Skilled Nursing", "headline": "CMS finalizes FY 2027 SNF payment update at 2.4%", "detail": "CMS finalized a 2.4% SNF PPS rate update (3.3% market basket less 0.9% productivity), an estimated $882.74 million aggregate increase. The rule also finalizes SNF QRP changes including an accelerated data submission timeline and a requirement to submit MDS assessments for all covered skilled residents regardless of payer. SNF VBP adjustments are estimated at a $203.60 million reduction in FY 2027.", "creditDirection": "Mixed", "severity": "High", "riskScore": 9, "sourceAgency": "CMS", "sourceVerification": "Primary", "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/fiscal-year-2027-skilled-nursing-facility-prospective-payment-system-final-rule-cms-1843-f", "effectiveDate": "Effective October 1, 2026", "borrowers": []}, {"id": "FRD-018", "date": "Jul 27, 2026", "dateSort": "2026-07-27T00:00:00", "jurisdiction": "Federal", "state": "Michigan", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "Adult Day; Behavioral Health", "headline": "Adult-day-care owner pleads guilty to psychotherapy billing fraud", "detail": "DOJ announced a guilty plea involving more than $539,000 of allegedly false Medicare psychotherapy claims, including billing during hospitalizations, using former social workers' names and billing after beneficiaries had died.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/adult-day-care-owner-pleads-guilty-500000-medicare-fraud-scheme", "effectiveDate": "Sentencing scheduled November 18, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "DIS-004", "date": "Jul 25, 2026", "dateSort": "2026-07-25T00:00:00", "jurisdiction": "Disaster", "state": "Oregon", "category": "Natural Disaster", "broadCategory": "disaster", "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME", "headline": "Brewer and Crosswhite West fires remain active with Level 1\u20133 evacuations", "detail": "The July 25 official update reported active firefighting on the Brewer and Crosswhite West fires, continued extreme fire behavior and Red Flag conditions, Level 1, 2 and 3 evacuations, smoke impacts and threats to structures.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "Central Oregon Fire Information", "sourceURL": "https://centraloregonfire.org/2026/07/25/brewer-crosswhite-west-green-mountain-fires-update-july-25-2026/", "effectiveDate": "Active event", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-017", "date": "Jul 24, 2026", "dateSort": "2026-07-24T00:00:00", "jurisdiction": "State", "state": "Missouri", "category": "State Medicaid Program Integrity", "broadCategory": "fraud", "sector": "HME/DME; Personal Care; Consumer Directed Services", "headline": "Missouri announces statewide DME and personal-care enrollment moratoria", "detail": "Effective August 1, 2026, Missouri will impose six-month statewide moratoria on new Medicaid enrollment applications for DMEPOS/DME and Consumer Directed Services/personal-care providers. Existing enrolled providers, revalidating providers and applications received before August 1 are not affected.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "Missouri Medicaid Audit & Compliance", "sourceURL": "https://mmac.mo.gov/dme-cds-temporary-new-enrollment-moratoria/", "effectiveDate": "Effective August 1, 2026 for six months; extensions permitted in six-month increments up to one year", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-016", "date": "Jul 24, 2026", "dateSort": "2026-07-24T00:00:00", "jurisdiction": "State", "state": "Minnesota", "category": "State Medicaid Prior Authorization", "broadCategory": "medicaid", "sector": "Recuperative Care; HCBS; Behavioral Health", "headline": "Minnesota requires prior authorization for all recuperative-care services", "detail": "Minnesota DHS made the Recuperative Care Service Prior Authorization form available July 24 and will require prior authorization for all recuperative-care services beginning August 1, 2026.", "creditDirection": "Negative", "severity": "Medium", "riskScore": 6, "sourceAgency": "Minnesota Department of Human Services", "sourceURL": "https://mn.gov/dhs/partners-and-providers/news-initiatives-reports-workgroups/minnesota-health-care-programs/provider-news/", "effectiveDate": "Effective August 1, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-014", "date": "Jul 24, 2026", "dateSort": "2026-07-24T00:00:00", "jurisdiction": "State", "state": "Arizona", "category": "State Medicaid Rate Action", "broadCategory": "medicaid", "sector": "Hospice; Behavioral Health; Specialty Diagnostic Testing; HME/DME; HCBS; Skilled Nursing", "headline": "Arizona proposes FFY 2027 Medicaid fee-for-service rate changes", "detail": "AHCCCS proposes FFS changes effective October 1, 2026, with an estimated aggregate payment increase of approximately $6.34 million. Hospice per diems and selected behavioral and diagnostic codes would change; DME and clinical laboratory schedules are budget neutral in aggregate, while HCBS and nursing-facility per diem rates remain unchanged.", "creditDirection": "Mixed", "severity": "High", "riskScore": 6, "sourceAgency": "Arizona Health Care Cost Containment System", "sourceURL": "https://www.azahcccs.gov/AHCCCS/Downloads/PublicNotices/rates/PreliminaryRatesNoticeofPublicInformation-FFY27.pdf", "effectiveDate": "Comments due August 24, 2026; proposed effective date October 1, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-015", "date": "Jul 24, 2026", "dateSort": "2026-07-24T00:00:00", "jurisdiction": "Federal / State", "state": "Minnesota", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "HCBS; Behavioral Health; Housing and Recovery Services", "headline": "Four men plead guilty to approximately $2.2 million Minnesota Medicaid fraud", "detail": "DOJ announced guilty pleas involving Minnesota's now-defunct Housing Stabilization Services program. The defendants allegedly billed for services not provided or inflated and used artificial intelligence to fabricate supporting records when questioned.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/four-men-plead-guilty-2m-minnesota-medicaid-fraud", "effectiveDate": "Sentencing dates not yet set", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-014", "date": "Jul 24, 2026", "dateSort": "2026-07-24T00:00:00", "jurisdiction": "Federal / State", "state": "Kentucky", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "Behavioral Health; Substance Use Treatment", "headline": "Addiction-treatment operators sentenced in $4.8 million billing scheme", "detail": "DOJ announced prison sentences for three individuals involved in billing Medicare and Kentucky Medicaid more than $4.8 million through addiction-treatment facilities for services not provided or billed at higher complexity; restitution totaled $812,881.09.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/three-individuals-sentenced-prison-fraudulently-billing-medicare-and-medicaid-through-opioid", "effectiveDate": "Sentencing announcement July 24, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-024", "date": "Jul 24, 2026", "dateSort": "2026-07-24T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Federal Healthcare Regulation", "broadCategory": "regulation", "sector": "All HHS-Funded Healthcare Providers", "headline": "HHS removes disparate-impact liability from its Title VI regulations", "detail": "HHS OCR finalized amendments to 45 CFR Part 80 that remove regulatory provisions imposing or illustrating disparate-impact liability. The rule states that HHS will enforce Title VI against intentional discrimination and is effective July 24, 2026.", "creditDirection": "Mixed", "severity": "Medium", "riskScore": 6, "sourceAgency": "HHS Office for Civil Rights", "sourceURL": "https://www.federalregister.gov/documents/2026/07/24/2026-15000/rescinding-portions-of-the-us-department-of-health-and-human-services-title-vi-regulations-to-align", "effectiveDate": "Effective July 24, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-013", "date": "Jul 23, 2026", "dateSort": "2026-07-23T00:00:00", "jurisdiction": "Federal", "state": "Texas; U.S.", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "Specialty Diagnostic Testing; Senior Living Referral Sources", "headline": "Dallas laboratory, owners and investors agree to pay $24 million", "detail": "DOJ announced that Magnolia Diagnostics and its owners agreed to pay $19.2 million over allegations of medically unnecessary respiratory pathogen panels billed for seniors receiving COVID-19 testing; investors agreed to pay an additional $4.8 million.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/dallas-laboratory-owners-and-investors-pay-24m-resolve-covid-19-testing-fraud-allegations", "effectiveDate": "Settlement announced July 23, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "DIS-006", "date": "Jul 23, 2026", "dateSort": "2026-07-23T00:00:00", "jurisdiction": "Disaster", "state": "Oregon", "category": "Natural Disaster", "broadCategory": "disaster", "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME", "headline": "FEMA issues declaration for Oregon Akawa Butte Fire", "detail": "FEMA lists the Akawa Butte Fire as FM-5647-OR with an incident and declaration date of July 23, 2026. Official fire updates through July 26 reported evacuation orders, closures, smoke and continued hot, dry and windy conditions.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "FEMA", "sourceURL": "https://www.fema.gov/disaster/5647", "effectiveDate": "Active event", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-027", "date": "Jul 22, 2026", "dateSort": "2026-07-22T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Federal Medicaid Funding Action", "broadCategory": "medicaid", "sector": "All Medicaid-Exposed Services; Skilled Nursing; Hospitals", "headline": "CMS proposes provider-tax rule estimated to cut federal Medicaid spending by $246 billion", "detail": "CMS published a proposed rule implementing Section 71115 of H.R. 1, revising the regulatory framework for Medicaid provider taxes. CMS actuaries estimate the proposal would reduce federal Medicaid spending by approximately $246 billion over 10 years. Comments are due September 21, 2026. This is one of three major regulations implementing the reconciliation law's Medicaid financing and program integrity provisions.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "CMS (via Holland & Knight)", "sourceVerification": "Secondary \u2014 verify against Federal Register primary text", "sourceURL": "https://www.hklaw.com/en/insights/publications/2026/07/cms-issues-medicaid-provider-taxes-proposed-rule", "effectiveDate": "Comments due September 21, 2026", "borrowers": []}, {"id": "FRD-016", "date": "Jul 22, 2026", "dateSort": "2026-07-22T00:00:00", "jurisdiction": "Federal", "state": "Florida; U.S.", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "HME/DME", "headline": "Medical-supply owner convicted in scheme attempting more than $30 million of billing", "detail": "DOJ announced a conviction involving purchased patient information, practitioner signatures and orders for orthotic braces and glucose monitors that beneficiaries did not want or need. The scheme attempted more than $30 million of federal billing and obtained more than $8 million.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/medical-supply-company-owner-convicted-30m-medicare-fraud-scheme", "effectiveDate": "Conviction announced July 22, 2026; sentencing date not stated in release", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-009", "date": "Jul 21, 2026", "dateSort": "2026-07-21T00:00:00", "jurisdiction": "State", "state": "Minnesota", "category": "State Medicaid Funding Action", "broadCategory": "medicaid", "sector": "Behavioral Health; HCBS; HME/DME; Other Minnesota Medicaid Providers", "headline": "CMS defers $199 million of Minnesota federal Medicaid matching payments", "detail": "HHS stated that the Minnesota deferral involves claims across 14 service areas identified as higher risk while the state provides supporting documentation.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "HHS / CMS", "sourceURL": "https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html", "effectiveDate": "Documentation review underway", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-008", "date": "Jul 21, 2026", "dateSort": "2026-07-21T00:00:00", "jurisdiction": "State", "state": "California", "category": "State Medicaid Funding Action", "broadCategory": "medicaid", "sector": "Home Care; HCBS; Other Medi-Cal Providers", "headline": "California says an additional $646.4 million IHSS deferral brings deferred IHSS funds to $1.7 billion", "detail": "California DHCS stated on July 23 that CMS deferred an additional $646.4 million from in-home care and that, together with a prior May deferral, total deferred IHSS funds reached $1.7 billion. The state response does not change the federal characterization of deferrals as reviewable rather than permanent cuts.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "California Department of Health Care Services", "sourceURL": "https://www.dhcs.ca.gov/news/statement-on-latest-federal-deferral-of-ihss-funds/", "effectiveDate": "Federal documentation review ongoing; no fixed determination date announced", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-004", "date": "Jul 21, 2026", "dateSort": "2026-07-21T00:00:00", "jurisdiction": "State", "state": "Michigan", "category": "State Medicaid Budget", "broadCategory": "medicaid", "sector": "All Medicaid-Exposed Services", "headline": "Michigan budgets $184.3 million to mitigate federal eligibility changes", "detail": "Michigan's FY 2027 budget includes $184.3 million for federal requirement implementation, including $40 million for administration, $20 million for health navigators and $28 million for agencies handling Medicaid/SNAP work-requirement referrals.", "creditDirection": "Mixed", "severity": "High", "riskScore": 9, "sourceAgency": "Michigan Governor", "sourceURL": "https://www.michigan.gov/whitmer/news/press-releases/2026/07/21/whitmer-signs-budget-to-build-legacy-of-lowering-costs-creating-jobs-protecting-access-to-healthcare", "effectiveDate": "FY 2027 / work requirements by January 1, 2027", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-017", "date": "Jul 21, 2026", "dateSort": "2026-07-21T00:00:00", "jurisdiction": "Federal", "state": "U.S.; Louisiana; Virginia", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "Specialty Diagnostic Testing", "headline": "Fugitive arrested in alleged $547 million Medicare genetic-testing scheme", "detail": "DOJ announced the arrest of a defendant charged in an alleged nationwide scheme involving medically unnecessary genetic tests, deceptive marketing and kickbacks. The laboratories allegedly billed Medicare more than $547 million.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/notorious-fugitive-arrested-connection-547-million-medicare-fraud-scheme", "effectiveDate": "Criminal case ongoing; no trial date stated in release", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-013", "date": "Jul 21, 2026", "dateSort": "2026-07-21T00:00:00", "jurisdiction": "Federal", "state": "California; Minnesota", "category": "Federal Medicaid Funding Action", "broadCategory": "medicaid", "sector": "All Medicaid-Exposed Services; Home Care; Behavioral Health; HME/DME", "headline": "HHS defers more than $1 billion of federal Medicaid payments to California and Minnesota", "detail": "HHS and CMS deferred $867.5 million for California and $199 million for Minnesota while the states provide documentation supporting claims. HHS described the actions as payment deferrals rather than permanent funding cuts.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "HHS / CMS", "sourceURL": "https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html", "effectiveDate": "Documentation review underway; no final disallowance announced", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-009", "date": "Jul 20, 2026", "dateSort": "2026-07-20T00:00:00", "jurisdiction": "Federal", "state": "Florida / U.S.", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "Specialty Diagnostic Testing", "headline": "NeoGenomics agrees to pay $9.8 million over alleged referral compensation arrangements", "detail": "DOJ announced a $9.813 million settlement involving allegations of below-fair-market-value consulting services and variable referral-based compensation connected to laboratory test referrals.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/florida-laboratory-agrees-pay-98m-resolve-false-claims-act-liability-relating-self", "effectiveDate": "Settlement announced July 20, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "DIS-001", "date": "Jul 18, 2026", "dateSort": "2026-07-18T00:00:00", "jurisdiction": "Disaster", "state": "Texas", "category": "Natural Disaster", "broadCategory": "disaster", "sector": "All Healthcare Services", "headline": "Federal emergency declaration for Texas flooding", "detail": "FEMA lists Texas Flooding EM-3649-TX with an incident period beginning July 12, 2026 and continuing; the emergency declaration was issued July 18.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "FEMA", "sourceURL": "https://www.fema.gov/disaster/3649", "effectiveDate": "Active event", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-012", "date": "Jul 17, 2026", "dateSort": "2026-07-17T00:00:00", "jurisdiction": "Federal / State", "state": "Colorado", "category": "Fraud / Program Integrity", "broadCategory": "fraud", "sector": "Home Care; Personal Care; HCBS", "headline": "OIG identifies Colorado EVV weaknesses and Medicaid personal-care overpayments", "detail": "OIG found Colorado did not verify all personal-care visits through its electronic visit verification system and recommended refunding an estimated $8.0 million federal share while resolving an additional $45.7 million set aside for allowability review.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "HHS Office of Inspector General", "sourceURL": "https://oig.hhs.gov/reports/all/2026/colorado-could-improve-its-electronic-visit-verification-system-and-claimed-federal-medicaid-reimbursement-for-millions-of-dollars-in-personal-care-services-that-did-not-comply-with-federal-and-state-requirements/", "effectiveDate": "OIG recommendation updates expected January 16, 2027", "sourceVerification": "Primary", "borrowers": []}, {"id": "DIS-002", "date": "Jul 17, 2026", "dateSort": "2026-07-17T00:00:00", "jurisdiction": "Disaster", "state": "Washington", "category": "Natural Disaster", "broadCategory": "disaster", "sector": "All Healthcare Services", "headline": "FEMA declaration for Washington Kaiser Canyon Fire", "detail": "FEMA lists the Kaiser Canyon Fire as FM-5646-WA, with an incident period beginning July 16, 2026 and continuing.", "creditDirection": "Negative", "severity": "Medium", "riskScore": 6, "sourceAgency": "FEMA", "sourceURL": "https://www.fema.gov/disaster/5646", "effectiveDate": "Active event", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-023", "date": "Jul 16, 2026", "dateSort": "2026-07-16T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "OIG / Medicaid Oversight", "broadCategory": "fraud", "sector": "All Medicaid Managed Care Providers", "headline": "OIG finds inconsistent state oversight of Medicaid MCO provider-fraud referrals", "detail": "OIG found state contract requirements and referral timeframes varied widely, including referral periods from one to 270 days and some contracts without a specific timeframe or clear enforcement provisions.", "creditDirection": "Negative", "severity": "High", "riskScore": 6, "sourceAgency": "HHS Office of Inspector General", "sourceURL": "https://oig.hhs.gov/reports/all/2026/states-have-missed-some-opportunities-to-improve-medicaid-managed-care-organizations-provider-fraud-referrals/", "effectiveDate": "OIG recommendation updates expected January 15, 2027", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-018", "date": "Jul 16, 2026", "dateSort": "2026-07-16T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicare", "broadCategory": "cms", "sector": "Skilled Nursing", "headline": "CMS launches national risk-based nursing-home survey approach", "detail": "CMS announced a national risk-based survey approach built from a pilot across 22 states. All nursing homes remain subject to survey at least every 15 months, and implementation begins in September 2026.", "creditDirection": "Mixed", "severity": "High", "riskScore": 9, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/press-releases/cms-modernizes-nursing-home-oversight-new-risk-based-survey-approach-designed-highlight-high", "effectiveDate": "National implementation begins September 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "IND-005", "date": "Jul 15, 2026", "dateSort": "2026-07-15T00:00:00", "jurisdiction": "Trade Press", "state": "U.S.", "category": "Industry / Trade", "broadCategory": "industry", "sector": "Senior Housing; Assisted Living", "headline": "Senior housing occupancy reaches 89.9%, twentieth consecutive quarterly increase", "detail": "NIC MAP reported national senior housing occupancy of 89.9% in Q2 2026, up 0.4 points from 89.5% in Q1 and marking the twentieth consecutive quarterly increase. Occupancy met or exceeded 90% in 15 of 31 primary markets. Boston (93.3%), San Francisco (92.7%) and Baltimore (91.8%) led; Miami (86.2%) and Atlanta (86.5%) lagged. Occupied units rose to 639,650. Year-over-year inventory growth was 0.4%, with fewer than 16,000 units under construction.", "creditDirection": "Positive", "severity": "High", "riskScore": 8, "sourceAgency": "NIC MAP", "sourceVerification": "Secondary \u2014 industry data provider", "sourceURL": "https://www.nicmap.com/news/occupancy-in-senior-housing-climbs-as-half-of-primary-markets-top-90/", "effectiveDate": "Q2 2026 data", "borrowers": []}, {"id": "FRD-011", "date": "Jul 15, 2026", "dateSort": "2026-07-15T00:00:00", "jurisdiction": "Federal", "state": "Novitas jurisdiction", "category": "Fraud / Program Integrity", "broadCategory": "fraud", "sector": "Skilled Nursing; Behavioral Health; Podiatry; Wound Care", "headline": "OIG estimates $19.5 million of improper Medicare Part B services for nursing-home residents", "detail": "OIG estimated that Novitas improperly paid about $19.5 million for selected evaluation and management, psychotherapy and podiatry services provided to nursing-home residents that did not meet Medicare requirements.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "HHS Office of Inspector General", "sourceURL": "https://oig.hhs.gov/reports/all/2026/novitas-solutions-inc-improperly-paid-approximately-195-million-for-selected-medicare-part-b-services-provided-to-patients-residing-in-nursing-homes/", "effectiveDate": "OIG updates expected January 14, 2027", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-008", "date": "Jul 15, 2026", "dateSort": "2026-07-15T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "Specialty Diagnostic Testing", "headline": "Labcorp agrees to pay $14.5 million over alleged unnecessary urine drug testing", "detail": "DOJ announced a $14.5 million False Claims Act settlement involving allegations that Labcorp billed Medicare for medically unnecessary urine drug testing under its ToxAssure Comprehensive panel.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/labcorp-agrees-pay-145m-resolve-false-claims-act-allegations", "effectiveDate": "Settlement announced July 15, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-007", "date": "Jul 14, 2026", "dateSort": "2026-07-14T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicare", "broadCategory": "cms", "sector": "Specialty Diagnostic Testing", "headline": "Clinical laboratory fee reductions can phase up to 15% annually", "detail": "CMS states CLFS data reporting runs May 1-July 31, 2026 for Jan-Jun 2025 data; beginning CY 2027, statutory payment reductions can phase up to 15% per year through CY 2029.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-medicare-physician-fee-schedule-proposed-rule", "effectiveDate": "Reporting deadline July 31, 2026; cuts begin CY 2027", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-006", "date": "Jul 14, 2026", "dateSort": "2026-07-14T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicare", "broadCategory": "cms", "sector": "Behavioral Health", "headline": "CMS proposes expanded valuation for timed behavioral health services", "detail": "CMS proposes including tobacco-cessation and SBIRT services in the final year of the upward RVU transition for timed behavioral-health codes.", "creditDirection": "Positive", "severity": "Medium", "riskScore": 4, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-medicare-physician-fee-schedule-proposed-rule", "effectiveDate": "CY 2027 / final rule pending", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-005", "date": "Jul 14, 2026", "dateSort": "2026-07-14T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicare", "broadCategory": "cms", "sector": "Behavioral Health; Diagnostic Services", "headline": "CY 2027 Medicare physician conversion factors proposed to decline", "detail": "CMS proposes a $33.17 qualifying-APM conversion factor (-1.19%) and $32.84 non-qualifying factor (-1.68%), partly because the one-year 2.5% CY 2026 increase expires.", "creditDirection": "Negative", "severity": "Medium", "riskScore": 4, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-medicare-physician-fee-schedule-proposed-rule", "effectiveDate": "CY 2027 / final rule pending", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-015", "date": "Jul 10, 2026", "dateSort": "2026-07-10T00:00:00", "jurisdiction": "State", "state": "Minnesota", "category": "State Medicaid Program Integrity", "broadCategory": "fraud", "sector": "Behavioral Health; Adult Day; HCBS; Home Care; Recuperative Care", "headline": "Minnesota high-risk Medicaid provider enrollment moratorium enters extended period", "detail": "CMS approved Minnesota's extension of its temporary enrollment moratorium for providers of 12 of 14 designated high-risk services. From July 27, 2026 through January 27, 2027, DHS will not accept new applications or process pending enrollment submissions for the covered services; the EIDBI moratorium is separately extended through October 31, 2026.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "Minnesota Department of Human Services", "sourceURL": "https://mn.gov/dhs/partners-and-providers/news-initiatives-reports-workgroups/minnesota-health-care-programs/provider-news/", "effectiveDate": "Effective July 27, 2026 through January 27, 2027; EIDBI through October 31, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "DIS-003", "date": "Jul 9, 2026", "dateSort": "2026-07-09T00:00:00", "jurisdiction": "Disaster", "state": "Guam; Northern Mariana Islands", "category": "Natural Disaster / Public Health Emergency", "broadCategory": "disaster", "sector": "Hospitals; Home Health; HME/DME; Medicaid Providers", "headline": "Typhoon Bavi triggers HHS PHE and CMS waivers", "detail": "HHS declared a PHE following Typhoon Bavi. CMS made blanket waivers and flexibilities available retroactive to July 2 and permitted replacement of damaged DMEPOS items.", "creditDirection": "Mixed", "severity": "High", "riskScore": 9, "sourceAgency": "HHS / CMS", "sourceURL": "https://www.cms.gov/newsroom/news-alert/cms-announces-resources-flexibilities-assist-public-health-emergency-guam-commonwealth-northern-0", "effectiveDate": "PHE active; flexibilities retroactive to July 2", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-005", "date": "Jul 7, 2026", "dateSort": "2026-07-07T00:00:00", "jurisdiction": "State", "state": "North Carolina", "category": "State Medicaid Budget", "broadCategory": "medicaid", "sector": "All Medicaid-Exposed Services", "headline": "North Carolina fully funds Medicaid for the year", "detail": "North Carolina's first full budget in more than two years fully funds Medicaid for the year.", "creditDirection": "Positive", "severity": "High", "riskScore": 9, "sourceAgency": "North Carolina Governor", "sourceURL": "https://governor.nc.gov/news/press-releases/2026/07/07/governor-stein-signs-state-budget-enacting-historic-pay-raises-teachers-and-law-enforcement", "effectiveDate": "Current state fiscal year", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-013", "date": "Jul 1, 2026", "dateSort": "2026-07-01T00:00:00", "jurisdiction": "State", "state": "Virginia", "category": "State Medicaid Budget / Rate Action", "broadCategory": "medicaid", "sector": "Behavioral Health; Developmental Disability; HCBS; Residential Services", "headline": "Virginia authorizes 2% Medicaid increases for selected developmental-disability waiver services", "detail": "Virginia's enacted budget authorizes a 2% rate increase effective July 1, 2026 for specified day, employment, group-home, sponsored-residential, supported-living and related waiver services.", "creditDirection": "Positive", "severity": "Medium", "riskScore": 6, "sourceAgency": "Virginia General Assembly / DMAS", "sourceURL": "https://budget.lis.virginia.gov/amendment/2026/2/HB30/Enrolled/CR/291/8c/", "effectiveDate": "Effective July 1, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-019", "date": "Jul 1, 2026", "dateSort": "2026-07-01T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicare", "broadCategory": "cms", "sector": "Home Health; Hospice; HME/DME; Other Medicare Providers", "headline": "CMS proposes broader retroactive revocation and ownership-related enrollment actions", "detail": "The CY 2027 home-health rule proposes additional grounds for retroactive Medicare enrollment revocation, new denial or revocation authority tied to owners and managing personnel, and enforcement of reenrollment requirements after specified majority-ownership changes.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 8, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-home-health-prospective-payment-system-proposed-rule-fact-sheet-cms-1844-p", "effectiveDate": "CY 2027 final rule pending", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-008", "date": "Jul 1, 2026", "dateSort": "2026-07-01T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicare", "broadCategory": "cms", "sector": "HME / DME", "headline": "CMS proposes DME documentation relief plus new sourcing data", "detail": "CMS proposes that an identical replacement item would not require a repeat face-to-face exam when original documentation exists; it also proposes a country-of-origin field in competitive-bidding submissions.", "creditDirection": "Mixed", "severity": "Medium", "riskScore": 4, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-home-health-prospective-payment-system-proposed-rule-fact-sheet-cms-1844-p", "effectiveDate": "CY 2027 / final rule pending", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-002", "date": "Jul 1, 2026", "dateSort": "2026-07-01T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicare", "broadCategory": "cms", "sector": "Home Health", "headline": "CY 2027 home health payments proposed to rise 2.4% in aggregate", "detail": "CMS estimates aggregate HHA payments would increase 2.4% ($420 million), including a 2.1% payment update and a -3.0% temporary adjustment to the CY 2027 base payment rate.", "creditDirection": "Mixed", "severity": "High", "riskScore": 6, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-home-health-prospective-payment-system-proposed-rule-fact-sheet-cms-1844-p", "effectiveDate": "CY 2027 / final rule pending", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-011", "date": "Jun 29, 2026", "dateSort": "2026-06-29T00:00:00", "jurisdiction": "State", "state": "Washington", "category": "State Medicaid Rate Action", "broadCategory": "medicaid", "sector": "Skilled Nursing", "headline": "Washington SPA would increase swing-bed rates and continue nursing-facility PDPM add-on", "detail": "Washington SPA 26-0017 would increase the swing-bed daily rate, continue the Patient Driven Payment Model transition add-on and implement a daily add-on for increased Medicaid bed-license fees.", "creditDirection": "Positive", "severity": "High", "riskScore": 9, "sourceAgency": "Washington Health Care Authority / DSHS", "sourceURL": "https://lawfilesext.leg.wa.gov/law/wsr/2026/14/26-14-087.htm", "effectiveDate": "Effective July 1, 2026; comments due July 31, 2026; CMS approval pending", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-010", "date": "Jun 29, 2026", "dateSort": "2026-06-29T00:00:00", "jurisdiction": "State", "state": "Washington", "category": "State Medicaid Rate Action", "broadCategory": "medicaid", "sector": "Assisted Living; Adult Family Homes; Home Care; HCBS", "headline": "Washington proposes Medicaid rate increases for assisted living and HCBS providers", "detail": "Washington SPA 26-0016 increases assisted-living, adult-family-home, individual-provider and agency-provider Medicaid rates; the notice includes a 10% increase in the weighted adult-day-health daily rate to $123.06.", "creditDirection": "Positive", "severity": "High", "riskScore": 9, "sourceAgency": "Washington Health Care Authority / DSHS", "sourceURL": "https://lawfilesext.leg.wa.gov/law/wsr/2026/14/26-14-088.htm", "effectiveDate": "Effective July 1, 2026; public comment period through July 31, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-003", "date": "Jun 29, 2026", "dateSort": "2026-06-29T00:00:00", "jurisdiction": "State", "state": "Florida", "category": "State Medicaid Budget", "broadCategory": "medicaid", "sector": "Home Care; Senior Services", "headline": "Florida increases community and home-care funding for seniors", "detail": "The budget adds $7.5 million, bringing total funding to $131 million, for Community Care for the Elderly and Home Care for the Elderly programs.", "creditDirection": "Positive", "severity": "Medium", "riskScore": 6, "sourceAgency": "Florida Executive Office of the Governor", "sourceURL": "https://flgov.com/eog/sites/default/files/shared/2026/06/2026-27%20Budget%20Highlights%20-%20Budget%20Signing%20Master%20with%20Edits%20-%20As%20of%206.28.CAedits%20LK-AL%20FINAL-FINAL_0.pdf", "effectiveDate": "FY 2026-27", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-002", "date": "Jun 29, 2026", "dateSort": "2026-06-29T00:00:00", "jurisdiction": "State", "state": "Florida", "category": "State Medicaid Budget", "broadCategory": "medicaid", "sector": "Skilled Nursing; Long-Term Care; Disability Services", "headline": "Florida funds $214.6 million of targeted provider-rate increases", "detail": "Florida's FY 2026-27 budget includes $214.6 million for targeted rate increases across healthcare, long-term care and disability-service programs.", "creditDirection": "Positive", "severity": "High", "riskScore": 9, "sourceAgency": "Florida Executive Office of the Governor", "sourceURL": "https://flgov.com/eog/sites/default/files/shared/2026/06/2026-27%20Budget%20Highlights%20-%20Budget%20Signing%20Master%20with%20Edits%20-%20As%20of%206.28.CAedits%20LK-AL%20FINAL-FINAL_0.pdf", "effectiveDate": "FY 2026-27", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-007", "date": "Jun 23, 2026", "dateSort": "2026-06-23T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "Specialty Diagnostic Testing", "headline": "DOJ alleges $89 million diagnostic cardiovascular testing scheme", "detail": "The national takedown includes an alleged $89 million scheme involving diagnostic cardiovascular testing.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/national-health-care-fraud-takedown-results-455-defendants-charged-connection-over-65", "effectiveDate": "Ongoing case", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-006", "date": "Jun 23, 2026", "dateSort": "2026-06-23T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "HME / DME", "headline": "DOJ identifies another $3.7 billion of alleged DME catheter fraud", "detail": "The takedown describes additional alleged false claims tied to DME and urinary catheters totaling about $3.7 billion.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/national-health-care-fraud-takedown-results-455-defendants-charged-connection-over-65", "effectiveDate": "Ongoing cases and payment controls", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-005", "date": "Jun 23, 2026", "dateSort": "2026-06-23T00:00:00", "jurisdiction": "Federal", "state": "Virginia; Arizona; Illinois", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "Behavioral Health", "headline": "Large behavioral-health fraud allegations span multiple states", "detail": "DOJ cited alleged behavioral-health schemes of $49 million in Virginia, $44 million in Arizona and $67 million in Illinois Medicaid billing.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/national-health-care-fraud-takedown-results-455-defendants-charged-connection-over-65", "effectiveDate": "Ongoing cases", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-004", "date": "Jun 23, 2026", "dateSort": "2026-06-23T00:00:00", "jurisdiction": "Federal", "state": "California", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "Hospice", "headline": "DOJ describes alleged $27.7 million hospice fraud scheme", "detail": "The national takedown includes allegations that a hospice owner and marketers enrolled non-terminal patients and purchased deceased-person information in a $27.7 million scheme.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/national-health-care-fraud-takedown-results-455-defendants-charged-connection-over-65", "effectiveDate": "Ongoing case", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-003", "date": "Jun 23, 2026", "dateSort": "2026-06-23T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Fraud / Investigation", "broadCategory": "fraud", "sector": "Healthcare Services \u2014 Broad", "headline": "National takedown charges 455 defendants in alleged $6.5 billion fraud", "detail": "DOJ announced 455 defendants charged in connection with more than $6.5 billion in alleged healthcare fraud.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "U.S. Department of Justice", "sourceURL": "https://www.justice.gov/opa/pr/national-health-care-fraud-takedown-results-455-defendants-charged-connection-over-65", "effectiveDate": "Ongoing investigations and prosecutions", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-021", "date": "Jun 18, 2026", "dateSort": "2026-06-18T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "OIG / Medicare Oversight", "broadCategory": "fraud", "sector": "Hospice", "headline": "OIG estimates $255.1 million of potential Medicare hospice savings from eligibility reviews", "detail": "OIG found that 45 of 100 sampled initial certification periods lacked support for terminal eligibility or required documentation and estimated $255.1 million of potential savings if MACs performed targeted reviews of certain new hospice enrollees.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "HHS Office of Inspector General", "sourceURL": "https://oig.hhs.gov/reports/all/2026/medicare-could-have-saved-2551-million-related-to-hospice-services-for-certain-new-hospice-enrollees/", "effectiveDate": "OIG update expected December 17, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-022", "date": "Jun 17, 2026", "dateSort": "2026-06-17T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "OIG / Medicare Oversight", "broadCategory": "fraud", "sector": "Skilled Nursing", "headline": "OIG identifies unsupported nursing-home staffing hours in Payroll-Based Journal data", "detail": "OIG estimated that about 938,000 registered-nurse hours, or 5% of the reviewed sampling frame, were unsupported in March 2024 PBJ data and recommended stronger CMS audit and education processes.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "HHS Office of Inspector General", "sourceURL": "https://oig.hhs.gov/reports/all/2026/cmss-processes-were-not-effective-in-ensuring-the-accuracy-of-staffing-information-reported-in-the-payroll-based-journal/", "effectiveDate": "OIG recommendation updates expected December 16, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-010", "date": "Jun 8, 2026", "dateSort": "2026-06-08T00:00:00", "jurisdiction": "Federal / State", "state": "California", "category": "Fraud / Program Integrity", "broadCategory": "fraud", "sector": "Specialty Diagnostic Testing", "headline": "OIG finds at least $13.9 million of excess California Medicaid laboratory reimbursement", "detail": "OIG found California paid more than permitted for millions of clinical diagnostic laboratory services, identified $13.9 million of excess reimbursement including a $7.6 million federal share, and identified a further $29.3 million of potential excess payments.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "HHS Office of Inspector General", "sourceURL": "https://oig.hhs.gov/reports/all/2026/california-made-at-least-139-million-more-in-medicaid-reimbursements-for-clinical-diagnostic-laboratory-services-than-was-allowed-by-federal-and-state-requirements/", "effectiveDate": "OIG recommendation updates expected December 7, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-020", "date": "Jun 8, 2026", "dateSort": "2026-06-08T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "OIG / Medicare Oversight", "broadCategory": "fraud", "sector": "Skilled Nursing", "headline": "OIG finds 95% of appealed Medicare Advantage SNF admission denials were overturned", "detail": "In OIG's review, 19 Medicare Advantage organizations denied 12% of SNF admission requests; only 18% of denials were appealed, but 95% of appealed denials were overturned.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "HHS Office of Inspector General", "sourceURL": "https://oig.hhs.gov/reports/all/2026/medicare-advantage-organizations-overturned-nearly-all-appealed-prior-authorization-denials-for-skilled-nursing-facility-admission-raising-concerns-about-initial-denials/", "effectiveDate": "CMS recommendations remain open", "sourceVerification": "Primary", "borrowers": []}, {"id": "DIS-005", "date": "Jun 8, 2026", "dateSort": "2026-06-08T00:00:00", "jurisdiction": "Disaster", "state": "Hawaii", "category": "Natural Disaster / Public Health Emergency", "broadCategory": "disaster", "sector": "Skilled Nursing; Home Health; Hospice; HME/DME; Other Healthcare Services", "headline": "Hawaii severe-storm and flooding public health emergency renewed", "detail": "HHS renewed the Hawaii public health emergency effective June 8, 2026 for continuing consequences of severe storms, flooding, landslides and mudslides; CMS lists emergency waivers and flexibilities.", "creditDirection": "Mixed", "severity": "High", "riskScore": 9, "sourceAgency": "HHS / CMS", "sourceURL": "https://www.cms.gov/about-cms/what-we-do/emergency-response/current-emergencies", "effectiveDate": "PHE remains active subject to renewal or termination", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-009", "date": "Jun 1, 2026", "dateSort": "2026-06-01T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Federal Legislation / Medicaid", "broadCategory": "medicaid", "sector": "All Medicaid-Exposed Services", "headline": "Medicaid community-engagement requirement set for 2027", "detail": "Certain adults must demonstrate 80 hours per month of qualifying work, education or community service. States generally must implement by January 1, 2027.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/medicaid-community-engagement-requirement-certain-individuals-interim-final-rule-comment-period-cms", "effectiveDate": "January 1, 2027 unless state implements earlier", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-001", "date": "May 28, 2026", "dateSort": "2026-05-28T00:00:00", "jurisdiction": "State", "state": "New York", "category": "State Medicaid Budget", "broadCategory": "medicaid", "sector": "Skilled Nursing; Assisted Living", "headline": "New York budget adds over $950 million for nursing homes and ALPs", "detail": "The enacted FY 2027 budget includes more than $950 million in new and recurring support for nursing homes and Assisted Living Programs, within broader health-system funding.", "creditDirection": "Positive", "severity": "High", "riskScore": 9, "sourceAgency": "New York Governor", "sourceURL": "https://www.governor.ny.gov/news/governor-hochul-secures-historic-investments-bolster-new-yorks-healthcare-system-and-protect", "effectiveDate": "FY 2027 implementation", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-007", "date": "May 18, 2026", "dateSort": "2026-05-18T00:00:00", "jurisdiction": "State", "state": "Ohio", "category": "State Healthcare Regulation", "broadCategory": "regulation", "sector": "All Ohio Medicaid Providers", "headline": "Ohio tightens Medicaid provider revalidation and fraud controls", "detail": "Ohio approved emergency provider-revalidation rules after announcing additional Medicaid fraud-prevention initiatives and seeking a temporary provider-enrollment moratorium.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "Ohio Governor", "sourceURL": "https://governor.ohio.gov/media/news-and-media/governor-dewine-signs-executive-order-approving-emergency-rules-on-medicaid-provider-revalidation", "effectiveDate": "Immediate / emergency-rule period", "sourceVerification": "Primary", "borrowers": []}, {"id": "FRD-001", "date": "May 13, 2026", "dateSort": "2026-05-13T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Fraud / Program Integrity", "broadCategory": "fraud", "sector": "Home Health; Hospice", "headline": "Nationwide Medicare enrollment moratorium for HHAs and hospices", "detail": "CMS imposed a six-month nationwide moratorium on initial HHA and hospice applications, including non-exempt changes in majority ownership; it may be extended in six-month increments.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/medicare/enrollment-renewal/providers-suppliers/chain-ownership-system-pecos/provider-enrollment-moratoria", "effectiveDate": "Initial six-month period from May 13, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "BOR-004", "date": "May 11, 2026", "dateSort": "2026-05-11T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Borrower News", "broadCategory": "borrower", "sector": "Skilled Nursing", "headline": "PACS Group Q1 2026: revenue $1.42B, net income $80.7M, investigations unresolved", "detail": "Q1 2026 revenue rose 11% year over year to $1.42 billion with net income of $80.7 million and diluted EPS of $0.50. Operating cash flow was $236.3 million. Adjusted EBITDA rose 75% to $170.4 million. The company reported 323 facilities and 35,516 beds, occupancy of 90.9%, roughly $800 million of available liquidity and net leverage of 0.1x. The filing discloses multiple ongoing DOJ investigations, an SEC enforcement investigation, securities class and derivative actions, self-insurance liabilities of $346.9 million, and material weaknesses in internal controls. The board authorized a $250 million share repurchase effective May 7, 2026.", "creditDirection": "Mixed", "severity": "Critical", "riskScore": 11, "sourceAgency": "PACS Group SEC Form 10-Q", "sourceVerification": "Primary \u2014 company SEC filing", "sourceURL": "https://www.stocktitan.net/sec-filings/PACS/10-q-pacs-group-inc-quarterly-earnings-report-98bea34de536.html", "effectiveDate": "Quarter ended March 31, 2026", "borrowers": ["PACS Holdings"]}, {"id": "BOR-009", "date": "May 4, 2026", "dateSort": "2026-05-04T00:00:00", "jurisdiction": "Federal", "state": "Massachusetts; U.S.", "category": "Borrower News", "broadCategory": "borrower", "sector": "Senior Housing; Medical Office; Life Science", "headline": "Diversified Healthcare Trust Q1 2026: leverage improves to 7.8x, FFO guidance raised", "detail": "DHC reported Q1 2026 revenue of $366.5 million and a net loss of $43.3 million ($0.18 per share), narrowed year over year. Same-property SHOP NOI rose 13.5% to $44.3 million with margins of 14.9%; medical office and life science same-property cash NOI grew 3.0% with occupancy of 95.3%. Normalized FFO more than doubled to $33.1 million. Net debt to annualized Adjusted EBITDAre improved to 7.8x from 8.1x, with EBITDAre to interest expense at 2.0x. Liquidity was $271 million including $121 million cash and an undrawn $150 million secured revolver.", "creditDirection": "Positive", "severity": "High", "riskScore": 9, "sourceAgency": "Diversified Healthcare Trust SEC Form 8-K", "sourceVerification": "Primary \u2014 company SEC filing", "sourceURL": "https://www.stocktitan.net/sec-filings/DHC/8-k-diversified-healthcare-trust-reports-material-event-ae936a0dca28.html", "effectiveDate": "Quarter ended March 31, 2026", "borrowers": ["Diversified Healthcare Trust"]}, {"id": "IND-004", "date": "Apr 8, 2026", "dateSort": "2026-04-08T00:00:00", "jurisdiction": "State", "state": "New York", "category": "Industry / Trade", "broadCategory": "industry", "sector": "Skilled Nursing", "headline": "State-level staffing mandates fill the gap left by federal rollback; New York imposing penalties", "detail": "With the federal staffing mandate repealed, state-level requirements have become the operative constraint. New York has begun imposing penalties on facilities failing to meet a minimum 3.5 hours of direct care per resident per day. Operators report being penalized during documented workforce shortages. State mandates now represent the primary staffing-cost exposure for multi-state operators.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "Skilled Nursing News", "sourceVerification": "Trade press \u2014 not a primary source", "sourceURL": "https://skillednursingnews.com/2026/04/its-not-logical-state-level-nursing-home-staffing-mandates-and-policy-pressures-clash-with-workforce-gains-in-2025/", "effectiveDate": "Penalties active", "borrowers": []}, {"id": "FED-015", "date": "Apr 8, 2026", "dateSort": "2026-04-08T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Federal Legislation / Medicaid", "broadCategory": "medicaid", "sector": "All Medicaid-Exposed Services", "headline": "Federal Medicaid matching eligibility narrows for certain noncitizen groups", "detail": "Beginning October 1, 2026, federal financial participation is restricted to specified eligible groups, with exceptions that include Emergency Medicaid and certain coverage for lawfully residing children and pregnant women.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/press-releases/cms-issues-guidance-implement-new-limits-federal-medicaid-chip-funding-certain-noncitizens", "effectiveDate": "October 1, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-004", "date": "Apr 2, 2026", "dateSort": "2026-04-02T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicare", "broadCategory": "cms", "sector": "Hospice", "headline": "CMS proposes stronger hospice utilization transparency and oversight", "detail": "The proposed rule introduces a nine-metric Service and Spending Variation Index and would require the hospice election addendum for all Medicare beneficiaries at election.", "creditDirection": "Negative", "severity": "High", "riskScore": 6, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/fiscal-year-fy-2027-hospice-wage-index-payment-rate-update-hospice-quality-reporting-program", "effectiveDate": "FY 2027 / final rule pending", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-003", "date": "Apr 2, 2026", "dateSort": "2026-04-02T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicare", "broadCategory": "cms", "sector": "Hospice", "headline": "FY 2027 hospice payment rate proposed to increase 2.4%", "detail": "CMS proposes a 2.4% hospice rate increase, estimated at $785 million, and a FY 2027 aggregate cap of $36,210.11. Noncompliant HQRP providers would receive a 1.6% reduction versus the prior year.", "creditDirection": "Mixed", "severity": "High", "riskScore": 6, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/fiscal-year-fy-2027-hospice-wage-index-payment-rate-update-hospice-quality-reporting-program", "effectiveDate": "FY 2027 / final rule pending", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-001", "date": "Apr 2, 2026", "dateSort": "2026-04-02T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicare", "broadCategory": "cms", "sector": "Skilled Nursing", "headline": "FY 2027 SNF PPS proposed payment update", "detail": "CMS proposes a 2.4% SNF PPS rate update (3.2% market basket less 0.8% productivity). SNFs missing QRP reporting lose 2 percentage points; SNF VBP withholds 2% of Medicare FFS Part A payments.", "creditDirection": "Mixed", "severity": "High", "riskScore": 6, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/fact-sheets/fiscal-year-fy-2027-skilled-nursing-facility-prospective-payment-system-proposed-rule-cms-1843-p", "effectiveDate": "FY 2027 / final rule pending", "sourceVerification": "Primary", "borrowers": []}, {"id": "ST-006", "date": "Apr 1, 2026", "dateSort": "2026-04-01T00:00:00", "jurisdiction": "State", "state": "Washington", "category": "State Healthcare Legislation / Budget", "broadCategory": "other", "sector": "Medicaid; Outpatient Services", "headline": "Washington supplemental budget backfills selected Medicaid and health programs", "detail": "The signed supplemental budget includes $15 million to backfill Medicaid funding for Planned Parenthood and $19.8 million for healthcare coverage for approximately 1,200 Washington residents.", "creditDirection": "Positive", "severity": "Medium", "riskScore": 6, "sourceAgency": "Washington Governor", "sourceURL": "https://governor.wa.gov/news/2026/governor-ferguson-signs-supplemental-budgets", "effectiveDate": "Supplemental budget implementation", "sourceVerification": "Primary", "borrowers": []}, {"id": "BOR-007", "date": "Mar 16, 2026", "dateSort": "2026-03-16T00:00:00", "jurisdiction": "Trade Press", "state": "Ohio; U.S.", "category": "Borrower News", "broadCategory": "borrower", "sector": "HME / DME", "headline": "Quipt Home Medical completes take-private; delisted from NASDAQ and TSX", "detail": "Quipt completed the plan of arrangement on March 16, 2026 following a final order from the Supreme Court of British Columbia. Affiliates of Kingswood and Forager acquired all outstanding shares at US$3.65 per share; options and RSUs were cashed out and cancelled. Shares were delisted from NASDAQ and the TSX at close of business March 17, 2026, and the company intends to cease public reporting in both Canada and the United States. Trade coverage described the transaction as ending a contentious nine-month process.", "creditDirection": "Mixed", "severity": "Critical", "riskScore": 11, "sourceAgency": "HME News", "sourceVerification": "Trade press \u2014 corroborated by company release", "sourceURL": "https://www.hmenews.com/article/quipt-home-medical-enters-new-phase", "effectiveDate": "Closed March 16, 2026; delisted March 17, 2026", "borrowers": ["Quipt Home Medical"]}, {"id": "IND-006", "date": "Mar 3, 2026", "dateSort": "2026-03-03T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Industry / Trade", "broadCategory": "industry", "sector": "Skilled Nursing", "headline": "Health Affairs study finds state staffing mandates raised staffing with minimal closures", "detail": "A Health Affairs study published March 3, 2026 examining state nursing home minimum staffing mandates from 2010 to 2023 found increased staffing levels with minimal impact on facility finances or closures. Increases were driven mainly by LPNs and nursing assistants. Researchers noted unexplained increases in net revenue, with possible explanations including payer-mix shifts toward higher-margin Medicare patients, states raising Medicaid daily rates, or capital previously obscured through related-party transactions.", "creditDirection": "Mixed", "severity": "Medium", "riskScore": 6, "sourceAgency": "Penn LDI / Health Affairs", "sourceVerification": "Secondary \u2014 academic research summary", "sourceURL": "https://ldi.upenn.edu/our-work/research-updates/staffing-mandates-boost-care-without-closing-nursing-homes/", "effectiveDate": "Published March 3, 2026", "borrowers": []}, {"id": "FRD-002", "date": "Feb 27, 2026", "dateSort": "2026-02-27T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Fraud / Program Integrity", "broadCategory": "fraud", "sector": "HME / DME", "headline": "Nationwide Medicare enrollment moratorium for DME medical-supply companies", "detail": "CMS imposed a six-month moratorium on initial applications and non-exempt majority-ownership changes for listed DMEPOS medical-supply company types.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/medicare/enrollment-renewal/providers-suppliers/chain-ownership-system-pecos/provider-enrollment-moratoria", "effectiveDate": "Initial six-month period from February 27, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-011", "date": "Feb 3, 2026", "dateSort": "2026-02-03T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Federal Legislation / Medicare", "broadCategory": "cms", "sector": "Hospice", "headline": "Hospice telehealth recertification extended through 2027 with restrictions", "detail": "CAA 2026 extends telehealth face-to-face recertification through December 31, 2027, but bars it in moratorium/enhanced-oversight situations and requires claim modifiers/codes beginning January 1, 2027.", "creditDirection": "Mixed", "severity": "Medium", "riskScore": 6, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/hospice-news-announcements", "effectiveDate": "Modifiers/codes required January 1, 2027", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-010", "date": "Jan 29, 2026", "dateSort": "2026-01-29T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Federal Legislation / Medicaid", "broadCategory": "medicaid", "sector": "All Medicaid-Exposed Services", "headline": "CMS finalizes restrictions on Medicaid provider-tax structures", "detail": "The rule prohibits higher tax rates on Medicaid business than non-Medicaid business and blocks indirect structures; transition periods extend through calendar 2026, state FY 2027 or state FY 2028 depending on tax type and approval timing.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/newsroom/press-releases/cms-shuts-down-massive-medicaid-tax-loophole-saving-billions-federal-taxpayers-restoring-federal", "effectiveDate": "Transition deadlines vary through state FY 2028", "sourceVerification": "Primary", "borrowers": []}, {"id": "IND-002", "date": "Jan 9, 2026", "dateSort": "2026-01-09T00:00:00", "jurisdiction": "Trade Press", "state": "U.S.", "category": "Industry / Trade", "broadCategory": "industry", "sector": "Skilled Nursing", "headline": "Medicaid cuts under reconciliation law identified as principal 2026 sector risk", "detail": "Trade coverage identifies OBBBA Medicaid reductions as the dominant risk for skilled nursing in 2026, as state Medicaid offices face new federal enrollment requirements alongside shrinking federal match. Operators in Pennsylvania, Virginia, North Carolina and Ohio were cited as facing state budget deficits after pandemic stimulus funding expired. Medicaid funds roughly 66% of nursing home revenue, and states facing tighter federal funding may freeze or reduce daily reimbursement rates.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 11, "sourceAgency": "McKnight's Long-Term Care News", "sourceVerification": "Trade press \u2014 not a primary source", "sourceURL": "https://www.mcknights.com/news/mcknights-2026-outlook-amid-uncertainty-persistent-staffing-pressures-the-great-census-rebound-lifts-providers/", "effectiveDate": "Cuts not expected to hit in full until Q4 2026", "borrowers": []}, {"id": "IND-003", "date": "Jan 9, 2026", "dateSort": "2026-01-09T00:00:00", "jurisdiction": "Trade Press", "state": "U.S.", "category": "Industry / Trade", "broadCategory": "industry", "sector": "Skilled Nursing", "headline": "SNF census recovery continues as staffing mandate rollback removes overhang", "detail": "Industry survey data shows 39.3% of skilled nursing providers have returned to pre-pandemic census, up from 38.0% a year earlier and 30.8% in 2024. Roughly two-thirds expect to reach strong census soon, and 89.25% expect occupancy to hold or increase in 2026. Staffing remained the top concern, cited by 79% of nurse leaders. The staffing mandate rollback removed a major cost threat, though Medicare Advantage expansion and payment reform continue to pressure margins.", "creditDirection": "Positive", "severity": "High", "riskScore": 8, "sourceAgency": "Skilled Nursing News", "sourceVerification": "Trade press \u2014 not a primary source", "sourceURL": "https://skillednursingnews.com/2026/01/top-trends-that-will-shape-the-skilled-nursing-sector-in-2026/", "effectiveDate": "2026 outlook", "borrowers": []}, {"id": "BOR-008", "date": "Jan 2, 2026", "dateSort": "2026-01-02T00:00:00", "jurisdiction": "Trade Press", "state": "Massachusetts; U.S.", "category": "Borrower News", "broadCategory": "borrower", "sector": "Senior Housing; Medical Office; Life Science", "headline": "Diversified Healthcare Trust repays 2026 notes, completes $605M of asset sales", "detail": "DHC repaid in full its zero coupon senior secured notes due 2026 on December 29, 2025 using cash on hand and asset sale proceeds, releasing 45 collateral properties representing roughly $850 million of gross book value. DHC completed the sale of 69 non-core properties for approximately $605 million during 2025, including 37 properties for $250 million in Q4. The company reported no debt maturities until 2028 and full availability under its revolving credit facility. All 116 SHOP communities managed by AlerisLife were transitioned to new operators as of December 31, 2025.", "creditDirection": "Positive", "severity": "Critical", "riskScore": 11, "sourceAgency": "Diversified Healthcare Trust (BusinessWire)", "sourceVerification": "Primary \u2014 company release", "sourceURL": "https://www.businesswire.com/news/home/20260102424934/en/Diversified-Healthcare-Trust-Provides-Business-Update", "effectiveDate": "Repayment completed December 29, 2025", "borrowers": ["Diversified Healthcare Trust"]}, {"id": "ST-012", "date": "Jan 1, 2026", "dateSort": "2026-01-01T00:00:00", "jurisdiction": "State", "state": "Minnesota", "category": "State Medicaid Rate Action", "broadCategory": "medicaid", "sector": "Home Health; HCBS; Therapy Services", "headline": "Minnesota implements 3.19% increases for selected home-health and therapy services", "detail": "Minnesota DHS lists a 3.19% market-basket increase for home-health aide, skilled nursing, occupational therapy, physical therapy, respiratory therapy and speech therapy services.", "creditDirection": "Positive", "severity": "Medium", "riskScore": 6, "sourceAgency": "Minnesota Department of Human Services", "sourceURL": "https://mn.gov/dhs/partners-and-providers/news-initiatives-reports-workgroups/long-term-services-and-supports/ltss-rates/", "effectiveDate": "Effective January 1, 2026", "sourceVerification": "Primary", "borrowers": []}, {"id": "BOR-006", "date": "Dec 15, 2025", "dateSort": "2025-12-15T00:00:00", "jurisdiction": "Trade Press", "state": "Ohio; U.S.", "category": "Borrower News", "broadCategory": "borrower", "sector": "HME / DME", "headline": "Quipt Home Medical agrees to be acquired by Kingswood and Forager at $3.65 per share", "detail": "Quipt entered an arrangement agreement dated December 14, 2025 with affiliates of Kingswood Capital Management and Forager Capital Management to acquire all outstanding shares for US$3.65 per share in cash, a 162% premium to the unaffected May 19, 2025 price. Quipt reported Q4 2025 revenue of $68.3 million, up 11% year over year, and fiscal 2025 revenue of $254.5 million, a slight decline.", "creditDirection": "Mixed", "severity": "Critical", "riskScore": 11, "sourceAgency": "Quipt Home Medical (GlobeNewswire)", "sourceVerification": "Primary \u2014 company release", "sourceURL": "https://quipthomemedical.com/category/press-releases/", "effectiveDate": "Announced December 15, 2025", "borrowers": ["Quipt Home Medical"]}, {"id": "IND-001", "date": "Dec 3, 2025", "dateSort": "2025-12-03T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Industry / Trade", "broadCategory": "industry", "sector": "Skilled Nursing", "headline": "CMS interim final rule withdraws federal nursing home minimum staffing standards", "detail": "CMS published an interim final rule on December 3, 2025 withdrawing the 2024 minimum staffing standards for long-term care facilities, which had required 24/7 onsite RN coverage and 3.47 hours per resident day. The rule took effect February 2, 2026. Combined with the reconciliation law's moratorium on implementation through 2034 and court vacatur, the mandate is effectively neutralized. Analysis cited roughly $51.83 billion of net 10-year regulatory savings.", "creditDirection": "Positive", "severity": "Critical", "riskScore": 11, "sourceAgency": "Duane Morris LLP", "sourceVerification": "Secondary \u2014 verify against Federal Register text", "sourceURL": "https://www.duanemorris.com/alerts/federal_agencies_rescind_previous_administrations_nursing_home_staffing_rule_1225.html", "effectiveDate": "Effective February 2, 2026", "borrowers": []}, {"id": "FED-017", "date": "Nov 18, 2025", "dateSort": "2025-11-18T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Federal Legislation / Medicaid", "broadCategory": "medicaid", "sector": "Skilled Nursing; Behavioral Health; Other Medicaid Managed Care Providers", "headline": "Federal law limits certain Medicaid state-directed payment levels", "detail": "The law limits specified state-directed payments for hospital, nursing-facility and certain practitioner services to 100% of published Medicare rates in expansion states and 110% in non-expansion states, with grandfathering and phase-down provisions beginning in later rating periods.", "creditDirection": "Negative", "severity": "High", "riskScore": 6, "sourceAgency": "CMS / Medicaid.gov", "sourceURL": "https://www.medicaid.gov/medicaid/downloads/wftc-legsltn-overview-slide.pdf", "effectiveDate": "Grandfathering transitions toward rating periods beginning on or after January 1, 2028", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-016", "date": "Nov 18, 2025", "dateSort": "2025-11-18T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Federal Legislation / Medicaid", "broadCategory": "medicaid", "sector": "All Medicaid-Exposed Services", "headline": "Federal law shortens Medicaid retroactive eligibility periods", "detail": "For applications made on or after January 1, 2027, retroactive eligibility is limited to one month for the Medicaid adult expansion group and two months for other Medicaid groups.", "creditDirection": "Negative", "severity": "High", "riskScore": 9, "sourceAgency": "CMS / Medicaid.gov", "sourceURL": "https://www.medicaid.gov/medicaid/downloads/wftc-legsltn-overview-slide.pdf", "effectiveDate": "January 1, 2027", "sourceVerification": "Primary", "borrowers": []}, {"id": "FED-014", "date": "Nov 18, 2025", "dateSort": "2025-11-18T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Federal Legislation / Medicaid", "broadCategory": "medicaid", "sector": "All Medicaid-Exposed Services", "headline": "Medicaid adult expansion renewals move from annual to every six months", "detail": "Beginning with renewals scheduled on or after January 1, 2027, affected Medicaid adult expansion beneficiaries must have eligibility redetermined every six months, with limited exceptions.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "CMS / Medicaid.gov", "sourceURL": "https://www.medicaid.gov/medicaid/downloads/wftc-legsltn-overview-slide.pdf", "effectiveDate": "January 1, 2027", "sourceVerification": "Primary", "borrowers": []}, {"id": "BOR-003", "date": "Feb 26, 2025", "dateSort": "2025-02-26T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "Fraud / Investigation", "broadCategory": "borrower", "sector": "Skilled Nursing", "headline": "PACS Group receives DOJ subpoena over Medicare billing and 1135 waiver practices", "detail": "Per company SEC filings, PACS received a DOJ HIPAA subpoena relating to an investigation into possible false statements to the government. Requests cover 1135 COVID waiver practices, Medicare Part B billing for respiratory and sensory integration therapy, change of insurance enrollment, cost waivers for co-pays and deductibles, and Medicare bad debt reimbursement. Separately, the SEC Division of Enforcement is investigating the company's accounting, financial reporting, disclosure, and internal controls.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "PACS Group SEC Form 10-Q", "sourceVerification": "Primary \u2014 company SEC filing", "sourceURL": "https://www.stocktitan.net/sec-filings/PACS/10-q-pacs-group-inc-quarterly-earnings-report-0cd83bbc7b99.html", "effectiveDate": "Investigations ongoing", "borrowers": ["PACS Holdings"]}, {"id": "BOR-002", "date": "Jan 6, 2025", "dateSort": "2025-01-06T00:00:00", "jurisdiction": "Trade Press", "state": "U.S.", "category": "Borrower News", "broadCategory": "borrower", "sector": "Skilled Nursing", "headline": "PACS Group loses 70% of market capitalization amid billing allegations and delayed filings", "detail": "Following the short-seller report, PACS faced allegations of deceptive Medicare billing, a federal regulatory investigation, delayed financial reporting, and a securities class action (Manchin v. PACS Group, S.D.N.Y.). The class period runs April 11, 2024 through November 5, 2024. Complaint alleges the reported turnaround was driven by improper acquisition of Medicare benefits and falsified patient records.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "Hagens Berman (PRNewswire)", "sourceVerification": "Secondary \u2014 plaintiff firm release; verify against court docket", "sourceURL": "https://www.prnewswire.com/news-releases/medicare-fraud-allegations-cast-shadow-over-pacs-group-pacs--hagens-berman-pacs-investors-with-losses-encouraged-to-contact-the-firm-before-jan-13-2025-deadline-302343273.html", "effectiveDate": "Lead plaintiff deadline January 13, 2025", "borrowers": ["PACS Holdings"]}, {"id": "BOR-001", "date": "Nov 4, 2024", "dateSort": "2024-11-04T00:00:00", "jurisdiction": "Trade Press", "state": "Utah; U.S.", "category": "Borrower News", "broadCategory": "borrower", "sector": "Skilled Nursing", "headline": "Hindenburg Research alleges fraudulent Medicare billing at PACS Group", "detail": "A short-seller report based on a five-month investigation and interviews with former employees alleged fraudulent charting and billing practices, including a company-wide scheme tied to COVID-era 1135 waiver use. The report noted PACS generated 47.6% of 2022 revenue from Medicare versus 28.6% at The Ensign Group. Shares fell roughly 40% on publication. The report cited no active government investigations at the time.", "creditDirection": "Negative", "severity": "Critical", "riskScore": 12, "sourceAgency": "McKnight's Long-Term Care News", "sourceVerification": "Trade press \u2014 not a primary source", "sourceURL": "https://www.mcknights.com/news/fraud-allegations-hit-pacs-group-incite-major-trading-volatility/", "effectiveDate": "Report published November 4, 2024", "borrowers": ["PACS Holdings"]}, {"id": "FED-012", "date": "Jan 17, 2024", "dateSort": "2024-01-17T00:00:00", "jurisdiction": "Federal", "state": "U.S.", "category": "CMS / Medicaid Operations", "broadCategory": "cms", "sector": "All Medicaid-Exposed Services", "headline": "Prior-authorization API requirements approach 2027 implementation", "detail": "CMS prior-authorization and interoperability requirements include provisions already effective in 2026, with major API requirements primarily beginning January 1, 2027.", "creditDirection": "Mixed", "severity": "Medium", "riskScore": 6, "sourceAgency": "CMS", "sourceURL": "https://www.cms.gov/initiatives/burden-reduction/overview/interoperability/policies-regulations/cms-interoperability-prior-authorization-final-rule-cms-0057-f", "effectiveDate": "Major API requirements primarily January 1, 2027", "sourceVerification": "Primary", "borrowers": []}];
+
+  const BORROWERS = ["Drumm Merger / Cuarzo","PACS Holdings","New Day Healthcare",
+    "Purpose Healing","Pathnostics","CCGEN Jefferson / Autumn Lake",
+    "Complete Care at Glendale","HCS-Girling","Quipt Home Medical",
+    "Diversified Healthcare Trust","Oxford Finance"];
+
+  const GOV_CATEGORIES = ["fraud","medicaid","cms","regulation","disaster","other"];
+
+  const CAT_LABELS = { borrower:"Borrower News", industry:"Industry / Trade", fraud:"Fraud / Enforcement", medicaid:"Medicaid Policy", cms:"CMS / Medicare", disaster:"Disaster", regulation:"Regulation", other:"Other" };
+
+  // ---- Search ----------------------------------------------------------
+  // Every field is searchable, not just the headline. Multi-word queries are
+  // treated as AND across all fields, so "medicaid moratorium" matches an
+  // event whose headline says moratorium and whose body says Medicaid.
+  // Wrap in "quotes" for an exact phrase.
+  function haystackFor(e){
+    if(e._hay) return e._hay;
+    e._hay = [
+      e.headline, e.detail, e.sourceAgency, e.state, e.jurisdiction,
+      e.category, e.sector, e.severity, e.creditDirection, e.effectiveDate,
+      e.id, e.date, e.sourceVerification, e.sourceURL,
+      (e.borrowers || []).join(' '),
+      CAT_LABELS[e.broadCategory] || ''
+    ].filter(Boolean).join(' ').toLowerCase();
+    return e._hay;
+  }
+
+  function parseQuery(q){
+    const phrases = [];
+    const rest = (q || '').toLowerCase().replace(/"([^"]+)"/g, (m, g) => {
+      phrases.push(g.trim());
+      return ' ';
+    });
+    const words = rest.split(/\s+/).filter(Boolean);
+    return { phrases, words };
+  }
+
+  function matchesQuery(e, q){
+    if(!q || !q.trim()) return true;
+    const hay = haystackFor(e);
+    const { phrases, words } = parseQuery(q);
+    for(const ph of phrases){ if(hay.indexOf(ph) === -1) return false; }
+    for(const w of words){ if(hay.indexOf(w) === -1) return false; }
+    return true;
+  }
+
+  function escRe(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  function highlight(text, q){
+    if(!q || !q.trim() || !text) return text;
+    const { phrases, words } = parseQuery(q);
+    const terms = phrases.concat(words).filter(t => t.length > 1);
+    if(!terms.length) return text;
+    const re = new RegExp('(' + terms.map(escRe).join('|') + ')', 'gi');
+    return text.replace(re, '<mark>$1</mark>');
+  }
+
+  function riskClass(score){
+    if(score >= 7) return "risk-high";
+    if(score >= 4) return "risk-med";
+    return "risk-low";
+  }
+
+  // Null-safe DOM helpers: a missing element must never abort the whole script.
+  function setText(id, value){
+    const el = document.getElementById(id);
+    if(el) el.textContent = value;
+  }
+  function setHTML(id, value){
+    const el = document.getElementById(id);
+    if(el) el.innerHTML = value;
+  }
+
+  const SOURCES = [...new Set(EVENTS.map(e => e.sourceAgency).filter(Boolean))].sort();
+
+  setHTML('tickerTrack', EVENTS.slice(0, 10).map(e => {
+    const dirClass = e.creditDirection === 'Negative' ? 'dir-neg' : e.creditDirection === 'Positive' ? 'dir-pos' : 'dir-mix';
+    const arrow = e.creditDirection === 'Negative' ? '▲ RISK' : e.creditDirection === 'Positive' ? '▽ EASED' : '◆ MIXED';
+    return `<span><span class="${dirClass}">${arrow}</span><a href="${e.sourceURL || '#'}" target="_blank" rel="noopener" style="text-decoration:none;">${e.headline}</a> — ${e.sourceAgency}</span>`;
+  }).join(''));
+
+  function renderBorrowerList(){
+    setHTML('borrowerList', BORROWERS.map((b, i) => {
+      const n = EVENTS.filter(e => (e.borrowers || []).includes(b)).length;
+      const sel = activeBorrower === b ? 'selected' : '';
+      return `<div class="borrower-row ${n ? 'has-hits' : ''} ${sel}" data-borrower-index="${i}">
+        <span>${b}</span>
+        <span class="count ${n ? 'hit' : 'zero'}">${n || '—'}</span></div>`;
+    }).join(''));
+
+    const list = document.getElementById('borrowerList');
+    if(!list) return;
+    Array.prototype.forEach.call(list.querySelectorAll('.borrower-row'), row => {
+      row.addEventListener('click', () => {
+        const name = BORROWERS[parseInt(row.getAttribute('data-borrower-index'), 10)];
+        activeBorrower = (activeBorrower === name) ? null : name;
+        renderBorrowerList();
+        renderFeed();
+      });
+    });
+  }
+
+  setHTML('sourceList', SOURCES.map(s => {
+    const count = EVENTS.filter(e => e.sourceAgency === s).length;
+    return `<div class="source-row"><span>${s}</span><span class="count">${count}</span></div>`;
+  }).join(''));
+
+  setText('statTotal', EVENTS.length);
+  setText('statHigh', EVENTS.filter(e => e.severity === 'High').length);
+  setText('statSources', SOURCES.length);
+  setText('statBorrower', EVENTS.filter(e => (e.borrowers || []).length).length);
+  document.getElementById('statBorrower').textContent =
+    EVENTS.filter(e => (e.borrowers || []).length).length;
+
+  const feed = document.getElementById('feed') || document.createElement('div');
+  let activeFilter = 'gov';
+  let activeBorrower = null;
+  let activeDir = 'all';
+  let searchTerm = '';
+  let sortMode = 'date';
+
+  function impactTier(score){
+    if(score >= 10) return "Critical Impact — Risk Score 10+";
+    if(score >= 7) return "High Impact — Risk Score 7–9";
+    if(score >= 4) return "Elevated Impact — Risk Score 4–6";
+    return "Lower Impact — Risk Score 0–3";
+  }
+
+  function renderFeed(){
+    let filtered = EVENTS.filter(e => {
+      if(activeBorrower){
+        if(!(e.borrowers || []).includes(activeBorrower)) return false;
+      }
+      const searching = !!(searchTerm && searchTerm.trim());
+      const matchesFilter =
+        activeBorrower ? true :
+        searching ? true :
+        activeFilter === 'gov' ? GOV_CATEGORIES.indexOf(e.broadCategory) !== -1 :
+        e.broadCategory === activeFilter;
+      const matchesDir = activeDir === 'all' || e.creditDirection === activeDir;
+      const matchesSearch = matchesQuery(e, searchTerm);
+      return matchesFilter && matchesDir && matchesSearch;
+    });
+
+    if(sortMode === 'impact'){
+      filtered = filtered.slice().sort((a,b) => (b.riskScore ?? 0) - (a.riskScore ?? 0));
+    }
+
+    const resultBar = (searchTerm && searchTerm.trim())
+      ? `<div class="result-bar">${filtered.length} result${filtered.length === 1 ? '' : 's'}
+         for <strong>${searchTerm}</strong>
+         <span style="color:#7A7A74;">&nbsp;&middot;&nbsp;searching all categories</span>
+         <button id="clearSearch">Clear</button></div>`
+      : '';
+
+    const borrowerBar = activeBorrower
+      ? `<div class="active-borrower-bar">Showing all coverage for <strong>${activeBorrower}</strong>
+         <button id="clearBorrower">Clear</button></div>`
+      : '';
+
+    if(filtered.length === 0){
+      let msg;
+      if(activeBorrower){
+        msg = `<strong>No coverage yet for ${activeBorrower}.</strong><br><br>
+          This borrower is being monitored across government and trade-press
+          sources. Items will appear here automatically when it is named.`;
+      } else if(activeFilter === 'borrower'){
+        msg = `<strong>No borrower mentions yet.</strong><br><br>
+          The tracker is monitoring ${BORROWERS.length} portfolio borrowers across
+          government and trade-press sources. Items will appear here automatically
+          when a borrower is named in the news.<br><br>
+          Existing events predate borrower tracking, so this section starts empty.`;
+      } else if(activeFilter === 'industry'){
+        msg = `<strong>No trade-press items yet.</strong><br><br>
+          Industry coverage from Skilled Nursing News, Home Health Care News,
+          Hospice News and others will appear here once the next scheduled
+          fetch runs.`;
+      } else if(searchTerm){
+        msg = `No events match &ldquo;${searchTerm}&rdquo;. Try a broader term or clear the search.`;
+      } else {
+        msg = `No events match this filter. Try selecting &ldquo;Regulatory &amp; Enforcement.&rdquo;`;
+      }
+      feed.innerHTML = resultBar + borrowerBar + `<div class="empty-state">${msg}</div>`;
+      wireClearBorrower();
+      wireClearSearch();
+      return;
+    }
+
+    let html = '';
+    let lastGroup = null;
+    filtered.forEach((e, i) => {
+      const groupKey = sortMode === 'impact' ? impactTier(e.riskScore ?? 0) : e.date;
+      if(groupKey !== lastGroup){
+        html += `<div class="day-marker">${groupKey}</div>`;
+        lastGroup = groupKey;
+      }
+      const rankBadge = sortMode === 'impact' ? `<span class="rank-badge">#${i+1}</span>` : '';
+      html += `
+        <div class="article">
+          <div>
+            ${(e.borrowers && e.borrowers.length) ? `<div class="borrower-badge">Portfolio Borrower &bull; ${e.borrowers.join(', ')}</div>` : ''}
+            <div class="article-tag-row">
+              ${rankBadge}
+              <span class="article-tag">${CAT_LABELS[e.broadCategory] || e.category}</span>
+              <span class="dir-tag ${e.creditDirection}">${e.creditDirection}</span>
+            </div>
+            <h3><a href="${e.sourceURL || '#'}" target="_blank" rel="noopener">${highlight(e.headline, searchTerm)}</a></h3>
+            <p>${highlight(e.detail, searchTerm)}</p>
+            <div class="article-meta">
+              <span class="source">${e.sourceAgency}</span>
+              <span>${e.jurisdiction}${e.state && e.state !== e.jurisdiction ? ' · ' + e.state : ''}</span>
+              ${sortMode === 'date' ? '' : `<span>${e.date}</span>`}
+              ${(e.sourceVerification && e.sourceVerification !== 'Primary') ? `<span class="unverified">⚑ Secondary source — pending primary verification</span>` : ''}
+              ${(e.sourceVerification || '').indexOf('Trade press') === 0 ? '<span class="trade-tag">Trade press</span>' : ''}
+              <a href="${e.sourceURL || '#'}" target="_blank" rel="noopener">Read source →</a>
+            </div>
+          </div>
+          <div class="risk-score ${riskClass(e.riskScore)}">${e.riskScore ?? '–'}</div>
+        </div>`;
+    });
+    feed.innerHTML = resultBar + borrowerBar + html;
+    wireClearBorrower();
+    wireClearSearch();
+  }
+
+  function wireClearSearch(){
+    const btn = document.getElementById('clearSearch');
+    if(btn) btn.addEventListener('click', () => {
+      searchTerm = '';
+      const input = document.getElementById('searchInput');
+      if(input) input.value = '';
+      renderFeed();
+    });
+  }
+
+  function wireClearBorrower(){
+    const btn = document.getElementById('clearBorrower');
+    if(btn) btn.addEventListener('click', () => {
+      activeBorrower = null;
+      renderBorrowerList();
+      renderFeed();
+    });
+  }
+
+  document.querySelectorAll('.controls .filter-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.controls .filter-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      activeBorrower = null;
+      renderBorrowerList();
+      renderFeed();
+    });
+  });
+
+  document.querySelectorAll('.controls-row2 .filter-chip[data-dir]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.controls-row2 .filter-chip[data-dir]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeDir = btn.dataset.dir;
+      renderFeed();
+    });
+  });
+
+  const searchEl = document.getElementById('searchInput');
+  if(searchEl) searchEl.addEventListener('input', (e) => {
+    searchTerm = e.target.value;
+    renderFeed();
+  });
+
+  document.querySelectorAll('.sort-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sort-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      sortMode = btn.dataset.sort;
+      renderFeed();
+    });
+  });
+
+
+  // ====================================================================
+  // INFORMATION & REFERENCE
+  // ====================================================================
+  // Federal reimbursement figures below are drawn from CMS fact sheets and
+  // rules already tracked in this feed. Sector benchmarks come from named
+  // industry data providers. State-level cap rates are NOT included: that
+  // data is proprietary (CBRE, JLL, NIC MAP, Levin Associates) and is not
+  // reproduced here. Populate STATE_REFERENCE below from your own
+  // subscription if you want state pricing on this page.
+
+  const RATE_CARDS = [
+    { name:"SNF PPS (FY 2027)", value:"+2.4%", dir:"pos",
+      note:"Finalized July 2026. 3.3% market basket less 0.9% productivity; roughly $882.7M aggregate increase. SNF VBP withholds an estimated $203.6M.",
+      src:"CMS FY2027 SNF final rule", url:"https://www.cms.gov/newsroom/fact-sheets/fiscal-year-2027-skilled-nursing-facility-prospective-payment-system-final-rule-cms-1843-f" },
+    { name:"Hospice (FY 2027)", value:"+2.3%", dir:"pos",
+      note:"Aggregate cap $36,174.75. Introduces the hospice service and spending variation index, a nine-metric claims-based screen.",
+      src:"CMS FY2027 hospice final rule", url:"https://www.cms.gov/newsroom/fact-sheets/fiscal-year-2027-hospice-wage-index-payment-rate-update-hospice-quality-reporting-program" },
+    { name:"Home Health (CY 2027)", value:"+2.4%", dir:"pos",
+      note:"Proposed. Approximately $420M aggregate, comprising a 2.1% payment update against a -3.0% permanent behavioral adjustment.",
+      src:"CMS CY2027 HH proposed rule", url:"https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-home-health-prospective-payment-system-proposed-rule-fact-sheet-cms-1844-p" },
+    { name:"Physician Fee Schedule (CY 2027)", value:"-1.19% / -1.68%", dir:"neg",
+      note:"Proposed conversion factors of $33.17 for qualifying APM participants and $32.84 for non-qualifying, as the one-year 2.5% CY2026 increase expires.",
+      src:"CMS CY2027 PFS proposed rule", url:"https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-medicare-physician-fee-schedule-proposed-rule" },
+    { name:"Clinical Lab Fee Schedule", value:"up to -15%/yr", dir:"neg",
+      note:"Statutory reductions may phase up to 15% annually beginning CY 2027 through CY 2029. Data reporting ran May 1 to July 31, 2026.",
+      src:"CMS CY2027 PFS fact sheet", url:"https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-medicare-physician-fee-schedule-proposed-rule" },
+    { name:"Medicaid Provider Tax Rule", value:"-$246B / 10yr", dir:"neg",
+      note:"Proposed rule implementing reconciliation Section 71115. CMS actuaries estimate the federal spending reduction. Comments due September 21, 2026.",
+      src:"Holland & Knight analysis (secondary)", url:"https://www.hklaw.com/en/insights/publications/2026/07/cms-issues-medicaid-provider-taxes-proposed-rule" },
+    { name:"Federal Staffing Mandate", value:"Withdrawn", dir:"pos",
+      note:"Interim final rule effective February 2, 2026 withdrew the 2024 minimum staffing standards. Implementation is separately barred through 2034.",
+      src:"Duane Morris alert (secondary)", url:"https://www.duanemorris.com/alerts/federal_agencies_rescind_previous_administrations_nursing_home_staffing_rule_1225.html" },
+  ];
+
+  const BENCH_CARDS = [
+    { name:"Senior Housing Occupancy", value:"89.9%", dir:"pos",
+      note:"Q2 2026, twentieth consecutive quarterly increase. 15 of 31 primary markets at or above 90%. Boston 93.3%, San Francisco 92.7%, Baltimore 91.8%; Miami 86.2%, Atlanta 86.5%.",
+      src:"NIC MAP, Q2 2026", url:"https://www.nicmap.com/news/occupancy-in-senior-housing-climbs-as-half-of-primary-markets-top-90/" },
+    { name:"SNF Occupancy", value:"~80-81%", dir:"pos",
+      note:"Projected 2026 national range, recovering from a 2021 low near 67% against a 2015 cyclical high of 82%.",
+      src:"Lument 2026 outlook (secondary)", url:"https://www.lument.com/steady-growth-accelerates-2026-seniors-housing-and-healthcare-market-outlook/" },
+    { name:"Senior Housing Cap Rate", value:"~6.2%", dir:"",
+      note:"National average through year-end 2025, roughly 210bps over the 10-year Treasury. Assisted living: core-market Class A near 6.5%, non-core near 7.4%.",
+      src:"CBRE H2 2025 Investor Survey (secondary)", url:"https://ctacquisitions.com/guides/senior-care-business-valuation/" },
+    { name:"SNF Price Per Bed", value:"$83,800", dir:"neg",
+      note:"2024 national average, down from $97,700 in 2023. Disperses widely by payor mix, occupancy and survey history.",
+      src:"Levin Associates via SNN (secondary)", url:"https://ctacquisitions.com/guides/senior-care-business-valuation/" },
+    { name:"Senior Housing Construction", value:"<16,000 units", dir:"pos",
+      note:"Units under construction as of Q2 2026, with year-over-year inventory growth of 0.4%. Constrained new supply supports existing asset occupancy.",
+      src:"NIC MAP, Q2 2026" },
+  ];
+
+
+  // ====================================================================
+  // STATE REFERENCE DATA
+  // ====================================================================
+  // WHAT IS REAL HERE:
+  //   expansion  - Medicaid expansion status (public record)
+  //   budget     - only where a sourced figure exists; every entry carries
+  //                its source URL. States without a published figure are
+  //                left null rather than estimated.
+  //
+  // WHAT IS DELIBERATELY EMPTY:
+  //   capMetro / capRural - state-level cap rates are proprietary to CBRE,
+  //   NIC MAP, JLL and Levin Associates. They are NOT reproduced or
+  //   estimated here. Fill them in from your own subscription; the panel
+  //   renders them the moment they are present.
+  //
+  // The favorability score is computed from real inputs only (see
+  // scoreState). States lacking inputs return null, not a guess.
+
+  const NON_EXPANSION = ["AL","FL","GA","KS","MS","SC","TN","TX","WI","WY"];
+
+  const BUDGET_SRC = {
+    pew:  "https://www.pew.org/en/research-and-analysis/articles/2026/01/13/new-federal-medicaid-policies-compound-state-budget-pressures",
+    pew2: "https://www.pew.org/en/research-and-analysis/issue-briefs/2024/09/long-term-assessments-highlight-state-budget-worries",
+    cbpp: "https://www.cbpp.org/research/state-budget-and-tax/roundup-state-budgets-increasingly-strained-as-house-senate",
+    kff:  "https://www.kff.org/medicaid/medicaid-and-upcoming-state-budget-debates/",
+    gov:  "https://www.governing.com/finance/states-brace-for-budget-shock-amid-federal-changes"
+  };
+
+  // position: "deficit" | "surplus" | "mixed"
+  const STATE_DATA = {
+    AK: { budget:{ position:"deficit", note:"Projected deficits for FY2025 through FY2027; primary budget reserve could be exhausted in FY2027 absent policy change.", src:BUDGET_SRC.pew2 } },
+    AZ: { budget:{ position:"deficit", note:"Multi-year projected deficits. JLBC projects H.R.1 work rules yield $363M total savings from FY2027 but only $15M in state general fund savings.", src:BUDGET_SRC.pew } },
+    CA: { budget:{ position:"deficit", note:"Multi-year structural deficits; LAO previously projected $155B cumulative through FY2028.", src:BUDGET_SRC.pew2 } },
+    CO: { budget:{ position:"deficit", amount:"-$1.2B", note:"FY2026 deficit driven by revenue losses from federal tax code conformity. Reversed a 1.6% across-the-board provider rate increase to address the shortfall.", src:BUDGET_SRC.gov } },
+    FL: { budget:{ position:"deficit", amount:"-$7B by FY2028", note:"Three-year forecast shows a FY2027 deficit growing to nearly $7B in FY2028 absent corrective action.", src:BUDGET_SRC.pew2 } },
+    ID: { budget:{ position:"deficit", note:"Adopted 4% across-the-board Medicaid provider rate reductions for all provider types in FY2026. Legislature has signaled it may consider repealing Medicaid expansion.", src:BUDGET_SRC.kff } },
+    LA: { budget:{ position:"deficit", amount:"-$667M by 2028", note:"Gap driven by expiration of temporary sales and business utility taxes.", src:BUDGET_SRC.cbpp } },
+    MD: { budget:{ position:"deficit", note:"Projected deficits FY2025 through FY2027.", src:BUDGET_SRC.pew2 } },
+    ME: { budget:{ position:"deficit", amount:"-$637M", note:"Structural general fund deficit projected for the biennium, reversing a prior structural surplus.", src:BUDGET_SRC.cbpp } },
+    MN: { budget:{ position:"mixed", amount:"-$6B outyears", note:"$456M surplus for the FY2026-27 biennium, but economists project a shortfall approaching $6B in later years.", src:BUDGET_SRC.cbpp } },
+    NM: { budget:{ position:"deficit", amount:"-$620M FY2027", note:"Estimated new recurring costs from federal Medicaid and SNAP changes, rising above $1B by FY2029.", src:BUDGET_SRC.gov } },
+    PA: { budget:{ position:"deficit", note:"Projected deficits FY2025 through FY2027. Independent Fiscal Office warns reduced federal funds carry multiplier effects.", src:BUDGET_SRC.pew2 } },
+    WI: { budget:{ position:"mixed", amount:"-$50M/yr", note:"Legislative Fiscal Bureau estimates roughly $50M per year in added costs from federal program changes.", src:BUDGET_SRC.gov } },
+    WV: { budget:{ position:"deficit", amount:"-$397M FY2027", note:"Structural gap of roughly $397M in FY2027 rising to $493M by 2033, following the largest year-over-year revenue decline in 25 years.", src:BUDGET_SRC.cbpp } },
+    NY: { budget:{ position:"deficit", note:"Ongoing deficits with Medicaid a central pressure point, particularly rising in-home long-term care spending.", src:BUDGET_SRC.pew2 } }
+  };
+
+  // Cap rates: intentionally empty. See note above.
+  const STATE_CAP_RATES = {};
+
+  function stateSignals(abbr){
+    const evs = eventsForState(abbr);
+    let neg = 0, pos = 0, moratorium = false, rateCut = false, rateUp = false;
+    evs.forEach(e => {
+      const t = ((e.headline||'') + ' ' + (e.detail||'')).toLowerCase();
+      if(e.creditDirection === 'Negative') neg++;
+      if(e.creditDirection === 'Positive') pos++;
+      if(t.indexOf('moratorium') !== -1) moratorium = true;
+      if(t.indexOf('rate cut') !== -1 || t.indexOf('reduction') !== -1 ||
+         t.indexOf('defer') !== -1 || t.indexOf('cuts') !== -1) rateCut = true;
+      if(t.indexOf('rate increase') !== -1 || t.indexOf('increases') !== -1 ||
+         t.indexOf('fully funds') !== -1 || t.indexOf('funding') !== -1) rateUp = true;
+    });
+    const d = STATE_DATA[abbr] || {};
+    return {
+      events: evs.length, neg, pos, moratorium, rateCut, rateUp,
+      expansion: NON_EXPANSION.indexOf(abbr) === -1,
+      budget: d.budget || null
+    };
+  }
+
+  // Transparent additive score. Only inputs we actually have move the number.
+  function scoreState(abbr){
+    const s = stateSignals(abbr);
+    if(!s.events && !s.budget) return { score:null, signals:s, reasons:[] };
+
+    let score = 50;
+    const reasons = [];
+
+    if(s.expansion){ score += 6; reasons.push(["+6","Medicaid expansion state — broader covered population"]); }
+    else { score -= 6; reasons.push(["-6","Non-expansion state — narrower Medicaid base"]); }
+
+    if(s.budget){
+      if(s.budget.position === 'deficit'){ score -= 14; reasons.push(["-14","Projected budget deficit — elevated risk of provider rate action"]); }
+      else if(s.budget.position === 'mixed'){ score -= 6; reasons.push(["-6","Near-term balance but outyear structural gap"]); }
+      else { score += 8; reasons.push(["+8","Budget surplus position"]); }
+    }
+
+    if(s.moratorium){ score -= 18; reasons.push(["-18","Provider enrollment moratorium in effect — blocks new enrollment and CHOW"]); }
+    if(s.rateCut){ score -= 8; reasons.push(["-8","Rate reductions, deferrals or funding cuts in tracked events"]); }
+    if(s.rateUp){ score += 8; reasons.push(["+8","Rate increases or new funding in tracked events"]); }
+
+    if(s.neg > s.pos && s.events >= 2){ score -= 5; reasons.push(["-5","Tracked events skew negative"]); }
+    if(s.pos > s.neg && s.events >= 2){ score += 5; reasons.push(["+5","Tracked events skew positive"]); }
+
+    score = Math.max(0, Math.min(100, score));
+    return { score, signals:s, reasons };
+  }
+
+  function scoreBand(v){
+    if(v === null) return { label:"Insufficient data", color:"#9A9A94" };
+    if(v >= 62) return { label:"Favorable", color:"#2B5C3F" };
+    if(v >= 45) return { label:"Neutral", color:"#8A6014" };
+    return { label:"Challenging", color:"#A81C1C" };
+  }
+
+
+  const STATE_NAMES = {
+    AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",
+    CT:"Connecticut",DE:"Delaware",DC:"District of Columbia",FL:"Florida",GA:"Georgia",
+    HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",
+    LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",
+    MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",
+    NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",
+    OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",
+    SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",
+    VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming"
+  };
+
+  // Tile-grid layout: each state is an equal square in approximate
+  // geographic position. Chosen over true geographic paths so the map is
+  // self-contained and every state stays clickable regardless of land area.
+  const TILE_GRID = [
+    ["AK","","","","","","","","","","ME"],
+    ["","","","","","","","","VT","NH",""],
+    ["WA","ID","MT","ND","MN","IL","WI","MI","NY","RI","MA"],
+    ["OR","NV","WY","SD","IA","IN","OH","PA","NJ","CT",""],
+    ["CA","UT","CO","NE","MO","KY","WV","VA","MD","DE",""],
+    ["","AZ","NM","KS","AR","TN","NC","SC","DC","",""],
+    ["","","","OK","LA","MS","AL","GA","","",""],
+    ["HI","","","TX","","","","","FL","",""]
+  ];
+
+  function eventsForState(abbr){
+    const full = STATE_NAMES[abbr];
+    return EVENTS.filter(e => {
+      const s = (e.state || '');
+      if(!s || s === 'U.S.') return false;
+      return s.split(/[;,]/).some(part => {
+        const t = part.trim();
+        return t === abbr || t === full;
+      });
+    }).sort((a,b) => (b.riskScore||0) - (a.riskScore||0));
+  }
+
+  let selectedState = null;
+
+  // Real geographic map, drawn from the US Atlas TopoJSON via CDN.
+  // Falls back to the tile grid if the CDN is unreachable so the page
+  // still works offline or behind a restrictive network.
+  function renderGeoMap(){
+    const el = document.getElementById('usMap');
+    if(!el) return false;
+    if(typeof d3 === 'undefined' || typeof topojson === 'undefined') return false;
+
+    d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json").then(us => {
+      const states = topojson.feature(us, us.objects.states);
+      const width = 900, height = 560;
+      const projection = d3.geoAlbersUsa().fitSize([width, height], states);
+      const path = d3.geoPath(projection);
+
+      const svg = d3.select(el).html('')
+        .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('width', '100%');
+
+      svg.append('g').selectAll('path')
+        .data(states.features)
+        .join('path')
+        .attr('d', path)
+        .attr('class', d => {
+          const ab = FIPS_TO_ABBR[d.id];
+          const n = ab ? eventsForState(ab).length : 0;
+          return 'state-geo' + (n ? ' has-events' : '') +
+                 (selectedState === ab ? ' selected' : '');
+        })
+        .attr('data-state', d => FIPS_TO_ABBR[d.id] || '')
+        .on('click', function(ev, d){
+          const ab = FIPS_TO_ABBR[d.id];
+          if(!ab) return;
+          selectedState = (selectedState === ab) ? null : ab;
+          renderMap();
+          renderStatePanel();
+        })
+        .append('title')
+        .text(d => {
+          const ab = FIPS_TO_ABBR[d.id];
+          if(!ab) return '';
+          const n = eventsForState(ab).length;
+          const sc = scoreState(ab).score;
+          return `${STATE_NAMES[ab]} — ${n} event${n===1?'':'s'}` +
+                 (sc === null ? '' : ` · score ${sc}`);
+        });
+
+      svg.append('g').selectAll('text')
+        .data(states.features)
+        .join('text')
+        .attr('class','state-geo-label')
+        .attr('transform', d => {
+          const c = path.centroid(d);
+          return (c && !isNaN(c[0])) ? `translate(${c[0]},${c[1]})` : 'translate(-99,-99)';
+        })
+        .attr('dy','0.33em')
+        .text(d => FIPS_TO_ABBR[d.id] || '');
+    }).catch(() => { renderTileMap(); });
+
+    return true;
+  }
+
+  const FIPS_TO_ABBR = {
+    "01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT","10":"DE",
+    "11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL","18":"IN","19":"IA",
+    "20":"KS","21":"KY","22":"LA","23":"ME","24":"MD","25":"MA","26":"MI","27":"MN",
+    "28":"MS","29":"MO","30":"MT","31":"NE","32":"NV","33":"NH","34":"NJ","35":"NM",
+    "36":"NY","37":"NC","38":"ND","39":"OH","40":"OK","41":"OR","42":"PA","44":"RI",
+    "45":"SC","46":"SD","47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA",
+    "54":"WV","55":"WI","56":"WY"
+  };
+
+  function renderMap(){
+    if(renderGeoMap()) return;
+    renderTileMap();
+  }
+
+  function renderTileMap(){
+    const CELL = 52, GAP = 4;
+    const cols = 11, rows = TILE_GRID.length;
+    const w = cols * (CELL + GAP), h = rows * (CELL + GAP);
+    let svg = `<svg viewBox="0 0 ${w} ${h}" width="100%" style="max-width:${w}px;">`;
+    TILE_GRID.forEach((row, r) => {
+      row.forEach((abbr, c) => {
+        if(!abbr) return;
+        const x = c * (CELL + GAP), y = r * (CELL + GAP);
+        const n = eventsForState(abbr).length;
+        const cls = 'state-tile' + (n ? ' has-events' : '') +
+                    (selectedState === abbr ? ' selected' : '');
+        svg += `<rect class="${cls}" data-state="${abbr}" x="${x}" y="${y}"
+                  width="${CELL}" height="${CELL}" rx="3"></rect>`;
+        svg += `<text class="state-abbr" x="${x + CELL/2}" y="${y + CELL/2 + 1}">${abbr}</text>`;
+        if(n) svg += `<text class="state-count" x="${x + CELL/2}" y="${y + CELL - 8}">${n}</text>`;
+      });
+    });
+    svg += '</svg>';
+    setHTML('usMap', svg);
+
+    const map = document.getElementById('usMap');
+    if(!map) return;
+    Array.prototype.forEach.call(map.querySelectorAll('.state-tile'), tile => {
+      tile.addEventListener('click', () => {
+        const abbr = tile.getAttribute('data-state');
+        selectedState = (selectedState === abbr) ? null : abbr;
+        renderTileMap();
+        renderStatePanel();
+      });
+    });
+  }
+
+  function renderStatePanel(){
+    if(!selectedState){
+      setHTML('statePanel', renderRankings());
+      return;
+    }
+    const abbr = selectedState;
+    const evs = eventsForState(abbr);
+    const res = scoreState(abbr);
+    const band = scoreBand(res.score);
+    const caps = STATE_CAP_RATES[abbr];
+    const d = STATE_DATA[abbr] || {};
+
+    let html = `<div class="sp-head">${STATE_NAMES[abbr]}
+      <button class="sp-back" id="spBack">All states</button></div>`;
+
+    // --- score ---
+    html += `<div class="sp-score-box">
+      <div class="sp-score-num" style="color:${band.color};">
+        ${res.score === null ? '&mdash;' : res.score}</div>
+      <div>
+        <div class="sp-score-band" style="color:${band.color};">${band.label}</div>
+        <div class="sp-score-cap">Healthcare lending favorability &middot; 0&ndash;100</div>
+      </div>
+    </div>`;
+
+    if(res.reasons.length){
+      html += `<div class="sp-reasons">` + res.reasons.map(r =>
+        `<div class="sp-reason"><span class="sp-delta ${r[0][0]==='+'?'up':'down'}">${r[0]}</span>${r[1]}</div>`
+      ).join('') + `</div>`;
+    } else {
+      html += `<div class="sp-empty">No tracked events or published budget figure for this state, so no score is computed. A blank score means missing inputs, not a neutral assessment.</div>`;
+    }
+
+    // --- cap rates ---
+    html += `<div class="sp-sub">Valuation Benchmarks</div>`;
+    if(caps){
+      html += `<table class="sp-table"><tr><th></th><th>Metro</th><th>Rural</th></tr>` +
+        Object.keys(caps).map(k =>
+          `<tr><td>${k}</td><td>${caps[k].metro || '&mdash;'}</td><td>${caps[k].rural || '&mdash;'}</td></tr>`
+        ).join('') + `</table>`;
+    } else {
+      html += `<div class="sp-empty">
+        Not loaded. State-level cap rates for SNF, assisted living and independent
+        living &mdash; metro and rural &mdash; are proprietary to
+        <a href="https://www.cbre.com/insights" target="_blank" rel="noopener">CBRE</a>,
+        <a href="https://www.nicmap.com/" target="_blank" rel="noopener">NIC MAP</a> and
+        Levin Associates. They are not reproduced or estimated here.
+        Add them to <code>STATE_CAP_RATES</code> in build_page.py and this table
+        populates automatically.</div>`;
+    }
+
+    // --- budget ---
+    html += `<div class="sp-sub">State Budget Position</div>`;
+    if(d.budget){
+      const bcol = d.budget.position === 'deficit' ? '#A81C1C'
+                 : d.budget.position === 'surplus' ? '#2B5C3F' : '#8A6014';
+      html += `<div class="sp-budget">
+        <span class="sp-budget-tag" style="background:${bcol};">
+          ${d.budget.position.toUpperCase()}${d.budget.amount ? ' &middot; ' + d.budget.amount : ''}</span>
+        <div class="sp-budget-note">${d.budget.note}</div>
+        <div class="rc-src"><a href="${d.budget.src}" target="_blank" rel="noopener">Source &rsaquo;</a></div>
+      </div>`;
+    } else {
+      html += `<div class="sp-empty">No published budget projection loaded for this state.
+        Sourced figures currently cover 15 states; the rest are left blank rather
+        than estimated. NASBO and state budget offices publish the primary data.</div>`;
+    }
+
+    // --- events ---
+    html += `<div class="sp-sub">Tracked Events (${evs.length})</div>`;
+    if(!evs.length){
+      html += `<div class="sp-empty">No tracked events reference this state.</div>`;
+    } else {
+      html += evs.map(e => `
+        <div class="sp-event">
+          <span class="sp-score">${e.riskScore ?? '-'}</span>
+          <a href="${e.sourceURL || '#'}" target="_blank" rel="noopener">${e.headline}</a>
+          <div class="sp-meta">${e.sourceAgency} &middot; ${e.date} &middot; ${e.creditDirection}</div>
+        </div>`).join('');
+    }
+
+    setHTML('statePanel', html);
+    const back = document.getElementById('spBack');
+    if(back) back.addEventListener('click', () => {
+      selectedState = null; renderMap(); renderStatePanel();
+    });
+  }
+
+  function renderRankings(){
+    const scored = Object.keys(STATE_NAMES)
+      .map(a => ({ abbr:a, ...scoreState(a) }))
+      .filter(x => x.score !== null);
+
+    if(!scored.length){
+      return `<div class="sp-empty">No states have enough data to score yet.</div>`;
+    }
+
+    scored.sort((a,b) => b.score - a.score);
+    const top = scored.slice(0, 5);
+    const bottom = scored.slice(-5).reverse();
+
+    const row = x => {
+      const band = scoreBand(x.score);
+      const why = x.reasons.slice(0, 2).map(r => r[1]).join('; ');
+      return `<div class="rank-row">
+        <span class="rank-score" style="background:${band.color};">${x.score}</span>
+        <div>
+          <div class="rank-name">${STATE_NAMES[x.abbr]}</div>
+          <div class="rank-why">${why || 'Limited inputs'}</div>
+        </div>
+      </div>`;
+    };
+
+    return `
+      <div class="sp-head">State Favorability</div>
+      <div class="sp-empty" style="margin-bottom:16px;">
+        Computed from Medicaid expansion status, published budget position, and
+        the enrollment moratoria and rate actions tracked in this feed. Only
+        states with at least one of those inputs are scored &mdash;
+        ${scored.length} of 51 currently qualify. Cap rate and per-bed inputs are
+        not included because that data is not loaded.
+      </div>
+      <div class="sp-sub">Most Favorable</div>
+      ${top.map(row).join('')}
+      <div class="sp-sub">Least Favorable</div>
+      ${bottom.map(row).join('')}
+      <div class="sp-empty" style="margin-top:16px;">
+        Click any state on the map for its full detail.
+      </div>`;
+  }
+
+  function renderInfo(){
+    const card = c => `
+      <div class="rate-card">
+        <div class="rc-head">
+          <span class="rc-name">${c.name}</span>
+          <span class="rc-val ${c.dir}">${c.value}</span>
+        </div>
+        <div class="rc-note">${c.note}</div>
+        <div class="rc-src">${c.url ? `<a href="${c.url}" target="_blank" rel="noopener">${c.src} &rsaquo;</a>` : c.src}</div>
+      </div>`;
+    setHTML('rateCards', RATE_CARDS.map(card).join(''));
+    setHTML('benchCards', BENCH_CARDS.map(card).join(''));
+    renderMap();
+    renderStatePanel();
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.view-tab'), tab => {
+    tab.addEventListener('click', () => {
+      Array.prototype.forEach.call(document.querySelectorAll('.view-tab'),
+        t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const isInfo = tab.getAttribute('data-view') === 'info';
+      const fv = document.getElementById('feedView');
+      const iv = document.getElementById('infoView');
+      const fc = document.getElementById('feedControls');
+      if(fv) fv.style.display = isInfo ? 'none' : '';
+      if(fc) fc.style.display = isInfo ? 'none' : '';
+      if(iv) iv.style.display = isInfo ? '' : 'none';
+      if(isInfo) renderInfo();
+    });
+  });
+
+  renderBorrowerList();
+  renderFeed();
+</script>
+</body>
+</html>
