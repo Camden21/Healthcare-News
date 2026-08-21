@@ -397,19 +397,60 @@ TRADE_SOURCES = [
     {"name": "McKnight's Long-Term Care News", "url": "https://www.mcknights.com/feed/"},
 ]
 
-# Credit-relevant signal for trade press. Broad industry coverage is skipped;
-# these are the things that actually move a credit view.
+# Headline shapes that indicate soft/promotional coverage rather than news
+# with portfolio consequence. Checked BEFORE the signal terms, so a puff piece
+# that happens to contain "margin" or "occupancy" is still rejected.
+PUFF_PATTERNS = [
+    r"^\d+\s+(ways|tips|things|reasons|steps|lessons|trends|takeaways)",
+    r"\bhow (they|we|one|this|these)\b",
+    r"\bwhat to know\b", r"\bwhat operators\b", r"\bhere'?s (how|why|what)\b",
+    r"\bbest practices\b", r"\bkeys to\b", r"\bsecrets? (to|of)\b",
+    r"\bspotlight\b", r"\bprofile\b", r"\bq&a\b", r"\bexecutive insight",
+    r"\bvoices\b", r"\bopinion\b", r"\bcommentary\b", r"\bguest column",
+    r"\bpodcast\b", r"\bwebinar\b", r"\bwhite paper\b", r"\bsponsored\b",
+    r"\bawards?\b", r"\brecognized\b", r"\bhonored\b", r"\bcelebrat",
+    r"\bnames? \w+ (as )?(ceo|cfo|coo|president|chief|vp|director)",
+    r"\bappoints?\b", r"\bhires?\b", r"\bpromotes?\b", r"\bjoins\b",
+    r"\bnew hire", r"\bpeople on the move",
+    r"\bsaved? per\b", r"\bminutes? per\b", r"\breshap", r"\btransform",
+    r"\bthought leader", r"\bcase study\b", r"\bsuccess story\b",
+    r"\bculture\b", r"\bengagement\b", r"\bwellness program",
+]
+
+# Terms that indicate a genuine change with portfolio consequence.
+# Trade items must hit one of these to be kept.
 CREDIT_SIGNAL_TERMS = [
+    # distress / capital structure
     "bankruptcy", "chapter 11", "chapter 7", "default", "defaults",
     "covenant", "forbearance", "restructuring", "restructure", "receivership",
-    "downgrade", "downgraded", "distress", "distressed", "insolvency",
-    "closure", "closures", "closing", "shut down", "shutter", "layoff",
-    "layoffs", "acquisition", "acquires", "acquired", "merger", "sells",
-    "divest", "ipo", "sec investigation", "subpoena", "lawsuit", "settlement",
-    "fraud", "indictment", "false claims", "occupancy", "census",
-    "reimbursement", "rate cut", "margin", "earnings", "guidance",
-    "credit facility", "refinanc", "debt", "liquidity", "going concern",
+    "downgrade", "downgraded", "distressed", "insolvency", "going concern",
+    "credit facility", "refinanc", "liquidity crisis", "missed payment",
+    # operations ceasing
+    "closure", "closures", "closes", "closing", "shuts down", "shutter",
+    "ceases operations", "layoffs", "wind down", "exits market",
+    # transactions
+    "acquisition", "acquires", "acquired", "merger", "divest", "sale of",
+    "ipo", "take private", "recapitalization",
+    # legal / regulatory action
+    "sec investigation", "subpoena", "indictment", "false claims",
+    "settlement", "lawsuit", "class action", "consent decree",
+    "civil investigative demand", "moratorium", "sanction", "penalty",
+    "termination", "terminates", "terminated", "decertif",
+    "enforcement action", "revokes", "suspends", "bars",
+    # reimbursement / policy change
+    "rate cut", "rate increase", "reimbursement change", "final rule",
+    "proposed rule", "medicaid cuts", "payment update", "wage index",
+    "prior authorization", "staffing mandate", "minimum staffing",
+    # market-moving financials
+    "guidance", "earnings miss", "restatement", "material weakness",
+    "impairment", "writedown", "write-down",
 ]
+
+
+def is_puff(title):
+    """True if the headline reads as promotional or soft feature coverage."""
+    t = _normalize(title)
+    return any(re.search(pat, t) for pat in PUFF_PATTERNS)
 
 
 def fetch_trade_source(source):
@@ -434,9 +475,13 @@ def fetch_trade_source(source):
         borrowers = match_borrowers(text)
         has_signal = any(_matches(blob, t) for t in CREDIT_SIGNAL_TERMS)
 
-        # Skip routine industry coverage
-        if not borrowers and not has_signal:
-            continue
+        # Borrower mentions always pass. Everything else must be a real
+        # development, not a feature or promotional piece.
+        if not borrowers:
+            if is_puff(item["title"]):
+                continue
+            if not has_signal:
+                continue
 
         dt = parse_date(item["published"])
         if dt is None:
