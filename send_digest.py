@@ -107,68 +107,88 @@ def save_state(sent_ids):
         )
 
 
+GOV_CATEGORIES = {"fraud", "medicaid", "cms", "regulation", "disaster", "other"}
+
+
 def select_events(events, already_sent, min_score, max_items=5,
                   max_per_category=2, exclude_categories=None):
-    """Pick what to email.
+    """Split new events into three sections, each capped at max_items.
 
-    Returns (picked, overflow, excluded).
+    Returns (sections, overflow, excluded) where sections is an ordered list
+    of (title, [events]) tuples: Regulatory & Enforcement first, then
+    Borrower News, then Industry & Trade.
 
-    - exclude_categories are never emailed, but are still marked as seen so
-      they don't accumulate and flood the digest if the filter is later
-      removed. They remain visible on the site.
-    - max_per_category stops one noisy source from crowding out everything else.
-    - max_items caps total length.
+    Borrower items ignore the score threshold and category exclusions.
+    Government items respect both, plus a per-category cap so one noisy
+    source cannot fill the section.
     """
     exclude_categories = set(exclude_categories or [])
 
-    candidates = []
+    gov_pool, borrower_pool, industry_pool = [], [], []
     excluded = []
-    borrower_hits = []
 
     for e in events:
         eid = e.get("id")
         if not eid or eid in already_sent:
             continue
 
-        # Borrower mentions always go out: they bypass the category filter,
-        # the score threshold, and the per-category cap.
         if e.get("borrowers"):
-            borrower_hits.append(e)
+            borrower_pool.append(e)
             continue
 
-        if (e.get("broadCategory") or "") in exclude_categories:
+        cat = e.get("broadCategory") or "other"
+
+        if cat == "industry":
+            if (e.get("riskScore") or 0) >= min_score - 2:
+                industry_pool.append(e)
+            else:
+                excluded.append(e)
+            continue
+
+        if cat in exclude_categories:
             excluded.append(e)
             continue
         if (e.get("riskScore") or 0) < min_score:
             continue
-        candidates.append(e)
+        if cat in GOV_CATEGORIES:
+            gov_pool.append(e)
 
-    # Highest impact first, then most recent
-    candidates.sort(
-        key=lambda e: ((e.get("riskScore") or 0), e.get("dateSort") or ""),
-        reverse=True,
-    )
+    def rank(pool):
+        return sorted(pool,
+                      key=lambda e: ((e.get("riskScore") or 0), e.get("dateSort") or ""),
+                      reverse=True)
 
-    picked = []
-    per_category = {}
     overflow = []
 
-    for e in candidates:
-        cat = e.get("broadCategory") or "other"
-        if per_category.get(cat, 0) >= max_per_category:
+    # Government: cap per category so disasters can't crowd out CMS/fraud
+    gov, per_cat = [], {}
+    for e in rank(gov_pool):
+        c = e.get("broadCategory") or "other"
+        if per_cat.get(c, 0) >= max_per_category or len(gov) >= max_items:
             overflow.append(e)
             continue
-        if len(picked) >= max_items:
-            overflow.append(e)
-            continue
-        picked.append(e)
-        per_category[cat] = per_category.get(cat, 0) + 1
+        gov.append(e)
+        per_cat[c] = per_cat.get(c, 0) + 1
 
-    borrower_hits.sort(
-        key=lambda e: ((e.get("riskScore") or 0), e.get("dateSort") or ""),
-        reverse=True,
-    )
-    return borrower_hits + picked, overflow, excluded
+    borrower = rank(borrower_pool)[:max_items]
+    overflow.extend(rank(borrower_pool)[max_items:])
+
+    industry = rank(industry_pool)[:max_items]
+    overflow.extend(rank(industry_pool)[max_items:])
+
+    sections = [
+        ("Regulatory & Enforcement", gov),
+        ("Borrower News", borrower),
+        ("Industry & Trade", industry),
+    ]
+    return sections, overflow, excluded
+
+
+def flatten(sections):
+    out = []
+    for _, items in sections:
+        out.extend(items)
+    return out
 
 
 # ----------------------------------------------------------------------
@@ -381,25 +401,9 @@ def tier_of(score):
     return "Elevated"
 
 
-def render_html(events, site_url, overflow=None):
-    """Email-safe HTML.
-
-    Built with tables and inline styles because Outlook renders HTML with
-    Word's engine: it clips borders on fixed-height divs, ignores line-height
-    centering, and drops many modern CSS properties. Filled background chips
-    survive where bordered boxes do not.
-    """
-    overflow = overflow or []
-    today = datetime.utcnow().strftime("%B %d, %Y")
-
-    # Tinted chip colours keyed to credit direction
-    palette = {
-        "Negative": ("#A81C1C", "#F7EAEA"),
-        "Positive": ("#2B5C3F", "#E9F0EB"),
-        "Mixed":    ("#8A6014", "#F6EFDF"),
-    }
-
-    cards = []
+def _render_cards(events, palette):
+    """Render the event cards for one section."""
+    out = []
     for e in events:
         score = e.get("riskScore") or 0
         fg, bg = palette.get(e.get("creditDirection"), ("#4A4A46", "#EFEEE9"))
@@ -428,25 +432,22 @@ def render_html(events, site_url, overflow=None):
         if e.get("sourceVerification") and e["sourceVerification"] != "Primary":
             flag = (
                 '<div style="font:400 11px Arial,sans-serif;color:#8A6014;'
-                'padding-top:8px;">Auto-drafted &mdash; pending review</div>'
+                f'padding-top:8px;">{esc(e["sourceVerification"])}</div>'
             )
 
-        cards.append(f"""
+        out.append(f"""
 <tr><td style="padding:0 0 12px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
          bgcolor="#FFFFFF" style="background:#FFFFFF;border:1px solid #E2E0D8;">
     <tr>
       <td valign="top" style="padding:18px 0 18px 18px;" width="62">
-        <!-- score chip: filled cell, no border, fixed line-height for Outlook -->
         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
           <tr><td align="center" valign="middle" width="44" height="44"
                   bgcolor="{bg}"
                   style="width:44px;height:44px;background:{bg};color:{fg};
                          font-family:Arial,Helvetica,sans-serif;font-size:18px;
                          font-weight:bold;text-align:center;
-                         mso-line-height-rule:exactly;line-height:44px;">
-            {score}
-          </td></tr>
+                         mso-line-height-rule:exactly;line-height:44px;">{score}</td></tr>
           <tr><td align="center"
                   style="font:400 9px Arial,sans-serif;color:#8A8A84;
                          padding-top:5px;letter-spacing:0.06em;
@@ -461,26 +462,22 @@ def render_html(events, site_url, overflow=None):
           {esc(cat)} &nbsp;&bull;&nbsp; {esc(e.get('creditDirection',''))}
           &nbsp;&bull;&nbsp; {tier_of(score)}
         </div>
-
         <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;
                     font-weight:bold;color:#1A1A18;line-height:1.32;
                     padding-bottom:8px;">
           <a href="{esc(e.get('sourceURL','#'))}"
              style="color:#1A1A18;text-decoration:none;">{esc(e.get('headline',''))}</a>
         </div>
-
         <div style="font-family:Georgia,'Times New Roman',serif;font-size:13.5px;
                     color:#4A4A46;line-height:1.6;padding-bottom:11px;">
           {esc(e.get('detail',''))}
         </div>
-
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:10.5px;
                     color:#7A7A74;letter-spacing:0.03em;">
           <span style="color:#1A1A18;font-weight:bold;">{esc(e.get('sourceAgency',''))}</span>
           &nbsp;&bull;&nbsp; {locale}
           &nbsp;&bull;&nbsp; {esc(e.get('date',''))}
         </div>
-
         <div style="padding-top:10px;">
           <a href="{esc(e.get('sourceURL','#'))}"
              style="font-family:Arial,Helvetica,sans-serif;font-size:11px;
@@ -492,7 +489,46 @@ def render_html(events, site_url, overflow=None):
     </tr>
   </table>
 </td></tr>""")
+    return out
 
+
+def render_html(sections, site_url, overflow=None):
+    """Email-safe HTML.
+
+    Built with tables and inline styles because Outlook renders HTML with
+    Word's engine: it clips borders on fixed-height divs, ignores line-height
+    centering, and drops many modern CSS properties. Filled background chips
+    survive where bordered boxes do not.
+    """
+    overflow = overflow or []
+    events = flatten(sections)
+    today = datetime.utcnow().strftime("%B %d, %Y")
+
+    palette = {
+        "Negative": ("#A81C1C", "#F7EAEA"),
+        "Positive": ("#2B5C3F", "#E9F0EB"),
+        "Mixed":    ("#8A6014", "#F6EFDF"),
+    }
+
+    cards = []
+    for section_title, section_events in sections:
+        if not section_events:
+            continue
+        cards.append(f"""
+<tr><td style="padding:10px 0 12px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr><td height="2" bgcolor="#1A1A18"
+            style="height:2px;background:#1A1A18;font-size:0;line-height:0;">&nbsp;</td></tr>
+    <tr><td style="padding-top:8px;font-family:Arial,Helvetica,sans-serif;
+                   font-size:11px;font-weight:bold;letter-spacing:0.16em;
+                   text-transform:uppercase;color:#1A1A18;">
+      {esc(section_title)}
+      <span style="color:#9A9A94;font-weight:normal;letter-spacing:0.04em;">
+        &nbsp;&nbsp;{len(section_events)} item{'' if len(section_events) == 1 else 's'}</span>
+    </td></tr>
+  </table>
+</td></tr>""")
+        cards.extend(_render_cards(section_events, palette))
     # ---- summary ----
     s = build_summary(events)
     summary_rows = "".join(
@@ -607,7 +643,8 @@ def render_html(events, site_url, overflow=None):
 </body></html>"""
 
 
-def render_text(events, overflow=None):
+def render_text(sections, overflow=None):
+    events = flatten(sections)
     lines = [
         "CIB HEALTHCARE NEWS TRACKER",
         f"Daily digest - {datetime.utcnow().strftime('%B %d, %Y')}",
@@ -619,19 +656,23 @@ def render_text(events, overflow=None):
     for line in summary_sentences(build_summary(events)):
         lines.append(f"  - {line}")
     lines += ["", "=" * 60, ""]
-    for e in events:
-        if e.get("borrowers"):
-            lines.append("*** PORTFOLIO BORROWER: " + ", ".join(e["borrowers"]) + " ***")
-        lines.append(f"[{e.get('riskScore')}] {e.get('creditDirection','')} - "
-                     f"{CAT_LABELS.get(e.get('broadCategory'), '')}")
-        lines.append(e.get("headline", ""))
-        lines.append("")
-        lines.append(e.get("detail", ""))
-        lines.append("")
-        lines.append(f"{e.get('sourceAgency','')} | {e.get('date','')}")
-        lines.append(e.get("sourceURL", ""))
-        lines.append("-" * 60)
-        lines.append("")
+    for section_title, section_events in sections:
+        if not section_events:
+            continue
+        lines += [section_title.upper(), "-" * len(section_title), ""]
+        for e in section_events:
+            if e.get("borrowers"):
+                lines.append("*** PORTFOLIO BORROWER: " + ", ".join(e["borrowers"]) + " ***")
+            lines.append(f"[{e.get('riskScore')}] {e.get('creditDirection','')} - "
+                         f"{CAT_LABELS.get(e.get('broadCategory'), '')}")
+            lines.append(e.get("headline", ""))
+            lines.append("")
+            lines.append(e.get("detail", ""))
+            lines.append("")
+            lines.append(f"{e.get('sourceAgency','')} | {e.get('date','')}")
+            lines.append(e.get("sourceURL", ""))
+            lines.append("-" * 60)
+            lines.append("")
     if overflow:
         n = len(overflow)
         lines.append(f"{n} additional lower-priority {'event' if n == 1 else 'events'} not shown - view on the tracker.")
@@ -643,7 +684,8 @@ def render_text(events, overflow=None):
 # Send
 # ----------------------------------------------------------------------
 
-def send(cfg, events, overflow=None):
+def send(cfg, sections, overflow=None):
+    events = flatten(sections)
     count = len(events)
     top = max((e.get("riskScore") or 0) for e in events)
     n_borrower = sum(1 for e in events if e.get("borrowers"))
@@ -662,8 +704,8 @@ def send(cfg, events, overflow=None):
     msg["Bcc"] = ", ".join(cfg["recipients"])
 
     overflow = overflow or []
-    msg.set_content(render_text(events, overflow))
-    msg.add_alternative(render_html(events, cfg["site_url"], overflow), subtype="html")
+    msg.set_content(render_text(sections, overflow))
+    msg.add_alternative(render_html(sections, cfg["site_url"], overflow), subtype="html")
 
     context = ssl.create_default_context()
     with smtplib.SMTP(cfg["host"], cfg["port"], timeout=30) as server:
@@ -686,7 +728,7 @@ def main():
     first_run = not already_sent
 
     cfg = load_config()
-    picked, overflow, excluded = select_events(
+    sections, overflow, excluded = select_events(
         events, already_sent, cfg["min_score"],
         max_items=cfg["max_items"],
         max_per_category=DEFAULT_MAX_PER_CATEGORY,
@@ -697,6 +739,9 @@ def main():
     print(f"Previously sent:  {len(already_sent)}")
     print(f"Min score:        {cfg['min_score']}")
     print(f"Max per email:    {cfg['max_items']}")
+    picked = flatten(sections)
+    for title, items in sections:
+        print(f"  {title}: {len(items)}")
     print(f"Emailing:         {len(picked)}")
     print(f"Held back:        {len(overflow)} (on site, marked as seen)")
     print(f"Excluded categs:  {', '.join(cfg['exclude']) or 'none'} "
@@ -721,7 +766,7 @@ def main():
     for e in picked:
         print(f"  [{e.get('riskScore')}] {e.get('headline','')[:66]}")
 
-    send(cfg, picked, overflow)
+    send(cfg, sections, overflow)
     newly = {e.get("id") for e in picked + overflow + excluded if e.get("id")}
     save_state(already_sent | newly)
     return 0
