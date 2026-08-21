@@ -138,6 +138,27 @@ TEMPLATE = r"""<!DOCTYPE html>
   }
   .filter-chip:hover{ background: #EFEDE4; }
   .filter-chip.active{ background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .filter-chip.chip-primary{ border-color: var(--red); color: var(--red); font-weight: 700; }
+  .filter-chip.chip-primary:hover{ background: #F7EDEC; }
+  .filter-chip.chip-primary.active{ background: var(--red); border-color: var(--red); color: #fff; }
+  .chip-divider{
+    display:inline-block; width:1px; align-self:stretch;
+    background: var(--rule-light); margin: 0 4px;
+  }
+  .borrower-row{ cursor: pointer; }
+  .borrower-row:hover span:first-child{ text-decoration: underline; }
+  .borrower-row.selected{ background: #F7EDEC; }
+  .borrower-row.selected span:first-child{ color: var(--red); font-weight: 700; }
+  .active-borrower-bar{
+    font-family: var(--font-sans); font-size: 12px; color: var(--ink);
+    background: #F7EDEC; border-left: 3px solid var(--red);
+    padding: 9px 14px; margin: 16px 0 4px;
+  }
+  .active-borrower-bar button{
+    background:none; border:none; color: var(--red); cursor:pointer;
+    font-family: var(--font-sans); font-size: 11px; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.05em; margin-left:10px;
+  }
   .controls-row2{ display:flex; gap: 8px; flex-wrap: wrap; align-items: center; padding-bottom: 14px; }
   .controls-row2 .filter-chip.dir-negative.active{ background: var(--red); border-color: var(--red); }
   .controls-row2 .filter-chip.dir-positive.active{ background: var(--green); border-color: var(--green); }
@@ -285,14 +306,15 @@ TEMPLATE = r"""<!DOCTYPE html>
   <div class="controls-wrap">
     <div class="controls">
       <div class="search-box"><input type="text" id="searchInput" placeholder="Search headlines, states, agencies..."></div>
-      <button class="filter-chip active" data-filter="all">All</button>
+      <button class="filter-chip chip-primary active" data-filter="gov">Regulatory &amp; Enforcement</button>
+      <button class="filter-chip chip-primary" data-filter="borrower">Borrower News</button>
+      <button class="filter-chip chip-primary" data-filter="industry">Industry &amp; Trade</button>
+      <span class="chip-divider"></span>
       <button class="filter-chip" data-filter="fraud">Fraud / Enforcement</button>
       <button class="filter-chip" data-filter="medicaid">Medicaid Policy</button>
       <button class="filter-chip" data-filter="cms">CMS / Medicare</button>
       <button class="filter-chip" data-filter="disaster">Disaster</button>
       <button class="filter-chip" data-filter="regulation">Regulation</button>
-      <button class="filter-chip" data-filter="borrower">Borrower News</button>
-      <button class="filter-chip" data-filter="industry">Industry / Trade</button>
     </div>
     <div class="controls-row2">
       <span class="row2-label">Credit Direction</span>
@@ -334,6 +356,8 @@ TEMPLATE = r"""<!DOCTYPE html>
     "Complete Care at Glendale","HCS-Girling","Quipt Home Medical",
     "Diversified Healthcare Trust","Oxford Finance"];
 
+  const GOV_CATEGORIES = ["fraud","medicaid","cms","regulation","disaster","other"];
+
   const CAT_LABELS = { borrower:"Borrower News", industry:"Industry / Trade", fraud:"Fraud / Enforcement", medicaid:"Medicaid Policy", cms:"CMS / Medicare", disaster:"Disaster", regulation:"Regulation", other:"Other" };
 
   function riskClass(score){
@@ -360,12 +384,26 @@ TEMPLATE = r"""<!DOCTYPE html>
     return `<span><span class="${dirClass}">${arrow}</span><a href="${e.sourceURL || '#'}" target="_blank" rel="noopener" style="text-decoration:none;">${e.headline}</a> — ${e.sourceAgency}</span>`;
   }).join(''));
 
-  setHTML('borrowerList', BORROWERS.map(b => {
-    const n = EVENTS.filter(e => (e.borrowers || []).includes(b)).length;
-    return `<div class="borrower-row ${n ? 'has-hits' : ''}">
-      <span>${b}</span>
-      <span class="count ${n ? 'hit' : 'zero'}">${n || '—'}</span></div>`;
-  }).join(''));
+  function renderBorrowerList(){
+    setHTML('borrowerList', BORROWERS.map((b, i) => {
+      const n = EVENTS.filter(e => (e.borrowers || []).includes(b)).length;
+      const sel = activeBorrower === b ? 'selected' : '';
+      return `<div class="borrower-row ${n ? 'has-hits' : ''} ${sel}" data-borrower-index="${i}">
+        <span>${b}</span>
+        <span class="count ${n ? 'hit' : 'zero'}">${n || '—'}</span></div>`;
+    }).join(''));
+
+    const list = document.getElementById('borrowerList');
+    if(!list) return;
+    Array.prototype.forEach.call(list.querySelectorAll('.borrower-row'), row => {
+      row.addEventListener('click', () => {
+        const name = BORROWERS[parseInt(row.getAttribute('data-borrower-index'), 10)];
+        activeBorrower = (activeBorrower === name) ? null : name;
+        renderBorrowerList();
+        renderFeed();
+      });
+    });
+  }
 
   setHTML('sourceList', SOURCES.map(s => {
     const count = EVENTS.filter(e => e.sourceAgency === s).length;
@@ -380,7 +418,8 @@ TEMPLATE = r"""<!DOCTYPE html>
     EVENTS.filter(e => (e.borrowers || []).length).length;
 
   const feed = document.getElementById('feed') || document.createElement('div');
-  let activeFilter = 'all';
+  let activeFilter = 'gov';
+  let activeBorrower = null;
   let activeDir = 'all';
   let searchTerm = '';
   let sortMode = 'date';
@@ -394,7 +433,13 @@ TEMPLATE = r"""<!DOCTYPE html>
 
   function renderFeed(){
     let filtered = EVENTS.filter(e => {
-      const matchesFilter = activeFilter === 'all' || e.broadCategory === activeFilter;
+      if(activeBorrower){
+        if(!(e.borrowers || []).includes(activeBorrower)) return false;
+      }
+      const matchesFilter =
+        activeBorrower ? true :
+        activeFilter === 'gov' ? GOV_CATEGORIES.indexOf(e.broadCategory) !== -1 :
+        e.broadCategory === activeFilter;
       const matchesDir = activeDir === 'all' || e.creditDirection === activeDir;
       const haystack = [e.headline, e.detail, e.sourceAgency, e.state, e.jurisdiction, e.category].join(' ').toLowerCase();
       const matchesSearch = haystack.includes(searchTerm.toLowerCase());
@@ -405,9 +450,18 @@ TEMPLATE = r"""<!DOCTYPE html>
       filtered = filtered.slice().sort((a,b) => (b.riskScore ?? 0) - (a.riskScore ?? 0));
     }
 
+    const borrowerBar = activeBorrower
+      ? `<div class="active-borrower-bar">Showing all coverage for <strong>${activeBorrower}</strong>
+         <button id="clearBorrower">Clear</button></div>`
+      : '';
+
     if(filtered.length === 0){
       let msg;
-      if(activeFilter === 'borrower'){
+      if(activeBorrower){
+        msg = `<strong>No coverage yet for ${activeBorrower}.</strong><br><br>
+          This borrower is being monitored across government and trade-press
+          sources. Items will appear here automatically when it is named.`;
+      } else if(activeFilter === 'borrower'){
         msg = `<strong>No borrower mentions yet.</strong><br><br>
           The tracker is monitoring ${BORROWERS.length} portfolio borrowers across
           government and trade-press sources. Items will appear here automatically
@@ -421,9 +475,10 @@ TEMPLATE = r"""<!DOCTYPE html>
       } else if(searchTerm){
         msg = `No events match &ldquo;${searchTerm}&rdquo;. Try a broader term or clear the search.`;
       } else {
-        msg = `No events match this filter. Try selecting &ldquo;All.&rdquo;`;
+        msg = `No events match this filter. Try selecting &ldquo;Regulatory &amp; Enforcement.&rdquo;`;
       }
-      feed.innerHTML = `<div class="empty-state">${msg}</div>`;
+      feed.innerHTML = borrowerBar + `<div class="empty-state">${msg}</div>`;
+      wireClearBorrower();
       return;
     }
 
@@ -459,7 +514,17 @@ TEMPLATE = r"""<!DOCTYPE html>
           <div class="risk-score ${riskClass(e.riskScore)}">${e.riskScore ?? '–'}</div>
         </div>`;
     });
-    feed.innerHTML = html;
+    feed.innerHTML = borrowerBar + html;
+    wireClearBorrower();
+  }
+
+  function wireClearBorrower(){
+    const btn = document.getElementById('clearBorrower');
+    if(btn) btn.addEventListener('click', () => {
+      activeBorrower = null;
+      renderBorrowerList();
+      renderFeed();
+    });
   }
 
   document.querySelectorAll('.controls .filter-chip').forEach(btn => {
@@ -467,6 +532,8 @@ TEMPLATE = r"""<!DOCTYPE html>
       document.querySelectorAll('.controls .filter-chip').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeFilter = btn.dataset.filter;
+      activeBorrower = null;
+      renderBorrowerList();
       renderFeed();
     });
   });
@@ -495,6 +562,7 @@ TEMPLATE = r"""<!DOCTYPE html>
     });
   });
 
+  renderBorrowerList();
   renderFeed();
 </script>
 </body>
