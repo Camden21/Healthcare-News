@@ -22,6 +22,7 @@ from datetime import datetime, timezone
 from xml.etree import ElementTree
 
 EVENTS_FILE = "events.json"
+LOOKBACK_MONTHS = 36
 USER_AGENT = "CIB-Healthcare-Tracker/1.0 (GitHub Actions; daily digest)"
 TIMEOUT = 30
 
@@ -774,8 +775,10 @@ def main():
     existing_urls = {normalize(e.get("sourceURL")) for e in events}
     existing_headlines = {(e.get("headline") or "").strip().lower() for e in events}
 
-    # Look back 30 days so a missed run self-heals on the next day.
-    lookback = time.time() - (30 * 86400)
+    # 36-month lookback window. Deduplication by URL and headline means a
+    # long window costs nothing on repeat runs, and it lets newly added
+    # sources backfill their full history on first fetch.
+    lookback = time.time() - (LOOKBACK_MONTHS * 30 * 86400)
     since_iso = datetime.fromtimestamp(lookback, tz=timezone.utc).strftime("%Y-%m-%d")
     print(f"Looking back to {since_iso}\n")
 
