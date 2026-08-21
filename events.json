@@ -1,5 +1,25 @@
 [
   {
+    "date": "Aug 21, 2026",
+    "dateSort": "2026-08-21T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Industry / Trade",
+    "broadCategory": "fraud",
+    "sector": "Pending review",
+    "headline": "CMS Hospice Payment Suspensions Slamming Vendors",
+    "detail": "Hospice payment suspensions by the U.S. Centers for Medicare and Medicaid Services (CMS) have hit vendors hard, including pharmacies and durable medical equipment (DME) companies. CMS earlier this year began suspending Medicare payments to hundreds of hospices allegedly due to suspected fraud. Providers received letters indicating that they were suspended for at least 180 days, [&#8230;] The post CMS Hospice Payment Suspensions Slamming Vendors appeared first on Hospice News .",
+    "creditDirection": "Negative",
+    "severity": "Medium",
+    "riskScore": 6,
+    "sourceAgency": "Hospice News",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://hospicenews.com/2026/08/21/cms-hospice-payment-suspensions-slamming-vendors/",
+    "effectiveDate": "Pending review",
+    "borrowers": [],
+    "id": "FRD-023"
+  },
+  {
     "date": "Aug 20, 2026",
     "dateSort": "2026-08-20T00:00:00",
     "jurisdiction": "Trade Press",
@@ -258,6 +278,26 @@
     "effectiveDate": "Declared 2026-08-15",
     "borrowers": [],
     "id": "DIS-012"
+  },
+  {
+    "date": "Aug 14, 2026",
+    "dateSort": "2026-08-14T00:00:00",
+    "jurisdiction": "Disaster",
+    "state": "MT",
+    "category": "Natural Disaster",
+    "broadCategory": "disaster",
+    "sector": "Skilled Nursing; Assisted Living; Home Health; Hospice; HME/DME",
+    "headline": "FEMA declares fire disaster in MT: Sand Creek Fire",
+    "detail": "FEMA declaration FM-5671-MT for MT. Incident type: Fire. Incident period began 2026-08-14. Declared 2026-08-14. Facility-level operational impact requires review.",
+    "creditDirection": "Negative",
+    "severity": "Medium",
+    "riskScore": 5,
+    "sourceAgency": "FEMA",
+    "sourceVerification": "Auto-drafted \u2014 pending review",
+    "sourceURL": "https://www.fema.gov/disaster/5671",
+    "effectiveDate": "Declared 2026-08-14",
+    "borrowers": [],
+    "id": "DIS-042"
   },
   {
     "date": "Aug 14, 2026",
