@@ -3,6 +3,12 @@ import json
 with open('events.json') as f:
     events = json.load(f)
 
+try:
+    with open('weekly_briefings.json') as f:
+        briefings = json.load(f)
+except FileNotFoundError:
+    briefings = []
+
 TEMPLATE = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -261,6 +267,44 @@ TEMPLATE = r"""<!DOCTYPE html>
   .view-tab:hover{ color: var(--ink); }
   .view-tab.active{ color: var(--ink); border-bottom-color: var(--red); }
 
+  /* ===== WEEKLY BRIEFING ===== */
+  .briefing-wrap{ max-width: 1240px; margin: 0 auto 70px; padding: 24px 32px 0; }
+  .briefing-grid{ display:grid; grid-template-columns: 1fr 280px; gap: 44px; }
+  .briefing-eyebrow{
+    font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 6px;
+  }
+  .briefing-title{
+    font-family: var(--font-display); font-weight: 900; font-size: 30px;
+    color: var(--ink); line-height: 1.2; margin-bottom: 10px;
+  }
+  .briefing-disclaimer{
+    font-family: var(--font-sans); font-size: 11.5px; color: var(--ink-dim);
+    line-height: 1.6; border-left: 3px solid var(--rule-light); padding-left: 12px;
+    margin-bottom: 26px;
+  }
+  .briefing-section{ padding: 20px 0; border-top: 3px solid var(--rule); }
+  .briefing-heading{
+    font-family: var(--font-display); font-weight: 700; font-size: 21px;
+    color: var(--ink); margin-bottom: 10px;
+  }
+  .briefing-body{
+    font-family: var(--font-body); font-size: 14.5px; color: #333330; line-height: 1.65;
+  }
+  .briefing-body ul{ margin: 0; padding-left: 20px; }
+  .briefing-body li{ margin-bottom: 12px; max-width: 68ch; }
+  .briefing-body a{ color: var(--red); text-decoration: none; font-weight: 600; }
+  .briefing-body a:hover{ text-decoration: underline; }
+  .briefing-archive-row{
+    font-family: var(--font-sans); font-size: 12.5px; color: var(--ink);
+    padding: 8px 0; border-bottom: 1px dotted var(--rule-light); cursor: pointer;
+  }
+  .briefing-archive-row:hover{ color: var(--red); }
+  .briefing-archive-row.selected{ color: var(--red); font-weight: 700; }
+  @media (max-width: 900px){
+    .briefing-grid{ grid-template-columns: 1fr; }
+  }
+
   .info-wrap{ max-width: 1240px; margin: 0 auto 70px; padding: 24px 32px 0; }
   .info-grid{ display:grid; grid-template-columns: 380px 1fr; gap: 44px; }
   .info-title{
@@ -444,6 +488,7 @@ TEMPLATE = r"""<!DOCTYPE html>
 
   <div class="view-tabs">
     <button class="view-tab active" data-view="feed">News Feed</button>
+    <button class="view-tab" data-view="briefing">Weekly Briefing</button>
     <button class="view-tab" data-view="info">Information &amp; Reference</button>
   </div>
 
@@ -489,6 +534,16 @@ TEMPLATE = r"""<!DOCTYPE html>
     </div>
   </div>
 
+  <div class="briefing-wrap" id="briefingView" style="display:none;">
+    <div class="briefing-grid">
+      <div id="briefingMain"></div>
+      <div>
+        <div class="info-title">Past Briefings</div>
+        <div id="briefingArchiveList"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="layout" id="feedView">
     <div class="feed" id="feed"></div>
     <div class="sidebar">
@@ -511,6 +566,7 @@ TEMPLATE = r"""<!DOCTYPE html>
 
 <script>
   const EVENTS = __EVENTS_JSON__;
+  const BRIEFINGS = __BRIEFINGS_JSON__;
 
   const BORROWERS = ["Drumm Merger / Cuarzo","PACS Holdings","New Day Healthcare",
     "Purpose Healing","Pathnostics","CCGEN Jefferson / Autumn Lake",
@@ -1248,19 +1304,68 @@ TEMPLATE = r"""<!DOCTYPE html>
     renderStatePanel();
   }
 
+  // ====================================================================
+  // WEEKLY BRIEFING
+  // ====================================================================
+  let activeBriefingIndex = 0;
+
+  function renderBriefingArchive(){
+    setHTML('briefingArchiveList', BRIEFINGS.length
+      ? BRIEFINGS.map((b, i) => {
+          const sel = i === activeBriefingIndex ? 'selected' : '';
+          return `<div class="briefing-archive-row ${sel}" data-briefing-index="${i}">${b.date}</div>`;
+        }).join('')
+      : '<div class="sp-empty">No briefings yet.</div>');
+
+    const list = document.getElementById('briefingArchiveList');
+    if(!list) return;
+    Array.prototype.forEach.call(list.querySelectorAll('.briefing-archive-row'), row => {
+      row.addEventListener('click', () => {
+        activeBriefingIndex = parseInt(row.getAttribute('data-briefing-index'), 10);
+        renderBriefingArchive();
+        renderBriefingMain();
+      });
+    });
+  }
+
+  function renderBriefingMain(){
+    const entry = BRIEFINGS[activeBriefingIndex];
+    if(!entry){
+      setHTML('briefingMain', `<div class="empty-state">
+        <strong>No weekly briefing yet.</strong><br><br>
+        The first AI-written Medicaid, Home Health &amp; HCBS briefing will appear
+        here after the next scheduled run.</div>`);
+      return;
+    }
+    const sections = (entry.sections || []).map(s => `
+      <div class="briefing-section">
+        <div class="briefing-heading">${s.heading}</div>
+        <div class="briefing-body">${s.bodyHtml}</div>
+      </div>`).join('');
+    setHTML('briefingMain', `
+      <div class="briefing-eyebrow">Weekly Briefing &middot; ${entry.date}</div>
+      <div class="briefing-title">${entry.title}</div>
+      <div class="briefing-disclaimer">Compiled automatically by Claude from public
+        sources. Verify anything compliance-sensitive against the primary source.</div>
+      ${sections}`);
+  }
+
   Array.prototype.forEach.call(document.querySelectorAll('.view-tab'), tab => {
     tab.addEventListener('click', () => {
       Array.prototype.forEach.call(document.querySelectorAll('.view-tab'),
         t => t.classList.remove('active'));
       tab.classList.add('active');
-      const isInfo = tab.getAttribute('data-view') === 'info';
+      const view = tab.getAttribute('data-view'); // 'feed' | 'briefing' | 'info'
       const fv = document.getElementById('feedView');
       const iv = document.getElementById('infoView');
+      const bv = document.getElementById('briefingView');
       const fc = document.getElementById('feedControls');
-      if(fv) fv.style.display = isInfo ? 'none' : '';
-      if(fc) fc.style.display = isInfo ? 'none' : '';
-      if(iv) iv.style.display = isInfo ? '' : 'none';
-      if(isInfo) renderInfo();
+      if(fv) fv.style.display = view === 'feed' ? '' : 'none';
+      if(fc) fc.style.display = view === 'feed' ? '' : 'none';
+      if(iv) iv.style.display = view === 'info' ? '' : 'none';
+      if(bv) bv.style.display = view === 'briefing' ? '' : 'none';
+      if(view === 'info') renderInfo();
+      if(view === 'briefing'){ renderBriefingArchive(); renderBriefingMain(); }
     });
   });
 
@@ -1272,6 +1377,7 @@ TEMPLATE = r"""<!DOCTYPE html>
 """
 
 html = TEMPLATE.replace("__EVENTS_JSON__", json.dumps(events))
+html = html.replace("__BRIEFINGS_JSON__", json.dumps(briefings))
 with open('index.html', 'w') as f:
     f.write(html)
 
