@@ -1,5 +1,25 @@
 [
   {
+    "date": "Aug 31, 2026",
+    "dateSort": "2026-08-31T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Industry / Trade",
+    "broadCategory": "cms",
+    "sector": "Pending review",
+    "headline": "2027 Final Hospice Rule Could Slow M&A",
+    "detail": "Regulatory scrutiny is slowing down hospice M&#38;A deals in 2026, and the recently approved 2027 final rule will be no hope. Interest in hospice acquisitions remains high, particularly among publicly traded companies and private equity firms. However, buyers are painstakingly combing through any potential compliance or billing issues during the diligence process, which is delaying [&#8230;] The post 2027 Final Hospice Rule Could Slow M&amp;A appeared first on Hospice News .",
+    "creditDirection": "Mixed",
+    "severity": "Critical",
+    "riskScore": 8,
+    "sourceAgency": "Hospice News",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://hospicenews.com/2026/08/31/2027-final-hospice-rule-could-slow-ma/",
+    "effectiveDate": "Pending review",
+    "borrowers": [],
+    "id": "FED-030"
+  },
+  {
     "date": "Aug 28, 2026",
     "dateSort": "2026-08-28T00:00:00",
     "jurisdiction": "Trade Press",
