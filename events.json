@@ -1,5 +1,47 @@
 [
   {
+    "date": "Sep 1, 2026",
+    "dateSort": "2026-09-01T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Borrower News",
+    "broadCategory": "borrower",
+    "sector": "Pending review",
+    "headline": "PACS to Acquire 32 Nursing Homes in Florida, Announces Update on Eduro Deal",
+    "detail": "PACS Group (NYSE: PACS) on Tuesday announced the acquisition of operations at 32 skilled nursing facilities across Florida, which will be leased from subsidiaries of Omega Healthcare Investors (NYSE: OHI). The 32 properties have a combined 4,049 licensed skilled nursing beds throughout the state, significantly expanding PACS\u2019 reach in the South and complementing 71 existing [&#8230;] The post PACS to Acquire 32 Nursing Homes in Florida, Announces Update on Eduro Deal appeared first on Skilled Nursing News .",
+    "creditDirection": "Mixed",
+    "severity": "Critical",
+    "riskScore": 11,
+    "sourceAgency": "Skilled Nursing News",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://skillednursingnews.com/2026/09/pacs-to-acquire-32-nursing-homes-in-florida-announces-update-on-eduro-deal/",
+    "effectiveDate": "Pending review",
+    "borrowers": [
+      "PACS Holdings"
+    ],
+    "id": "BOR-011"
+  },
+  {
+    "date": "Sep 1, 2026",
+    "dateSort": "2026-09-01T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Industry / Trade",
+    "broadCategory": "medicaid",
+    "sector": "Pending review",
+    "headline": "\u2018A Slippery Slope\u2019:\u00a0Case-Mix Creep, Expanded MDS Reporting Could Dampen SNF Payment Gains",
+    "detail": "With greater scrutiny of case-mix growth and coding, nursing homes should be strengthening documentation. Operators should also prepare now for expanded MDS reporting requirements beginning in 2029, reimbursement experts said. To be sure, the Centers for Medicare and Medicaid Services (CMS) is not implementing a case-mix adjustment in the FY 2027 final rule, but the rule&#8217;s language makes clear [&#8230;] The post \u2018A Slippery Slope\u2019: Case-Mix Creep, Expanded MDS Reporting Could Dampen SNF Payment Gains appeared first on Skilled Nursing News .",
+    "creditDirection": "Mixed",
+    "severity": "Critical",
+    "riskScore": 8,
+    "sourceAgency": "Skilled Nursing News",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://skillednursingnews.com/2026/09/a-slippery-slope-case-mix-creep-expanded-mds-reporting-could-dampen-snf-payment-gains/",
+    "effectiveDate": "Pending review",
+    "borrowers": [],
+    "id": "FED-032"
+  },
+  {
     "date": "Aug 31, 2026",
     "dateSort": "2026-08-31T00:00:00",
     "jurisdiction": "Trade Press",
