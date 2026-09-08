@@ -1,5 +1,25 @@
 [
   {
+    "date": "Sep 8, 2026",
+    "dateSort": "2026-09-08T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Industry / Trade",
+    "broadCategory": "medicaid",
+    "sector": "Pending review",
+    "headline": "CMS Recalculating 2027 Hospice Payment Rates Due to Error",
+    "detail": "The 2027 hospice payment rates likely will change based on a technical error by the U.S. Centers for Medicare &#38; Medicaid Services (CMS). The agency made a mistake that affected the Fiscal Year 2027 hospice wage index and has recalculated those numbers. CMS is in the process of developing a correction notice to update the [&#8230;] The post CMS Recalculating 2027 Hospice Payment Rates Due to Error appeared first on Hospice News .",
+    "creditDirection": "Mixed",
+    "severity": "High",
+    "riskScore": 8,
+    "sourceAgency": "Hospice News",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://hospicenews.com/2026/09/08/cms-recalculating-2027-hospice-payment-rates-due-to-error/",
+    "effectiveDate": "Pending review",
+    "borrowers": [],
+    "id": "FED-034"
+  },
+  {
     "date": "Sep 4, 2026",
     "dateSort": "2026-09-04T00:00:00",
     "jurisdiction": "Trade Press",
