@@ -1,0 +1,109 @@
+[
+  {
+    "date": "Sep 9, 2026",
+    "dateSort": "2026-09-09T00:00:00",
+    "title": "Weekly Medicaid, Home Health & HCBS Update",
+    "throughDate": "Through September 9, 2026",
+    "overviewHtml": "<p>The dominant theme this week is intensifying federal program-integrity enforcement across home health, hospice, and durable medical equipment \u2014 not a new reimbursement cut. The nationwide Medicare enrollment moratorium on home health agencies and hospices, in place since mid-May, drew sharper industry pushback this week after the National Alliance for Care at Home publicly urged CMS to narrow it, arguing it is freezing legitimate de novo expansion and provider affiliations rather than only rooting out fraud; CMS made no decision this week to extend, narrow, or lift it. Separately, CMS barred eleven durable medical equipment suppliers tied to over $3.4 billion in suspected fraudulent billing, and Georgia's hard EVV enforcement deadline for home health claims arrives September 14. I want to be explicit about what did NOT happen this week: there was no new federal Medicare or Medicaid rate cut to home health, hospice, or HCBS providers, the CY 2027 Home Health proposed rule (a net 2.4% aggregate increase) is unchanged and still pending finalization, the proposed Medicaid provider-tax restrictions remain just a proposal with comments due September 21, and California's roughly $1.7 billion in deferred IHSS-related Medicaid payments remains an unresolved, ongoing liquidity question rather than a new development.</p>",
+    "items": [
+      {
+        "headline": "Nationwide Medicare enrollment moratorium on home health agencies and hospices continues; industry group escalates pushback",
+        "status": "In effect since May 13, 2026 for an initial six-month term running through mid-November 2026; CMS took no action this week to extend, narrow, or lift it.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>CMS's nationwide moratorium, announced in a Federal Register notice effective May 13, 2026, bars new Medicare enrollment of home health agencies and hospices and blocks certain majority ownership changes that would otherwise require re-enrollment. Already-enrolled, Medicare-certified providers are unaffected and continue billing normally, and applications filed before the effective date may continue processing. CMS has authority to renew the moratorium in additional six-month increments if it determines fraud concerns persist, or to lift it early.</p><p>On September 9, the National Alliance for Care at Home publicly renewed its call for CMS to replace the blanket freeze with a targeted, risk-based approach. The Alliance said long-standing, high-quality hospices and home health agencies that have been approached by underserved communities to extend services are unable to do so solely because of the moratorium, and that it is also blocking hospice and home health agency affiliations with health systems, leaving financially stressed providers unable to be acquired and at greater risk of closure. This is industry advocacy rather than new CMS data, and CMS has not indicated any change in position.</p><p>Nothing about the moratorium's scope or duration changed this week \u2014 it remains a temporary, time-limited enrollment freeze, not a permanent barrier to entry, and it does not affect existing providers' ability to bill or operate.</p>",
+        "creditImplication": "I treat any deal premised on de novo Medicare enrollment or a majority-ownership change-of-control in home health or hospice as effectively frozen until the moratorium lifts; new platform builds in this space should be structured around acquiring an already-enrolled, active CCN rather than new enrollment. I'm watching for CMS's decision near mid-November on whether to extend, narrow, or let the moratorium lapse, since that will determine how long these deal-structuring constraints persist.",
+        "sources": [
+          {
+            "label": "Federal Register \u2014 Nationwide Temporary Moratoria on Enrollment of Home Health Agencies",
+            "url": "https://www.federalregister.gov/documents/2026/05/15/2026-09717/medicare-medicaid-and-childrens-health-insurance-programs-announcement-of-nationwide-temporary"
+          },
+          {
+            "label": "Hospice News \u2014 National Alliance: Hospice, Home Health Moratoria Curbing Access to Care",
+            "url": "https://hospicenews.com/2026/09/09/national-alliance-hospice-home-health-moratoria-curbing-access-to-care/"
+          },
+          {
+            "label": "National Alliance for Care at Home",
+            "url": "https://allianceforcareathome.org/newsroom/"
+          }
+        ]
+      },
+      {
+        "headline": "CMS proposed rule restricting Medicaid provider taxes remains just a proposal; comments due September 21",
+        "status": "Proposed rule, not final. Comment period closes September 21, 2026.",
+        "statusTier": "proposed",
+        "bodyHtml": "<p>CMS issued a proposed rule on July 21, 2026 implementing two of H.R. 1's restrictions on how states use provider taxes to help finance the state share of Medicaid spending. The proposal would eliminate the alternative '75/75' indirect hold-harmless test, leaving a new class-specific threshold as the sole safe harbor, and would phase down the hold-harmless threshold for Medicaid expansion states from 5.5% to 3.5%; nursing facility and intermediate-care facility classes are exempted from that phasedown. States with a CMS-approved threshold above 6% under the prior test as of July 4, 2025 would be permitted to retain it, subject to the statutory phasedown.</p><p>CMS actuaries estimate the proposal would reduce federal Medicaid spending by approximately $246 billion over ten years nationwide. The rule proposes an October 1, 2026 effective date for eliminating the 75/75 test, but that date depends on CMS finalizing the rule almost immediately after the September 21 comment deadline \u2014 a tight turnaround that has not happened yet and is not guaranteed.</p><p>This rule does not set home health, HCBS, or personal care rates directly; it governs the financing mechanism many states use to fund the non-federal share of Medicaid, including HCBS and personal care rate add-ons. Nothing in this rule has taken effect, and no state's Medicaid rates have changed as a result of it this week.</p>",
+        "creditImplication": "I am not adjusting any rate assumptions off this rule since it is still proposed and unfinalized. Where a borrower operates in states that rely heavily on provider taxes to fund Medicaid HCBS or personal care rates, I want to know how state budget offices are contingency-planning for this rule in FY2027 forecasts, since a final rule finalized on any timeline would flow through state financing well before it reaches provider rates.",
+        "sources": [
+          {
+            "label": "Federal Register \u2014 Medicaid Program; Amending the Indirect Hold Harmless Threshold of Health Care-Related Taxes",
+            "url": "https://www.federalregister.gov/documents/2026/07/23/2026-14897/medicaid-program-amending-the-indirect-hold-harmless-threshold-of-health-care-related-taxes"
+          }
+        ]
+      },
+      {
+        "headline": "Georgia's hard EVV enforcement deadline for home health claims arrives September 14",
+        "status": "Takes effect September 14, 2026 for claims with that date of service or later; a voluntary 'soft go-live' has been running since August 31, 2026.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>Under Georgia Medicaid's electronic visit verification program, all applicable Home Health Care Services (HHCS) claims \u2014 covering home health aide, skilled nursing, and physical, occupational, and speech therapy visits \u2014 with dates of service on or after September 14, 2026 must be submitted through the EVV system. This is part of the federal 21st Century Cures Act EVV mandate, which is now fully operational nationwide for both personal care services and home health care services claims.</p><p>States including Georgia enforce EVV compliance through automated 'hard edits' \u2014 validation rules that reject non-compliant claims before payment, with no warning period or grace window once the enforcement date passes. Providers have had a soft go-live period since August 31, 2026 to register, test, and become familiar with the system before mandatory enforcement begins.</p><p>This is a state-level operational deadline, not a new federal rule; other states have staggered EVV hard-enforcement dates of their own, and CMS is separately reviewing how states use EVV data for Medicaid program-integrity purposes nationally.</p>",
+        "creditImplication": "For any borrower with Georgia home health or PCS volume, I want to see EVV integration testing results and visit-capture compliance rates ahead of September 14, and I would stress-test days sales outstanding for a claim-rejection spike in the weeks immediately following go-live, consistent with what has occurred in other states after hard-edit rollouts.",
+        "sources": [
+          {
+            "label": "Georgia Medicaid \u2014 Electronic Visit Verification (EVV)",
+            "url": "https://medicaid.georgia.gov/programs/all-programs/georgia-electronic-visit-verification-evv-0"
+          }
+        ]
+      },
+      {
+        "headline": "CMS bars 11 DME suppliers tied to $3.4 billion in suspected fraud, expanding use of the Medicare Advantage Preclusion List",
+        "status": "Implemented September 8, 2026 \u2014 11 suppliers added to the CMS Preclusion List, barring Medicare Advantage Part C/D payment.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>CMS announced on September 8, 2026 that it identified and barred 11 durable medical equipment, prosthetics, orthotics, and supplies (DMEPOS) suppliers, tied to more than $3.4 billion in suspected fraudulent billing across 2025 and 2026, from receiving future Medicare Advantage Part C and Part D payments. None of the 11 suppliers had submitted claims prior to 2025, and CMS cited practices including billing for equipment supplied to beneficiaries who had already died and equipment beneficiaries never requested or received. Four of the suppliers had previously been revoked from Original Medicare and had shifted to billing Medicare Advantage plans instead.</p><p>All 11 companies were added to the CMS Preclusion List, which blocks payment for Medicare Part D drugs and Medicare Advantage services or items they prescribe or furnish.</p><p>This action targets DMEPOS suppliers, not home health, hospice, or HCBS agencies directly, and I am flagging it precisely so it is not mistaken for a home health enforcement action. It is relevant here as further evidence of the same anti-fraud enforcement push that produced the home health and hospice enrollment moratorium \u2014 CMS is broadening its use of enrollment revocation and preclusion tools across post-acute-adjacent provider types this quarter.</p>",
+        "creditImplication": "Where a borrower has an affiliated or subsidiary DME/DMEPOS billing line, or shared ownership with entities that have faced Medicare enrollment scrutiny, I want confirmation that none of those entities appear on the CMS Preclusion List and a description of the borrower's exclusion-screening protocol; this is a reminder to widen program-integrity diligence beyond the core home health/HCBS license when ownership structures span multiple provider types.",
+        "sources": [
+          {
+            "label": "CMS \u2014 CMS Cracks Down on Massive $3.4 Billion Medical Equipment Supplier Fraud Scheme",
+            "url": "https://www.cms.gov/newsroom/press-releases/cms-cracks-down-massive-3-4-billion-medical-equipment-supplier-fraud-scheme"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "development": "HH/Hospice Medicare enrollment moratorium",
+        "status": "Enacted / implementation underway",
+        "read": "M&amp;A must be structured around existing enrolled CCNs; de novo growth frozen"
+      },
+      {
+        "development": "Moratorium extension/lift decision",
+        "status": "Not newly implemented",
+        "read": "No CMS decision this week; expect a call near mid-November 2026"
+      },
+      {
+        "development": "Medicaid provider tax restrictions (hold-harmless threshold)",
+        "status": "Proposed",
+        "read": "Do not adjust rate or financing assumptions yet; comments due Sept. 21, 2026"
+      },
+      {
+        "development": "CY 2027 Home Health payment rule",
+        "status": "Proposed",
+        "read": "Comment period closed Aug. 31, 2026; no cash-flow effect until finalized, typically around Nov. 1"
+      },
+      {
+        "development": "Georgia EVV hard-enforcement (HHCS claims)",
+        "status": "Enacted / implementation underway",
+        "read": "Real near-term denied-claim/DSO risk for Georgia-exposed operators"
+      },
+      {
+        "development": "CMS DMEPOS preclusion action ($3.4B)",
+        "status": "Implemented",
+        "read": "Not home-health specific; widen exclusion screening if borrower has DME exposure"
+      },
+      {
+        "development": "California IHSS Medicaid payment deferral (~$1.7B)",
+        "status": "Not newly implemented",
+        "read": "Still unresolved since spring/summer 2026; a deferral pending documentation review, not a permanent cut \u2014 but a live state DSO/liquidity risk"
+      }
+    ],
+    "focusHtml": "<p>Given this week's developments, I'd prioritize four diligence threads. First, for any home health or hospice target, confirm the deal is structured as an acquisition of an already-enrolled, active CCN rather than a new Medicare enrollment or a majority-ownership change that could trip the nationwide moratorium, and check whether the target's growth plan assumed de novo licensure that is currently frozen. Second, for Georgia-exposed home health and PCS operators, get current EVV integration and visit-capture compliance data ahead of the September 14 hard-enforcement date, and more broadly map state-by-state EVV enforcement dates against the borrower's footprint, since denied-claim spikes tend to cluster around go-live. Third, where ownership structures include DME/DMEPOS billing alongside home health or HCBS lines, confirm none of the affiliated entities appear on the CMS Preclusion List and review the exclusion-screening protocol, given CMS's expanding use of enrollment revocation this quarter. Fourth, for California-exposed IHSS or personal care borrowers, track the roughly $1.7 billion in deferred federal Medicaid payments as an open state Medicaid DSO and working-capital risk \u2014 it remains a deferral pending documentation review rather than a rate cut, but it has been unresolved for months and warrants a standing diligence question on state payment timing and any state-level bridge funding.</p>"
+  }
+]
