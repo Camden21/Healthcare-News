@@ -49,11 +49,9 @@ def validate(payload):
             problems.append(f"missing or empty '{key}'")
 
     items = payload.get("items")
-    # Prompt asks for 5-9 items across nine sectors; allow headroom to 12 so a
-    # genuinely busy week is never rejected for being too informative.
-    if not isinstance(items, list) or not (1 <= len(items) <= 12):
+    if not isinstance(items, list) or not (1 <= len(items) <= 8):
         problems.append(
-            f"expected 1-12 items, got "
+            f"expected 1-8 items, got "
             f"{len(items) if isinstance(items, list) else 'non-list'}"
         )
         items = items if isinstance(items, list) else []
@@ -136,7 +134,7 @@ def build_entry(payload, today):
     return {
         "date": today.strftime("%b %-d, %Y"),
         "dateSort": today.strftime("%Y-%m-%dT00:00:00"),
-        "title": "Weekly Healthcare Sector Briefing",
+        "title": "Weekly Medicaid, Home Health & HCBS Update",
         "throughDate": f"Through {today.strftime('%B %-d, %Y')}",
         "overviewHtml": paragraphs_to_html(payload["overview"]),
         "items": items,
