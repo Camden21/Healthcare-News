@@ -9,10 +9,12 @@ on:
 
 permissions:
   contents: write
+  id-token: write   # required by claude-code-action's GitHub App auth
 
 jobs:
   briefing:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Check out repository
@@ -23,10 +25,111 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Generate weekly briefing
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python weekly_briefing.py
+      # Claude Code does the research and writes briefing_draft.json.
+      # Authenticates with your Claude subscription via the OAuth token —
+      # no Anthropic API key and no separate API billing.
+      - name: Research and draft the briefing
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: |
+            --model claude-sonnet-5
+            --max-turns 40
+            --allowedTools "WebSearch,WebFetch,Write,Read"
+          prompt: |
+            You are writing this week's "Medicaid, Home Health & HCBS Update"
+            for a healthcare credit-risk tracker used by a bank's healthcare
+            lending desk. The reader underwrites loans to home health, home
+            care, HCBS, personal care and skilled nursing operators.
+
+            THE MOST IMPORTANT THING YOU DO is separate what has ACTUALLY
+            TAKEN EFFECT from what is merely proposed, enacted-but-not-yet-
+            operative, or political messaging. A proposed rate increase is
+            not an earnings benefit. A federal payment deferral is not a
+            permanent rate cut. Headlines routinely blur these; you must not.
+            If something is being reported as a "cut" but is technically a
+            deferral or a proposal, say so plainly and explain the difference.
+
+            Use WebSearch and WebFetch to find significant, verifiable
+            developments from the last 7 days across: Medicaid policy,
+            financing, program integrity and waivers; Medicare and Medicaid
+            home health; and HCBS (waivers, workforce, access, provider
+            enrollment). Prefer primary sources — cms.gov, medicaid.gov,
+            federalregister.gov, oig.hhs.gov, macpac.gov — over trade
+            coverage, and cite the primary source where one exists. KFF,
+            allianceforcareathome.org, homehealthcarenews.com,
+            mcknightshomecare.com and skillednursingnews.com are acceptable
+            secondary sources.
+
+            Then use the Write tool to write a file named exactly
+            `briefing_draft.json` in the repository root, containing ONLY a
+            single JSON object in this shape:
+
+            {
+              "overview": "One paragraph naming the week's dominant theme, in
+                the first person as the analyst. CRITICALLY: also state plainly
+                what did NOT happen this week if a reader might otherwise
+                assume it did — e.g. 'There was no new broad federal
+                reimbursement cut to Medicare home health this week.' Negative
+                space is as informative as news.",
+              "items": [
+                {
+                  "headline": "Short, specific, factual headline",
+                  "status": "One sentence stating exactly where this stands —
+                    e.g. 'Implemented August 1, with CMS approval.' or
+                    'Proposed; comments due August 31.'",
+                  "statusTier": "implemented | proposed | pending | rhetoric",
+                  "body": "Two to four substantive paragraphs separated by
+                    blank lines. Give the specifics a credit analyst needs:
+                    dollar figures, effective dates, which states, which waiver
+                    programs, which provider types, comment deadlines. Explain
+                    why it matters beyond the immediate facts. Where a figure
+                    is easy to misread, disambiguate it explicitly.",
+                  "creditImplication": "One to three sentences, first person,
+                    on what this means for underwriting home-care and HCBS
+                    credits. Be specific about whether it changes rates,
+                    timing, enrollment, M&A, working capital or compliance
+                    cost.",
+                  "sources": [{"label": "CMS", "url": "https://..."}]
+                }
+              ],
+              "table": [
+                {
+                  "development": "Short label matching an item above",
+                  "status": "Implemented | Proposed | Enacted / implementation
+                    underway | Partly rhetoric | Not newly implemented",
+                  "read": "Your one-line credit read, e.g. 'Do not underwrite
+                    yet' or 'Real liquidity/timing risk'"
+                }
+              ],
+              "focus": "A closing paragraph naming the concrete diligence items
+                that matter most right now — state-by-state revenue
+                concentration, PCS/HCBS vs skilled mix, Medicaid DSO,
+                denied-claim trends, EVV compliance, provider revalidation
+                status, audit history, change-of-ownership enrollment risk —
+                tied to this week's developments."
+            }
+
+            Rules:
+            - 3 to 6 items. Every item must rest on a real, dated source you
+              actually found, with a working URL. Do not cite from memory.
+            - statusTier must be exactly one of: implemented, proposed,
+              pending, rhetoric.
+            - The table must include one row per item, and may add rows for
+              things that did NOT change this week that a reader might wrongly
+              assume did (status "Not newly implemented").
+            - Measured analyst register; first person where you give a
+              judgement ("I would view this as..."). No political editorialising.
+            - Do not invent, estimate or round figures. If a source does not
+              state a number, do not supply one.
+            - If the week was genuinely quiet, say so in the overview rather
+              than padding with minor items.
+            - Write ONLY the JSON file. Do not create or modify any other file.
+
+      # Deterministic half: validate the draft, merge it into the history.
+      # Fails the run — before build or send — if the draft is malformed.
+      - name: Validate and merge the draft
+        run: python merge_briefing.py
 
       - name: Rebuild index.html
         run: python build_page.py
@@ -47,6 +150,8 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          # briefing_draft.json is scratch and is deleted by merge_briefing.py;
+          # it is deliberately not added here.
           for f in weekly_briefings.json index.html; do
             if [ -f "$f" ]; then
               git add "$f"
