@@ -1,4 +1,4 @@
-name: Weekly Healthcare Sector Briefing
+name: Weekly Medicaid/Home Health/HCBS Briefing
 
 # NOTE: this deliberately does NOT use anthropics/claude-code-action.
 # That action has an open startup crash (schema validation, exits in ~110ms
@@ -52,76 +52,43 @@ jobs:
           # Quoted delimiter: nothing inside is expanded by the shell, so the
           # JSON braces and quotes in the prompt survive verbatim.
           cat > "$RUNNER_TEMP/prompt.txt" << 'BRIEFING_PROMPT_EOF'
-          You are writing this week's "Healthcare Sector Briefing" for a
-          credit-risk tracker used by a bank's healthcare lending desk. The reader
-          underwrites loans across post-acute, senior care, home-based care,
-          diagnostics and behavioral health operators.
+          You are writing this week's "Medicaid, Home Health & HCBS Update" for a
+          healthcare credit-risk tracker used by a bank's healthcare lending desk.
+          The reader underwrites loans to home health, home care, HCBS, personal
+          care and skilled nursing operators.
 
           THE MOST IMPORTANT THING YOU DO is separate what has ACTUALLY TAKEN
           EFFECT from what is merely proposed, enacted-but-not-yet-operative, or
           political messaging. A proposed rate increase is not an earnings
-          benefit. A federal payment deferral is not a permanent rate cut. A
-          draft LCD is not a coverage decision. Headlines routinely blur these;
-          you must not. If something is being reported as a "cut" but is
-          technically a deferral or a proposal, say so plainly and explain the
-          difference.
+          benefit. A federal payment deferral is not a permanent rate cut.
+          Headlines routinely blur these; you must not. If something is being
+          reported as a "cut" but is technically a deferral or a proposal, say so
+          plainly and explain the difference.
 
-          COVER ALL NINE SECTORS BELOW. Use WebSearch and WebFetch to find
-          significant, verifiable developments from the last 7 days in each:
-
-          1. SKILLED NURSING - SNF PPS, staffing rules, survey and certification,
-             Five-Star, state Medicaid SNF rates, provider taxes.
-          2. HOME HEALTH - HH PPS, PDGM behavioral adjustments, face-to-face and
-             certification rules, home health value-based purchasing.
-          3. HOSPICE - hospice wage index, the aggregate cap, program integrity,
-             the special focus program, hospice enrollment moratoria.
-          4. HOME CARE / PERSONAL CARE / HCBS - 1915(c) waivers, the access rule,
-             EVV, direct care workforce, provider enrollment and moratoria.
-          5. SENIOR HOUSING / ASSISTED LIVING / MEMORY CARE - state licensure and
-             staffing, Medicaid assisted living waivers, occupancy and rate data.
-          6. DME - competitive bidding, the DMEPOS fee schedule, supplier
-             standards, prior authorization lists, oxygen and respiratory policy.
-          7. LABS AND MOLECULAR DIAGNOSTICS COVERAGE - treat this as ONE category
-             and cover it every week. Specifically: MolDx program decisions,
-             Local Coverage Determinations (LCDs) both proposed and final,
-             technical assessments by Medicare Administrative Contractors (MACs),
-             Novitas and Palmetto GBA actions, coverage of molecular and PCR
-             testing including UTI and urinary tract panels, and the Clinical Lab
-             Fee Schedule. Say clearly whether an LCD is draft, finalized, or
-             effective, and which MAC jurisdictions and states it binds.
-          8. BEHAVIORAL HEALTH AND SUD TREATMENT - parity enforcement,
-             reimbursement, state licensure, payer disputes.
-          9. MEDICAID POLICY AND FINANCING - cutting across all of the above:
-             provider taxes, state budgets, work requirements, redeterminations,
-             federal match, program integrity.
-
-          Prefer primary sources: cms.gov (including the Medicare Coverage
-          Database for LCDs), medicaid.gov, federalregister.gov, oig.hhs.gov,
-          macpac.gov, palmettogba.com, novitas-solutions.com. Cite the primary
-          source wherever one exists. Acceptable secondary sources: kff.org,
-          allianceforcareathome.org, skillednursingnews.com,
-          homehealthcarenews.com, hospicenews.com, mcknightsseniorliving.com,
-          mcknightshomecare.com, hmenews.com, behavioralhealthbusiness.com.
+          Use WebSearch and WebFetch to find significant, verifiable developments
+          from the last 7 days across: Medicaid policy, financing, program
+          integrity and waivers; Medicare and Medicaid home health; and HCBS
+          (waivers, workforce, access, provider enrollment). Prefer primary
+          sources (cms.gov, medicaid.gov, federalregister.gov, oig.hhs.gov,
+          macpac.gov) over trade coverage, and cite the primary source where one
+          exists. KFF, allianceforcareathome.org, homehealthcarenews.com,
+          mcknightshomecare.com and skillednursingnews.com are acceptable
+          secondary sources.
 
           Then use the Write tool to create a file named exactly
           briefing_draft.json in the current directory, containing ONLY a single
           JSON object in this shape:
 
           {
-            "overview": "One paragraph naming the week's dominant theme across
-              the sectors, in the first person as the analyst. Where the week's
-              action concentrated in one or two sectors, say so. CRITICALLY: also
-              state plainly what did NOT happen this week if a reader might
-              otherwise assume it did, for example 'There was no new broad federal
-              reimbursement cut to Medicare home health this week.' Negative space
-              is as informative as news.",
+            "overview": "One paragraph naming the week's dominant theme, in the
+              first person as the analyst. CRITICALLY: also state plainly what did
+              NOT happen this week if a reader might otherwise assume it did, for
+              example 'There was no new broad federal reimbursement cut to
+              Medicare home health this week.' Negative space is as informative
+              as news.",
             "items": [
               {
-                "headline": "Begin with the sector, then a colon, then a short
-                  specific factual headline. For example 'Skilled nursing: CMS
-                  finalizes FY2027 SNF payment update' or 'Labs / MolDx: Novitas
-                  finalizes LCD for molecular UTI panels'. This is how the reader
-                  finds their sector at a glance.",
+                "headline": "Short, specific, factual headline",
                 "status": "One sentence stating exactly where this stands, e.g.
                   'Implemented August 1, with CMS approval.' or 'Proposed;
                   comments due August 31.'",
@@ -132,9 +99,9 @@ jobs:
                   which provider types, comment deadlines. Explain why it matters
                   beyond the immediate facts.",
                 "creditImplication": "One to three sentences, first person, on
-                  what this means for underwriting credits in the affected sector.
-                  Be specific about whether it changes rates, timing, enrollment,
-                  coverage, census, M&A, working capital or compliance cost.",
+                  what this means for underwriting home-care and HCBS credits. Be
+                  specific about whether it changes rates, timing, enrollment,
+                  M&A, working capital or compliance cost.",
                 "sources": [{"label": "CMS", "url": "https://..."}]
               }
             ],
@@ -148,30 +115,21 @@ jobs:
               }
             ],
             "focus": "A closing paragraph naming the concrete diligence items that
-              matter most right now across the book, tied to this week's
-              developments. Draw from: state-by-state revenue concentration,
-              payor mix and Medicaid dependence, Medicaid DSO and denied-claim
-              trends, EVV compliance, provider revalidation and enrollment
-              status, change-of-ownership risk, survey and audit history,
-              occupancy and census trends, competitive bidding exposure for DME,
-              and LCD or MAC coverage concentration for lab and diagnostics
-              credits. Name only what this week's news actually makes relevant."
+              matter most right now: state-by-state revenue concentration,
+              PCS/HCBS vs skilled mix, Medicaid DSO, denied-claim trends, EVV
+              compliance, provider revalidation status, audit history,
+              change-of-ownership enrollment risk, tied to this week's
+              developments."
           }
 
           Rules:
-          - 5 to 9 items, prioritised by how much they move credit risk, not by
-            sector order. A quiet sector gets no item; a sector with two genuinely
-            significant developments can have two. Every item must rest on a real,
-            dated source you actually found. Do not cite from memory.
+          - 3 to 6 items. Every item must rest on a real, dated source you
+            actually found. Do not cite from memory.
           - statusTier must be exactly one of: implemented, proposed, pending,
             rhetoric.
-          - THE TABLE IS THE COVERAGE MAP. It must contain a row for EVERY ONE of
-            the nine sectors listed above, including sectors with no news. For a
-            quiet sector use status "Not newly implemented" and a read such as
-            "No federal action this week". This is deliberate: the reader needs to
-            see that a sector was checked and was quiet, rather than wondering
-            whether it was missed. Add extra rows beyond the nine for anything a
-            reader might wrongly assume changed.
+          - The table must include one row per item, and may add rows for things
+            that did NOT change this week that a reader might wrongly assume did
+            (status "Not newly implemented").
           - Measured analyst register; first person where you give a judgement.
             No political editorialising.
           - Do not invent, estimate or round figures. If a source does not state
