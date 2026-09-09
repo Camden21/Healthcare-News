@@ -264,26 +264,108 @@
     text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 6px;
   }
   .briefing-title{
-    font-family: var(--font-display); font-weight: 900; font-size: 30px;
-    color: var(--ink); line-height: 1.2; margin-bottom: 10px;
+    font-family: var(--font-display); font-weight: 900; font-size: 33px;
+    color: var(--ink); line-height: 1.15; margin-bottom: 4px;
   }
+  .briefing-through{
+    font-family: var(--font-sans); font-size: 13px; color: var(--ink-dim);
+    margin-bottom: 18px;
+  }
+  .briefing-overview{
+    font-family: var(--font-body); font-size: 16px; color: var(--ink);
+    line-height: 1.68; border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule-light); padding: 18px 0 20px; margin-bottom: 4px;
+  }
+  .briefing-overview p{ margin: 0 0 12px; max-width: 70ch; }
+  .briefing-overview p:last-child{ margin-bottom: 0; }
   .briefing-disclaimer{
     font-family: var(--font-sans); font-size: 11.5px; color: var(--ink-dim);
-    line-height: 1.6; border-left: 3px solid var(--rule-light); padding-left: 12px;
-    margin-bottom: 26px;
+    line-height: 1.6; padding: 12px 0 0; margin-bottom: 28px;
   }
-  .briefing-section{ padding: 20px 0; border-top: 3px solid var(--rule); }
-  .briefing-heading{
-    font-family: var(--font-display); font-weight: 700; font-size: 21px;
-    color: var(--ink); margin-bottom: 10px;
+
+  .bitem{ padding: 26px 0 4px; border-top: 1px solid var(--rule-light); }
+  .bitem:first-of-type{ border-top: none; }
+  .bitem-head{ display:flex; gap: 12px; align-items: baseline; margin-bottom: 9px; }
+  .bitem-num{
+    font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+    color: var(--red); flex: 0 0 auto; padding-top: 4px;
   }
-  .briefing-body{
-    font-family: var(--font-body); font-size: 14.5px; color: #333330; line-height: 1.65;
+  .bitem-headline{
+    font-family: var(--font-display); font-weight: 700; font-size: 23px;
+    color: var(--ink); line-height: 1.28; margin: 0;
   }
-  .briefing-body ul{ margin: 0; padding-left: 20px; }
-  .briefing-body li{ margin-bottom: 12px; max-width: 68ch; }
-  .briefing-body a{ color: var(--red); text-decoration: none; font-weight: 600; }
-  .briefing-body a:hover{ text-decoration: underline; }
+  .status-line{
+    font-family: var(--font-sans); font-size: 12px; line-height: 1.5;
+    padding: 7px 12px; margin: 0 0 14px; display: flex; gap: 9px;
+    align-items: baseline; flex-wrap: wrap;
+  }
+  .status-badge{
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 2px 8px; color: #fff; flex: 0 0 auto;
+  }
+  .status-implemented{ background: var(--red-tint); }
+  .status-implemented .status-badge{ background: var(--red); }
+  .status-implemented .status-text{ color: #6E1414; }
+  .status-proposed{ background: var(--gold-tint); }
+  .status-proposed .status-badge{ background: var(--gold); }
+  .status-proposed .status-text{ color: #66470F; }
+  .status-pending{ background: var(--gold-tint); }
+  .status-pending .status-badge{ background: #6E5A2E; }
+  .status-pending .status-text{ color: #514526; }
+  .status-rhetoric{ background: #EDEDE7; }
+  .status-rhetoric .status-badge{ background: #7A7A74; }
+  .status-rhetoric .status-text{ color: #55554F; }
+
+  .bitem-body{
+    font-family: var(--font-body); font-size: 14.5px; color: #333330; line-height: 1.68;
+  }
+  .bitem-body p{ margin: 0 0 13px; max-width: 70ch; }
+  .credit-implication{
+    border-left: 3px solid var(--ink); background: #F3F2EC;
+    padding: 12px 16px; margin: 4px 0 12px; max-width: 70ch;
+  }
+  .credit-implication .ci-label{
+    font-family: var(--font-sans); font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink);
+    display: block; margin-bottom: 5px;
+  }
+  .credit-implication .ci-text{
+    font-family: var(--font-body); font-size: 14px; color: var(--ink); line-height: 1.6;
+  }
+  .bitem-sources{
+    font-family: var(--font-sans); font-size: 11px; color: var(--ink-dim);
+    text-transform: uppercase; letter-spacing: 0.04em; padding-bottom: 6px;
+  }
+  .bitem-sources a{ color: var(--red); text-decoration: none; font-weight: 600; }
+  .bitem-sources a:hover{ text-decoration: underline; }
+
+  .btable-title, .bfocus-title{
+    font-family: var(--font-sans); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
+    border-top: 3px solid var(--rule); padding-top: 13px; margin: 34px 0 14px;
+  }
+  .btable{ width: 100%; border-collapse: collapse; font-family: var(--font-body); }
+  .btable th{
+    font-family: var(--font-sans); font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim);
+    text-align: left; padding: 0 10px 7px 0; border-bottom: 1px solid var(--rule);
+  }
+  .btable td{
+    font-size: 13.5px; color: #333330; line-height: 1.5;
+    padding: 10px 10px 10px 0; border-bottom: 1px solid var(--rule-light);
+    vertical-align: top;
+  }
+  .btable td:first-child{ font-weight: 700; color: var(--ink); width: 32%; }
+  .btable td:nth-child(2){ width: 27%; }
+  .btable .tstat{
+    font-family: var(--font-sans); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .bfocus{
+    font-family: var(--font-body); font-size: 14.5px; color: #333330; line-height: 1.68;
+  }
+  .bfocus p{ margin: 0 0 13px; max-width: 70ch; }
+
   .briefing-archive-row{
     font-family: var(--font-sans); font-size: 12.5px; color: var(--ink);
     padding: 8px 0; border-bottom: 1px dotted var(--rule-light); cursor: pointer;
@@ -292,6 +374,8 @@
   .briefing-archive-row.selected{ color: var(--red); font-weight: 700; }
   @media (max-width: 900px){
     .briefing-grid{ grid-template-columns: 1fr; }
+    .briefing-title{ font-size: 26px; }
+    .btable td:first-child, .btable td:nth-child(2){ width: auto; }
   }
 
   .info-wrap{ max-width: 1240px; margin: 0 auto 70px; padding: 24px 32px 0; }
@@ -1317,6 +1401,21 @@
     });
   }
 
+  const TIER_LABEL = {
+    implemented: 'In effect',
+    proposed: 'Proposed only',
+    pending: 'Enacted — not yet operative',
+    rhetoric: 'Messaging',
+  };
+
+  const TABLE_STAT_COLOR = t => {
+    const s = (t || '').toLowerCase();
+    if(s.indexOf('not newly') !== -1 || s.indexOf('rhetoric') !== -1) return '#7A7A74';
+    if(s.indexOf('propos') !== -1) return '#8A6014';
+    if(s.indexOf('implement') !== -1 || s.indexOf('enacted') !== -1) return '#A81C1C';
+    return '#5A5A56';
+  };
+
   function renderBriefingMain(){
     const entry = BRIEFINGS[activeBriefingIndex];
     if(!entry){
@@ -1326,17 +1425,62 @@
         here after the next scheduled run.</div>`);
       return;
     }
-    const sections = (entry.sections || []).map(s => `
-      <div class="briefing-section">
-        <div class="briefing-heading">${s.heading}</div>
-        <div class="briefing-body">${s.bodyHtml}</div>
-      </div>`).join('');
+
+    const items = (entry.items || []).map((it, i) => {
+      const tier = it.statusTier || 'pending';
+      const sources = (it.sources || []).length
+        ? `<div class="bitem-sources">Source:
+             ${it.sources.map(s =>
+               `<a href="${s.url}" target="_blank" rel="noopener">${s.label} &rsaquo;</a>`
+             ).join(' &nbsp;&middot;&nbsp; ')}</div>`
+        : '';
+      return `
+        <div class="bitem">
+          <div class="bitem-head">
+            <span class="bitem-num">${i + 1}</span>
+            <h3 class="bitem-headline">${it.headline}</h3>
+          </div>
+          <div class="status-line status-${tier}">
+            <span class="status-badge">${TIER_LABEL[tier] || tier}</span>
+            <span class="status-text">${it.status}</span>
+          </div>
+          <div class="bitem-body">${it.bodyHtml}</div>
+          <div class="credit-implication">
+            <span class="ci-label">Credit implication</span>
+            <span class="ci-text">${it.creditImplication}</span>
+          </div>
+          ${sources}
+        </div>`;
+    }).join('');
+
+    const table = (entry.table || []).length ? `
+      <div class="btable-title">What is actually changing vs. political messaging</div>
+      <table class="btable">
+        <tr><th>Development</th><th>Current status</th><th>My credit read</th></tr>
+        ${entry.table.map(r => `
+          <tr>
+            <td>${r.development}</td>
+            <td><span class="tstat" style="color:${TABLE_STAT_COLOR(r.status)};">${r.status}</span></td>
+            <td>${r.read}</td>
+          </tr>`).join('')}
+      </table>` : '';
+
+    const focus = entry.focusHtml ? `
+      <div class="bfocus-title">What I would focus on</div>
+      <div class="bfocus">${entry.focusHtml}</div>` : '';
+
     setHTML('briefingMain', `
-      <div class="briefing-eyebrow">Weekly Briefing &middot; ${entry.date}</div>
+      <div class="briefing-eyebrow">Weekly Briefing</div>
       <div class="briefing-title">${entry.title}</div>
+      <div class="briefing-through">${entry.throughDate || entry.date}</div>
+      <div class="briefing-overview">${entry.overviewHtml || ''}</div>
       <div class="briefing-disclaimer">Compiled automatically by Claude from public
-        sources. Verify anything compliance-sensitive against the primary source.</div>
-      ${sections}`);
+        sources, newest first. Status labels distinguish what has taken effect from
+        what is only proposed &mdash; verify anything underwriting-critical against
+        the primary source before relying on it.</div>
+      ${items}
+      ${table}
+      ${focus}`);
   }
 
   Array.prototype.forEach.call(document.querySelectorAll('.view-tab'), tab => {
