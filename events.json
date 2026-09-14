@@ -1,5 +1,25 @@
 [
   {
+    "date": "Sep 14, 2026",
+    "dateSort": "2026-09-14T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Industry / Trade",
+    "broadCategory": "industry",
+    "sector": "Pending review",
+    "headline": "[Updated] Addus To Acquire AccentCare\u2019s Personal Care Division For $275M",
+    "detail": "Addus HomeCare Corporation (Nasdaq: ADUS) has agreed to acquire AccentCare\u2019s personal care division outside of New York for approximately $275 million. The acquired assets span 10 states and serve an average daily census of about 13,700 clients. It marks Addus\u2019 entry into six new states: Colorado, Georgia, Minnesota, Pennsylvania, Tennessee and Washington. Chairman and CEO [&#8230;] The post [Updated] Addus To Acquire AccentCare\u2019s Personal Care Division For $275M appeared first on Home Health Care News .",
+    "creditDirection": "Mixed",
+    "severity": "Critical",
+    "riskScore": 8,
+    "sourceAgency": "Home Health Care News",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://homehealthcarenews.com/2026/09/addus-to-acquire-accentcares-personal-care-division-for-275m/",
+    "effectiveDate": "Pending review",
+    "borrowers": [],
+    "id": "IND-030"
+  },
+  {
     "date": "Sep 11, 2026",
     "dateSort": "2026-09-11T00:00:00",
     "jurisdiction": "Trade Press",
