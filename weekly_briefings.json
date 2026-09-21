@@ -1,5 +1,106 @@
 [
   {
+    "date": "Sep 21, 2026",
+    "dateSort": "2026-09-21T00:00:00",
+    "title": "Weekly Medicaid, Home Health & HCBS Update",
+    "throughDate": "Through September 21, 2026",
+    "overviewHtml": "<p>This was a comparatively quiet week for federal Medicaid and home health rulemaking, but it produced one significant piece of consolidation news and one state-level payment story that illustrate the two forces underwriters are juggling right now: continued fraud-driven friction on the enrollment and payment side, and pockets of real rate relief in states that had frozen Medicaid rates for years. Addus HomeCare's agreement to buy AccentCare's personal care division for roughly $275 million was the week's dominant transaction, and California's move to end a multi-year freeze on pediatric private-duty nursing rates was the week's dominant payment story, though that increase is not effective until January 1, 2027. I want to be explicit about what did not happen: there was no new federal Medicare home health payment cut this week, no government shutdown at the September 30 fiscal-year-end (Congress passed a continuing resolution on September 2 funding the government through December 11, 2026), and no announced extension or narrowing of the nationwide home health/hospice Medicare enrollment moratorium, which remains in effect on the terms CMS set in May.</p>",
+    "items": [
+      {
+        "headline": "Addus HomeCare to acquire AccentCare's personal care division for $275 million",
+        "status": "Definitive agreement signed September 14, 2026; deal not yet closed, pending regulatory approvals and customary closing conditions.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>Addus HomeCare Corporation announced a definitive agreement on September 14, 2026 to acquire AccentCare's personal care division, excluding AccentCare's New York operations, for approximately $275 million. AccentCare retains its home health and hospice lines outside this transaction. The acquired operations serve an average daily census of approximately 13,700 clients across 10 states and are expected to add roughly $280 million in annualized revenue, about a 19% increase to Addus' current revenue base.</p><p>The deal deepens Addus' existing footprint in Texas, Illinois, California and Arizona and adds new-state entry into Colorado, Georgia, Minnesota, Pennsylvania, Tennessee and Washington. Per Addus' Form 8-K, the company will fund the purchase through a combination of its revolver and cash on hand, and the filing states the transaction is expected to close following completion of regulatory approvals and customary closing conditions; neither the 8-K nor the company's public statements specify an exact closing date. This follows Addus' Gentiva personal care acquisition and its May 2026 HomeCourt deal in Indiana, continuing a pattern of programmatic personal-care consolidation.</p><p>Because the transaction covers personal care (a largely Medicaid-funded, non-clinical service line) rather than Medicare-certified home health or hospice, it falls outside the nationwide home health/hospice Medicare enrollment moratorium CMS put in place in May 2026, but the deal will still require state-level Medicaid change-of-ownership approvals in each of the 10 states involved before it can fund and integrate.</p>",
+        "creditImplication": "I read this as a leveraged-but-manageable draw on Addus' balance sheet (revolver plus cash, no new debt disclosed) and a signal that personal-care multiples remain attractive to consolidators even amid fraud-enforcement headwinds; for AccentCare and other multi-line operators, it confirms that divesting personal care to fund core home health/hospice investment is a live playbook I should watch for at other national platforms.",
+        "sources": [
+          {
+            "label": "Home Health Care News",
+            "url": "https://homehealthcarenews.com/2026/09/addus-to-acquire-accentcares-personal-care-division-for-275m/"
+          },
+          {
+            "label": "Addus HomeCare Form 8-K (SEC)",
+            "url": "https://www.sec.gov/Archives/edgar/data/0001468328/000143774926030348/ex_1015828.htm"
+          }
+        ]
+      },
+      {
+        "headline": "California ends multi-year freeze on pediatric private-duty nursing Medicaid rates",
+        "status": "Enacted as part of California's FY2026-27 budget; the rate increase itself does not take effect until January 1, 2027.",
+        "statusTier": "proposed",
+        "bodyHtml": "<p>California's enacted 2026-27 state budget includes a rate increase for pediatric private-duty nursing (PDN) services paid through Medi-Cal, ending what providers describe as an eight-to-nine-year rate freeze. The increase is scheduled to take effect January 1, 2027, not immediately. California pays for PDN directly through fee-for-service Medicaid rather than through managed care organizations, which is why this is a direct state rate action rather than a plan-level negotiation.</p><p>Aveanna Healthcare, the largest pediatric PDN provider affected, cited the change as a factor in raising its full-year 2026 guidance and said it expects the rate increase to help reverse years of caregiver-wage-driven capacity constraints in the state, with plans to raise caregiver wages ahead of the January 1 effective date and ramp recruiting once the higher rate is in place.</p><p>I could not verify an exact percentage or per-hour dollar figure for the new rate from primary sources; trade coverage describes the change only as a 'significant investment' without CMS or DHCS having published the specific rate schedule as of this week. Readers should treat any specific percentage figure circulating in secondary press as unconfirmed until DHCS publishes the implementing rate letter.</p>",
+        "creditImplication": "This is a real, budgeted rate improvement, but it is not yet cash-flowing, it does not take effect until January 1, 2027, and California could still delay or trim it in the interim budget process; I would not upgrade a California-concentrated PDN credit's underwritten rate assumptions until the DHCS rate letter is published and the increase is actually being paid.",
+        "sources": [
+          {
+            "label": "Home Health Care News",
+            "url": "https://homehealthcarenews.com/2026/09/aveanna-sees-california-as-next-growth-driver-following-long-awaited-medicaid-rate-boost/"
+          }
+        ]
+      },
+      {
+        "headline": "Nationwide Medicare enrollment moratorium on home health agencies and hospices remains in force, set to expire November 13, 2026",
+        "status": "Implemented since May 13, 2026; still active this week, with no extension or modification announced.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>CMS's nationwide, six-month moratorium on new Medicare enrollments for home health agencies and hospices took effect May 13, 2026 and, absent an extension, is scheduled to lapse November 13, 2026. The moratorium blocks CMS from processing new HHA and hospice Medicare enrollment applications and also restricts certain majority-ownership changes that would otherwise require Medicare re-enrollment; currently enrolled, Medicare-certified providers are unaffected and may continue normal operations. CMS has authority to extend the moratorium in additional six-month increments but has not announced an extension as of this week.</p><p>The action was taken under CMS's Vice President-led Anti-Fraud Task Force initiative and sits alongside other 2026 program-integrity measures, including a separate six-month DMEPOS enrollment moratorium that expired August 27, 2026, and the CMS Medicaid Fraud War Room, which CMS said had stopped more than $203 million in Medicaid payments to high-risk providers in its first 88 days of operation.</p><p>Accreditation and compliance bodies (ACHC, CHAP) have published FAQ guidance clarifying which ownership transactions qualify as exempt from re-enrollment, but the precise boundary of 'certain majority ownership changes' subject to the freeze is not fully codified in the Federal Register notice and is being worked out case-by-case with CMS regional offices.</p>",
+        "creditImplication": "For any home health or hospice acquisition structured as a change of majority ownership requiring Medicare re-enrollment, I need to confirm with counsel and CMS whether the specific transaction structure is exempt before assuming a clean close before November 13; de novo Medicare-certified entry is effectively frozen nationwide until the moratorium lapses or is extended, which supports valuations for existing certified licenses as scarce assets.",
+        "sources": [
+          {
+            "label": "CMS press release",
+            "url": "https://www.cms.gov/newsroom/press-releases/cms-announces-aggressive-nationwide-crackdown-fraud-six-month-hospice-home-health-agency-enrollment"
+          },
+          {
+            "label": "Federal Register notice",
+            "url": "https://www.federalregister.gov/documents/2026/05/15/2026-09718/medicare-medicaid-and-childrens-health-insurance-programs-announcement-of-nationwide-temporary"
+          },
+          {
+            "label": "ACHC guidance",
+            "url": "https://achc.org/2026-cms-home-health-and-hospice-enrollment-moratorium/"
+          }
+        ]
+      },
+      {
+        "headline": "No FY2027 government shutdown; funding extended through December 11, 2026",
+        "status": "Enacted; continuing resolution signed into law September 2, 2026, funding federal agencies at FY2026 levels through December 11, 2026.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>Congress passed and President Trump signed a continuing resolution on September 2, 2026, funding federal agencies, including CMS and HHS, at FY2026 levels through December 11, 2026. This removed the risk of a funding lapse at the October 1 start of FY2027, which had been a live concern through the summer. None of the twelve annual appropriations bills for FY2027 have been enacted, so the same funding-cliff risk resurfaces in mid-December, now positioned closer to, rather than colliding with, the November midterm elections.</p><p>During past shutdowns, CMS has generally been able to sustain Medicaid and Medicare benefit payments in the near term because Medicaid has multi-quarter advance funding and Medicare runs on a 14-day payment floor, but administrative functions such as new state plan amendment and waiver approvals typically stall. None of that materialized this week because no lapse occurred.</p>",
+        "creditImplication": "I am flagging this mainly as a negative-space item: readers should not assume any payment disruption, waiver-approval delay, or claims-processing slowdown occurred this week on account of a shutdown, because none took place; the December 11 deadline is the next date to calendar for potential administrative-approval risk on pending state waiver and SPA submissions.",
+        "sources": [
+          {
+            "label": "Committee for a Responsible Federal Budget - Appropriations Watch",
+            "url": "https://www.crfb.org/blogs/appropriations-watch-fy-2026"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "development": "Addus/AccentCare personal care acquisition ($275M)",
+        "status": "Enacted / implementation underway",
+        "read": "Real consolidation signal; underwrite as pending until state Medicaid CHOW approvals and close"
+      },
+      {
+        "development": "California pediatric PDN Medicaid rate increase",
+        "status": "Proposed",
+        "read": "Budgeted but not yet operative \u2014 do not underwrite the higher rate until it is actually being paid on/after Jan 1, 2027"
+      },
+      {
+        "development": "Nationwide HHA/hospice Medicare enrollment moratorium",
+        "status": "Enacted / implementation underway",
+        "read": "Ongoing CHOW/de novo entry constraint through at least Nov 13, 2026 \u2014 confirm transaction structure is exempt before assuming a clean close"
+      },
+      {
+        "development": "FY2027 government shutdown at Oct 1 fiscal year-end",
+        "status": "Not newly implemented",
+        "read": "Did not occur \u2014 CR funds government through Dec 11, 2026; no Medicaid/Medicare payment or waiver-approval disruption this week"
+      },
+      {
+        "development": "Broad federal Medicare home health reimbursement cut",
+        "status": "Not newly implemented",
+        "read": "No new cut this week; CY2027 proposed rule (comment period closed) currently proposes a net increase, not a cut, and remains unfinalized"
+      }
+    ],
+    "focusHtml": "<p>For credits with California PDN or personal-care exposure, I would confirm current payer mix and whether the borrower is a fee-for-service Medi-Cal biller (as PDN is) versus managed care, and hold off crediting any pro forma benefit from the rate increase until DHCS publishes the implementing rate letter ahead of the January 1, 2027 effective date. For any home health or hospice borrower contemplating a sale or recapitalization before November 13, 2026, I would get specific confirmation \u2014 not an assumption \u2014 on whether the deal structure counts as a 'majority ownership change requiring re-enrollment' under the CMS moratorium, since that determines whether the transaction can close as planned or needs to be sequenced around the moratorium's lapse or extension. For personal-care platforms, the Addus/AccentCare deal is a useful multiple and structure comp; I'd want each state's Medicaid change-of-ownership approval timeline mapped separately, since that \u2014 not the federal moratorium \u2014 is the binding constraint on this particular transaction. More broadly, this week's quiet on new federal rate cuts is a reminder to keep tracking denied-claim trends, provider revalidation status, and EVV compliance directly with each borrower rather than assuming stability from an absence of headlines.</p>"
+  },
+  {
     "date": "Sep 9, 2026",
     "dateSort": "2026-09-09T00:00:00",
     "title": "Weekly Medicaid, Home Health & HCBS Update",
