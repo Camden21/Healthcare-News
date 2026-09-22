@@ -1,5 +1,25 @@
 [
   {
+    "date": "Sep 21, 2026",
+    "dateSort": "2026-09-21T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Industry / Trade",
+    "broadCategory": "industry",
+    "sector": "Pending review",
+    "headline": "Nursing Home\u00a0Capacity Shrinks in NY as Demand for Long-Term Care Looms",
+    "detail": "The number of licensed nursing home beds and facilities has steadily declined in New York, reflecting a broader trend across the country. There have been 24 nursing home closures in the state since 2020, or a loss of more than 3,000 licensed beds, according to a report in the New York Times. As for operators [&#8230;] The post Nursing Home Capacity Shrinks in NY as Demand for Long-Term Care Looms appeared first on Skilled Nursing News .",
+    "creditDirection": "Mixed",
+    "severity": "Medium",
+    "riskScore": 6,
+    "sourceAgency": "Skilled Nursing News",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://skillednursingnews.com/2026/09/nursing-home-capacity-shrinks-in-ny-as-demand-for-long-term-care-looms/",
+    "effectiveDate": "Pending review",
+    "borrowers": [],
+    "id": "IND-042"
+  },
+  {
     "date": "Sep 18, 2026",
     "dateSort": "2026-09-18T00:00:00",
     "jurisdiction": "Trade Press",
