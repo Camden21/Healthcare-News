@@ -1,5 +1,110 @@
 [
   {
+    "date": "Sep 28, 2026",
+    "dateSort": "2026-09-28T00:00:00",
+    "title": "Weekly Medicaid, Home Health & HCBS Update",
+    "throughDate": "Through September 28, 2026",
+    "overviewHtml": "<p>This was a quiet week for actual reimbursement changes but an active one for the administrative machinery that will determine how much cash flows to home care, HCBS and skilled providers over the next year. The dominant theme is state-level and advisory-body activity around policies enacted or proposed earlier in 2026: states are diverging in how strictly they will enforce Medicaid work-requirement medical-frailty exemptions ahead of the January 1, 2027 federal deadline, and MACPAC used its September 24-25 public meeting to formally weigh in on two still-pending CMS rules that would cap state directed payments and tighten provider-tax financing, both of which fund Medicaid managed-care rates that support LTSS and HCBS providers. Separately, the nationwide home health and hospice enrollment moratorium remains in effect with no CMS decision yet on whether it will lift as scheduled on November 13, 2026. I want to be explicit about what did NOT happen: there was no new Medicare home health payment cut this week \u2014 the CY2027 proposed rule on the table would actually raise aggregate payments 2.4%, and it has not been finalized; no Medicaid work requirement is actually in effect anywhere yet outside early-adopter states: the national mandate does not bind until January 1, 2027; and CMS has not announced any extension, modification or lifting of the home health/hospice enrollment moratorium this week \u2014 it is simply still pending.</p>",
+    "items": [
+      {
+        "headline": "States split on documentation vs. self-attestation for Medicaid work-requirement medical-frailty exemptions",
+        "status": "Administrative choice being made now by states ahead of the federal January 1, 2027 work-requirement effective date; not yet a binding national requirement.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>CMS's interim final rule implementing the One Big Beautiful Bill Act's Medicaid community engagement (work) requirement allows states to accept a beneficiary's self-attestation of a medically frail or disabling condition for the first enrollment cycle, with documentation required at least every 12 months starting in 2028. Reporting this week (AP, September 26) found at least six states \u2014 Arkansas, Idaho, Indiana, New Hampshire, North Carolina and Ohio \u2014 plan to require documentation immediately rather than accept self-attestation, going further than the federal floor requires.</p><p>The underlying mandate applies to roughly 20 million expansion-population adults across the 41 expansion states plus D.C. and does not take effect until January 1, 2027 (states may move earlier via 1115 authority). CBO projects $887 billion in federal savings and 7.5 million fewer insured over the decade tied to the broader reconciliation law, of which work requirements are one component; Arizona has already seen a 55% Medicaid enrollment drop (over 400,000 beneficiaries) since April 2025 tied to related administrative friction, illustrating the churn risk even before the mandate is formally binding nationwide.</p><p>Most direct-care Medicaid HCBS and personal care beneficiaries qualify through aged/disabled eligibility pathways that are exempt from the work requirement itself, but the medically frail exemption process matters because it is the mechanism by which beneficiaries who are nominally in the expansion group but functionally disabled avoid disenrollment. States requiring upfront clinical documentation create a higher administrative burden that can produce coverage gaps for borderline cases before January 2027.</p>",
+        "creditImplication": "I am not yet underwriting to any revenue impact from work requirements since the mandate is not in effect anywhere on a mandatory basis, but I am flagging the six stricter-documentation states as higher near-term churn risk for payer mix and private-pay conversion once the rule binds in 2027, and I want borrowers in those states to show a plan for exemption-verification support for frail clients.",
+        "sources": [
+          {
+            "label": "CMS \u2013 Medicaid Community Engagement Requirement Interim Final Rule Fact Sheet",
+            "url": "https://www.cms.gov/newsroom/fact-sheets/medicaid-community-engagement-requirement-certain-individuals-interim-final-rule-comment-period-cms"
+          },
+          {
+            "label": "AP via US News \u2013 As work requirements kick in for Medicaid, some states are taking a tougher stance",
+            "url": "https://www.usnews.com/news/health-news/articles/2026-09-26/as-work-requirements-kick-in-for-medicaid-some-states-are-taking-a-tougher-stance"
+          }
+        ]
+      },
+      {
+        "headline": "MACPAC reviews pending caps on Medicaid state directed payments and provider-tax financing",
+        "status": "Advisory review only; underlying CMS proposed rules had comments close July 21, 2026 and are not yet finalized.",
+        "statusTier": "proposed",
+        "bodyHtml": "<p>At its September 24-25, 2026 public meeting, the Medicaid and CHIP Payment and Access Commission (MACPAC) formally reviewed two CMS proposed rules issued under Section 71116 of the 2025 reconciliation law: one capping Medicaid managed-care state directed payments (SDPs) and certain fee-for-service targeted practitioner payments at 100% of Medicare rates in expansion states (110% in non-expansion states), and a companion proposal narrowing the health care-related (provider) tax hold-harmless test. CMS estimates the SDP rule alone at roughly $775 billion in total savings and $510 billion in federal savings over ten years; the comment period on both rules closed July 21, 2026, and neither has been finalized.</p><p>MACPAC's commissioners, in a comment letter to CMS Administrator Dr. Mehmet Oz, warned that applying the Medicare-based limits at the service level could constrain states' ability to use SDPs to support access and quality goals, and that combining the new taxable-provider class with elimination of the so-called 75/75 test removes a pathway states use to raise Medicaid revenue with only a loose tie to program spending. SDPs are a significant funding lever in Medicaid managed long-term services and supports (MLTSS) states, where they are used to raise managed-care rates paid through to home health, personal care and HCBS network providers.</p><p>Neither rule is in effect. This week's development is MACPAC's formal advisory input, not a new CMS action, but it signals where a future final rule is likely to land and which provider types (rate-dependent MLTSS networks) are most exposed if the caps are finalized largely as proposed.</p>",
+        "creditImplication": "Where a borrower's state relies on state directed payments to prop up Medicaid MCO rates for HCBS or personal care, I am treating any embedded rate assumptions in projections as at risk pending finalization of this rule, and I am not underwriting to current SDP-supported rate levels as permanent until CMS issues a final rule and states show how they will respond.",
+        "sources": [
+          {
+            "label": "MACPAC \u2013 State Directed Payment and Provider Tax Proposed Rule (September 2026 meeting)",
+            "url": "https://www.macpac.gov/publication/state-directed-payment-and-provider-tax-proposed-rule/"
+          },
+          {
+            "label": "CMS \u2013 CMS Moves to Rein In Misused Medicaid Dollars and Reward Quality Care",
+            "url": "https://www.cms.gov/newsroom/press-releases/cms-moves-rein-misused-medicaid-dollars-reward-quality-care"
+          }
+        ]
+      },
+      {
+        "headline": "Nationwide home health and hospice enrollment moratorium remains in effect; no CMS decision yet on November expiration",
+        "status": "In effect since May 13, 2026; six-month term runs through November 13, 2026, and CMS has not announced whether it will extend, modify or let it lapse.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>CMS's nationwide moratorium on new Medicare enrollment of home health agencies and hospices, announced under the administration's anti-fraud task force, took effect May 13, 2026 and blocks new HHA/hospice enrollments and certain majority-ownership changes requiring re-enrollment; currently enrolled providers are unaffected and may continue normal operations. The moratorium runs for a fixed six-month term and CMS must decide before it lapses whether to let it expire, extend it, or replace it with a different enforcement approach, with any extension required to be announced in the Federal Register.</p><p>Industry groups, including LeadingAge and the National Alliance for Care at Home, have pressed CMS to let the moratorium expire on schedule rather than renew it, arguing that fraud is concentrated in specific metro markets rather than distributed nationally, and citing data that 38% of Medicare beneficiaries referred to home health after a hospital discharge in Q3 2025 did not receive those services \u2014 an access argument against extending a blanket new-enrollment freeze. As of this week, CMS has made no public announcement on its intentions.</p><p>This is a live, unresolved variable rather than new news this week, but it remains squarely relevant to underwriting because it directly freezes de novo entry and constrains change-of-ownership structuring for the sector through at least mid-November.</p>",
+        "creditImplication": "For any deal involving a new HHA/hospice start-up or a change of ownership that would trigger Medicare re-enrollment, I am treating Medicare billing capability as frozen until CMS's decision lands, and I am building the November 13 decision date into closing and funding timelines for any pending home health or hospice M&amp;A.",
+        "sources": [
+          {
+            "label": "CMS \u2013 Home Health and Hospice Nationwide Moratorium Q&amp;As",
+            "url": "https://www.cms.gov/files/document/hh-hospice-moratorium-faqs.pdf"
+          },
+          {
+            "label": "Home Health Care News \u2013 As Home Health Moratorium Nears Expiration, Advocates Press CMS Against Extension",
+            "url": "https://homehealthcarenews.com/2026/09/as-home-health-moratorium-nears-expiration-advocates-press-cms-against-extension/"
+          }
+        ]
+      },
+      {
+        "headline": "CY2027 Medicare home health proposed rule would raise payments 2.4%, not cut them \u2014 but is not yet final",
+        "status": "Proposed rule only; public comment period closed August 31, 2026; CMS has not issued a final rule.",
+        "statusTier": "proposed",
+        "bodyHtml": "<p>CMS's CY2027 Home Health Prospective Payment System proposed rule (CMS-1844-P), issued July 1, 2026, would increase aggregate Medicare payments to home health agencies by an estimated 2.4%, or $420 million, relative to CY2026 \u2014 a reversal from CY2026's finalized 1.3% ($220 million) aggregate cut and from CY2026's own proposed rule, which had floated a 6.4% reduction before finalization. This is a proposal only; CMS has not yet published a final rule, and none of the CY2027 figures are in effect.</p><p>The proposed rule also carries forward a temporary 3.0% reduction to the national standardized 30-day payment rate, which CMS characterizes as recouping prior-year overpayments tied to the PDGM case-mix transition. Industry commenters, including the National Alliance for Care at Home, argue that permanent PDGM-related reductions have already cut the 30-day payment rate by 9.37% cumulatively and that a single positive headline update does not offset years of recoupment. The comment period closed August 31, 2026 with 657 comments submitted, a far smaller volume than the 952,483 comments received on the prior year's rule.</p><p>CMS typically finalizes the annual HH PPS rule around November 1 for a January 1 effective date, so a final CY2027 rule is likely within the next several weeks but had not been issued as of this week.</p>",
+        "creditImplication": "I am not building the proposed 2.4% increase into any CY2027 projections until CMS finalizes the rule, and I am specifically flagging the contested 3% behavioral recoupment adjustment as a real downside risk to modeled cash flow for Medicare-heavy home health borrowers even if the headline number is finalized as an increase.",
+        "sources": [
+          {
+            "label": "CMS \u2013 CY2027 Home Health PPS Proposed Rule Fact Sheet (CMS-1844-P)",
+            "url": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-home-health-prospective-payment-system-proposed-rule-fact-sheet-cms-1844-p"
+          },
+          {
+            "label": "Home Health Care News \u2013 What Comments Reveal About CMS' Proposed Medicare Home Health Rule",
+            "url": "https://homehealthcarenews.com/2026/09/what-comments-reveal-about-cms-proposed-medicare-home-health-rule/"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "development": "Work-requirement frailty exemption documentation (6 states)",
+        "status": "Proposed / state administrative choice",
+        "read": "No coverage impact yet; watch payer-mix churn risk in AR, ID, IN, NH, NC, OH ahead of Jan 2027"
+      },
+      {
+        "development": "SDP and provider-tax caps (MACPAC review)",
+        "status": "Proposed",
+        "read": "Do not underwrite to current SDP-supported MLTSS rates as permanent"
+      },
+      {
+        "development": "Home health/hospice enrollment moratorium",
+        "status": "Enacted / implementation underway",
+        "read": "Real timing risk for any HHA/hospice de novo or CHOW deal through Nov 13, 2026"
+      },
+      {
+        "development": "CY2027 home health payment update",
+        "status": "Proposed",
+        "read": "Do not book the 2.4% increase; final rule not yet issued"
+      },
+      {
+        "development": "National Medicaid work requirements broadly",
+        "status": "Not newly implemented",
+        "read": "No national mandate is in force yet; effective date remains January 1, 2027"
+      }
+    ],
+    "focusHtml": "<p>The diligence priorities this week are financing-mechanism exposure rather than immediate rate cuts: for any Medicaid managed-care-heavy HCBS or personal care borrower, I want a state-by-state breakdown of how much of the payer rate rides on state directed payments or provider-tax-funded supplemental payments, since both are subject to pending federal caps reviewed by MACPAC this week. For home health and hospice operators, I want current Medicare enrollment status confirmed and any planned change-of-ownership transaction stress-tested against the moratorium's November 13 decision date, since a CHOW requiring re-enrollment cannot close through Medicare in the interim. For multi-state operators, I want to know which states are already requiring upfront documentation for work-requirement medical-frailty exemptions, since that is the earliest observable signal of how aggressively a state will administer the January 2027 mandate. And across the board, I am continuing to track Medicaid DSO, denied-claim trends, EVV compliance and revalidation status as baseline diligence items \u2014 none of which moved this week, but all of which become more consequential once the financing and enrollment questions above are resolved.</p>"
+  },
+  {
     "date": "Sep 21, 2026",
     "dateSort": "2026-09-21T00:00:00",
     "title": "Weekly Medicaid, Home Health & HCBS Update",
