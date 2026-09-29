@@ -1,5 +1,25 @@
 [
   {
+    "date": "Sep 28, 2026",
+    "dateSort": "2026-09-28T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Industry / Trade",
+    "broadCategory": "medicaid",
+    "sector": "Pending review",
+    "headline": "LEARN Behavioral Entity Sues to Stop MassHealth Medicaid Recoupment",
+    "detail": "A Massachusetts autism therapy provider has sued 10 public officials and entities to stop a Medicaid recoupment effort that local providers have decried as flawed since this spring. The lawsuit seeks to halt MassHealth\u2019s, the state\u2019s Medicaid program, effort to recoup millions of dollars from autism therapy providers for services provided in 2024. Autism Spectrum [&#8230;] The post LEARN Behavioral Entity Sues to Stop MassHealth Medicaid Recoupment appeared first on Behavioral Health Business .",
+    "creditDirection": "Negative",
+    "severity": "Medium",
+    "riskScore": 6,
+    "sourceAgency": "Behavioral Health Business",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://bhbusiness.com/2026/09/28/learn-behavioral-entity-sues-to-stop-masshealth-medicaid-recoupment/",
+    "effectiveDate": "Pending review",
+    "borrowers": [],
+    "id": "FED-037"
+  },
+  {
     "date": "Sep 25, 2026",
     "dateSort": "2026-09-25T00:00:00",
     "jurisdiction": "Trade Press",
