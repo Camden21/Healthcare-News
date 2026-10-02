@@ -1,5 +1,25 @@
 [
   {
+    "date": "Oct 1, 2026",
+    "dateSort": "2026-10-01T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Industry / Trade",
+    "broadCategory": "industry",
+    "sector": "Pending review",
+    "headline": "In the Pipeline: Touchmark Starts Work in Alaska; Cedarhurst Hits Milestones in Illinois, Kansas",
+    "detail": "In the Pipeline is part of your SHN+ subscription In the Pipeline is brought to you by the Senior Housing News Architecture &#38; Design Awards, an annual competition that recognizes cutting-edge design, excellence, and innovation in senior living. Construction: Planned Kauhale Health plans memory care redevelopment Kauhale Health recently announced the acquisition and planned redevelopment [&#8230;] The post In the Pipeline: Touchmark Starts Work in Alaska; Cedarhurst Hits Milestones in Illinois, Kansas appeared first on Senior Housing News .",
+    "creditDirection": "Mixed",
+    "severity": "Medium",
+    "riskScore": 6,
+    "sourceAgency": "Senior Housing News",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://seniorhousingnews.com/2026/10/01/in-the-pipeline-touchmark-starts-work-in-alaska-cedarhurst-hits-milestones-in-illinois-kansas/",
+    "effectiveDate": "Pending review",
+    "borrowers": [],
+    "id": "IND-051"
+  },
+  {
     "date": "Sep 30, 2026",
     "dateSort": "2026-09-30T00:00:00",
     "jurisdiction": "Trade Press",
