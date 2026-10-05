@@ -1,5 +1,132 @@
 [
   {
+    "date": "Oct 5, 2026",
+    "dateSort": "2026-10-05T00:00:00",
+    "title": "Weekly Medicaid, Home Health & HCBS Update",
+    "throughDate": "Through October 5, 2026",
+    "overviewHtml": "<p>This week's dominant theme is enforcement and effective dates catching up to policies enacted months ago, rather than new federal rate action: on October 1, CMS's noncitizen Medicaid/CHIP funding restriction took effect, Mississippi began auto-suspending Electronic Visit Verification (EVV) non-compliant personal care and private duty nursing claims, and Kansas launched its new Community Supports Waiver, while a federal court in Texas v. Kennedy vacated the community-integration provisions of HHS's Section 504 rule. I want to be explicit about what did NOT happen this week: there was no new federal Medicare home health rate cut or increase \u2014 the CY2027 Home Health Prospective Payment System rule remains a proposal with its comment period closed and no final rule issued; and there was no Medicaid funding disruption from a federal government shutdown, since Congress funded the government through December 11, 2026 back in early September. Readers should not treat any of this week's items as changing current reimbursement rates for home health, personal care, or HCBS providers generally.</p>",
+    "items": [
+      {
+        "headline": "CMS Noncitizen Medicaid/CHIP Funding Restriction Takes Effect",
+        "status": "Implemented October 1, 2026, per CMS State Health Official letter SHO #26-001.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>Effective October 1, 2026, CMS guidance implementing Section 71109 of the 2025 federal reconciliation law limits federal Medicaid and CHIP matching funds to a narrower set of noncitizen categories \u2014 lawful permanent residents, Cuban/Haitian entrants, and residents of the Compact of Free Association (COFA) nations. Refugees, asylees, trafficking and domestic-violence survivors, and humanitarian parolees, who previously qualified for full-scope coverage, generally lose federal matching eligibility, though coverage for emergency medical conditions continues and states retain the option to cover lawfully residing children and pregnant women using state-only or other funds.</p><p>CMS's State Health Official letter (SHO #26-001) directs states on eligibility system updates, redetermination processes, verification, and claims handling needed to implement the restriction. States including Washington have already begun processing coverage terminations tied to this change effective October 1.</p><p>The Congressional Budget Office has estimated the Medicaid/CHIP-specific eligibility restrictions will increase the uninsured population by roughly 900,000 people as the provision phases in, a materially larger figure than earlier Kaiser Family Foundation estimates, reflecting different scoring assumptions about affected populations.</p><p>This is a national implementation date, not a proposal \u2014 providers with meaningful caseloads of refugees, asylees, or other affected noncitizen categories should expect enrollment attrition starting now, concentrated in states with larger refugee and asylee populations such as Washington, California, New York, Massachusetts, and Minnesota.</p>",
+        "creditImplication": "I would reassess payer-mix and census assumptions for personal care, home health, and HCBS borrowers with concentrated exposure to refugee, asylee, or humanitarian-parolee populations in high-immigrant states, since this is a real, dated enrollment loss rather than a future risk.",
+        "sources": [
+          {
+            "label": "CMS Newsroom",
+            "url": "https://www.cms.gov/newsroom/press-releases/cms-issues-guidance-implement-new-limits-federal-medicaid-chip-funding-certain-noncitizens"
+          },
+          {
+            "label": "Medicaid.gov SHO #26-001",
+            "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf"
+          },
+          {
+            "label": "KFF",
+            "url": "https://www.kff.org/immigrant-health/implementation-of-medicaid-immigrant-eligibility-restrictions-under-the-2025-reconciliation-law-issues-to-consider/"
+          }
+        ]
+      },
+      {
+        "headline": "Mississippi Begins Auto-Suspending Non-EVV Personal Care and Private Duty Nursing Claims",
+        "status": "Implemented October 1, 2026; non-compliant claims are now auto-suspended.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>As of October 1, 2026, Mississippi Medicaid requires that all State Plan Private Duty Nursing (PDN) and Personal Care Services (PCS) claims be submitted and processed through the Electronic Visit Verification (EVV) system via its aggregator, HHAeXchange. The state's MESA claims system now automatically suspends any fee-for-service PDN or PCS claim that does not originate from HHAeXchange, enforcing the federal 21st Century Cures Act EVV mandate that other states have already implemented for personal care.</p><p>Mississippi is offering a temporary exception process for providers experiencing ongoing technical onboarding issues, allowing continued direct MESA billing while issues are resolved, but only with prior state approval \u2014 unapproved direct submissions after the deadline are denied and redirected to HHAeXchange.</p><p>This is a claims-processing enforcement change, not a rate change: it does not alter PDN or PCS reimbursement rates, but it directly affects whether claims get paid on time.</p>",
+        "creditImplication": "For Mississippi-based PDN and PCS borrowers, I want evidence of full HHAeXchange onboarding or an approved exception before underwriting near-term cash flow \u2014 claim suspensions from incomplete EVV integration are a real, immediate DSO and liquidity risk, not a theoretical one.",
+        "sources": [
+          {
+            "label": "Mississippi Division of Medicaid",
+            "url": "https://medicaid.ms.gov/late-breaking-news/"
+          }
+        ]
+      },
+      {
+        "headline": "Kansas Launches Community Supports Waiver, Capped at 500 Enrollees and $20,000 Per Person",
+        "status": "Effective October 1, 2026, with launch announced October 3, 2026; CMS approved the 1915(c) waiver July 1, 2026.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>Kansas has launched its new Community Supports Waiver, a 1915(c) HCBS waiver for residents age 5 and older with intellectual or developmental disabilities who do not require 24-hour paid support but would otherwise need placement in an Intermediate Care Facility for Individuals with Intellectual Disabilities (ICF/IID). CMS approved the waiver on July 1, 2026, and it became operative October 1, 2026, administered by the Kansas Department for Aging and Disability Services (KDADS) with the Kansas Department of Health and Environment, coordinating with existing KanCare managed care networks.</p><p>CMS approved a projected enrollment of 500 individuals for the first waiver year, running October 1, 2026 through September 30, 2027, with services subject to an annual cap of $20,000 per participant. Covered services include personal care, respite, employment supports, assistive technology, home modifications, and non-medical transportation; day and residential services are excluded. The state's stated purpose is to reduce its I/DD waiver waiting list.</p><p>Both the enrollment cap and the per-person dollar cap are binding constraints, not targets \u2014 this is a modest, deliberately bounded expansion rather than an open-ended new funding stream.</p>",
+        "creditImplication": "I would treat this as a small, capped incremental revenue opportunity for Kansas I/DD and HCBS providers \u2014 useful for waitlist-driven referral volume, but the 500-enrollee and $20,000-per-person caps mean it cannot support aggressive growth projections for any single operator.",
+        "sources": [
+          {
+            "label": "Office of the Governor of Kansas",
+            "url": "https://www.governor.ks.gov/Home/Components/News/News/1086/56"
+          },
+          {
+            "label": "KDADS",
+            "url": "https://www.kdads.ks.gov/Home/Components/News/News/86/316"
+          }
+        ]
+      },
+      {
+        "headline": "Federal Court Vacates Community-Integration Provisions of HHS Section 504 Rule",
+        "status": "Order and Final Judgment entered September 23, 2026, in Texas v. Kennedy (N.D. Tex., Lubbock Div., No. 5:24-CV-225-H); not a rulemaking and not subject to a comment period.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>On September 23, 2026, the U.S. District Court for the Northern District of Texas entered an Order and Final Judgment in Texas v. Kennedy, granting a joint motion by the Department of Justice (on behalf of HHS) and the states of Texas, Florida, Alaska, Louisiana, and Montana. The order vacates the 'most integrated setting' definition and the entire community-integration provision of HHS's 2024 Section 504 regulation, including its application to existing facilities, education programs, and medical diagnostic equipment.</p><p>Importantly, the order does not change the underlying Section 504 statute or Title II of the ADA, does not overturn the Supreme Court's Olmstead decision requiring integrated settings where appropriate, and does not touch CMS's separate HCBS settings rule governing where Medicaid HCBS services may be delivered. What it removes is a specific HHS regulatory mechanism that civil-rights and disability advocates had used to press federal agencies and states toward community-based rather than institutional placement.</p><p>The practical effect on day-to-day HCBS waiver administration is not yet clear \u2014 this was a negotiated resolution between DOJ and the plaintiff states rather than a new policy directive to states, and no state has yet announced a resulting change to waiver enrollment, waitlist management, or institutional-placement practices as a direct result.</p>",
+        "creditImplication": "I would not read this as a near-term change to HCBS funding or waiver enrollment, but it removes one federal enforcement lever that has supported HCBS expansion over institutional care \u2014 worth tracking for second-order effects on state waiver pipelines rather than acting on now.",
+        "sources": [
+          {
+            "label": "DREDF \u2014 Order and Final Judgment",
+            "url": "https://dredf.org/wp-content/uploads/2026/09/2026.09.23-DREDF-125.-Order-and-Final-Judgment-Access-Pass.pdf"
+          },
+          {
+            "label": "LeadingAge",
+            "url": "https://leadingage.org/integration-mandate-provisions-vacated-from-hhs-section-504-regulation/"
+          }
+        ]
+      },
+      {
+        "headline": "CY2027 Home Health Payment Rule Remains Proposed, Not Final",
+        "status": "Proposed July 1, 2026; comment period closed August 31, 2026; no final rule issued as of this week.",
+        "statusTier": "proposed",
+        "bodyHtml": "<p>CMS's Calendar Year 2027 Home Health Prospective Payment System proposed rule, published July 1, 2026, would deliver a net 2.4% aggregate payment increase (about $420 million) relative to CY2026 \u2014 combining the statutory 2.1% annual update with a 0.3% increase tied to the outlier fixed-dollar-loss ratio. Notably, this is the first year since CY2022 that CMS has not proposed an additional permanent negative adjustment on top of the statutory update.</p><p>However, the proposal would also continue a temporary -3.0% reduction to the national standardized 30-day payment rate, intended to recoup an estimated $500 million in prior Patient-Driven Groupings Model (PDGM) overpayments. That temporary cut already applies under current CY2026 rates and is not new; the proposal is to extend it into CY2027 rather than let it expire.</p><p>The comment period closed August 31, 2026, and CMS has not yet issued a final rule; it typically finalizes the Home Health PPS rule in early November for a January 1 effective date, so a final rule is expected but not yet in hand.</p><p>Until finalized, neither the headline 2.4% increase nor the continuation of the -3.0% adjustment is locked in \u2014 CMS could adjust either figure in the final rule.</p>",
+        "creditImplication": "I would continue underwriting home health borrowers on current CY2026 rates, including the existing -3.0% PDGM recoupment adjustment that is already in effect, and would not build the proposed 2.4% CY2027 increase into forward cash-flow projections until a final rule is published.",
+        "sources": [
+          {
+            "label": "Federal Register",
+            "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13602/calendar-year-2027-home-health-prospective-payment-system-hh-pps-rate-update-requirements-for-the-hh"
+          },
+          {
+            "label": "CMS Newsroom",
+            "url": "https://www.cms.gov/newsroom/press-releases/cms-proposes-updates-strengthen-medicare-program-integrity-combat-fraud-expand-access-home-health"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "development": "Noncitizen Medicaid/CHIP funding restriction",
+        "status": "Implemented",
+        "read": "Real, dated census/revenue risk in high-immigrant-population states"
+      },
+      {
+        "development": "Mississippi EVV claim auto-suspension (PDN/PCS)",
+        "status": "Implemented",
+        "read": "Immediate DSO/liquidity risk for non-compliant MS providers"
+      },
+      {
+        "development": "Kansas Community Supports Waiver launch",
+        "status": "Implemented",
+        "read": "Small, capped new revenue opportunity only \u2014 not a growth thesis"
+      },
+      {
+        "development": "Section 504 integration mandate vacated (Texas v. Kennedy)",
+        "status": "Enacted / implementation underway",
+        "read": "Removes a federal HCBS enforcement lever; not a funding change \u2014 watch, don't act"
+      },
+      {
+        "development": "CY2027 Home Health PPS rule (2.4% increase, continued 3% PDGM cut)",
+        "status": "Proposed",
+        "read": "Do not underwrite yet; final rule still pending"
+      },
+      {
+        "development": "Federal government shutdown / FY2027 funding",
+        "status": "Not newly implemented",
+        "read": "No disruption \u2014 CR signed Sept 2, 2026 funds government through Dec 11, 2026"
+      }
+    ],
+    "focusHtml": "<p>The diligence items I'd prioritize this week: for personal care, HCBS, and home health borrowers in Washington, California, New York, Massachusetts, and Minnesota, pull current payer-mix detail to quantify exposure to refugee, asylee, and other now-restricted noncitizen categories ahead of further enrollment attrition. For any Mississippi-based PDN or PCS operator, confirm actual HHAeXchange EVV onboarding status or an approved exception letter \u2014 not just an attestation of intent \u2014 since non-compliant claims are being suspended now. For Kansas I/DD or HCBS operators citing the new Community Supports Waiver as a growth driver, size their revenue assumptions against the hard 500-enrollee and $20,000-per-participant caps rather than the headline program launch. More broadly, continue treating the CY2027 Home Health PPS proposed rule as unconfirmed in any cash-flow model, and revisit EVV compliance history, provider revalidation status, and denied-claim trends across all HCBS and personal-care credits given the pattern of states (Mississippi this week, Minnesota's ongoing 80% EVV compliance enforcement) tightening claims-level program integrity enforcement rather than changing rates.</p>"
+  },
+  {
     "date": "Sep 28, 2026",
     "dateSort": "2026-09-28T00:00:00",
     "title": "Weekly Medicaid, Home Health & HCBS Update",
