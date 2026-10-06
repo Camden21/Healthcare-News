@@ -596,8 +596,8 @@ TEMPLATE = r"""<!DOCTYPE html>
       <button class="filter-chip dir-mixed" data-dir="Mixed">Mixed</button>
       <button class="filter-chip dir-positive" data-dir="Positive">Positive</button>
       <span class="row2-label" style="margin-left:14px;">Sort</span>
-      <button class="filter-chip sort-chip active" data-sort="date">Newest First</button>
-      <button class="filter-chip sort-chip" data-sort="impact">Most Impactful</button>
+      <button class="filter-chip sort-chip" data-sort="date">Newest First</button>
+      <button class="filter-chip sort-chip active" data-sort="impact">Most Impactful</button>
     </div>
   </div>
 
@@ -770,7 +770,7 @@ TEMPLATE = r"""<!DOCTYPE html>
   let activeBorrower = null;
   let activeDir = 'all';
   let searchTerm = '';
-  let sortMode = 'date';
+  let sortMode = 'impact';
 
   function impactTier(score){
     if(score >= 10) return "Critical Impact — Risk Score 10+";
