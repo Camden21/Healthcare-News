@@ -1,5 +1,115 @@
 [
   {
+    "date": "Oct 12, 2026",
+    "dateSort": "2026-10-12T00:00:00",
+    "title": "Weekly Medicaid, Home Health & HCBS Update",
+    "throughDate": "Through October 12, 2026",
+    "overviewHtml": "<p>This was a comparatively quiet week for new federal rate action, but it sharpened two program-integrity threads that matter more for underwriting than any single headline: Pennsylvania and Louisiana moved forward with CMS's nationwide Medicaid provider-revalidation initiative, pushing concrete late-2026 deadlines onto high-risk providers, including personal-care and attendant-care agencies, while CMS still has not said whether it will extend the nationwide Medicare home health/hospice enrollment moratorium before it lapses on November 13. I want to be explicit about what did NOT happen this week: there was no new federal Medicare home health rate cut (the only rate change currently in effect, a 1.3% aggregate CY2026 decrease, took effect January 1, 2026, and the CY2027 proposal is a net increase that is not yet final); there was no federal government shutdown disrupting Medicaid or Medicare claims payment (a continuing resolution signed in early September funds the government through December 11); and I found no confirmation that CMS has finalized its proposed rescission of the 2024 nursing home minimum-staffing rule, so operators should not assume that mandate is permanently gone.</p>",
+    "items": [
+      {
+        "headline": "State Medicaid agencies push ahead with CMS-mandated provider revalidation, naming PCS/attendant-care providers as high-risk",
+        "status": "Enacted at the federal directive level in April 2026; implementation is underway state-by-state, with Pennsylvania's bulletin reported October 5, 2026 and a December 31, 2026 compliance deadline.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>CMS Administrator Dr. Mehmet Oz sent letters to all 50 governors and state Medicaid directors on April 23, 2026, directing states to execute a two-year Provider Revalidation Strategy and to immediately begin off-cycle revalidation of providers CMS or the state deems high-risk, including any provider lacking a National Provider Identifier. States had 10 business days to confirm their intent and 30 days to submit a full strategy. This is a federal program-integrity directive, not a proposal: states are actively executing it now.</p><p>Two state actions this week/this month illustrate the pattern. Pennsylvania's Department of Human Services issued a bulletin (reported by the Rehabilitation and Community Providers Association on October 5, 2026) requiring high-risk providers who last revalidated before July 1, 2025, plus certain providers revalidated since, to complete off-cycle revalidation by December 31, 2026. Triggers for high-risk status include a fraud-related payment suspension, a federal exclusion, an unresolved overpayment above $1,500, or enrolling shortly after a federal moratorium ends; DHS said the requirement extends to most services billed on a time-and-attendance basis, including residential habilitation. Louisiana's Department of Health issued Informational Bulletin 26-10 in July, naming durable medical equipment suppliers, home health agencies, hospices, and personal care services providers among the categories now revalidated every three years instead of five, with direct notices going out to selected providers.</p><p>The consequence for a missed deadline is not a fine \u2014 it is deactivation. Pennsylvania's bulletin states that a high-risk service location that misses its notice date will be closed in the state's PROMISe enrollment system; Louisiana's bulletin similarly bars reimbursement for services rendered between a missed due date and successful completion of revalidation. Other states (Nevada, South Carolina, Wyoming, Massachusetts) have filed similar two-year strategies with CMS, so this is a nationwide rollout, not an isolated state action.</p>",
+        "creditImplication": "I treat an upcoming revalidation deadline as a near-term liquidity and continuity-of-billing risk for any PCS/HCBS or attendant-care borrower, not a remote compliance item \u2014 a missed notice can mean Medicaid deactivation and a payment gap with no grace period. For any credit with Pennsylvania or Louisiana exposure, I want to confirm the borrower's revalidation status and notice dates before closing, and I'd extend the same diligence question to other states as their two-year strategies surface.",
+        "sources": [
+          {
+            "label": "RCPA/PA Providers Association \u2014 DHS bulletin on off-cycle revalidation",
+            "url": "https://www.paproviders.org/dhs-publishes-bulletin-on-off-cycle-revalidation-of-high-risk-providers"
+          },
+          {
+            "label": "Louisiana Dept. of Health \u2014 Informational Bulletin 26-10",
+            "url": "https://ldh.la.gov/assets/docs/BayouHealth/Informational_Bulletins/2026/IB26-10.pdf"
+          },
+          {
+            "label": "NASDDDS \u2014 Summary of CMS State Medicaid Director Letter on Provider Revalidation (4/23/26)",
+            "url": "https://www.nasddds.org/wp-content/uploads/2026/04/Summary-of-SMD-on-Provider-Revalidation-4-23-26-1.pdf"
+          }
+        ]
+      },
+      {
+        "headline": "CMS has not yet decided whether to extend the nationwide home health/hospice Medicare enrollment moratorium past November 13",
+        "status": "Moratorium implemented since May 13, 2026, and remains in effect; a decision on extension is pending with no CMS announcement as of this week.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>CMS imposed a nationwide six-month moratorium on new Medicare enrollment of home health agencies and hospices effective May 13, 2026, as a fraud-control measure. It covers new initial enrollment applications, new branch/practice locations, and certain changes of majority ownership. By rule, the moratorium runs six months unless CMS extends it in further six-month increments, with any extension or lifting published in the Federal Register; CMS has said it will give providers roughly 60 days' notice if it extends.</p><p>As the November 13 expiration approaches, industry groups have pressed CMS to let it lapse. LeadingAge sent a letter on August 31, co-signed by 18 other organizations, and the National Alliance for Care at Home's CEO followed with a September 4 letter, both arguing that the fraud CMS cited is concentrated in specific metro areas and states rather than justifying a uniform nationwide freeze. The Alliance cited a figure that 38% of Medicare beneficiaries did not receive the home health services they were referred to after a hospital discharge in Q3 2025, with rural access worse, and said health systems are delaying home health partnerships because agencies cannot complete new enrollment paperwork. As of this week, I have found no CMS announcement confirming either an extension or an expiration.</p><p>This matters because the moratorium does not merely slow paperwork \u2014 it blocks new HHA/hospice enrollment and most changes of majority ownership nationwide, with limited exceptions. Because the 60-day advance-notice window CMS described has already passed without an announcement, a decision is likely to surface in the next few weeks, one way or the other.</p>",
+        "creditImplication": "Any deal structured around a new home health or hospice Medicare enrollment, a new branch location, or a change-of-ownership closing before mid-November should be underwritten on the assumption that Medicare enrollment may remain frozen past November 13 \u2014 I would not size a facility or set a closing timeline that depends on CMS lifting the moratorium on schedule.",
+        "sources": [
+          {
+            "label": "CMS Newsroom \u2014 moratorium announcement (May 13, 2026)",
+            "url": "https://www.cms.gov/newsroom/press-releases/cms-announces-aggressive-nationwide-crackdown-fraud-six-month-hospice-home-health-agency-enrollment"
+          },
+          {
+            "label": "Home Health Care News \u2014 advocates press CMS against extension",
+            "url": "https://homehealthcarenews.com/2026/09/as-home-health-moratorium-nears-expiration-advocates-press-cms-against-extension/"
+          }
+        ]
+      },
+      {
+        "headline": "CMS's CY2027 home health payment proposal is a net increase on paper, but it is not final and still nets against an embedded cut",
+        "status": "Proposed rule published July 6, 2026; comment period closed August 31, 2026; no final rule issued yet.",
+        "statusTier": "proposed",
+        "bodyHtml": "<p>CMS published its CY2027 Home Health Prospective Payment System proposed rule (CMS-1844-P) on July 1, 2026 (Federal Register July 6). The headline figure CMS cites is a net 2.4% increase, or about $420 million, in Medicare payments to home health agencies in 2027. That figure nets a proposed +2.1% payment update (a 3.1% market-basket increase less a productivity adjustment) against a further +0.3% from a revised outlier fixed-dollar-loss ratio. Separately, the rule proposes continuing a temporary negative adjustment to the base 30-day payment rate tied to recouping prior PDGM case-mix behavior assumptions \u2014 sources differ on whether this is characterized as 3.0% in the fact sheet, so the exact net base-rate figure should be confirmed against the final rule text rather than relied on now.</p><p>This proposal follows, and should not be confused with, the CY2026 final rule that is already in effect: CMS finalized an aggregate 1.3% decrease (about $220 million) in Medicare home health payments for calendar year 2026, effective January 1, 2026. That cut is a real, implemented reduction already embedded in current-year cash flow; the CY2027 proposal is a forward-looking number that has not been finalized and is subject to change in the final rule, which CMS typically issues in late October or November for a January 1 effective date.</p><p>The proposed rule also carries non-payment provisions relevant to program integrity, including new provider enrollment and screening requirements CMS estimates will save about $82 million annually, alongside Home Health Quality Reporting Program changes and case-mix weight recalibration.</p>",
+        "creditImplication": "I will not credit a borrower's 2027 projections with the proposed +2.4% increase until CMS issues a final rule, and I will flag any pro forma that already assumes it; the only payment change currently locked in for underwriting purposes is the CY2026 1.3% aggregate cut already in effect.",
+        "sources": [
+          {
+            "label": "CMS Fact Sheet \u2014 CY2027 Home Health PPS Proposed Rule (CMS-1844-P)",
+            "url": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-home-health-prospective-payment-system-proposed-rule-fact-sheet-cms-1844-p"
+          },
+          {
+            "label": "Federal Register \u2014 CY2026 Home Health PPS Final Rule",
+            "url": "https://www.federalregister.gov/documents/2025/12/02/2025-21767/medicare-and-medicaid-programs-calendar-year-2026-home-health-prospective-payment-system-hh-pps-rate"
+          }
+        ]
+      },
+      {
+        "headline": "FY2027 skilled nursing facility payment rule took effect October 1, with a 2.4% net Medicare rate increase",
+        "status": "Implemented October 1, 2026, under a final rule CMS published July 31, 2026.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>CMS's FY2027 SNF Prospective Payment System final rule, published in the Federal Register on July 31, 2026, took effect for the federal fiscal year beginning October 1, 2026. It finalizes a net 2.4% Medicare Part A payment increase, built from a 3.3% market-basket increase less a 0.9 percentage-point productivity adjustment, which CMS estimates will add roughly $882.7 million in aggregate Medicare payments to SNFs in FFY2027. The actual change for any given facility will vary with its wage index, geography, case mix, and performance under the SNF Value-Based Purchasing program, which CMS separately estimates will reduce payments by about $203.6 million in aggregate, net against the base update.</p><p>Unlike the home health proposals above, this is a real, dated, already-effective change: skilled nursing operators are now billing under the FY2027 rates as of twelve days ago.</p>",
+        "creditImplication": "This is a modest, already-in-effect tailwind for skilled nursing cash flow starting with October billing; I would reflect the 2.4% aggregate increase (net of facility-specific VBP withholds) in current-quarter projections for SNF borrowers, but I would still verify each facility's actual wage-index and VBP adjustment rather than applying the national average.",
+        "sources": [
+          {
+            "label": "Federal Register \u2014 FY2027 SNF PPS Final Rule",
+            "url": "https://www.federalregister.gov/documents/2026/07/31/2026-15562/medicare-program-prospective-payment-system-and-consolidated-billing-for-skilled-nursing-facilities"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "development": "State Medicaid provider revalidation (PA, LA and others)",
+        "status": "Enacted / implementation underway",
+        "read": "Real near-term deactivation/payment-gap risk for PCS/HCBS borrowers \u2014 verify revalidation status before closing"
+      },
+      {
+        "development": "Home health/hospice Medicare enrollment moratorium",
+        "status": "Implemented, with extension decision pending",
+        "read": "Do not underwrite new enrollment or CHOW timing on the assumption it lifts November 13"
+      },
+      {
+        "development": "CY2027 home health payment proposal (+2.4% net)",
+        "status": "Proposed",
+        "read": "Do not credit 2027 projections with this figure until a final rule issues"
+      },
+      {
+        "development": "FY2027 SNF payment rule (+2.4% net)",
+        "status": "Implemented",
+        "read": "Safe to reflect in current-quarter SNF cash flow, subject to facility-specific adjustments"
+      },
+      {
+        "development": "Federal government shutdown/funding lapse",
+        "status": "Not newly implemented",
+        "read": "No current disruption \u2014 government funded through December 11 under a continuing resolution"
+      },
+      {
+        "development": "CY2026 Medicare home health rate cut (1.3% aggregate)",
+        "status": "Implemented (since January 1, 2026)",
+        "read": "Already priced into current-year cash flow; not a new development this week"
+      }
+    ],
+    "focusHtml": "<p>Given this week's developments, I'd prioritize three diligence items. First, for any PCS, attendant-care, or HCBS borrower in Pennsylvania, Louisiana, or another state now executing its two-year CMS-mandated revalidation strategy, confirm exact revalidation notice dates and current enrollment status \u2014 a missed deadline risks Medicaid deactivation and an uncompensated service gap, not just a paperwork fine. Second, for any home health or hospice deal involving new Medicare enrollment, a new branch location, or a change of majority ownership targeted for closing before mid-November, build in the possibility that the nationwide enrollment moratorium is extended past November 13, since CMS's own 60-day notice window has already passed without an announcement. Third, treat the CY2026 home health rate (a 1.3% cut already in effect) as the only payment baseline to underwrite today; strip out any borrower projections that have already built in the proposed, not-yet-final CY2027 increase. None of this week's items point to new Medicaid DSO or denied-claim pressure, but EVV hard-edit enforcement continues to tighten state by state and remains worth a standing check in revenue-cycle diligence for any PCS-heavy book.</p>"
+  },
+  {
     "date": "Oct 5, 2026",
     "dateSort": "2026-10-05T00:00:00",
     "title": "Weekly Medicaid, Home Health & HCBS Update",
