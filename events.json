@@ -1,5 +1,25 @@
 [
   {
+    "date": "Oct 13, 2026",
+    "dateSort": "2026-10-13T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Industry / Trade",
+    "broadCategory": "fraud",
+    "sector": "Pending review",
+    "headline": "CommonSpirit Health at Home\u2019s New 5-Year Growth Strategy",
+    "detail": "When the Centers for Medicare &#38; Medicaid Services (CMS) enacted an enrollment moratorium on home health providers on May 13, it transformed CommonSpirit Health at Home\u2019s largely de novo-driven growth strategy. Trisha Crissman, CommonSpirit Health at Home\u2019s president and CEO, said the company\u2019s new five-year growth strategy includes geographical expansion, boosting its market share and [&#8230;] The post CommonSpirit Health at Home\u2019s New 5-Year Growth Strategy appeared first on Home Health Care News .",
+    "creditDirection": "Negative",
+    "severity": "Critical",
+    "riskScore": 8,
+    "sourceAgency": "Home Health Care News",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://homehealthcarenews.com/2026/10/commonspirit-health-at-homes-new-5-year-growth-strategy/",
+    "effectiveDate": "Pending review",
+    "borrowers": [],
+    "id": "FRD-032"
+  },
+  {
     "date": "Oct 9, 2026",
     "dateSort": "2026-10-09T00:00:00",
     "jurisdiction": "Disaster",
