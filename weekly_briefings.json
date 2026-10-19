@@ -1,5 +1,149 @@
 [
   {
+    "date": "Oct 19, 2026",
+    "dateSort": "2026-10-19T00:00:00",
+    "title": "Weekly Medicaid, Home Health & HCBS Update",
+    "throughDate": "Through October 19, 2026",
+    "overviewHtml": "<p>The dominant theme this week is timing risk around decisions CMS has already set in motion but not yet resolved: the nationwide Medicare enrollment freeze on new home health agencies and hospices heads into its November 13 expiration with no signal from CMS on extension, and Arkansas's Medicaid expansion waiver heads toward a December 31 cliff with no written CMS decision on the state's requested extension. Separately, CMS issued implementation guidance on a 2024 HCBS rule's direct-care-worker compensation reporting requirement, and a Medicaid provider-tax financing threshold enacted by last year's reconciliation law took statutory effect October 1. None of this is a new reimbursement cut: there was no federal government shutdown this week (Congress funded the government through December 11, 2026, via a continuing resolution signed in September), no final CY2027 Medicare home health payment rule has been issued, and the Medicaid HCBS 80/20 direct-care wage pass-through requirement was not accelerated \u2014 it remains set for 2030. Readers should treat the moratorium and Arkansas items as live timing risks to track, not settled outcomes.</p>",
+    "items": [
+      {
+        "headline": "CMS enrollment freeze on new home health and hospice Medicare providers nears Nov. 13 expiration with no extension decision",
+        "status": "In effect since May 13, 2026; CMS has given no public indication whether it will extend, let lapse, or modify the freeze before its Nov. 13, 2026 six-month expiration.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>CMS imposed a nationwide, six-month moratorium on new Medicare enrollment applications for home health agencies and hospices via two Federal Register notices (documents 2026-09717 and 2026-09718), effective May 13, 2026, citing a 'significant potential for fraud, waste or abuse' under 42 C.F.R. 424.570(a)(2). The freeze blocks new agency enrollments, new branch/practice locations, and certain changes in majority ownership that require new enrollment; applications submitted on or after May 13 for covered actions are being denied, and attorneys report Medicare Administrative Contractors have in some cases denied applications that were actually submitted before the effective date. Existing enrolled providers are unaffected and may continue billing Medicare.</p><p>CMS initially told stakeholders it would give at least 60 days' notice before any extension, which would have meant a mid-September announcement. Instead, on September 14, 2026, CMS told the National Alliance for Care at Home that it was 'under no obligation to provide 60 days' advance notice,' according to the Alliance and reported by Hospice News. The Alliance (September 4) and LeadingAge (September 9) have both formally asked CMS to let the freeze lapse, arguing fraud is geographically concentrated rather than a nationwide problem, while provider groups warn that legitimate growth, acquisitions, and planned sales are stalled in the meantime.</p><p>As of this week, no extension or expiration notice has been published in the Federal Register. Any extension would run in additional six-month increments. Attorneys advising buyers and sellers note that deals structured as new enrollments, asset acquisitions, or majority-ownership changes that had not cleared filing before May 13 remain on hold, and that CMS retains authority to lift the freeze early or extend it with little advance warning.</p>",
+        "creditImplication": "I treat any home health or hospice acquisition, de novo location, or change-of-ownership transaction that requires new Medicare enrollment as frozen until CMS acts, and I am building a decision date of November 13 into closing timelines and covenant waivers rather than assuming the freeze lapses on schedule. For borrowers pursuing growth through new locations or tuck-in M&amp;A, this is a real liquidity and timing risk, not a compliance footnote.",
+        "sources": [
+          {
+            "label": "Federal Register, HHA moratorium notice (2026-09717)",
+            "url": "https://www.federalregister.gov/d/2026-09717"
+          },
+          {
+            "label": "Federal Register, hospice moratorium notice (2026-09718)",
+            "url": "https://www.federalregister.gov/d/2026-09718"
+          },
+          {
+            "label": "Hospice News, \"Hospice, Home Health Moratoria: What Might Come Next\" (Oct. 14, 2026)",
+            "url": "http://hospicenews.com/2026/10/14/hospice-home-health-moratoria-what-might-come-next/"
+          },
+          {
+            "label": "Home Health Care News, \"The Future For Hospice, Home Health Providers Under CMS Moratoria\" (Oct. 15, 2026)",
+            "url": "https://homehealthcarenews.com/2026/10/the-future-for-hospice-home-health-providers-under-cms-moratoria/"
+          }
+        ]
+      },
+      {
+        "headline": "Arkansas's ARHOME Medicaid expansion waiver still unresolved as Dec. 31 expiration approaches",
+        "status": "CMS verbally denied Arkansas's renewal request in late July 2026; as of early October 2026 the state has received no written CMS decision on its requested two-year extension, and the current waiver expires December 31, 2026.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>CMS verbally rejected Arkansas's request to renew its ARHOME Section 1115 waiver \u2014 the hybrid Medicaid expansion program covering roughly 200,000 to 214,000 low-income adults \u2014 because, according to state officials, the pending renewal would not satisfy new budget-neutrality requirements imposed by the 2025 reconciliation law (the One Big Beautiful Bill Act). The current ARHOME waiver authority runs through December 31, 2026.</p><p>Arkansas DHS Secretary Janet Mann asked CMS Administrator Dr. Mehmet Oz in writing for a temporary two-year extension, through 2028, to give the state time to design a replacement Medicaid expansion structure. More than 50 health organizations, including the Arkansas Medical Society and state hospital groups, sent a letter backing the extension request. DHS has said that absent an extension, ARHOME beneficiaries would be temporarily shifted to traditional Medicaid fee-for-service coverage during the transition.</p><p>As of early October 2026, state officials said they had not received a formal written decision from CMS on the extension request, though CMS has indicated informally it will work with the state on a smooth transition. Centene has already announced it will exit as one of ARHOME's managed-care carriers starting in 2027, independent of the waiver outcome. Separately, Arkansas is also preparing to layer new Medicaid work-requirement enforcement onto ARHOME beginning in 2027.</p>",
+        "creditImplication": "For any operator with meaningful Arkansas Medicaid-expansion revenue exposure \u2014 home health, personal care, or behavioral health providers serving the ARHOME population \u2014 I am flagging a real possibility of a payer-mix disruption at year-end: a shift from ARHOME managed care to traditional Medicaid fee-for-service would change rates, prior-authorization rules, and claims timing even if coverage itself continues. I would not assume continuity of current reimbursement terms past December 31 without written CMS confirmation.",
+        "sources": [
+          {
+            "label": "Arkansas Department of Human Services, ARHOME waiver extension request",
+            "url": "https://humanservices.arkansas.gov/news/dhs-submits-request-for-temporary-arhome-waiver-extension/"
+          },
+          {
+            "label": "Arkansas Advocate, \"Arkansas seeks 2-year reprieve for state's hybrid Medicaid expansion\" (Aug. 6, 2026)",
+            "url": "https://arkansasadvocate.com/2026/08/06/arkansas-seeks-2-year-reprieve-for-states-hybrid-medicaid-expansion/"
+          },
+          {
+            "label": "KATV, \"Federal government rejects Arkansas request to renew ARHOME Medicaid expansion\" (Aug. 3, 2026)",
+            "url": "https://katv.com/news/local/federal-government-rejects-arkansas-request-to-renew-arhome-medicaid-expansion-08-03-2026-president-donald-trump-administration-governor-sarah-huckabee-sanders-temporary-extenstion-legislative-session"
+          }
+        ]
+      },
+      {
+        "headline": "CMS issues guidance on HCBS direct-care-worker compensation reporting; 80/20 wage pass-through requirement unaffected",
+        "status": "Implemented as guidance on October 9, 2026 (SMD #26-005); the reporting requirement itself does not take effect until July 9, 2028, with state readiness due July 9, 2027, and the separate 80/20 pass-through requirement remains unchanged at July 9, 2030.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>CMS released State Medicaid Director letter SMD #26-005 on October 9, 2026, along with companion technical specifications, clarifying how states must implement the 'HCBS payment adequacy reporting' provision of the 2024 Medicaid Access Rule \u2014 which CMS is now calling the 'direct care worker compensation reporting' requirement. Under the rule (42 CFR 441.311(e)), states must annually report, starting in 2028, what share of Medicaid payments for homemaker, home health aide, personal care, and habilitation services is actually paid out as direct-care-worker compensation, reported separately by service type and by whether the service is self-directed or delivered through a provider-operated facility.</p><p>States must demonstrate reporting readiness to CMS by July 9, 2027, with the first reporting cycle beginning July 9, 2028. The guidance does not change the separate and more consequential 80/20 provision of the same Access Rule, which requires at least 80% of Medicaid payment for these services to flow through to direct-care-worker compensation; that requirement's effective date remains July 9, 2030, unchanged by this guidance. CMS has already delayed two other enforcement pieces of the same rule this year \u2014 the fee-for-service grievance system requirement (enforcement deferred to December 31, 2027, per a February 26, 2026 bulletin) and state Interested Parties Groups (enforcement deferred to January 1, 2029, per a December 23, 2025 bulletin).</p><p>The technical specifications define compensation broadly \u2014 wages, benefits, and the employer share of payroll taxes \u2014 and lay out the calculation methodology and acceptable data sources states can use, which personal care and home care agencies will ultimately need to feed into state reporting systems.</p>",
+        "creditImplication": "This is a compliance-cost and data-infrastructure item, not a near-term rate or cash-flow event: operators have through mid-2027 to build the cost-reporting capability states will need, and the economically significant 80/20 pass-through requirement is still four years out. I am not treating this as a current margin pressure, but I am flagging it as a diligence item for personal care and HCBS platforms whose payroll and billing systems will need to produce worker-level compensation data by 2027-28.",
+        "sources": [
+          {
+            "label": "Medicaid.gov, SMD #26-005 (Oct. 9, 2026)",
+            "url": "https://www.medicaid.gov/Federal-Policy-Guidance/Downloads/SMD26005.pdf"
+          },
+          {
+            "label": "Medicaid.gov, HCBS Access Rule guidance and resources page",
+            "url": "https://www.medicaid.gov/medicaid/access-care/home-and-community-based-services-hcbs-provisions/guidance-and-resources-home-and-community-based-services-hcbs-provisions"
+          }
+        ]
+      },
+      {
+        "headline": "Medicaid provider-tax financing threshold takes statutory effect Oct. 1; implementing rule still only proposed",
+        "status": "The new indirect hold-harmless threshold for existing provider taxes took statutory effect October 1, 2026, under the 2025 reconciliation law; CMS's proposed rule setting the detailed calculation methodology (comments closed Sept. 21, 2026) has not been finalized.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>Section 71115 of the 2025 reconciliation law (the One Big Beautiful Bill Act) set October 1, 2026 as the statutory effective date for new 'indirect hold harmless' thresholds governing how much revenue states can raise through Medicaid provider taxes \u2014 the mechanism nearly every state except Alaska uses to help fund its share of Medicaid, including home health, personal care, and nursing facility rates. As of July 4, 2025, states cannot create new provider taxes or raise existing ones, and from October 1, 2026 existing taxes are subject to new class-specific thresholds tied to what was actually being collected on that date.</p><p>CMS published a proposed rule (CMS-2452-P, fact sheet dated July 21, 2026) to implement the detailed calculation methodology, replacing the prior uniform 6%-of-net-patient-revenue test with class-specific thresholds and eliminating the alternative '75/75' test. For Medicaid expansion states, most provider-tax classes face a further phase-down beginning October 1, 2027 \u2014 5.5% of net patient revenue in federal FY2028, stepping down to 3.5% by FY2032 \u2014 though nursing facility and intermediate care facility taxes are excluded from that phase-down. Comments on the proposed rule closed September 21, 2026; CMS has not yet issued a final rule, so the precise state-by-state and class-by-class calculations remain unsettled even though the statutory threshold is now technically in force. CMS's own actuary estimates the policy will cut federal Medicaid spending by $246 billion from 2026 to 2035.</p>",
+        "creditImplication": "This is a state Medicaid financing and rate-setting risk, not a direct provider payment cut \u2014 but because provider taxes fund a meaningful share of states' non-federal Medicaid match, I expect states with large existing provider taxes to face budget pressure that can flow through to HCBS and personal care rate-setting over the next several state fiscal years. I would treat state-specific revenue concentration and each state's provider-tax dependency as a diligence item, while recognizing the exact mechanics are still being finalized by rule.",
+        "sources": [
+          {
+            "label": "CMS Fact Sheet, \"Amending the Indirect Hold Harmless Threshold of Health Care-Related Taxes\" Proposed Rule (CMS-2452-P)",
+            "url": "https://www.cms.gov/newsroom/fact-sheets/amending-indirect-hold-harmless-threshold-health-care-related-taxes-proposed-rule-cms-2452-p"
+          },
+          {
+            "label": "CMS Newsroom, \"CMS issues guidance to strengthen oversight of Medicaid financing\" (Nov. 14, 2025)",
+            "url": "https://www.cms.gov/newsroom/press-releases/cms-issues-guidance-strengthen-oversight-medicaid-financing"
+          }
+        ]
+      },
+      {
+        "headline": "No final CY2027 Medicare home health payment rule yet; MedPAC opens separate study of PDGM payment accuracy",
+        "status": "Proposed rule comment period closed Aug. 31, 2026; final rule not yet issued. MedPAC's PDGM accuracy study is newly launched and exploratory, with results not expected before fall 2027.",
+        "statusTier": "proposed",
+        "bodyHtml": "<p>CMS's proposed CY2027 Home Health Prospective Payment System rule, published July 6, 2026, projects a net 2.4% aggregate payment increase (about $420 million) for 2027 \u2014 a 2.1% payment update plus an estimated 0.3% increase tied to the outlier fixed-dollar loss ratio \u2014 while also proposing to continue a 3.0% temporary reduction intended to recoup what CMS views as PDGM-era overpayments, which CMS estimates would recover roughly $500 million in 2027. The public comment period closed August 31, 2026, and CMS has not issued a final rule; based on the prior two years' cycles, a final rule would typically be expected around late October or November 2026.</p><p>Separately, MedPAC \u2014 the nonpartisan commission that advises Congress on Medicare payment policy \u2014 announced this month that it is launching an exploratory study of whether the Patient-Driven Groupings Model (PDGM) accurately aligns home health payments with patient care costs, driven by concerns about patient-selection and coding practices, including the possibility that AI-assisted coding tools are inflating reported case complexity. MedPAC does not expect to present findings before fall 2027, and the study carries no payment effect on its own; it is advisory input to CMS and Congress, not a rulemaking.</p><p>Both items point in the direction of continued, but not yet finalized, downward pressure on home health margins via behavioral/coding adjustments rather than straightforward rate cuts.</p>",
+        "creditImplication": "I am not underwriting any CY2027 home health rate change as final; the proposed 2.4% net increase and the 3% PDGM recoupment are both still subject to change in the final rule. For Medicare-heavy home health borrowers, coding-intensity and patient-selection practices are the area most likely to draw future payment scrutiny given both the proposed rule and MedPAC's new study, which I would factor into audit and billing-practice diligence even though no new payment reduction has actually taken effect.",
+        "sources": [
+          {
+            "label": "Federal Register, CY2027 Home Health PPS proposed rule (2026-13602)",
+            "url": "https://www.federalregister.gov/d/2026-13602"
+          },
+          {
+            "label": "Home Health Care News, \"MedPAC Launches PDGM Study Analyzing Home Health Payment Accuracy\" (Oct. 9, 2026)",
+            "url": "https://homehealthcarenews.com/2026/10/medpac-launches-pdgm-study-analyzing-home-health-payment-accuracy/"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "development": "CMS home health/hospice enrollment moratorium",
+        "status": "Implemented; extension decision pending",
+        "read": "Real timing/liquidity risk for M&amp;A and de novo growth through Nov. 13"
+      },
+      {
+        "development": "Arkansas ARHOME waiver renewal",
+        "status": "Enacted denial, written decision and extension still pending",
+        "read": "Do not assume payer-mix continuity past Dec. 31 for Arkansas-exposed credits"
+      },
+      {
+        "development": "HCBS direct-care-worker compensation reporting (SMD #26-005)",
+        "status": "Implemented (guidance only); substantive compliance dates are 2027-2028",
+        "read": "Diligence item for systems readiness, not a near-term cost or rate event"
+      },
+      {
+        "development": "Medicaid provider-tax hold-harmless threshold",
+        "status": "Enacted / implementation underway; calculation rule still proposed",
+        "read": "State financing/budget risk to watch state-by-state, not a direct provider cut"
+      },
+      {
+        "development": "CY2027 Medicare home health payment rule",
+        "status": "Proposed",
+        "read": "Do not underwrite the proposed rate update or PDGM recoupment as final"
+      },
+      {
+        "development": "Federal government shutdown / Medicaid funding lapse",
+        "status": "Not newly implemented",
+        "read": "No shutdown this week; government funded through Dec. 11, 2026 via September CR"
+      },
+      {
+        "development": "HCBS 80/20 direct-care wage pass-through requirement",
+        "status": "Not newly implemented",
+        "read": "Still effective July 2030; not accelerated by this week's guidance"
+      }
+    ],
+    "focusHtml": "<p>Given this week's developments, I'd prioritize diligence on: (1) exact enrollment status and any pending change-of-ownership or de novo filings for home health/hospice credits, cross-checked against the May 13, 2026 moratorium cutoff and the November 13 decision date; (2) Arkansas revenue concentration for any HCBS, personal care, or home health borrower, including what share of census sits in ARHOME managed care versus other payers, ahead of the December 31 waiver cliff; (3) each borrower's state-level provider-tax and Medicaid financing exposure, since the October 1 hold-harmless threshold and the pending CMS rule will flow through to state rate-setting capacity over the next several fiscal years; and (4) payroll/billing system readiness for HCBS personal-care and habilitation providers that will need to produce direct-care-worker compensation data ahead of the 2027 state readiness deadline. I would not treat the proposed CY2027 home health payment update, the MedPAC PDGM study, or the 80/20 wage pass-through as current-period credit events \u2014 none have taken effect.</p>"
+  },
+  {
     "date": "Oct 12, 2026",
     "dateSort": "2026-10-12T00:00:00",
     "title": "Weekly Medicaid, Home Health & HCBS Update",
