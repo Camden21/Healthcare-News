@@ -1,5 +1,149 @@
 [
   {
+    "date": "Oct 26, 2026",
+    "dateSort": "2026-10-26T00:00:00",
+    "title": "Weekly Medicaid, Home Health & HCBS Update",
+    "throughDate": "Through October 26, 2026",
+    "overviewHtml": "<p>The dominant thread this week is Medicaid program integrity and eligibility infrastructure, not new reimbursement rates: the federal work-requirement rule remains locked in for a January 1, 2027 start despite a governors' request for delay and ongoing litigation, CMS's nationwide provider-revalidation push is moving from directive to active state reporting, and Indiana's HCBS enrollment moratorium is a live, operating freeze. I want to be explicit about what did NOT happen: there was no new federal reimbursement cut to Medicare or Medicaid home health this week \u2014 the CY2027 home health proposed rule is still proposed (and nets to a payment increase, not a cut), the Medicaid provider-tax hold-harmless rule is still proposed with comments closed but no final rule issued, and the federal government is not currently shut down (it is funded by a continuing resolution through December 11, 2026). Readers should not infer any of those three as enacted facts from headlines using words like \"cut\" or \"crackdown.\"</p>",
+    "items": [
+      {
+        "headline": "Medicaid work (\"community engagement\") requirement stays on track for Jan. 1, 2027 despite governors' delay request",
+        "status": "Interim final rule in effect since June 1, 2026; compliance deadline January 1, 2027 for most states; preliminary injunction denied July 29, 2026; litigation continues on the merits.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>CMS's interim final rule (CMS-2454-IFC), implementing the One Big Beautiful Bill Act's Medicaid work requirement, took legal effect June 1, 2026. It requires non-pregnant Medicaid expansion adults ages 19\u201364 in 43 states plus D.C. to document 80 hours per month of work, education, job training, or qualifying volunteer activity \u2014 or equivalent monthly income of at least $580 in 2026 \u2014 to keep coverage, unless exempt. Exemptions include medically frail individuals, caregivers of dependents, veterans with a total disability rating, and several other categories. Most states must be enforcing this by January 1, 2027; Nebraska (May) and Montana (July) started early, and Michigan begins applying it to new applicants on October 1, 2026.</p><p>Twenty-three states, D.C., and the governors of Kentucky and Pennsylvania sued CMS in federal court in Massachusetts (Commonwealth of Massachusetts et al. v. Oz), arguing the rule unlawfully narrows the statute's \"medically frail\" exemption and imposes an unworkable 12-month look-back verification window. On July 29, 2026, Judge Richard Stearns denied the states' motion for a preliminary injunction without prejudice, finding no showing of irreparable harm given the administration's commitment to reimburse 90% of states' eligibility-system build costs. The case continues on the merits with no ruling yet, and the January 1, 2027 date is unchanged by the order.</p><p>On October 1, 2026, the governors of Oregon, California, Maine, New Mexico, and Virginia wrote HHS Secretary Robert F. Kennedy Jr. asking the agency to use enforcement discretion to push back the start date, citing insufficient time to build and test new eligibility systems, notices, and staff training. As of this week, HHS has not responded with any delay or extension. Nebraska's early experience is a useful data point: the state has denied nearly 560 new applicants under the rule, about 470 of them for failing to document compliance.</p>",
+        "creditImplication": "For home-care and PCS borrowers with meaningful exposure to Medicaid expansion-adult enrollees, I'm underwriting to a real January 1, 2027 disenrollment and administrative-cost event, not a maybe \u2014 I would not give credit for a delay that HHS has so far declined to grant, while recognizing that most aged/disabled HCBS waiver populations are separately exempt as medically frail.",
+        "sources": [
+          {
+            "label": "CMS Fact Sheet \u2014 CMS-2454-IFC",
+            "url": "https://www.cms.gov/newsroom/fact-sheets/medicaid-community-engagement-requirement-certain-individuals-interim-final-rule-comment-period-cms"
+          },
+          {
+            "label": "Becker's Payer \u2014 judge denies injunction",
+            "url": "https://www.beckershospitalreview.com/legal-regulatory-issues/federal-judge-denies-25-states-bid-to-block-medicaid-work-rules/"
+          },
+          {
+            "label": "Oregon Governor's Office \u2014 delay request",
+            "url": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-pushes-for-more-time-to-protect-medicaid-coverage"
+          }
+        ]
+      },
+      {
+        "headline": "CMS proposes phasedown of Medicaid provider-tax financing; not yet final",
+        "status": "Proposed rule (CMS-2452-P) published July 21, 2026; comment period closed September 21, 2026; no final rule issued.",
+        "statusTier": "proposed",
+        "bodyHtml": "<p>CMS published a proposed rule on July 21, 2026 implementing Section 71115 of H.R. 1 (the One Big Beautiful Bill Act), which restricts how states use health-care-related provider taxes to draw down federal Medicaid matching funds. As proposed, it would bar new or increased non-uniform provider taxes above levels in place as of July 4, 2025, eliminate the existing \"75/75 test\" used to assess tax uniformity, and phase down the allowable tax threshold for most provider classes in Medicaid-expansion states to 3.5% of net patient revenue by federal fiscal year 2032. CMS estimates the rule, as proposed, would reduce federal Medicaid spending nationally by $246 billion from 2026 through 2035.</p><p>The proposed phasedown explicitly exempts nursing-facility and ICF/IID provider taxes, so its most direct mechanical effect falls on hospital, managed-care, and other taxed provider classes that states use to fund their non-federal share of Medicaid spending \u2014 home health and HCBS-specific provider taxes are uncommon and not singled out in the rule. The comment period closed September 21, 2026; CMS has not issued a final rule, and none of the phasedown mechanics are yet operative as regulation, though the underlying statutory bar on new or increased taxes above July 2025 levels is already law.</p><p>The credit relevance is indirect: provider taxes fund a significant share of many states' non-federal Medicaid match, and a reduced federal match flowing from this phasedown \u2014 once finalized \u2014 would constrain the state general-fund and provider-tax dollars available for Medicaid rate-setting broadly, including HCBS and personal-care rates, in states most reliant on these taxes. This is a multi-year phase-in running through FY2032, not an imminent rate action.</p>",
+        "creditImplication": "I read this as a medium-term state-budget-capacity risk to flag in diligence for borrowers concentrated in expansion states with heavy provider-tax reliance, but it is not a rule I would model as an imminent HCBS or home-health rate cut since it is still proposed and the phase-in runs years out.",
+        "sources": [
+          {
+            "label": "LeadingAge \u2014 CMS-2452-P summary",
+            "url": "https://leadingage.org/cms-medicaid-provider-tax-proposed-rule-implements-hr-1s-hold-harmless-phasedown/"
+          },
+          {
+            "label": "Federal Register (public inspection) \u2014 CMS-2452-P",
+            "url": "https://public-inspection.federalregister.gov/2026-14897.pdf"
+          },
+          {
+            "label": "MACPAC comment letter on proposed rule",
+            "url": "https://www.macpac.gov/wp-content/uploads/2026/09/Comment-2026-Provider-Tax-Proposed-Rule.pdf"
+          }
+        ]
+      },
+      {
+        "headline": "Indiana freezes new HCBS waiver provider enrollment and changes of ownership",
+        "status": "Implemented August 1, 2026, with CMS approval; initial six-month term, renewable in further six-month increments.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>Indiana Health Coverage Programs (IHCP), with CMS approval, imposed a six-month moratorium effective August 1, 2026 on new provider certification and enrollment across five HCBS waivers: PathWays for Aging, Health and Wellness, Traumatic Brain Injury, Community Integration and Habilitation, and Family Supports. It covers roughly two dozen waiver services \u2014 including attendant care, respite, transportation, home-delivered meals, and day habilitation \u2014 while assisted living, adult day services, physical therapy, supported employment, and vehicle modifications are excluded. The state cited the federal standard allowing moratoria on provider categories deemed \"high risk for fraud, waste, or abuse.\"</p><p>Critically for change-of-ownership diligence, the freeze is not limited to brand-new market entrants: it also blocks existing agencies from completing changes of ownership, adding counties, or adding moratorium-covered services for the duration. Any application not fully screened by August 1 was denied outright. Applications already under substantive review for PathWays, Health and Wellness, and TBI continue processing; Community Integration and Habilitation and Family Supports applications in provisional-approval status are held rather than advanced. IHCP says it may grant limited exceptions in documented service-shortage areas, with requests submitted by email.</p><p>IHCP retains the option to extend the moratorium in further six-month increments, so it could remain in place well into 2027 without a new rulemaking.</p>",
+        "creditImplication": "Any Indiana HCBS acquisition, refinancing, or new-market entry needs a current check on moratorium status and exception eligibility before closing \u2014 a deal structured as a change of ownership in a covered waiver/service combination cannot complete enrollment until the freeze lifts or an exception is granted, which is a real timing and valuation risk rather than routine regulatory boilerplate.",
+        "sources": [
+          {
+            "label": "21Alive News \u2014 IHCP moratorium",
+            "url": "https://www.21alivenews.com/2026/07/24/ihcp-places-6-month-moratorium-certain-new-hcbs-waiver-provider-certifications-enrollments/"
+          },
+          {
+            "label": "Hall Render \u2014 Indiana HCBS moratorium analysis",
+            "url": "https://hallrender.com/2026/07/28/indiana-hcbs-update-indiana-imposes-statewide-hcbs-provider-certification-and-enrollment-moratorium/"
+          }
+        ]
+      },
+      {
+        "headline": "CMS's nationwide Medicaid provider-revalidation directive moves into active state reporting",
+        "status": "CMS directive issued April 22\u201323, 2026; states filed initial plans in May and are now reporting progress, e.g. Massachusetts targeting completion by June 2028.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>CMS sent State Medicaid Director letters, dated around April 22\u201323, 2026, directing every state to build a two-year strategy for revalidating Medicaid providers, prioritizing those CMS deems \"high risk\" \u2014 including providers lacking an NPI or not screened within the past 12 months \u2014 on a cadence more frequent than the standard five-year federal minimum under 42 CFR 455.414. States were required to notify CMS of their high-risk revalidation plans within 10 days of the letter and to submit a full two-year strategy within 30 days.</p><p>States are now in active implementation. Massachusetts has told CMS it expects to complete its off-cycle revalidation by June 2028 and will file quarterly progress reports starting in September 2026. California says its existing rule requiring providers to report ownership or site changes within 35 days already feeds its revalidation triggers. CMS's letters followed enforcement actions involving Minnesota, New York, California, Florida, and Maine, and are paired with a broader push on screening, site visits, and ownership verification.</p><p>For home health, personal care, and HCBS operators, this is an ongoing look-back at enrollment files rather than a one-time event: states are increasingly positioned to flag gaps in NPI data, stale licensure or address records, or undisclosed ownership changes as grounds to pause billing or deny revalidation.</p>",
+        "creditImplication": "I'd treat provider-enrollment hygiene \u2014 current NPI, licensure, and ownership disclosures, and recency of screening \u2014 as an active diligence item on every deal right now, since states are actively mining these records for off-cycle revalidation and a lapse can halt billing independent of clinical or financial performance.",
+        "sources": [
+          {
+            "label": "Nixon Peabody \u2014 CMS revalidation initiative alert",
+            "url": "https://www.nixonpeabody.com/-/media/files/alerts/2026/04/cms-announces-nationwide-medicaid-provider-revalidation-initiative.pdf"
+          },
+          {
+            "label": "VTDigger \u2014 federal revalidation demand",
+            "url": "https://vtdigger.org/2026/04/27/federal-government-demands-renewal-for-every-healthcare-provider-that-receives-medicaid/"
+          },
+          {
+            "label": "Massachusetts response letter to CMS",
+            "url": "https://www.mass.gov/doc/response-letter-to-cms-on-provider-revalidation/download"
+          }
+        ]
+      },
+      {
+        "headline": "CY2027 Medicare home health proposed rule would raise payments \u2014 it is not a cut, and it is not final",
+        "status": "Proposed July 1, 2026; comment period closed August 31, 2026; no final rule issued as of this week.",
+        "statusTier": "proposed",
+        "bodyHtml": "<p>CMS's proposed CY2027 Home Health Prospective Payment System rule (CMS-1844-P) would raise the home-health payment update by 2.1% (an estimated $370 million), combined with a separately modeled 0.3% fixed-dollar-loss adjustment (an estimated $50 million), for a net proposed increase of about 2.4% (roughly $420 million) in aggregate CY2027 payments versus CY2026. This is a proposed increase, not a cut, and none of it has taken effect.</p><p>The rule continues a temporary -3.0% adjustment to the national standardized payment rate, which is the ongoing, Congressionally-mandated clawback of CY2020\u20132025 case-mix \"behavior\" overpayments \u2014 distinct from, and smaller than, the permanent downward adjustments CMS applied in CY2023 (-3.925%), CY2024 (-2.890%), CY2025 (-1.975%), and CY2026 (-1.023%). No new permanent adjustment is proposed for CY2027. The rule also recalibrates case-mix weights and LUPA thresholds using CY2025 claims data and proposes expanding the home infusion drug/DME infusion pump benefit effective April 1, 2027.</p><p>Comments closed August 31, 2026, and CMS has not yet issued a final rule. Based on precedent \u2014 the CY2025 and CY2026 final rules were both released around November 1 \u2014 a final CY2027 rule is likely imminent, but had not posted as of this week.</p>",
+        "creditImplication": "Until CMS finalizes this rule, I am underwriting to current CY2026 Medicare home health rates, not the proposed CY2027 figures \u2014 and even once finalized, the headline is a modest net increase plus continuation of an already-known recoupment, not a fresh reimbursement cut.",
+        "sources": [
+          {
+            "label": "CMS Fact Sheet \u2014 CY2027 HH PPS Proposed Rule (CMS-1844-P)",
+            "url": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-home-health-prospective-payment-system-proposed-rule-fact-sheet-cms-1844-p"
+          },
+          {
+            "label": "Federal Register \u2014 CY2027 HH PPS proposed rule",
+            "url": "https://www.govinfo.gov/content/pkg/FR-2026-07-06/html/2026-13602.htm"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "development": "Medicaid work requirement (Jan. 1, 2027 deadline)",
+        "status": "Enacted / implementation underway",
+        "read": "Model a real enrollment/admin-cost event for Jan. 1, 2027; do not assume a delay"
+      },
+      {
+        "development": "Governors' request to delay work requirements",
+        "status": "Partly rhetoric",
+        "read": "No delay granted as of this week; the January 1, 2027 deadline is unchanged"
+      },
+      {
+        "development": "Medicaid provider-tax hold-harmless phasedown (CMS-2452-P)",
+        "status": "Proposed",
+        "read": "Medium-term state-budget-capacity risk, not an imminent HCBS/home-health rate cut"
+      },
+      {
+        "development": "Indiana HCBS waiver provider enrollment moratorium",
+        "status": "Implemented",
+        "read": "Freezes new entry and change-of-ownership in covered waivers \u2014 verify status before closing any Indiana deal"
+      },
+      {
+        "development": "CMS nationwide Medicaid provider-revalidation initiative",
+        "status": "Enacted / implementation underway",
+        "read": "Treat enrollment-file hygiene as an active, ongoing diligence item, not a one-time check"
+      },
+      {
+        "development": "CY2027 Medicare home health proposed rule",
+        "status": "Proposed",
+        "read": "Net proposed increase, not a cut \u2014 do not underwrite to it until finalized"
+      },
+      {
+        "development": "Federal government shutdown",
+        "status": "Not newly implemented",
+        "read": "Government is funded via continuing resolution through Dec. 11, 2026; no current shutdown disrupting Medicaid/Medicare claims"
+      }
+    ],
+    "focusHtml": "<p>This week's developments sharpen four diligence priorities rather than changing any rate. First, map each HCBS/PCS borrower's census by eligibility pathway \u2014 expansion-adult PCS populations carry real January 1, 2027 work-requirement exposure, while aged/disabled HCBS waiver populations are largely exempt as medically frail, so revenue risk is concentrated, not uniform. Second, in Indiana specifically, confirm current moratorium status and any exception approval before underwriting an acquisition, refinancing, or new-market entry involving the five affected waivers, since the freeze blocks changes of ownership outright. Third, treat Medicaid provider-enrollment hygiene \u2014 current NPI, licensure, address, and ownership disclosures, and screening recency \u2014 as a live, recurring diligence item across every state given CMS's active nationwide revalidation push, not a box checked once at origination. Fourth, for borrowers in Medicaid-expansion states with heavy provider-tax reliance, start tracking state budget responses to the proposed hold-harmless phasedown now, even though it remains proposed and phases in through FY2032, since state fiscal capacity ultimately flows through to Medicaid HCBS and personal-care rate-setting.</p>"
+  },
+  {
     "date": "Oct 19, 2026",
     "dateSort": "2026-10-19T00:00:00",
     "title": "Weekly Medicaid, Home Health & HCBS Update",
