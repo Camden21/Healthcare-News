@@ -1,5 +1,101 @@
 [
   {
+    "date": "Nov 9, 2026",
+    "dateSort": "2026-11-09T00:00:00",
+    "title": "Weekly Medicaid, Home Health & HCBS Update",
+    "throughDate": "Through November 9, 2026",
+    "overviewHtml": "<p>This week's dominant theme is the pairing of a real, finalized Medicare rate increase for home health with a sharp rise in federal program-integrity enforcement, while the two biggest Medicaid financing threats on my radar \u2014 the state-directed-payment/provider-tax caps and the broader Medicaid HCBS funding squeeze under the 2025 reconciliation law \u2014 remain exactly where they were: enacted-but-phasing-in or still proposed, not newly implemented this week. Concretely: CMS finalized the CY2027 Home Health Prospective Payment System rule on November 4, 2026, locking in a 2.4% aggregate payment increase that takes effect January 1, 2027 \u2014 that is a real, final number, not a proposal, though it is not yet operative and arrives bundled with materially tougher enrollment-revocation rules. Separately, the nationwide moratorium on new Medicare enrollment of home health agencies and hospices is due to expire around November 13, 2026, and as of this writing CMS has not announced whether it will extend, narrow, or let it lapse \u2014 I want to be explicit that no extension decision has been made yet, despite industry expectation that one is coming. I did not find evidence of a new federal Medicaid HCBS rate cut, a new SNF Medicaid rate cut, or a government shutdown this week: a continuing resolution signed September 2, 2026 funds the government through December 11, 2026, so Medicare and Medicaid claims processing has not been interrupted.</p>",
+    "items": [
+      {
+        "headline": "CMS Finalizes CY2027 Home Health Payment Rule: 2.4% Rate Increase Paired With Tougher Revocation Authority",
+        "status": "Finalized November 4, 2026 (CMS-1844-F); payment and enrollment provisions take effect January 1, 2027 \u2014 not yet operative.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>CMS finalized the CY2027 Home Health Prospective Payment System rule on November 4, 2026. The agency projects a 2.4% aggregate increase in Medicare payments to home health agencies for CY2027 versus CY2026, worth an estimated $415 million, made up of a 2.1% final payment update plus an estimated 0.3% adjustment tied to the updated fixed-dollar-loss ratio for outlier payments. The rule also finalizes a further -3% temporary adjustment to the national, standardized 30-day payment rate, which CMS says continues recouping prior-year (CY2020\u2013CY2025) PDGM-related overpayments; CMS did not finalize any additional permanent behavioral adjustment on top of that. The Alliance for Care at Home called this the largest home health update in nearly two decades, excluding 2022, though VNS Health CEO Dan Savitt noted cumulative Medicare home health payment updates since 2020 total only 5.8%, versus 20% or more for hospitals and skilled nursing facilities over the same period.</p><p>The rule simultaneously tightens program integrity: all Medicare enrollment revocations can now be made effective retroactively to the date noncompliance began, rather than 30 days after the notice is mailed; home health agencies, hospices and certain DME suppliers undergoing a non-exempt change in majority ownership must re-enroll as new providers and complete a survey or accreditation; and grounds for denial or revocation now extend to an owner's or managing employee's license suspensions or exclusions from Medicaid or other federal health programs. Most of these provisions apply to all Medicare provider types, not just home health, and CMS estimates they will save roughly $82 million annually. Several of these changes carry over into the sector from the enrollment moratorium discussed below.</p><p>Industry reaction has focused on the gap between the rate and the compliance cost it funds: LiveWell Partners' Stacie Bratcher said the 2.4% update 'doesn't keep pace' with rising clinical recruitment and audit-driven documentation costs, while HealthView's Steven Gonzalez warned that broad, retroactive revocation authority risks penalizing compliant agencies a second time for paperwork timing rather than fraud.</p>",
+        "creditImplication": "I treat the 2.4%/$415 million increase as a real, bankable FY2027 revenue tailwind now that it is final rather than proposed, but I am underwriting it net of higher compliance SG&amp;A \u2014 audit response, disclosure tracking, and ownership-change re-enrollment risk \u2014 rather than as pure upside; the retroactive revocation standard also raises the stakes of any change-of-ownership transaction closing near a revalidation or survey gap.",
+        "sources": [
+          {
+            "label": "CMS Fact Sheet: CY2027 Home Health PPS Final Rule (CMS-1844-F)",
+            "url": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-home-health-prospective-payment-system-final-rule-cms-1844-f"
+          },
+          {
+            "label": "Home Health Care News",
+            "url": "https://homehealthcarenews.com/2026/11/cms-finalizes-2027-home-health-medicare-payment-rule-with-2-4-rate-increase/"
+          },
+          {
+            "label": "Home Health Care News (industry reaction)",
+            "url": "https://homehealthcarenews.com/2026/11/higher-rates-heavier-scrutiny-providers-break-down-2027-medicare-home-health-rule/"
+          }
+        ]
+      },
+      {
+        "headline": "Nationwide Home Health and Hospice Medicare Enrollment Moratorium Nears Expiration With No Extension Decision Announced",
+        "status": "Still active; six-month term runs through approximately November 13, 2026; CMS has not published a Federal Register notice extending, narrowing, or lifting it as of this writing.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>CMS imposed a nationwide moratorium on new Medicare enrollment of home health agencies and hospices effective May 13, 2026, citing significant potential for fraud, waste and abuse. It bars enrollment of new HHAs and hospices, new branch or practice locations, and blocks re-enrollment following a non-exempt change in majority ownership under the 36-month rule. CMS did not extend the moratorium to Medicaid or CHIP at the federal level, leaving that decision to states; Ohio, for example, imposed its own parallel Medicaid moratorium on certain home health and hospice provider types running into mid-November 2026. The moratorium is structured in six-month increments, so its initial term runs out around November 13, 2026, and any extension must be published in the Federal Register \u2014 which, as of this writing, has not happened.</p><p>Speaking at the National Alliance for Care at Home annual conference, reported October 29\u201330, 2026, CMS Deputy Administrator and COO Kimberly Brandt said the moratorium has produced 'huge drops' in billing in fraud-prone markets including California, Texas, Nevada, Ohio, Georgia and Arizona. She disclosed that CMS denied 50 hospice and 250 home health enrollment applications during the freeze, and \u2014 separately from the moratorium itself \u2014 has suspended Medicare payments to 899 hospice and home health providers, 812 of them in California, totaling $1.4 billion. Brandt acknowledged the crackdown is catching some legitimate providers, saying 'it's inevitable that we're going to catch some good people in the net.'</p><p>I have not found any CMS announcement, press release, or Federal Register notice confirming an extension, narrowing, or lapse of the moratorium as of November 9, 2026; this is a live, unresolved decision, not a settled one.</p>",
+        "creditImplication": "I am not underwriting new-enrollment growth, de novo branch expansion, or any non-exempt change-of-ownership transaction for home health or hospice borrowers until CMS clarifies the moratorium's status; for California-domiciled operators specifically, I am screening for active payment suspension given that state's concentration of the disclosed $1.4 billion in suspended payments.",
+        "sources": [
+          {
+            "label": "Hospice News",
+            "url": "https://hospicenews.com/2026/10/29/cms-coo-hospice-home-health-moratoria-a-successful-approach/"
+          },
+          {
+            "label": "CMS Provider Enrollment Moratoria",
+            "url": "https://www.cms.gov/medicare/enrollment-renewal/providers-suppliers/chain-ownership-system-pecos/provider-enrollment-moratoria"
+          },
+          {
+            "label": "Federal Register Notice 2026-09717",
+            "url": "https://www.govinfo.gov/content/pkg/FR-2026-05-15/html/2026-09717.htm"
+          }
+        ]
+      },
+      {
+        "headline": "Medicaid State-Directed Payment and Provider-Tax Limits Could Expose $2.2 Billion in Federal Nursing Home Funding \u2014 Still a Proposed Rule, Not Yet Final",
+        "status": "Proposed; CMS's state-directed-payment rule (CMS-2449-P) has not been finalized, and industry sources expect any phase-down of existing payments to begin no earlier than 2028.",
+        "statusTier": "proposed",
+        "bodyHtml": "<p>The 2025 federal reconciliation law (commonly called the One Big Beautiful Bill Act, or OBBBA) caps Medicaid state-directed payments \u2014 the mechanism states use to supplement Medicaid managed-care rates toward commercial-equivalent levels \u2014 and narrows which provider taxes qualify for 'uniformity waiver' grandfathering. CMS's proposed rule implementing the state-directed-payment caps (CMS-2449-P) remains unfinalized; a related provider-tax rule closing a specific tax 'loophole' was finalized January 29, 2026, but the broader proposed rule detailing which existing provider taxes get grandfathered has also not been finalized as of this writing.</p><p>A KFF News analysis, reported by Skilled Nursing News on October 21, 2026, estimates nursing-home-specific state-directed payments total $3.7 billion annually nationwide, of which about $2.2 billion is federally funded and therefore exposed to the new caps. Pennsylvania is by far the most exposed state, with roughly $1 billion a year \u2014 nearly 47% of the national federal total \u2014 where these payments push nonpublic facility rates to 48.5% of average commercial rates and county-owned facility rates to 97.5% of commercial-equivalent levels. Texas, New Mexico, Rhode Island, Illinois and Indiana were also named as exposed; at least 15 states use nursing-home state-directed payments in some form.</p><p>Saber Healthcare's Zach Shamberg said any phase-down would likely begin 'starting in 2028,' consistent with other industry summaries describing a multi-year compliance runway for existing arrangements under the reconciliation law. AHCA's John Kane said changes to these payments 'could create additional financial pressure for affected providers,' but no source I found reports an actual rate reduction that has already occurred.</p>",
+        "creditImplication": "For Medicaid-dependent skilled nursing borrowers in Pennsylvania, Texas, New Mexico, Rhode Island, Illinois or Indiana, I am quantifying what share of managed-care revenue rides on state-directed payments and flagging it as a 2028-and-beyond refinancing and covenant-headroom risk, but I am not applying any haircut to current financials since the implementing rule is still proposed and no cut has taken effect.",
+        "sources": [
+          {
+            "label": "Skilled Nursing News",
+            "url": "https://skillednursingnews.com/2026/10/2-2b-in-federal-nursing-home-funding-at-risk-under-new-medicaid-limits-as-providers-worry-about-access/"
+          },
+          {
+            "label": "MACPAC: State Directed Payment and Provider Tax Proposed Rule",
+            "url": "https://www.macpac.gov/publication/state-directed-payment-and-provider-tax-proposed-rule/"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "development": "CY2027 Home Health Payment Rule",
+        "status": "Implemented",
+        "read": "Rate increase is real and final, but net of new compliance costs \u2014 don't model it as pure upside"
+      },
+      {
+        "development": "Home Health/Hospice Enrollment Moratorium",
+        "status": "Enacted / implementation underway",
+        "read": "Do not underwrite new HH/hospice enrollment or non-exempt ownership-change growth until CMS decides"
+      },
+      {
+        "development": "Medicaid State-Directed Payment / Provider Tax Caps (SNF exposure)",
+        "status": "Proposed",
+        "read": "Real future risk for SDP-heavy states, but not a 2026 cash-flow event \u2014 flag for 2028+ underwriting only"
+      },
+      {
+        "development": "Broad federal Medicaid HCBS reimbursement cut",
+        "status": "Not newly implemented",
+        "read": "No new federal HCBS rate cut this week; prior OBBBA-driven pressure continues unchanged"
+      },
+      {
+        "development": "Federal government shutdown / Medicaid funding lapse",
+        "status": "Not newly implemented",
+        "read": "No shutdown risk this week; CR funds government through December 11, 2026"
+      }
+    ],
+    "focusHtml": "<p>For home health and hospice credits, the immediate diligence item is enrollment and ownership status: confirm whether any pending change-of-ownership, de novo branch, or new-market entry depends on Medicare enrollment that the moratorium currently blocks, and for California-domiciled operators specifically, screen for active Medicare payment suspension given that state's concentration within the disclosed $1.4 billion total. Revalidation status and audit history now carry more weight given the CY2027 rule's retroactive-to-noncompliance-date revocation standard, so I want current survey and accreditation timelines, not just a clean historical record. For skilled nursing credits in Pennsylvania, Texas, New Mexico, Rhode Island, Illinois or Indiana, quantify the share of Medicaid managed-care revenue tied to state-directed payments as a 2028-and-beyond refinancing risk, without discounting current cash flow. Across PCS/HCBS-heavy personal care and home care borrowers, continue tracking state-by-state EVV compliance thresholds (several states are stepping enforcement up toward 80\u201385% match rates this year) as a leading indicator of claims-denial and DSO risk, and keep an eye on state per-capita-cap-driven HCBS waiver and rate actions on a state-by-state basis, since that pressure is structural and ongoing rather than new this week.</p>"
+  },
+  {
     "date": "Oct 26, 2026",
     "dateSort": "2026-10-26T00:00:00",
     "title": "Weekly Medicaid, Home Health & HCBS Update",
