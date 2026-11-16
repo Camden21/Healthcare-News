@@ -1,5 +1,111 @@
 [
   {
+    "date": "Nov 16, 2026",
+    "dateSort": "2026-11-16T00:00:00",
+    "title": "Weekly Medicaid, Home Health & HCBS Update",
+    "throughDate": "Through November 16, 2026",
+    "overviewHtml": "<p>The dominant theme this week is federal program-integrity tightening on the Medicare home health side rather than any new Medicaid reimbursement shock: CMS finalized its CY2027 home health payment rule and separately extended its nationwide moratorium on new Medicare enrollment for home health agencies and hospices through roughly May 2027, and both raise barriers to entry and ownership-change risk more than they move near-term cash flow. I want to be explicit about what did NOT happen this week, because headlines could easily be read otherwise: there was no new across-the-board federal Medicaid reimbursement cut \u2014 the 2.4% Medicare home health payment increase CMS finalized is a Medicare (not Medicaid) adjustment, and it does not take effect until January 1, 2027; the Medicaid community-engagement (work requirement) and provider-tax provisions of last year's reconciliation law (H.R.1/OBBBA) remain mostly unimplemented, with work requirements not binding on states until January 1, 2027 and provider-tax rate reductions not starting until federal fiscal year 2028; and there was no new government shutdown or Medicaid funding lapse \u2014 a continuing resolution keeps federal funding, including Medicaid's mandatory spending, running through December 11, 2026. The one genuinely new Medicaid-adjacent legal development, a federal court's narrowing of the 'medical frailty' exemption test in the work-requirement rule, loosens \u2014 but does not delay \u2014 that January 1, 2027 deadline.</p>",
+    "items": [
+      {
+        "headline": "CMS finalizes CY2027 Medicare home health rule: 2.4% aggregate payment increase paired with sweeping enrollment/revocation overhaul",
+        "status": "Finalized November 4, 2026; the payment update and enrollment/revocation provisions are effective January 1, 2027 and are not yet reflected in current cash flow.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>CMS finalized the CY2027 Home Health Prospective Payment System rule, estimating it will raise aggregate Medicare payments to home health agencies by about $415 million, or 2.4%, over CY2026. That figure combines a 2.1% payment update with an estimated 0.3% increase tied to the updated fixed-dollar-loss (outlier) amount. The rule also carries forward a -3% temporary adjustment to the national, standardized 30-day payment rate, and finalizes recalibrated PDGM case-mix weights, updated LUPA thresholds, functional-impairment levels, and comorbidity-adjustment subgroups. None of this changes CY2026 payments; the new rates apply to episodes beginning on or after January 1, 2027.</p><p>More consequential for underwriting is the rule's program-integrity package, which applies to all Medicare provider and supplier types, not just home health. CMS finalized authority to make Medicare enrollment revocations effective retroactive to the date noncompliance began, rather than the current approach of 30 days after notice is mailed \u2014 converting what used to be a prospective enrollment defect into potential retroactive overpayment exposure. It also added new grounds for denial or revocation tied to certain changes in majority ownership, under which the acquired entity must re-enroll as a new provider and complete survey/accreditation, and extended existing license- and program-suspension grounds to a provider's owners, managing employees, and affiliated organizations. CMS estimates these enrollment measures will save roughly $82 million annually nationwide.</p><p>The rule did not finalize a home health-specific wage index methodology; CMS said it will keep reviewing CY2026 claims data before deciding whether a separate permanent base-rate adjustment is warranted. It also did not finalize every enrollment proposal from the July 2026 proposed rule exactly as proposed \u2014 trade coverage is not fully consistent on which specific enrollment grounds survived in final form, so the underlying Federal Register text (CMS-1844-F) should be checked before relying on any single provision's scope.</p>",
+        "creditImplication": "I would not credit the 2.4% rate increase to FY2026 results or trailing-twelve-month cash flow \u2014 it is a January 1, 2027 event, and the accompanying -3% temporary rate adjustment partially offsets it. Separately, the retroactive-revocation and ownership-change provisions raise compliance and overpayment-exposure costs for any home health borrower that has recently changed majority ownership or has open survey/licensure deficiencies, and should factor into diligence on reps and warranties for pending deals.",
+        "sources": [
+          {
+            "label": "Federal Register (CMS-1844-F, public inspection)",
+            "url": "https://public-inspection.federalregister.gov/2026-22750.pdf"
+          },
+          {
+            "label": "Home Health Care News",
+            "url": "https://homehealthcarenews.com/2026/11/cms-finalizes-2027-home-health-medicare-payment-rule-with-2-4-rate-increase/"
+          }
+        ]
+      },
+      {
+        "headline": "CMS extends nationwide Medicare enrollment moratorium on new home health agencies and hospices through roughly May 2027",
+        "status": "Implemented; extension effective November 13, 2026, through approximately May 12, 2027.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>CMS has extended, for a second six-month term, the nationwide moratorium on initial Medicare enrollment of home health agencies and hospices that it first imposed on May 13, 2026. Per CMS's own provider enrollment moratoria page, the extension took effect November 13, 2026, and runs through roughly May 12, 2027, with CMS retaining authority to extend it further in six-month increments if it judges continued fraud, waste, or abuse risk warrants it. The moratorium is nationwide \u2014 it is not limited to the historical high-fraud markets (Florida, Texas, Illinois, Michigan) that CMS targeted in earlier, narrower moratoria \u2014 and it covers Medicare enrollment only; it does not freeze state Medicaid or CHIP enrollment.</p><p>CMS modified the moratorium alongside the extension: effective November 13, 2026, agencies and hospices already enrolled in Medicare may add new practice locations within the same state, which was not permitted during the initial six-month period. New initial enrollment applications, however, continue to be denied while the moratorium is in effect, and that denial extends to 'nonexempt' changes in majority ownership (CIMOs) under 42 CFR 424.550(b) \u2014 meaning an acquisition structured as a disqualifying change of ownership can be treated as a new-enrollment application and blocked, unless it qualifies for an existing regulatory exemption.</p><p>Advocacy groups pressed CMS over the fall not to extend the moratorium, arguing it was constraining access in underserved markets even as it curbed fraud; CMS extended it anyway, citing continued program-integrity concerns.</p>",
+        "creditImplication": "Any pending acquisition or platform build-out that depends on new Medicare enrollment, a de novo HHA/hospice license, or a change-of-ownership structure that doesn't fit a 42 CFR 424.550(b) exemption should be assumed blocked until at least May 2027 \u2014 I'd confirm the specific CIMO exemption analysis before underwriting a deal's expected close timeline. Existing borrowers can still add branch locations within their current state, which somewhat eases organic expansion risk but does not open new markets.",
+        "sources": [
+          {
+            "label": "CMS",
+            "url": "https://www.cms.gov/Medicare/Provider-Enrollment-and-Certification/Provider-Enrollment-Moratoria"
+          },
+          {
+            "label": "CHAP",
+            "url": "https://chapinc.org/hospice-and-home-health-moratoria/"
+          }
+        ]
+      },
+      {
+        "headline": "Federal court narrows CMS's 'medical frailty' exemption test for Medicaid work requirements, but January 1, 2027 deadline is unchanged",
+        "status": "Decided October 29, 2026, and currently in effect nationwide with no stay; HHS has not said whether it will appeal, and the statutory January 1, 2027 implementation deadline stands.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>A federal district court ruled on October 29, 2026, in Massachusetts v. Oz that CMS exceeded its statutory authority when its June 2026 interim final rule narrowed the 'medically frail' exemption from Medicaid community-engagement (work) requirements. CMS's rule had imposed a two-part test, requiring an enrollee to show both a qualifying medical condition and that the condition impairs the person's ability to meet the work/community-engagement requirement. The court vacated the second prong, so enrollees now need only show a condition falling into one of five statutory medical-frailty categories to qualify for the exemption. The ruling applies nationwide, not just to the plaintiff states.</p><p>The court left other parts of the interim final rule intact, including limits on using claims data only from the prior 12 months to verify frailty, and a restriction allowing self-attestation of frailty only once per continuous enrollment period starting in 2028. This is a narrower, more technical ruling than the earlier, separate decision in which a different judge denied a 25-state coalition's bid to block implementation of the work-requirement rule entirely; that broader challenge failed, and states remain on track to implement by the statutory January 1, 2027 deadline.</p><p>HHS/CMS has not indicated whether it will appeal the October 29 ruling. Because most states are still finalizing their own exemption procedures, look-back periods, and self-attestation policies for the 2027 rollout, the practical effect of the ruling on any given state's enrollee count will depend on how quickly state Medicaid agencies update their frailty-screening logic before January 1.</p>",
+        "creditImplication": "This ruling modestly reduces, but does not eliminate, disenrollment risk for Medicaid-expansion-population borrowers (including HCBS and personal-care operators serving disabled working-age adults) once work requirements take effect; I would not treat it as a reason to push back enrollment-risk modeling past January 1, 2027, since the deadline itself is untouched and litigation over the broader rule is still live.",
+        "sources": [
+          {
+            "label": "KFF",
+            "url": "https://www.kff.org/quick-insights/court-decision-eases-burden-of-proof-to-qualify-for-medical-frailty-exclusion-to-medicaid-work-requirements/"
+          }
+        ]
+      },
+      {
+        "headline": "H.R.1 (OBBBA) Medicaid cost pressure remains mostly ahead of us, not behind us: provider-tax and work-requirement provisions still phasing in",
+        "status": "Enacted in 2025; as of October/November 2026 only the immigrant-eligibility restrictions and provider-tax/state-directed-payment freezes are operative, while the costliest provisions remain pending.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>A law-firm implementation tracker dated November 5, 2026 lays out which Medicaid provisions of last year's reconciliation law (H.R.1, the One Big Beautiful Bill Act) are actually in force as of October 2026, versus still pending. Currently in effect: restrictions on Medicaid eligibility for certain immigrants, and bans on most new or increased state provider taxes and state-directed payments. Also now binding: states had to obligate their first-year ($10 billion nationally for FY2026) Rural Health Transformation Program allocations by October 30, 2026, and must spend those funds by September 30, 2027, or risk CMS redistributing unused amounts in later program years.</p><p>Still pending, and more consequential for providers: Medicaid community-engagement (work) requirements take effect January 1, 2027 for most states (see the related item on the medical-frailty ruling above); provider-tax rate reductions do not begin until federal fiscal year 2028 (October 1, 2027); and reductions to grandfathered state-directed payments do not begin until January 1, 2028. CMS's own implementing rules for the provider-tax and state-directed-payment provisions are not yet final. The tracker's authors note that, as of October 2026, most states had not yet enacted major headline Medicaid provider-rate cuts tied to H.R.1 specifically \u2014 the state-level rate cuts reported this year in places like Colorado, North Carolina, Idaho, and Kentucky stem from state-specific budget shortfalls, not from H.R.1 provisions that are not yet operative.</p><p>The practical read: the roughly $1 trillion, decade-long Medicaid reduction associated with H.R.1 is a real, enacted law, but its fiscal bite on providers is staggered through 2032, with the next material step (provider-tax phase-down) not landing until FY2028. States are expected to respond with a mix of provider rate cuts, optional-benefit limits (e.g., adult dental, PT), and HCBS reductions as that pressure builds \u2014 but that response has largely not yet happened.</p>",
+        "creditImplication": "I would not discount a borrower's current Medicaid revenue for H.R.1-driven cuts that have not yet taken effect, but I would build state-specific FY2028 stress scenarios now \u2014 particularly for operators concentrated in states with high provider-tax reliance or large state-directed-payment arrangements \u2014 since that is when the next real reimbursement pressure arrives, not this week.",
+        "sources": [
+          {
+            "label": "Faegre Drinker",
+            "url": "https://www.faegredrinker.com/zh/insights/publications/2026/11/implementation-status-of-hr-1-medicaid-provisions-as-of-october-2026"
+          },
+          {
+            "label": "KFF",
+            "url": "https://www.kff.org/medicaid/a-closer-look-at-the-50-billion-rural-health-transformation-program/"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "development": "CY2027 Medicare home health final rule (2.4% increase + enrollment overhaul)",
+        "status": "Enacted / implementation underway",
+        "read": "Do not book the 2.4% increase before January 1, 2027; flag retroactive-revocation and CHOW enrollment provisions as added compliance cost."
+      },
+      {
+        "development": "HHA/hospice Medicare enrollment moratorium extension",
+        "status": "Implemented",
+        "read": "De novo entry and nonexempt change-of-ownership enrollment are blocked nationwide through ~May 2027 \u2014 real M&amp;A and growth timing risk."
+      },
+      {
+        "development": "Medicaid work-requirement 'medical frailty' ruling (Massachusetts v. Oz)",
+        "status": "Enacted / implementation underway",
+        "read": "Exemption test loosened, but the January 1, 2027 work-requirement deadline is unchanged \u2014 don't treat this as relief or delay."
+      },
+      {
+        "development": "H.R.1 (OBBBA) Medicaid provisions overall",
+        "status": "Enacted / implementation underway",
+        "read": "Most costly pieces (provider-tax phase-down, work requirements) still ahead; model FY2028 stress, not today's financials."
+      },
+      {
+        "development": "Broad federal Medicaid reimbursement cut",
+        "status": "Not newly implemented",
+        "read": "No new across-the-board federal Medicaid rate cut occurred this week; don't conflate the Medicare home health rule or state-specific cuts with a Medicaid-wide reduction."
+      },
+      {
+        "development": "Federal government shutdown / Medicaid payment interruption",
+        "status": "Not newly implemented",
+        "read": "A continuing resolution funds the government, and Medicaid's mandatory spending, through December 11, 2026 \u2014 no lapse this week, but that date is the next cliff to watch."
+      }
+    ],
+    "focusHtml": "<p>Given this week's developments, I'd prioritize four diligence threads. First, change-of-ownership and enrollment status: with the HHA/hospice Medicare moratorium extended through roughly May 2027 and blocking nonexempt CIMOs, confirm the enrollment structure of any pending acquisition or add-on against the 42 CFR 424.550(b) exemption criteria before assuming a normal closing timeline, and check each borrower's Medicare revalidation status given CMS's broader push for accelerated state Medicaid revalidation this year. Second, retroactive overpayment exposure: the CY2027 final rule's shift to retroactive-effective revocations raises the stakes of any open survey deficiency, licensure lapse, or ownership-disclosure gap, so audit history and denied-claim trends deserve a fresh look. Third, Medicaid-expansion/work-requirement exposure: for PCS, HCBS, and personal-care operators with meaningful expansion-adult census, map state-by-state readiness for the January 1, 2027 community-engagement deadline, including how each state is handling self-attestation and the now-loosened medical-frailty exemption, since coverage losses (and the revenue/working-capital effects of eligibility churn) are expected to surface in the first half of 2027. Fourth, state Medicaid revenue concentration: because H.R.1's provider-tax and state-directed-payment reductions don't bite until FY2028, build state-specific stress tests now \u2014 especially for operators in states most reliant on provider taxes or state-directed payments \u2014 and treat EVV compliance and Medicaid DSO/AR aging as early-warning indicators of states tightening program integrity ahead of that federal phase-down.</p>"
+  },
+  {
     "date": "Nov 9, 2026",
     "dateSort": "2026-11-09T00:00:00",
     "title": "Weekly Medicaid, Home Health & HCBS Update",
