@@ -1,5 +1,25 @@
 [
   {
+    "date": "Nov 16, 2026",
+    "dateSort": "2026-11-16T00:00:00",
+    "jurisdiction": "Trade Press",
+    "state": "U.S.",
+    "category": "Industry / Trade",
+    "broadCategory": "fraud",
+    "sector": "Pending review",
+    "headline": "Hospices Cheer Moratorium Modifications; Concerns About Patient Access Persist",
+    "detail": "The hospice community has welcomed modifications to the U.S. Centers for Medicare &#38; Medicaid Services\u2019 (CMS) hospice and home health enrollment moratorium, though many continue to call for a more targeted approach. CMS implemented the moratorium on May 13, 2026, and last Thursday extended it for another six months, with modifications. At the outset, it [&#8230;] The post Hospices Cheer Moratorium Modifications; Concerns About Patient Access Persist appeared first on Hospice News .",
+    "creditDirection": "Negative",
+    "severity": "Critical",
+    "riskScore": 8,
+    "sourceAgency": "Hospice News",
+    "sourceVerification": "Trade press \u2014 not a primary source",
+    "sourceURL": "https://hospicenews.com/2026/11/16/hospices-cheer-moratorium-modifications-concerns-about-patient-access-persist/",
+    "effectiveDate": "Pending review",
+    "borrowers": [],
+    "id": "FRD-042"
+  },
+  {
     "date": "Nov 13, 2026",
     "dateSort": "2026-11-13T00:00:00",
     "jurisdiction": "Trade Press",
