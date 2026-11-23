@@ -1,5 +1,89 @@
 [
   {
+    "date": "Nov 23, 2026",
+    "dateSort": "2026-11-23T00:00:00",
+    "title": "Weekly Medicaid, Home Health & HCBS Update",
+    "throughDate": "Through November 23, 2026",
+    "overviewHtml": "<p>This week's dominant theme is federal tightening of the pipeline rather than a cut to current rates: CMS finalized a net-positive CY2027 Medicare home health payment rule and extended its nationwide moratorium on new home health and hospice enrollments, while separately signaling it will apply much stricter budget-neutrality math to Section 1115 waivers (some of which fund HCBS and long-term-care financing arrangements) starting January 1, 2027. I want to be explicit about what did NOT happen this week: there was no new federal Medicare home health rate cut (the finalized CY2027 update is a net increase), and the Medicaid provider-tax and state-directed-payment rules that trade press has been covering as a financing squeeze remain proposed, not final. Readers should not treat either as an operative change yet.</p>",
+    "items": [
+      {
+        "headline": "CMS finalizes CY2027 Medicare home health payment rule with net 2.4% increase, plus new ownership-change revalidation rules",
+        "status": "Finalized November 4, 2026 (scheduled for Federal Register publication November 9, 2026); effective January 1, 2027.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>CMS released the Calendar Year 2027 Home Health Prospective Payment System final rule on November 4, 2026. The agency estimates aggregate Medicare payments to home health agencies will rise 2.4%, or about $415 million, versus CY2026 \u2014 built from a 2.1% payment update (3.1% market basket less a 1.0% productivity adjustment) plus roughly 0.3 points from a revised fixed-dollar-loss outlier ratio. Agencies that fail to report required quality data receive only 0.1%. The rule also keeps a -3.0% temporary adjustment to the national standardized 30-day rate, which CMS frames as recoupment of prior-period overpayments rather than a new cut; CMS did not finalize an additional permanent base-rate reduction, though it says it will keep reviewing CY2026 claims data to decide whether one is warranted later.</p><p>Separately, the rule adds program-integrity provisions that apply broadly across Medicare provider types, including home health agencies, hospices and DME suppliers: enrollment revocations can now be made effective retroactive to the date noncompliance began (rather than 30 days after notice), and a change in majority ownership becomes new grounds for required re-enrollment as a new provider, including a fresh survey or accreditation cycle. Existing denial/revocation grounds tied to license or program suspensions are extended to owners and managing employees, not just the enrolled entity itself. CMS estimates the enrollment and revocation changes will save roughly $82 million annually.</p><p>None of this is Medicaid policy directly, but Medicaid-funded home health and personal-care operators that also bill Medicare should note the ownership-change revalidation trigger, since it lengthens the timeline and adds a licensure/survey step to any Medicare-participating home health change of control that closes before the provider revalidates.</p>",
+        "creditImplication": "I read this as rate-neutral-to-modestly-positive for Medicare-dependent home health borrowers, not a benefit I would underwrite above the net figure CMS published, and I would model the temporary 3% claw-back as continuing rather than assume it lapses. For any deal involving a change of ownership of a Medicare-enrolled home health agency, I would build in time and cost for mandatory re-enrollment and survey/accreditation once this provision takes effect January 1, 2027.",
+        "sources": [
+          {
+            "label": "Home Health Care News",
+            "url": "https://homehealthcarenews.com/2026/11/cms-finalizes-2027-home-health-medicare-payment-rule-with-2-4-rate-increase/"
+          },
+          {
+            "label": "Applied Policy summary of final rule",
+            "url": "https://www.appliedpolicy.com/wp-content/uploads/CY-2027-Home-Health-Final-Rule-Summary_11.5.26.pdf"
+          }
+        ]
+      },
+      {
+        "headline": "CMS extends nationwide Medicare enrollment moratorium on new home health agencies and hospices for another six months, but lets existing agencies add branches",
+        "status": "Announced November 12, 2026; in effect now, extending the moratorium first imposed May 13, 2026.",
+        "statusTier": "implemented",
+        "bodyHtml": "<p>CMS extended its nationwide, temporary moratorium blocking Medicare enrollment of new home health agencies and new hospices for an additional six months beyond the original May 13, 2026 start date. The moratorium is currently in force \u2014 this is not a proposal \u2014 and CMS cites ongoing fraud enforcement activity, a Department of Justice memorandum targeting home health fraud schemes, and an FBI public-service announcement on hospice enrollment fraud as its rationale for the extension.</p><p>The extension is narrower than the original freeze in one important respect: currently enrolled home health agencies may now add new branch locations, and currently enrolled hospices may add new practice locations, which the original moratorium had prohibited. The freeze continues to apply only to brand-new initial enrollments of home health agencies and hospices, nationwide, and does not affect agencies already enrolled and billing. CMS says the moratorium does not apply to Medicaid or CHIP enrollment, and that it does not intend to override separate state-level moratoria already in place in Louisiana, Nevada, Ohio, Pennsylvania and Rhode Island.</p><p>This is a federal Medicare program-integrity control, not a Medicaid rate action, but it is highly relevant to deal flow: it continues to foreclose de novo Medicare-certified home health and hospice start-ups nationwide while making existing platforms' branch and location expansion the only avenue for Medicare-enrolled growth.</p>",
+        "creditImplication": "For sponsors evaluating platform build-vs-buy strategy in home health or hospice, I would treat de novo Medicare enrollment as closed through at least mid-2027 and expect this to keep supporting valuations on existing Medicare-enrolled licenses/CCNs, since branch expansion under an existing enrollment is now the only growth path; I would still confirm CCN and enrollment status early in diligence given the still-tight scrutiny on new enrollments generally.",
+        "sources": [
+          {
+            "label": "Goodwin Procter client alert",
+            "url": "https://www.goodwinlaw.com/en/insights/publications/2026/11/alerts-hltc-cms-extends-medicare-enrollment-moratoria-hospices-home-health-agencies"
+          },
+          {
+            "label": "CMS Provider Enrollment Moratoria",
+            "url": "https://www.cms.gov/Medicare/Provider-Enrollment-and-Certification/Provider-Enrollment-Moratoria"
+          }
+        ]
+      },
+      {
+        "headline": "CMS's new Section 1115 budget-neutrality test could tighten financing for some HCBS-adjacent waivers, but is guidance ahead of rulemaking, not yet a final rule",
+        "status": "Guidance issued; new standards take effect January 1, 2027 even though the formal rulemaking is not expected until early 2027.",
+        "statusTier": "pending",
+        "bodyHtml": "<p>KFF published an analysis on November 5, 2026 of CMS's June 2026 guidance overhauling how Section 1115 Medicaid demonstration waivers must demonstrate budget neutrality, a standard the 2025 reconciliation law moved into statute. Under the new approach, CMS's Chief Actuary must certify budget neutrality prospectively at the application stage rather than through an end-of-demonstration reconciliation, and a new 'Medicaid Authorizable Populations and Services' (MAPS) test replaces the prior 'hypothetical population' concept \u2014 an activity escapes the budget-neutrality requirement only if both the population and the service could independently be covered under some other Medicaid authority. Activities that don't clear that bar are classified '1115-only' and must be offset with documented savings; administrative costs are now counted against the budget-neutrality calculation, and savings can only be applied in the period they accrue or the one immediately following. CMS has also rescinded the fast-track renewal process and said managed care arrangements generally cannot be used to generate the offsetting savings.</p><p>KFF reports roughly 27 waivers nationally expire by the end of 2027 and will have to pass this tighter test on renewal; CMS has already told Arkansas it will not approve renewal of its ARHOME demonstration under the old framework, forcing the state to seek a two-year bridge extension while it redesigns the program. Some HCBS-related waiver activities, along with health-related social needs, delivery-system reform, and uncompensated-care-pool financing arrangements, are the categories KFF flags as most exposed to reclassification and a harder savings-offset requirement. CMS has encouraged states to move HCBS coverage out of 1115 authority into state plan or 1915 vehicles where feasible, which would reduce exposure to this specific risk but requires state administrative capacity that is itself constrained.</p><p>Critically, this is guidance that sets a compliance date, not a notice-and-comment final rule \u2014 CMS says formal rulemaking is expected only in early 2027, and key operational details (what counts as a 'substantial' deviation, financial risk standards) are still undefined. No waiver has yet lost funding because of this change; it is a forward-looking constraint on renewals and amendments.</p>",
+        "creditImplication": "I would flag any borrower whose state relies on a Section 1115 demonstration (rather than a standard state plan amendment or 1915(c)/(i) waiver) to fund HCBS, managed LTSS, or related wraparound services, and check that waiver's expiration date against the 27-waiver renewal wave hitting through 2027; this is a watch item for revenue-source durability and state administrative risk, not yet an actual funding cut.",
+        "sources": [
+          {
+            "label": "KFF \u2014 1115 Waiver Watch: Budget Neutrality Policy Changes",
+            "url": "https://www.kff.org/medicaid/issue-brief/1115-waiver-watch-a-look-at-budget-neutrality-policy-changes/"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "development": "CY2027 Medicare home health payment rule",
+        "status": "Enacted / implementation underway",
+        "read": "Net rate-neutral to modestly positive; do not model above CMS's published 2.4% figure, and keep the 3% temporary claw-back in the base case"
+      },
+      {
+        "development": "Home health &amp; hospice Medicare enrollment moratorium extension",
+        "status": "Implemented",
+        "read": "De novo Medicare enrollment stays closed nationwide; existing-platform branch expansion is the live growth channel"
+      },
+      {
+        "development": "Section 1115 budget-neutrality overhaul for HCBS-adjacent waivers",
+        "status": "Enacted / implementation underway",
+        "read": "Real but forward-looking financing risk for states using 1115 authority for HCBS/LTSS; check waiver expiration dates, not a current cut"
+      },
+      {
+        "development": "Medicaid provider tax / state-directed-payment restrictions",
+        "status": "Proposed",
+        "read": "Not newly implemented this week \u2014 still proposed rules, do not underwrite as a financing cut yet"
+      },
+      {
+        "development": "Medicare home health rate cut (broad, new)",
+        "status": "Not newly implemented",
+        "read": "No new federal Medicare home health rate cut occurred this week; the finalized CY2027 update is a net increase"
+      }
+    ],
+    "focusHtml": "<p>Given this week's news, I'd prioritize three diligence threads. First, for any home health or hospice borrower contemplating a change of ownership, map the timeline against the new Medicare revalidation-on-majority-ownership-change requirement (effective with the CY2027 rule on January 1, 2027) and against current CCN/enrollment status, since a deal that closes without accounting for the mandatory re-survey could stall Medicare billing post-close. Second, for any Medicaid HCBS or managed-LTSS operator, pull the state's underlying funding authority \u2014 state plan, 1915(c)/(i) waiver, or Section 1115 demonstration \u2014 and check that waiver's renewal date against the 27 demonstrations expiring by end-2027 under the tightened budget-neutrality test; Section 1115-funded programs carry materially more renewal risk right now than state-plan-based HCBS. Third, keep EVV compliance, Medicaid revalidation status, and audit history on the standard checklist \u2014 state-level EVV enforcement (minimum compliance thresholds, claims holds) continues to tighten in multiple states and is an independent source of denied-claim and working-capital risk separate from anything federal this week.</p>"
+  },
+  {
     "date": "Nov 16, 2026",
     "dateSort": "2026-11-16T00:00:00",
     "title": "Weekly Medicaid, Home Health & HCBS Update",
